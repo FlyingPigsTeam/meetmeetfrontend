@@ -1,0 +1,357 @@
+.homepage {
+  position: relative;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background: linear-gradient(
+      rgba(250, 250, 250, 0.1),
+      rgba(250, 250, 250, 0.1)
+    ),
+    url("/src/Routes/img/danny-howe-bn-D2bCvpik-unsplash-min.jpg");
+  background-size: cover;
+}
+
+.heading {
+  color: white;
+  font-size: 3em;
+  font-weight: bold;
+}
+.title {
+  display: grid;
+  height: 15vh;
+  grid-template-columns: 25vw 15vw;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  grid-gap: 60vw;
+}
+.login_button {
+  width: 10vw;
+  border: none;
+  background-color: #00fff6;
+  border-color: #00fff6;
+  color: #222222;
+  font-size: 1.4em;
+  font-weight: 700;
+  transition-duration: 0.3s;
+  border-radius: 0.3em;
+}
+.login_button:hover {
+  background-color: #00e7ff;
+  border: none;
+  color: white;
+  box-shadow: 0px 0px 15px 2px rgba(0, 231, 255, 0.75);
+}
+.content {
+  background-color: rgba(169, 169, 169, 0.3);
+  height: 50vh;
+  width: 50vw;
+  margin: auto;
+  margin-top: 5vh;
+  border-radius: 1em;
+  padding-top: 5vh;
+}
+.text1 {
+  color: white;
+  font-size: 3em;
+  font-weight: 900;
+}
+.text2 {
+  margin-top: 5vh;
+  color: white;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+.login_button1 {
+  margin-top: 3vh;
+  width: 15vw;
+  height: 7vh;
+  font-size: 1.5em;
+  font-weight: 800;
+  border: none;
+  background-color: #00fff6;
+  border-color: #00fff6;
+  color: #222222 !important;
+  transition-duration: 0.3s;
+  border-radius: 0.3em;
+}
+.login_button1:hover {
+  background-color: #00e7ff;
+  border: none;
+  color: white !important;
+  box-shadow: 0px 0px 15px 2px rgba(0, 231, 255, 0.75);
+}
+
+.details {
+  height: 160vh;
+  background-color: black;
+}
+.text3 {
+  padding-top: 15vh;
+  font-size: 3em;
+  font-weight: 900;
+  color: white;
+}
+.text4 {
+  margin-top: 3vh;
+  font-size: 1.5em;
+  color: gray;
+}
+.features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 50vw;
+  margin: auto;
+  margin-top: 20vh;
+  grid-gap: 10vw;
+}
+.h5 {
+  color: white;
+  font-size: 2em;
+  font-weight: 700;
+}
+.p1 {
+  color: white;
+  opacity: 0.5;
+  margin-top: 2vh;
+  font-weight: 400;
+}
+.icon1 {
+  background-image: url(./Icons/icons8-bookmark-128.png);
+  color: white;
+  height: 15vh;
+  width: 10vw;
+  margin: auto;
+  margin-left: 6vw;
+  margin-bottom: 2vh;
+  background-repeat: no-repeat;
+}
+.icon2 {
+  background-image: url(./Icons/icons8-connect-128.png);
+  color: white;
+  height: 15vh;
+  width: 10vw;
+  margin: auto;
+  margin-left: 6vw;
+  margin-bottom: 2vh;
+  background-repeat: no-repeat;
+}
+.icon3 {
+  background-image: url(./Icons/icons8-synchronize-128.png);
+  color: white;
+  height: 15vh;
+  width: 10vw;
+  margin: auto;
+  margin-left: 6vw;
+  margin-bottom: 2vh;
+  background-repeat: no-repeat;
+}
+.icon4 {
+  background-image: url(./Icons/icons8-toolbox-128.png);
+  color: white;
+  height: 15vh;
+  width: 10vw;
+  margin: auto;
+  margin-left: 6vw;
+  margin-bottom: 2vh;
+  background-repeat: no-repeat;
+}
+.plans {
+  height: 120vh;
+  background-color: #222222;
+}
+.pt1 {
+  color: white;
+  font-size: 3em;
+  font-weight: 900;
+  padding-top: 15vh;
+}
+.pt2 {
+  color: white;
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-top: 2vh;
+}
+.gridForPlan {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 60vw;
+  margin: auto;
+  margin-top: 5vh;
+  grid-gap: 10vw;
+}
+.login_plans {
+  color: white;
+  height: 70vh;
+  border: none;
+  border-radius: 1em;
+  background-color: #434242;
+  box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.5);
+}
+.planHeading {
+  font-size: 2.5em;
+  font-weight: 800;
+  margin-top: 5vh;
+}
+.PlanPrice {
+  margin-top: 5vh;
+  font-size: 2.5em;
+  font-weight: 700;
+  color: #00fff6;
+}
+.PlanPerMonth {
+  font-size: 1.2em;
+  opacity: 0.7;
+  margin-bottom: 8vh;
+}
+.planAttr {
+  list-style: none;
+}
+.list {
+  margin: 1.5vh auto;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+.PlanButton {
+  background-color: #00fff6;
+  border: none;
+  margin-top: 5vh;
+  height: 6vh;
+  width: 12vw;
+  color: #222222;
+  font-size: 1.4em;
+  font-weight: 700;
+  box-shadow: 0px 0px 15px 2px rgba(0, 255, 246, 0.75);
+  transition-duration: 0.3s;
+  border-radius: 0.3em;
+}
+.PlanButton:hover {
+  background-color: #00e7ff;
+  border: none;
+  color: white;
+  box-shadow: 0px 0px 15px 2px rgba(0, 231, 255, 0.51);
+}
+.questions {
+  background-color: black;
+  height: 110vh;
+}
+.qt1 {
+  color: white;
+  font-size: 3em;
+  font-weight: 900;
+  padding-top: 10vh;
+}
+.qt2 {
+  color: white;
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-top: 2vh;
+  opacity: 0.6;
+}
+.qGrid {
+  display: grid;
+  width: 60vw;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 auto;
+  margin-top: 10vh;
+  grid-gap: 5vw;
+}
+.question {
+  color: white;
+  font-size: 1.3em;
+  text-align: left;
+  font-weight: 700;
+}
+.answer {
+  text-align: left;
+  font-size: 1.1em;
+  color: white;
+  opacity: 0.7;
+}
+.haveQuestion {
+  color: white;
+  font-size: 2em;
+  font-weight: 800;
+  margin-top: 7vh;
+}
+.PlanButton1 {
+  background-color: #00fff6;
+  border: none;
+  margin-top: 5vh;
+  height: 6vh;
+  width: 12vw;
+  color: #222222;
+  font-size: 1.4em;
+  font-weight: 700;
+  box-shadow: 0px 0px 5px 1px rgba(0, 255, 246, 0.75);
+  transition-duration: 0.3s;
+  border-radius: 0.3em;
+}
+.PlanButton1:hover {
+  background-color: #00e7ff;
+  border: none;
+  color: white;
+  box-shadow: 0px 0px 5px 1px rgba(0, 231, 255, 0.51);
+}
+
+.footer {
+  height: 19vh;
+  background-color: #222222;
+}
+.tags {
+  color: white;
+  text-decoration: none;
+  font-size: 1.3em;
+  font-weight: 600;
+}
+.copy {
+  color: white;
+  margin-top: 5vh;
+}
+.footerGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  list-style: none;
+  margin: 0 auto;
+  width: 60vw;
+  padding-top: 5vh;
+}
+/* .footerIcon1 {
+  background-image: url(./Icons/icons8-instagram.svg);
+  color: white;
+  height: 6vh;
+  background-repeat: no-repeat;
+}
+.footerIcon2 {
+  background-image: url(./Icons/icons8-facebook.svg);
+  color: white;
+  height: 6vh;
+  background-repeat: no-repeat;
+}
+.footerIcon3 {
+  background-image: url(./Icons/icons8-linkedin.svg);
+  color: white;
+  height: 6vh;
+  background-repeat: no-repeat;
+}
+.footerIcon4 {
+  background-image: url(./Icons/icons8-telegram-app.svg);
+  color: white;
+  height: 6vh;
+  background-repeat: no-repeat;
+}
+.footerIcon5 {
+  background-image: url(./Icons/icons8-twitter.svg);
+  color: white;
+  height: 6vh;
+  background-repeat: no-repeat;
+} */
+/* .FIcons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-content: center;
+  margin: 0 auto;
+  width: 20vw;
+  margin-top: 2vh;
+}
+ */

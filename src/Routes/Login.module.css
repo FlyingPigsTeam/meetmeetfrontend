@@ -1,0 +1,52 @@
+.page {
+  height: 100vh;
+  background-color: blueviolet;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.box {
+  height: 80vh;
+  width: 25vw;
+  margin: auto;
+  background-color: #2c3333;
+  border-radius: 1em;
+}
+.header1 {
+  color: white;
+  margin-top: 5vh;
+  font-size: 3em;
+  font-weight: 800;
+}
+.header2 {
+  color: white;
+  margin-top: 1vh;
+  font-size: 1.2em;
+  font-weight: 400;
+  opacity: 0.7;
+}
+.input {
+  margin: 0 auto;
+  margin-top: 2vh;
+  width: 23vw;
+  background-color: #2c3333;
+  color: white !important;
+  outline: none;
+  border: none;
+  border: 0.1em solid white;
+  height: 7vh;
+  border-radius: 0.5em;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+.input::placeholder {
+  color: white;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+.input:hover {
+  border: 0.1em solid white;
+  border-radius: 0.5em;
+}
+.forgot{
+    
+}

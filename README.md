@@ -1,5 +1,6 @@
-# MeetMeetFrontEnd
-Front-end side of MeetMeet Project (System Design Course IUST)
+```javascript
+npm install -g tar create-react-app react-bootstrap react-router-dom jwt-decode sweetalert formik yup
+```
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
