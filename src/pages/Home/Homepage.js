@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Header from "../components/Header";
-import SidebarNavigation from "../components/SidebarNavigation";
+import Header from "../../components/Header";
+import SidebarNavigation from "../../components/SidebarNavigation";
 
 const Homepage = () => {
   const [sort, setSort] = useState("None");
@@ -71,7 +71,9 @@ const Homepage = () => {
               </div>
             </fieldset>
           </div>
-          <div className="text-3xl font-bold text-white mt-6 mb-4">Filters: </div>
+          <div className="text-3xl font-bold text-white mt-6 mb-4">
+            Filters:{" "}
+          </div>
           <div>
             <label className="text-1xl font-medium text-white inline">
               Select The Subject:
@@ -79,7 +81,7 @@ const Homepage = () => {
             <select
               className="inline rounded-md border-gray-300 py-2 font-bold focus:font-bold w-48 mb-4 pl-3 bg-cyan-900 text-white pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               defaultValue="None"
-              style={{marginLeft:"17.2em"}}
+              style={{ marginLeft: "17.2em" }}
               value={subject}
               onChange={handleChangeSubject}
             >
@@ -112,7 +114,7 @@ const Homepage = () => {
             <select
               className="inline rounded-md border-gray-300 py-2 pl-3 w-48 pr-10 font-bold hover:font-bold bg-cyan-900 text-white text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               defaultValue="None"
-              style={{marginLeft:"15.55em"}}
+              style={{ marginLeft: "15.55em" }}
               value={duration}
               onChange={handleChangeDuration}
             >
