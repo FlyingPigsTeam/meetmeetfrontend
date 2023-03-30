@@ -1,3 +1,5 @@
+import "./App.css";
+import Router from "./utils/Router";
 import React from "react";
 // import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Login from "./pages/LoginRegister/Login";
@@ -11,9 +13,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import VerifyEmail from "./pages/LoginRegister/VerifyEmail";
 import ResetPassword from "./pages/LoginRegister/ResetPassword";
 
-export default function App() {
+function App() {
   return (
-    <>
+    <div className="App">
+      <Router />
       <BrowserRouter>
         <AuthProvider>
           {/* <Header /> */}
@@ -29,6 +32,8 @@ export default function App() {
           </Routes>
         </AuthProvider>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
+
+export default App;
