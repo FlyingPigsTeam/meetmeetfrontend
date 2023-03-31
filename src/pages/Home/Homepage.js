@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Card from "../components/Card";
-import Header from "../components/Header";
-import SidebarNavigation from "../components/SidebarNavigation";
+import Card from "../../components/Card";
+import Header from "../../components/Header";
+import SidebarNavigation from "../../components/SidebarNavigation";
 
 const Homepage = () => {
   const [sort, setSort] = useState("None");
@@ -133,11 +133,14 @@ const Homepage = () => {
               <option value="2<">More Than 2 Hours</option>
             </select>
           </div>
-          <div className="grid grid-cols-2 gap-4" style={{width:"75vw", marginTop:"5vh"}}>
-            <Card info={information}/>
-            <Card info={information}/>
-            <Card info={information}/>
-            <Card info={information}/>
+          <div
+            className="grid grid-cols-2 gap-4"
+            style={{ width: "75vw", marginTop: "5vh" }}
+          >
+            <Card info={information} />
+            <Card info={information} />
+            <Card info={information} />
+            <Card info={information} />
           </div>
         </div>
       </div>
