@@ -1,9 +1,6 @@
 import {
-  EnvelopeIcon,
   InformationCircleIcon,
-  PhoneIcon,
   PlayCircleIcon,
-  PlusIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
 import React from "react";
@@ -42,14 +39,14 @@ const Card = (props) => {
         <div className="pl-6 pb-6"> 
           <button
             type="button"
-            className="inline-flex items-center rounded-md border border-transparent bg-green-800 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-600 duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="inline-flex items-center rounded-md border border-transparent bg-green-800 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-600 duration-300"
           >
             <InformationCircleIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
             More Info!
           </button>
           <button
             type="button"
-            className="inline-flex ml-3 items-center rounded-md border border-transparent bg-green-800 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-600 duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="inline-flex ml-3 items-center rounded-md border border-transparent bg-green-800 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-600 duration-300"
           >
             <PlayCircleIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
             Join Event <span className="ml-1 text-amber-400">({data.maxMember-data.member} Left)</span>
