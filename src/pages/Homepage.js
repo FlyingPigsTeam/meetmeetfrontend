@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Card from "../components/Card";
 import Header from "../components/Header";
 import SidebarNavigation from "../components/SidebarNavigation";
 
@@ -10,6 +11,14 @@ const Homepage = () => {
     { id: "unfinishedTasks", title: "Unfinished Tasks" },
     { id: "none", title: "None" },
   ];
+  const information = {
+    name: "Name of the event",
+    categories: ["sport", "cultural"],
+    startDate: "3/30/2023",
+    endDate: "16/4/2023",
+    member: 31,
+    maxMember: 40,
+  };
   const handleChangeSubject = (e) => {
     setSubject(e.target.value);
   };
@@ -38,8 +47,8 @@ const Homepage = () => {
       >
         <SidebarNavigation />
         <div
-          className="bg-cyan-900 text-left pb-10 pl-6"
-          style={{ width: "85vw", marginLeft: "15vw" }}
+          className="bg-cyan-900 text-left pb-10 pl-10"
+          style={{ width: "85vw", marginLeft: "13.9vw" }}
         >
           <div className="text-5xl font-bold text-white mb-8 mt-5">Events</div>
           <div className="text-3xl font-bold text-white">Sort Based On:</div>
@@ -71,7 +80,9 @@ const Homepage = () => {
               </div>
             </fieldset>
           </div>
-          <div className="text-3xl font-bold text-white mt-6 mb-4">Filters: </div>
+          <div className="text-3xl font-bold text-white mt-6 mb-4">
+            Filters:{" "}
+          </div>
           <div>
             <label className="text-1xl font-medium text-white inline">
               Select The Subject:
@@ -79,7 +90,7 @@ const Homepage = () => {
             <select
               className="inline rounded-md border-gray-300 py-2 font-bold focus:font-bold w-48 mb-4 pl-3 bg-cyan-900 text-white pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               defaultValue="None"
-              style={{marginLeft:"17.2em"}}
+              style={{ marginLeft: "17.2em" }}
               value={subject}
               onChange={handleChangeSubject}
             >
@@ -105,14 +116,14 @@ const Homepage = () => {
               <option value="20<">More than 20</option>
             </select>
           </div>
-          <div>
+          <div className="mb-5">
             <label className="inline text-1xl font-medium text-white">
               Duration of the Event:
             </label>
             <select
               className="inline rounded-md border-gray-300 py-2 pl-3 w-48 pr-10 font-bold hover:font-bold bg-cyan-900 text-white text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               defaultValue="None"
-              style={{marginLeft:"15.55em"}}
+              style={{ marginLeft: "15.55em" }}
               value={duration}
               onChange={handleChangeDuration}
             >
@@ -121,6 +132,12 @@ const Homepage = () => {
               <option value="1-2">1 - 2 Hours</option>
               <option value="2<">More Than 2 Hours</option>
             </select>
+          </div>
+          <div className="grid grid-cols-2 gap-4" style={{width:"75vw", marginTop:"5vh"}}>
+            <Card info={information}/>
+            <Card info={information}/>
+            <Card info={information}/>
+            <Card info={information}/>
           </div>
         </div>
       </div>
