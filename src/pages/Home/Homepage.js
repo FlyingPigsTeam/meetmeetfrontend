@@ -31,10 +31,10 @@ const Homepage = () => {
     setduration(e.target.value);
   };
   const [duration, setduration] = useState("None");
-  console.log(sort);
+  /* console.log(sort);
   console.log(subject);
   console.log(countOfPeople);
-  console.log(duration);
+  console.log(duration); */
   return (
     <div>
       <Header />
@@ -47,11 +47,11 @@ const Homepage = () => {
       >
         <SidebarNavigation />
         <div
-          className="bg-cyan-900 text-left pb-10 pl-10"
+          className="bg-myDark1 text-left pb-10 pl-10"
           style={{ width: "85vw", marginLeft: "13.9vw" }}
         >
-          <div className="text-5xl font-bold text-white mb-8 mt-5">Events</div>
-          <div className="text-3xl font-bold text-white">Sort Based On:</div>
+          <div className="text-5xl font-bold text-myGrey mb-8 mt-5">Events</div>
+          <div className="text-3xl font-bold text-myGrey">Sort Based On:</div>
           <div>
             <fieldset className="mt-4">
               <legend className="sr-only">Notification method</legend>
@@ -66,12 +66,12 @@ const Homepage = () => {
                       name="notification-method"
                       type="radio"
                       defaultChecked={notificationMethod.id === "email"}
-                      className="h-4 w-4 text-1xl border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="h-4 w-4 text-1xl border-myGrey text-myBlueGreen1"
                       onChange={() => setSort(notificationMethod.id)}
                     />
                     <label
                       htmlFor={notificationMethod.id}
-                      className="ml-3 text-1xl font-medium text-white"
+                      className="ml-3 text-1xl font-medium text-myGrey"
                     >
                       {notificationMethod.title}
                     </label>
@@ -80,15 +80,15 @@ const Homepage = () => {
               </div>
             </fieldset>
           </div>
-          <div className="text-3xl font-bold text-white mt-6 mb-4">
+          <div className="text-3xl font-bold text-myGrey mt-6 mb-4">
             Filters:{" "}
           </div>
           <div>
-            <label className="text-1xl font-medium text-white inline">
+            <label className="text-1xl font-medium text-myGrey inline">
               Select The Subject:
             </label>
             <select
-              className="inline rounded-md border-gray-300 py-2 font-bold focus:font-bold w-48 mb-4 pl-3 bg-cyan-900 text-white pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+              className="inline rounded-md border-myGrey py-2 font-bold focus:font-bold w-48 mb-4 pl-3 bg-myDark1 text-myGrey pr-10 text-base focus:border-myBlueGreen1 focus:outline-none focus:ring-myBlueGreen1 sm:text-sm"
               defaultValue="None"
               style={{ marginLeft: "17.2em" }}
               value={subject}
@@ -101,11 +101,11 @@ const Homepage = () => {
             </select>
           </div>
           <div>
-            <label className="inline text-1xl font-medium text-white">
+            <label className="inline text-1xl font-medium text-myGrey">
               The number of people attending the event:
             </label>
             <select
-              className="inline rounded-md border-gray-300 py-2 pl-3 text-1xl mb-4 ml-16 font-bold hover:font-bold w-48 pr-10 bg-cyan-900 text-white text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+              className="inline rounded-md border-myGrey py-2 pl-3 text-1xl mb-4 ml-16 font-bold hover:font-bold w-48 pr-10 bg-myDark1 text-myGrey text-base focus:border-myBlueGreen1 focus:outline-none focus:ring-myBlueGreen1 sm:text-sm"
               defaultValue="None"
               value={countOfPeople}
               onChange={handleChangeCount}
@@ -117,11 +117,11 @@ const Homepage = () => {
             </select>
           </div>
           <div className="mb-5">
-            <label className="inline text-1xl font-medium text-white">
+            <label className="inline text-1xl font-medium text-myGrey">
               Duration of the Event:
             </label>
             <select
-              className="inline rounded-md border-gray-300 py-2 pl-3 w-48 pr-10 font-bold hover:font-bold bg-cyan-900 text-white text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+              className="inline rounded-md border-myGrey py-2 font-bold focus:font-bold w-48 mb-4 pl-3 bg-myDark1 text-myGrey pr-10 text-base focus:border-myBlueGreen1 focus:outline-none focus:ring-myBlueGreen1 sm:text-sm"
               defaultValue="None"
               style={{ marginLeft: "15.55em" }}
               value={duration}
@@ -137,6 +137,12 @@ const Homepage = () => {
             className="grid grid-cols-2 gap-4"
             style={{ width: "75vw", marginTop: "5vh" }}
           >
+            <Card info={information} />
+            <Card info={information} />
+            <Card info={information} />
+            <Card info={information} />
+            <Card info={information} />
+            <Card info={information} />
             <Card info={information} />
             <Card info={information} />
             <Card info={information} />
