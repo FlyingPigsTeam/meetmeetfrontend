@@ -113,7 +113,7 @@ export default function Filters() {
       <div className="bg-white w-11/12">
         {/* Filters */}
         <section aria-labelledby="filter-heading">
-          <div className="border-b border-gray-200 bg-white pb-4">
+          <div className="border-b border-myGrey1 bg-myDark1 pb-4">
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
               <div className="date">
                 <div date-rangepicker className="flex items-center">
@@ -123,7 +123,7 @@ export default function Filters() {
                     <input
                       name="start"
                       type="Date"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-myDark1 border-4 border-myGrey1 text-myGrey1 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Select date start"
                       onChange={(e) => setstartdate(e.target.value)}
                     />

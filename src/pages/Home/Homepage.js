@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import Card from "../../components/Card";
 import Header from "../../components/Header";
 import SidebarNavigation from "../../components/SidebarNavigation";
+import Filters from "./Filter";
 
 const Homepage = () => {
-  const [sort, setSort] = useState("None");
-  const notificationMethods = [
-    { id: "nearestEvent", title: "Nearest Events" },
-    { id: "numberOfVisits", title: "Number of Visits" },
-    { id: "unfinishedTasks", title: "Unfinished Tasks" },
-    { id: "none", title: "None" },
-  ];
+  // const [sort, setSort] = useState("None");
+  // const notificationMethods = [
+  //   { id: "nearestEvent", title: "Nearest Events" },
+  //   { id: "numberOfVisits", title: "Number of Visits" },
+  //   { id: "unfinishedTasks", title: "Unfinished Tasks" },
+  //   { id: "none", title: "None" },
+  // ];
   const information = {
     name: "Name of the event",
     categories: ["sport", "cultural"],
@@ -19,18 +20,18 @@ const Homepage = () => {
     member: 31,
     maxMember: 40,
   };
-  const handleChangeSubject = (e) => {
-    setSubject(e.target.value);
-  };
-  const [subject, setSubject] = useState("None");
-  const handleChangeCount = (e) => {
-    setcountOfPeople(e.target.value);
-  };
-  const [countOfPeople, setcountOfPeople] = useState("None");
-  const handleChangeDuration = (e) => {
-    setduration(e.target.value);
-  };
-  const [duration, setduration] = useState("None");
+  // const handleChangeSubject = (e) => {
+  //   setSubject(e.target.value);
+  // };
+  // const [subject, setSubject] = useState("None");
+  // const handleChangeCount = (e) => {
+  //   setcountOfPeople(e.target.value);
+  // };
+  // const [countOfPeople, setcountOfPeople] = useState("None");
+  // const handleChangeDuration = (e) => {
+  //   setduration(e.target.value);
+  // };
+  // const [duration, setduration] = useState("None");
   /* console.log(sort);
   console.log(subject);
   console.log(countOfPeople);
@@ -51,7 +52,8 @@ const Homepage = () => {
           style={{ width: "85vw", marginLeft: "13.9vw" }}
         >
           <div className="text-5xl font-bold text-myGrey mb-8 mt-5">Events</div>
-          <div className="text-3xl font-bold text-myGrey">Sort Based On:</div>
+          <Filters />
+          {/* <div className="text-3xl font-bold text-myGrey">Sort Based On:</div>
           <div>
             <fieldset className="mt-4">
               <legend className="sr-only">Notification method</legend>
@@ -132,10 +134,10 @@ const Homepage = () => {
               <option value="1-2">1 - 2 Hours</option>
               <option value="2<">More Than 2 Hours</option>
             </select>
-          </div>
+          </div> */}
           <div
             className="grid grid-cols-2 gap-4"
-            style={{ width: "75vw", marginTop: "5vh" }}
+            style={{ width: "75.6vw", marginTop: "5vh" }}
           >
             <Card info={information} />
             <Card info={information} />
