@@ -31,10 +31,10 @@ const Homepage = () => {
     setduration(e.target.value);
   };
   const [duration, setduration] = useState("None");
-  console.log(sort);
+  /* console.log(sort);
   console.log(subject);
   console.log(countOfPeople);
-  console.log(duration);
+  console.log(duration); */
   return (
     <div>
       <Header />
@@ -137,6 +137,12 @@ const Homepage = () => {
             className="grid grid-cols-2 gap-4"
             style={{ width: "75vw", marginTop: "5vh" }}
           >
+            <Card info={information} />
+            <Card info={information} />
+            <Card info={information} />
+            <Card info={information} />
+            <Card info={information} />
+            <Card info={information} />
             <Card info={information} />
             <Card info={information} />
             <Card info={information} />

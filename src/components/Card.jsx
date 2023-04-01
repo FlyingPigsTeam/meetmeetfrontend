@@ -1,18 +1,17 @@
 import {
   InformationCircleIcon,
-  PlayCircleIcon,
+  PlusCircleIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 import SlideOver from "./SlideOver";
 
-
 const Card = (props) => {
-    const id = "1111"
+  const id = "1111";
   const data = props.info;
-  const [slideover, setslideover] = useState(false)
-  console.log(slideover)
-  return (
+  const [slideover, setslideover] = useState(false);
+  /*   console.log(slideover)
+   */ return (
     <div>
       <div className="col-span-1 rounded-lg bg-darkBlue shadow-navy shadow-lg">
         <div className="flex items-center justify-between p-6">
@@ -26,8 +25,8 @@ const Card = (props) => {
                 <UsersIcon className="mt-1.5" />
               </div>
             </div>
-            {data.categories.map((item) => (
-              <span className="inline-block flex-shrink-0 mr-2 rounded-full text-lg bg-myBlueGreen1 px-3 py-1 mt-2 font-medium text-navy">
+            {data.categories.map((item, index) => (
+              <span key={index} className="inline-block flex-shrink-0 mr-2 rounded-full text-lg bg-myBlueGreen1 px-3 py-1 mt-2 font-medium text-navy">
                 {item}
               </span>
             ))}
@@ -38,11 +37,17 @@ const Card = (props) => {
           </div>
         </div>
         <div className="pl-6 pb-6">
-          <SlideOver slideover={slideover} setslideover={setslideover} id={id}/>
+          <SlideOver
+            slideover={slideover}
+            setslideover={setslideover}
+            id={id}
+          />
           <button
-            onClick={() => {setslideover(true)}}
+            onClick={() => {
+              setslideover(true);
+            }}
             type="button"
-            className="inline-flex items-center rounded-md border border-transparent bg-myGrey px-4 py-2 text-sm font-medium text-navy shadow-sm hover:bg-navy hover:text-myGrey duration-300"
+            className="inline-flex items-center rounded-md border border-transparent bg-myGrey px-4 py-2 text-sm font-medium text-navy shadow-sm hover:bg-navy hover:text-myGrey focus:bg-navy focus:text-myGrey duration-300"
           >
             <InformationCircleIcon
               className="-ml-1 mr-2 h-5 w-5"
@@ -52,9 +57,9 @@ const Card = (props) => {
           </button>
           <button
             type="button"
-            className="inline-flex ml-3 items-center rounded-md border border-transparent bg-myGrey px-4 py-2 text-sm font-medium text-navy shadow-sm hover:bg-navy hover:text-myGrey focus:bg-navy focus:text-myGrey duration-300"
+            className="inline-flex ml-3 items-center rounded-md border border-transparent bg-myGrey px-4 py-2 text-sm font-medium text-navy shadow-sm hover:bg-navy hover:text-myGrey duration-300"
           >
-            <PlayCircleIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+            <PlusCircleIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
             Join Event{" "}
             <span className="ml-1 text-amber-400">
               ({data.maxMember - data.member} Left)
