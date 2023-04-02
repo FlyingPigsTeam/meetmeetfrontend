@@ -22,8 +22,8 @@ const ResetPassword = () => {
         .required("Required"),
     }),
     onSubmit: async (values, e) => {
-      registerUser(values);
-      await delay(4000);
+      // registerUser(values);
+      // await delay(4000);
       //e.preventDefault();
       console.log(values);
     },

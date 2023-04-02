@@ -4,6 +4,9 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 
 import AuthContext from "../../context/AuthContext";
+import classNames from "../../utils/classNames";
+
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
@@ -17,24 +20,20 @@ const Login = () => {
         .string()
         .email("Please enter a valid email")
         .required("Required"),
-      password: yup
-        .string()
-        .required("Required"),
+      password: yup.string().required("Required"),
     }),
     onSubmit: async (values, e) => {
-      registerUser(values);
+      loginUser(values);
       await delay(4000);
       //e.preventDefault();
       console.log(values);
     },
   });
 
-
   return (
     <div
       id="root"
       class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900"
-      x-cloak
     >
       <main class="grid w-full grow grid-cols-1 place-items-center">
         <div class="w-full max-w-[26rem] p-4 sm:px-5">
@@ -54,50 +53,87 @@ const Login = () => {
             </div>
           </div>
           <div class="card mt-5 rounded-lg p-5 lg:p-7">
-            <label class="block">
-              {/* <span >Username:</span> */}
-              <span class="relative mt-1.5 flex">
+            <form onSubmit={formik.handleSubmit}>
+              <label className="relative mt-4 flex">
                 <input
-                  class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                  placeholder="Enter Username"
-                  type="text"
+                  className={classNames(
+                    "form-input peer w-full rounded-lg border bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent",
+                    formik.errors.email && formik.touched.email
+                      ? "border-error"
+                      : "border-slate-300"
+                  )}
+                  placeholder="Email"
+                  type="email"
+                  value={formik.values.email}
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  name="email"
+                  id="email"
+                  required
                 />
-                <span class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                <span className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
                   <i class="fa-solid fa-envelope"></i>
                 </span>
-              </span>
-            </label>
-            <label class="mt-4 block">
-              {/* <span>Password:</span> */}
-              <span class="relative mt-1.5 flex">
+              </label>
+              {formik.errors.email && formik.touched.email && (
+                <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
+                  {formik.errors.email}
+                </span>
+              )}
+              <label className="relative mt-4 flex">
                 <input
-                  class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                  placeholder="Enter Password"
+                  className={classNames(
+                    "form-input peer w-full rounded-lg border bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent",
+                    formik.errors.password && formik.touched.password
+                      ? "border-error"
+                      : "border-slate-300"
+                  )}
+                  placeholder="Password"
                   type="password"
+                  value={formik.values.password}
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  name="password"
+                  id="password"
+                  required
                 />
-                <span class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                <span className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
                   <i class="fa-solid fa-lock"></i>
                 </span>
-              </span>
-            </label>
-            <div class="mt-4 flex items-center justify-between space-x-2">
-              <label class="inline-flex items-center space-x-2">
-                <input
-                  class="form-checkbox is-basic h-5 w-5 rounded border-slate-400/70 checked:border-primary checked:bg-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:checked:border-accent dark:checked:bg-accent dark:hover:border-accent dark:focus:border-accent"
-                  type="checkbox"
-                />
-                <span class="line-clamp-1">Remember me</span>
               </label>
-              <a
-                href="#"
-                class="text-xs text-slate-400 transition-colors line-clamp-1 hover:text-slate-800 focus:text-slate-800 dark:text-navy-300 dark:hover:text-navy-100 dark:focus:text-navy-100"
+              {formik.errors.password && formik.touched.password && (
+                <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
+                  {formik.errors.password}
+                </span>
+              )}
+              <div class="mt-4 flex items-center justify-between space-x-2">
+                <label class="inline-flex items-center space-x-2">
+                  <input
+                    class="form-checkbox is-basic h-5 w-5 rounded border-slate-400/70 checked:border-primary checked:bg-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:checked:border-accent dark:checked:bg-accent dark:hover:border-accent dark:focus:border-accent"
+                    type="checkbox"
+                  />
+                  <span class="line-clamp-1">Remember me</span>
+                </label>
+                <a
+                  href="#"
+                  class="text-xs text-slate-400 transition-colors line-clamp-1 hover:text-slate-800 focus:text-slate-800 dark:text-navy-300 dark:hover:text-navy-100 dark:focus:text-navy-100"
+                >
+                  Forgot Password?
+                </a>
+              </div>
+              <button
+                className={classNames(
+                  "btn mt-5 w-full  font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90",
+                  formik.isSubmitting && "bg-warning",
+                  !formik.isSubmitting && "bg-primary"
+                )}
+                disabled={formik.isSubmitting}
+                type="submit"
+                value="Login"
               >
-                Forgot Password?
-              </a>
-            </div>
-            <button class="btn mt-5 w-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-              Sign In
-            </button>
+                Sign In
+              </button>
+            </form>
             <div class="mt-4 text-center text-xs+">
               <p class="line-clamp-1">
                 <span>Dont have Account?</span>
