@@ -222,6 +222,9 @@ export const Register = () => {
                   value={formik.values.acceptPrivacyPolicy}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
+                  name="acceptPrivacyPolicy"
+                  id="acceptPrivacyPolicy"
+                  required
                 />
                 <p className="line-clamp-1">
                   I agree with
