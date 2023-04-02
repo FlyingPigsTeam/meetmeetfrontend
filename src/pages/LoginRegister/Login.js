@@ -31,10 +31,7 @@ const Login = () => {
   });
 
   return (
-    <div
-      id="root"
-      class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900"
-    >
+    <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
       <main class="grid w-full grow grid-cols-1 place-items-center">
         <div class="w-full max-w-[26rem] p-4 sm:px-5">
           <div class="text-center">
@@ -124,14 +121,20 @@ const Login = () => {
               <button
                 className={classNames(
                   "btn mt-5 w-full  font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90",
-                  formik.isSubmitting && "bg-warning",
+                  formik.isSubmitting && "bg-slate-100",
                   !formik.isSubmitting && "bg-primary"
                 )}
                 disabled={formik.isSubmitting}
                 type="submit"
                 value="Login"
               >
-                Sign In
+                {formik.isSubmitting ? (
+                  <>
+                    <div class="spinner h-7 w-7 animate-spin rounded-full border-[3px] border-primary/30 border-r-primary dark:border-accent/30 dark:border-r-accent"></div>
+                  </>
+                ) : (
+                  "Sign In"
+                )}
               </button>
             </form>
             <div class="mt-4 text-center text-xs+">

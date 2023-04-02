@@ -283,14 +283,20 @@ export const Register = () => {
               <button
                 className={classNames(
                   "btn mt-5 w-full  font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90",
-                  formik.isSubmitting && "bg-warning",
+                  formik.isSubmitting && "bg-slate-100",
                   !formik.isSubmitting && "bg-primary"
                 )}
                 disabled={formik.isSubmitting}
                 type="submit"
                 value="Register"
               >
-                Sign Up
+                {formik.isSubmitting ? (
+                  <>
+                    <div class="spinner h-7 w-7 animate-spin rounded-full border-[3px] border-primary/30 border-r-primary dark:border-accent/30 dark:border-r-accent"></div>
+                  </>
+                ) : (
+                  "Sign Up"
+                )}
               </button>
             </form>
             <div className="mt-4 text-center text-xs+">
