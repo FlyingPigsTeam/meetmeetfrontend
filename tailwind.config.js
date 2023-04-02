@@ -16,7 +16,8 @@ module.exports = {
       "myGrey" : "#EEEEEE",
       "myBlueGreen1" : "#57C5B6",
       "darkBlue" : "#1A5F7A",
-      "navy" : "#002B5B"
+      "navy" : "#002B5B",
+      "gold" : "#FFD700"
     },
     extend: {},
   },

@@ -26,7 +26,10 @@ const Card = (props) => {
               </div>
             </div>
             {data.categories.map((item, index) => (
-              <span key={index} className="inline-block flex-shrink-0 mr-2 rounded-full text-lg bg-myBlueGreen1 px-3 py-1 mt-2 font-medium text-navy">
+              <span
+                key={index}
+                className="inline-block flex-shrink-0 mr-2 rounded-full text-lg bg-myBlueGreen1 px-3 py-1 mt-2 font-medium text-navy"
+              >
                 {item}
               </span>
             ))}
@@ -47,7 +50,7 @@ const Card = (props) => {
               setslideover(true);
             }}
             type="button"
-            className="inline-flex items-center rounded-md border border-transparent bg-myGrey px-4 py-2 text-sm font-medium text-navy shadow-sm hover:bg-navy hover:text-myGrey focus:bg-navy focus:text-myGrey duration-300"
+            className="inline-flex items-center rounded-md border border-transparent bg-myGrey px-4 py-2 text-sm font-medium text-navy shadow-sm hover:bg-navy hover:text-myGrey duration-300"
           >
             <InformationCircleIcon
               className="-ml-1 mr-2 h-5 w-5"
