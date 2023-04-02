@@ -104,6 +104,11 @@ export const Register = () => {
                   <i class="fa-solid fa-circle-user"></i>
                 </span>
               </label>
+              {formik.errors.first_name && formik.touched.first_name && (
+                <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
+                  {formik.errors.first_name}
+                </span>
+              )}
               <label className="relative mt-4 flex">
                 <input
                   className={classNames(
@@ -125,6 +130,11 @@ export const Register = () => {
                   <i class="fa-solid fa-circle-user"></i>
                 </span>
               </label>
+              {formik.errors.last_name && formik.touched.last_name && (
+                <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
+                  {formik.errors.last_name}
+                </span>
+              )}
               <label className="relative mt-4 flex">
                 <input
                   className={classNames(
@@ -146,6 +156,12 @@ export const Register = () => {
                   <i class="fa-solid fa-envelope"></i>
                 </span>
               </label>
+              {formik.errors.email && formik.touched.email && (
+                <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
+                  {formik.errors.email}
+                </span>
+              )}
+
               <label className="relative mt-4 flex">
                 <input
                   className={classNames(
@@ -167,6 +183,12 @@ export const Register = () => {
                   <i class="fa-solid fa-user"></i>
                 </span>
               </label>
+              {formik.errors.username && formik.touched.username && (
+                <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
+                  {formik.errors.username}
+                </span>
+              )}
+
               <label className="relative mt-4 flex">
                 <input
                   className={classNames(
@@ -188,6 +210,12 @@ export const Register = () => {
                   <i class="fa-solid fa-lock"></i>
                 </span>
               </label>
+              {formik.errors.password && formik.touched.password && (
+                <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
+                  {formik.errors.password}
+                </span>
+              )}
+
               <label className="relative mt-4 flex">
                 <input
                   className={classNames(
@@ -210,6 +238,13 @@ export const Register = () => {
                   <i class="fa-solid fa-lock"></i>
                 </span>
               </label>
+              {formik.errors.repeat_password &&
+                formik.touched.repeat_password && (
+                  <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
+                    {formik.errors.repeat_password}
+                  </span>
+                )}
+
               <div className="mt-4 flex items-center space-x-2">
                 <input
                   className={classNames(
@@ -238,7 +273,23 @@ export const Register = () => {
                   </a>
                 </p>
               </div>
-              <button className="btn mt-5 w-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+              {formik.errors.acceptPrivacyPolicy &&
+                formik.touched.acceptPrivacyPolicy && (
+                  <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
+                    {formik.errors.acceptPrivacyPolicy}
+                  </span>
+                )}
+
+              <button
+                className={classNames(
+                  "btn mt-5 w-full  font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90",
+                  formik.isSubmitting && "bg-warning",
+                  !formik.isSubmitting && "bg-primary"
+                )}
+                disabled={formik.isSubmitting}
+                type="submit"
+                value="Register"
+              >
                 Sign Up
               </button>
             </form>
