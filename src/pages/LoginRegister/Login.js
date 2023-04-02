@@ -1,9 +1,34 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { useFormik } from "formik";
+import * as yup from "yup";
+
 import AuthContext from "../../context/AuthContext";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: yup.object().shape({
+      email: yup
+        .string()
+        .email("Please enter a valid email")
+        .required("Required"),
+      password: yup
+        .string()
+        .required("Required"),
+    }),
+    onSubmit: async (values, e) => {
+      registerUser(values);
+      await delay(4000);
+      //e.preventDefault();
+      console.log(values);
+    },
+  });
+
 
   return (
     <div

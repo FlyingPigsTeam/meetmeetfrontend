@@ -1,7 +1,34 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import * as yup from "yup";
+
 import swal from "sweetalert";
+
 const ResetPassword = () => {
+  const formik = useFormik({
+    initialValues: {
+      password: "",
+    },
+    validationSchema: yup.object().shape({
+      password: yup
+        .string()
+        .min(8, "Must be at least 8 characters.")
+        .max(32, "Must be 32 characters or less.")
+        .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$/, {
+          message:
+            "Must have at least one lowercase letter, one uppercase letter & one digit",
+        })
+        .required("Required"),
+    }),
+    onSubmit: async (values, e) => {
+      registerUser(values);
+      await delay(4000);
+      //e.preventDefault();
+      console.log(values);
+    },
+  });
+
   const Navigate = useNavigate();
   const queryString = window.location.href;
   const urlParams = new URL(queryString).searchParams;
