@@ -204,7 +204,7 @@ export default function Filters() {
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95"
                         >
-                          <Popover.Panel className="absolute right-0 z-10 mr-3 -mt-2.5 origin-top-right rounded-md bg-myDark1 p-4 shadow-2xl ring-1 ring-black  focus:outline-none">
+                          <Popover.Panel className="absolute top-9 mt-0.5 right-0 z-10 -mr-7  origin-top-right rounded-md bg-myDark1 p-4 shadow-2xl ring-1 ring-myGrey  focus:outline-none">
                             <form className="space-y-2">
                               {section.options.map((option, optionIdx) => (
                                 <div
@@ -276,52 +276,52 @@ export default function Filters() {
         <div class=" mt-3">
           <ul class="flex justify-between font-medium mt-0 mr-6 space-x-12 text-1xl">
             <li>
-              <p
+              <button
                 onClick={() => setSort("The Earliest")}
-                class="text-myGrey  hover:underline hover:text-myTeal1 "
+                class="text-myGrey focus:text-myTeal2  hover:underline hover:text-myTeal1 cursor-pointer"
               >
                 The Earliest
-              </p>
+              </button>
             </li>
             <li>
-              <p
+              <button
                 onClick={() => setSort("The Latest")}
-                class="text-myGrey dark:text-white hover:underline hover:text-myTeal1"
+                class="text-myGrey focus:text-myTeal2  dark:text-white hover:underline hover:text-myTeal1 cursor-pointer"
               >
                 The Latest
-              </p>
+              </button>
             </li>
             <li>
-              <p
+              <button
                 onClick={() => setSort("The Longest")}
-                class="text-myGrey  hover:underline hover:text-myTeal1"
+                class="text-myGrey focus:text-myTeal2  hover:underline hover:text-myTeal1 cursor-pointer"
               >
                 The Longest
-              </p>
+              </button>
             </li>
             <li>
-              <p
+              <button
                 onClick={() => setSort("The Shortest")}
-                class="text-myGrey   hover:underline hover:text-myTeal1"
+                class="text-myGrey focus:text-myTeal2  hover:underline hover:text-myTeal1 cursor-pointer"
               >
                 The Shortest
-              </p>
+              </button>
             </li>
             <li>
-              <p
+              <button
                 onClick={() => setSort("More Capacity")}
-                class="text-myGrey   hover:underline hover:text-myTeal1"
+                class="text-myGrey focus:text-myTeal2  hover:underline hover:text-myTeal1 cursor-pointer"
               >
                 More Capacity
-              </p>
+              </button>
             </li>
             <li>
-              <p
+              <button
                 onClick={() => setSort("Less Capacity")}
-                class="text-myGrey   hover:underline hover:text-myTeal1"
+                class="text-myGrey focus:text-myTeal2 hover:underline hover:text-myTeal1 cursor-pointer"
               >
                 Less Capacity
-              </p>
+              </button>
             </li>
           </ul>
         </div>
