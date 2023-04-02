@@ -5,21 +5,6 @@ import * as yup from "yup";
 import AuthContext from "../../context/AuthContext.js";
 import classNames from "../../utils/classNames";
 
-const registerSchema = yup.object().shape({
-  email: yup.string().email("Please enter a valid email").required("Required"),
-  password: yup
-    .string()
-    .min(8, "Must be at least 8 characters.")
-    .max(32, "Must be 32 characters or less.")
-    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$/, {
-      message: "Must vahe at least one lower , upper and digit",
-    })
-    .required("Required"),
-  first_name: yup.string().required("Required"),
-  last_name: yup.string().required("Required"),
-  username: yup.string().required("Required"),
-});
-
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 // const onSubmit = async (values, actions) => {
 //   await delay(4000);
@@ -34,8 +19,37 @@ export const Register = () => {
       username: "",
       password: "",
       repeat_password: "",
+      acceptPrivacyPolicy: false,
     },
-    validationSchema: registerSchema,
+    validationSchema: yup.object().shape({
+      first_name: yup.string().required("Required"),
+      last_name: yup.string().required("Required"),
+      email: yup
+        .string()
+        .email("Please enter a valid email")
+        .required("Required"),
+      username: yup
+        .string()
+        .min(3, "Username must be at least 3 characters long")
+        .required("Required"),
+      password: yup
+        .string()
+        .min(8, "Must be at least 8 characters.")
+        .max(32, "Must be 32 characters or less.")
+        .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$/, {
+          message:
+            "Must have at least one lowercase letter, one uppercase letter & one digit",
+        })
+        .required("Required"),
+      repeat_password: yup
+        .string()
+        .oneOf([yup.ref("password"), null], "Password must match")
+        .required("Required"),
+      acceptPrivacyPolicy: yup
+        .boolean()
+        .oneOf([true], "Please accept the privacy policy")
+        .required("Please accept the privacy policy"),
+    }),
     onSubmit: async (values, e) => {
       registerUser(values);
       await delay(4000);
@@ -71,7 +85,7 @@ export const Register = () => {
               <label className="relative flex">
                 <input
                   className={classNames(
-                    "form-input peer w-full rounded-lg border  bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent",
+                    "form-input peer w-full rounded-lg border bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent",
                     formik.errors.first_name && formik.touched.first_name
                       ? "border-error"
                       : "border-slate-300"
@@ -92,7 +106,7 @@ export const Register = () => {
               <label className="relative mt-4 flex">
                 <input
                   className={classNames(
-                    "form-input peer w-full rounded-lg border  bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent",
+                    "form-input peer w-full rounded-lg border bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent",
                     formik.errors.last_name && formik.touched.last_name
                       ? "border-error"
                       : "border-slate-300"
@@ -113,7 +127,7 @@ export const Register = () => {
               <label className="relative mt-4 flex">
                 <input
                   className={classNames(
-                    "form-input peer w-full rounded-lg border  bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent",
+                    "form-input peer w-full rounded-lg border bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent",
                     formik.errors.email && formik.touched.email
                       ? "border-error"
                       : "border-slate-300"
@@ -134,7 +148,7 @@ export const Register = () => {
               <label className="relative mt-4 flex">
                 <input
                   className={classNames(
-                    "form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent",
+                    "form-input peer w-full rounded-lg border bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent",
                     formik.errors.username && formik.touched.username
                       ? "border-error"
                       : "border-slate-300"
@@ -155,7 +169,7 @@ export const Register = () => {
               <label className="relative mt-4 flex">
                 <input
                   className={classNames(
-                    "form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent",
+                    "form-input peer w-full rounded-lg border bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent",
                     formik.errors.password && formik.touched.password
                       ? "border-error"
                       : "border-slate-300"
@@ -176,8 +190,9 @@ export const Register = () => {
               <label className="relative mt-4 flex">
                 <input
                   className={classNames(
-                    "form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent",
-                    formik.errors.repeat_password && formik.touched.repeat_password
+                    "form-input peer w-full rounded-lg border bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent",
+                    formik.errors.repeat_password &&
+                      formik.touched.repeat_password
                       ? "border-error"
                       : "border-slate-300"
                   )}
@@ -196,8 +211,17 @@ export const Register = () => {
               </label>
               <div className="mt-4 flex items-center space-x-2">
                 <input
-                  className="form-checkbox is-basic h-5 w-5 rounded border-slate-400/70 checked:border-primary checked:bg-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:checked:border-accent dark:checked:bg-accent dark:hover:border-accent dark:focus:border-accent"
+                  className={classNames(
+                    "form-checkbox is-basic h-5 w-5 rounded checked:border-primary checked:bg-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:checked:border-accent dark:checked:bg-accent dark:hover:border-accent dark:focus:border-accent",
+                    formik.errors.acceptPrivacyPolicy &&
+                      formik.touched.acceptPrivacyPolicy
+                      ? "border-error"
+                      : "border-slate-400/70"
+                  )}
                   type="checkbox"
+                  value={formik.values.acceptPrivacyPolicy}
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
                 />
                 <p className="line-clamp-1">
                   I agree with
@@ -205,6 +229,7 @@ export const Register = () => {
                     href="#"
                     className="text-slate-400 hover:underline dark:text-navy-300"
                   >
+                    {" "}
                     privacy policy
                   </a>
                 </p>
