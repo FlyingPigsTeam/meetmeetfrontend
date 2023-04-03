@@ -119,7 +119,7 @@ export default function Filters() {
         <section aria-labelledby="filter-heading">
           <div className="border-b border-myGrey1 bg-myDark1 pb-0">
             <div className="flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-              <div className="date">
+              <div className="date mb-1">
                 <div className="flex items-center -ml-8">
                   <label className="inline text-1xl mr-0  mb-7  font-medium text-myGrey">
                     Duration:
@@ -142,7 +142,7 @@ export default function Filters() {
                       onChange={(e) => setenddate(e.target.value)}
                     />
                   </div>
-                  <span className="mb-7 py-2 -mr-3 text-myGrey">to</span>
+                  <span className="mb-7 py-2 mr-3 ml-6 text-myGrey">to</span>
                   <div className="relative inset-y-0 left-0 flex items-center pl-3  ">
                     <input
                       name="endDate"
@@ -164,16 +164,16 @@ export default function Filters() {
                 </div>
               </div>
               <div>
-                <label className="inline text-1xl font-medium text-myGrey">
+                <label className="inline ml-5 text-1xl font-medium text-myGrey">
                   Capacity:
                 </label>
                 <select
-                  className="inline rounded-md border-myGrey py-2 pl-3 text-1xl mb-7 ml-2 -mr-20 font-bold hover:font-bold w-30 pr-10 bg-myDark1 text-myGrey text-base focus:border-myBlueGreen1 focus:outline-none focus:ring-myBlueGreen1 sm:text-sm"
+                  className="inline rounded-md border-myGrey py-2 pl-1 pr-3 text-1xl mb-7 ml-2 -mr-20 font-bold hover:font-bold w-30 pr-10 bg-myDark1 text-myGrey text-base focus:border-myBlueGreen1 focus:outline-none focus:ring-myBlueGreen1 sm:text-sm"
                   defaultValue="None"
                   value={capacity}
                   onChange={(e) => setcapacity(e.target.value)}
                 >
-                  <option value="None">Doesn't Matter</option>
+                  <option value="None">No Matter</option>
                   <option value="1-10">1-10</option>
                   <option value="10-20">10-20</option>
                   <option value="20<">More than 20</option>
@@ -274,7 +274,7 @@ export default function Filters() {
         </div> */}
 
         <div class=" mt-3">
-          <ul class="flex justify-between font-medium mt-0 mr-6 space-x-12 text-1xl">
+          <ul class="flex  font-medium mt-0 mr-6 space-x-12 text-1xl">
             <li>
               <button
                 onClick={() => setSort("The Earliest")}
