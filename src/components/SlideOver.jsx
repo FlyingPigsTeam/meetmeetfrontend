@@ -80,7 +80,7 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                         ) : (
                           ""
                         )}
-                        <div className="flex items-start justify-between">
+                        <div className="flex mt-4 items-start justify-between">
                           <Dialog.Title className="text-2xl font-bold text-myDark1 z-10">
                             {title}
                           </Dialog.Title>
