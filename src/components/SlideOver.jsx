@@ -1,7 +1,7 @@
 import React from "react";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { PlusCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const SlideOver = ({ slideover, setslideover, id }) => {
   const title = "Hiking in Mount Doom";
@@ -10,6 +10,10 @@ const SlideOver = ({ slideover, setslideover, id }) => {
   const startDate = "3/30/2023";
   const endDate = "4/16/2023";
   const roomType = "Premium";
+  const isPremium = true;
+  const categories = ["sport", "cultural"];
+  const member = 31;
+  const maxMember = 40;
   const memberList = [
     {
       username: "Matin2001",
@@ -42,15 +46,6 @@ const SlideOver = ({ slideover, setslideover, id }) => {
       image_path: "url(....)",
     },
   ];
-  /* function editString(string) {
-    let index = 75;
-    while (string[index] != " ") {
-      index++;
-    }
-    let result = string.slice(0, index);
-    result += " ...";
-    return result;
-  } */
   return (
     <div>
       <Transition.Root show={slideover} as={Fragment}>
@@ -78,14 +73,21 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                   <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                     <div className="flex h-full flex-col overflow-y-scroll bg-myGrey py-6 shadow-xl">
                       <div className="px-4 sm:px-6">
-                        <div className="flex items-start justify-between">
-                          <Dialog.Title className="text-2xl font-semibold text-myDark1">
+                        {isPremium ? (
+                          <div className=" -ml-4 -mt-4 bg-gold text-lg text-navy opacity-90 -rotate-12 font-bold w-36 p-1 z-0 border-myDark1 rounded-2xl">
+                            Premium Room
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                        <div className="flex mt-4 items-start justify-between">
+                          <Dialog.Title className="text-2xl font-bold text-myDark1 z-10">
                             {title}
                           </Dialog.Title>
-                          <div className="ml-3 flex h-10 items-center">
+                          <div className="ml-3 flex items-center">
                             <button
                               type="button"
-                              className="rounded-md bg-myGrey text-navy hover:text-myGrey hover:bg-navy duration-200 focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
+                              className=" mt-2 rounded-md bg-myGrey text-navy hover:text-myGrey hover:bg-navy duration-200 focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
                               onClick={() => {
                                 setslideover(false);
                               }}
@@ -101,21 +103,41 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                       </div>
                       <div className="relative h-full m-6 mt-4 flex-1 px-4 sm:px-6">
                         <div className="absolute inset-0">
-                          <div className="bg-myDark1 text-2xl text-myBlueGreen1 w-52 p-2 border-myDark1 rounded-2xl">
-                            {roomType} Room
+                          <p className=" truncate text-lg font-normal  text-myDark1">
+                            From{" "}
+                            <span className="text-myDark1 font-bold">
+                              {startDate}
+                            </span>{" "}
+                            To{" "}
+                            <span className="text-myDark1 font-bold">
+                              {endDate}
+                            </span>
+                          </p>
+                          <div className="text-myDark2 mt-4 font-normal">
+                            {description}
                           </div>
-                          <div className="text-myDark2 mt-4">{description}</div>
                           {/* <div className="text-myDark1 mt-4">
                             This event is being hold from{" "}
                             <span className="text-xl">{startDate}</span> to <span className="text-xl">{endDate}</span>
                       
                           </div> */}
+                          <div className=" text-myDark1 text-xl font-bold mt-2">
+                            Categories:
+                          </div>
+                          {categories.map((item, index) => (
+                            <span
+                              key={index}
+                              className="inline-block flex-shrink-0 mr-2 rounded-lg text-lg bg-myBlueGreen1 px-3 py-1 mt-2 font-medium text-navy"
+                            >
+                              {item}
+                            </span>
+                          ))}
                           <div className="  mt-4">
                             <div className=" text-myDark1 text-xl font-bold mb-2">
                               Members:
                             </div>
                             {memberList.map((item, index) =>
-                              index < 4 ? (
+                              index < 6 ? (
                                 <div
                                   key={index}
                                   className=" grid grid-cols-5 align-middle p-2 items-center hover:bg-myDark1 hover:rounded-lg hover:text-myGrey cursor-pointer duration-200 "
@@ -130,9 +152,13 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                                       {item.username}
                                     </div>
                                     {item.bio.length < 70 ? (
-                                      <div className=" opacity-80">{item.bio}</div>
+                                      <div className=" opacity-80">
+                                        {item.bio}
+                                      </div>
                                     ) : (
-                                      <div className=" opacity-80">{item.bio.slice(0,70)}...</div>
+                                      <div className=" opacity-80">
+                                        {item.bio.slice(0, 70)}...
+                                      </div>
                                     )}
                                   </div>
                                 </div>
@@ -144,6 +170,13 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                           <div className="h-40 border-darkBlue border-4 rounded-lg p-3 mt-4">
                             Task Part
                           </div>
+                          <button
+                            type="button"
+                            className="w-full items-center rounded-md border-transparent border-2 border-navy hover:border-navy bg-navy h-12 py-1 mt-2 text-lg font-semibold text-myGrey shadow-sm hover:bg-myGrey hover:text-navy duration-300"
+                          >
+                            Join Event ({maxMember - member} Left)
+                          </button>
+                          <div className="h-5"></div>
                         </div>
                       </div>
                     </div>
