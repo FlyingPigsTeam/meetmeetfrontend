@@ -1,20 +1,20 @@
 @import "./components/button.css";
 @import "./components/card.css";
 @import "./components/spinner.css";
-/* 
-@import "./components/skeleton.css";
 @import "./components/avatar.css";
-@import "./components/popper.css";
+@import "./components/mask.css";
 @import "./components/form.css";
+@import "./components/flatpickr.css";
 @import "./components/tom-select.css";
 @import "./components/badge.css";
+/* 
+@import "./components/skeleton.css";
+@import "./components/popper.css";
 @import "./components/simplebar.css";
 @import "./components/progress.css";
-@import "./components/mask.css";
 @import "./components/tooltip.css";
 @import "./components/filepond.css";
 @import "./components/quill.css";
-@import "./components/flatpickr.css";
 @import "./components/notification.css";
 @import "./components/steps.css";
 @import "./components/timeline.css";
