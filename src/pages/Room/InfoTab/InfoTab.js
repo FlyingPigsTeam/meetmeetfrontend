@@ -5,7 +5,8 @@ import Header from "../../../components/Header";
 import InformationForm from "./InformationForm";
 import AddRoom from "../AddRoom";
 import Avatar200x200 from "../../../assets/images/200x200.png";
-import TestInf from "./TestInf";
+import InformationPage from "./InformationPage";
+
 
 const InfoTab = () => {
   return (
@@ -64,7 +65,8 @@ const InfoTab = () => {
             <div class="col-span-12 lg:col-span-6">
               {/* <VerticalNav />
               <AddRoom /> */}
-                <TestInf />
+                <InformationPage />
+
             </div>
             <div class="col-span-12 lg:col-span-6">
               {/* <div class="card"> */}
