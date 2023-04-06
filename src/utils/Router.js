@@ -11,7 +11,8 @@ import PrivateRoute from "../utils/PrivateRoute";
 import { AuthProvider } from "../context/AuthContext";
 import VerifyEmail from "../pages/LoginRegister/VerifyEmail";
 import ResetPassword from "../pages/LoginRegister/ResetPassword";
-
+import Profile from "../pages/Profile/Profile"
+import Setting from "../pages/Profile/Setting";
 const Router = () => {
   return (
     <div>
@@ -27,6 +28,9 @@ const Router = () => {
           <Route path="/forgetpassword" element={<ForgetPassword />} />
           <Route path="/email-verify" element={<VerifyEmail />} />
           <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profileEdit" element={<Setting />} />
+
           {/* <Routes>
               <Route path="/" element={<Homepage />} />
             </Routes> */}
