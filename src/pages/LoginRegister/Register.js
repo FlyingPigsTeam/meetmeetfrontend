@@ -263,14 +263,11 @@ export const Register = () => {
                   required
                 />
                 <p className="line-clamp-1">
-                  I agree with
-                  <a
-                    href="#"
-                    className="text-slate-400 hover:underline dark:text-navy-300"
-                  >
+                  I agree with privacy policy
+                  {/* <span className="text-slate-400 hover:underline dark:text-navy-300">
                     {" "}
-                    privacy policy
-                  </a>
+                    
+                  </span> */}
                 </p>
               </div>
               {formik.errors.acceptPrivacyPolicy &&
@@ -302,12 +299,12 @@ export const Register = () => {
             <div className="mt-4 text-center text-xs+">
               <p className="line-clamp-1">
                 <span>Already have an account? </span>
-                <a
+                <Link
                   className="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
-                  href="pages-login-1.html"
+                  to={"/login"}
                 >
                   Sign In
-                </a>
+                </Link>
               </p>
             </div>
             {/* <div className="my-7 flex items-center space-x-3">
