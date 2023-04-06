@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { PaperClipIcon } from "@heroicons/react/20/solid";
 import Avatar200x200 from "../../../assets/images/200x200.png";
 
 export default function TestInf() {
@@ -327,9 +326,9 @@ export default function TestInf() {
                     <p id="clipboardContent1">
                       Lorem ipsum dolor sit amet consectetur.
                     </p>
-                    <div>
+                    <div >
                       <button
-                        class="btn h-6 shrink-0 rounded mr-2 mb-2 bg-white/20 px-2 text-xs text-white active:bg-white/25"
+                        class="btn h-6 shrink-0 rounded mx-1 my-2 bg-white/20 px-2 text-xs text-white active:bg-white/25"
                         //   @click="$clipboard({
                         //     content:document.querySelector('#clipboardContent1').innerText,
                         //     success:()=>$notification({text:'Text Copied',variant:'success'}),
@@ -353,7 +352,7 @@ export default function TestInf() {
                       </button>
 
                       <button
-                        class="btn h-6 shrink-0 rounded bg-white/20 px-2 space-x-1 space-y-2 text-xs text-white active:bg-white/25"
+                        class="btn h-6 shrink-0 rounded mx-1 my-2 bg-white/20 px-2 space-x-1 space-y-2 text-xs text-white active:bg-white/25"
                         //   @click="$clipboard({
                         //     content:document.querySelector('#clipboardContent1').innerText,
                         //     success:()=>$notification({text:'Text Copied',variant:'success'}),
