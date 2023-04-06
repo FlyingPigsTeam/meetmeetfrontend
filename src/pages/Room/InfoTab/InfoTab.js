@@ -6,6 +6,7 @@ import InformationForm from "./InformationForm";
 import AddRoom from "../AddRoom";
 import Avatar200x200 from "../../../assets/images/200x200.png";
 import InformationPage from "./InformationPage";
+import Members from "./Members";
 
 
 const InfoTab = () => {
@@ -66,6 +67,7 @@ const InfoTab = () => {
               {/* <VerticalNav />
               <AddRoom /> */}
                 <InformationPage />
+                <Members/>
 
             </div>
             <div class="col-span-12 lg:col-span-6">

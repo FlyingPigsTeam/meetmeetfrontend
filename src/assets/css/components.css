@@ -7,6 +7,7 @@
 @import "./components/flatpickr.css";
 @import "./components/tom-select.css";
 @import "./components/badge.css";
+@import "./components/table.css";
 /* 
 @import "./components/skeleton.css";
 @import "./components/popper.css";
@@ -21,6 +22,5 @@
 @import "./components/pagination.css";
 @import "./components/swiper.css";
 @import "./components/apexcharts.css";
-@import "./components/table.css";
 @import "./components/tableGrid.css"; 
 */
