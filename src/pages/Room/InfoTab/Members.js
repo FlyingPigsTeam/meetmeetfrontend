@@ -1,14 +1,38 @@
 import React from "react";
 
+import Avatar200x200 from "../../../assets/images/200x200.png";
+
 const Members = () => {
+  const usersData = [
+    {
+      id: 1,
+      avatar: Avatar200x200,
+      name: "Aryan",
+      age: 21,
+      phone: 9128504332,
+      role: "Admin",
+      status: true,
+    },
+    {
+      id: 1,
+      avatar: Avatar200x200,
+      name: "Kioomars",
+      age: 21,
+      phone: 9128585332,
+      role: "Member",
+      status: true,
+    },
+  ];
+
   return (
     <>
       <div>
-        <div class="flex items-center justify-between">
+        {/* <div class="flex items-center justify-between">
           <h2 class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
             Users Table
           </h2>
           <div class="flex">
+
             <div class="flex items-center" x-data="{isInputActive:false}">
               <label class="block">
                 <input
@@ -39,6 +63,7 @@ const Members = () => {
                 </svg>
               </button>
             </div>
+
             <div
               // x-data="usePopper({placement:'bottom-end',offset:4})"
               // @click.outside="isShowPopper && (isShowPopper = false)"
@@ -111,7 +136,7 @@ const Members = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div class="card mt-3">
           <div
             class="is-scrollbar-hidden min-w-full overflow-x-auto"
@@ -147,135 +172,135 @@ const Members = () => {
                 </tr>
               </thead>
               <tbody>
-                <template
-                  x-for="user in usersData"
-                  // :key="user.id"
-                >
-                  <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
-                    <td
-                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                      x-text="user.id"
-                    ></td>
-                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                      <div class="avatar flex h-10 w-10">
-                        <img
-                          class="mask is-squircle"
-                          // :src="user.avatar_url"
-                          alt="avatar"
-                        />
-                      </div>
-                    </td>
-                    <td
-                      x-text="user.name"
-                      class="whitespace-nowrap px-3 py-3 font-medium text-slate-700 dark:text-navy-100 lg:px-5"
-                    ></td>
-                    <td
-                      x-text="user.age"
-                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                    ></td>
-                    <td
-                      x-text="user.phone"
-                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                    ></td>
-                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                      <div
-                        // :class="user.role_bg"
-                        x-text="user.role"
-                        class="badge rounded-full"
-                      >
-                        Secondary
-                      </div>
-                    </td>
-                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                      <label class="inline-flex items-center">
-                        <input
-                          // :checked="user.status"
-                          class="form-switch h-5 w-10 rounded-full bg-slate-300 before:rounded-full before:bg-slate-50 checked:bg-primary checked:before:bg-white dark:bg-navy-900 dark:before:bg-navy-300 dark:checked:bg-accent dark:checked:before:bg-white"
-                          type="checkbox"
-                        />
-                      </label>
-                    </td>
-                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                      <div
-                        x-data="usePopper({placement:'bottom-end',offset:4})"
-                        // @click.outside="isShowPopper && (isShowPopper = false)"
-                        class="inline-flex"
-                      >
-                        <button
-                          x-ref="popperRef"
-                          // @click="isShowPopper = !isShowPopper"
-                          class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                            />
-                          </svg>
-                        </button>
-
+                {usersData.map((user) => {
+                  return (
+                    <tr
+                      key={user.id}
+                      class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
+                    >
+                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                        {user.id}
+                      </td>
+                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                        <div class="avatar flex h-10 w-10">
+                          <img
+                            class="mask is-squircle"
+                            src={user.avatar}
+                            alt="avatar"
+                          />
+                        </div>
+                      </td>
+                      <td class="whitespace-nowrap px-3 py-3 font-medium text-slate-700 dark:text-navy-100 lg:px-5">
+                        {user.name}
+                      </td>
+                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                        {user.age}
+                      </td>
+                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                        {user.phone}
+                      </td>
+                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                         <div
-                          x-ref="popperRoot"
-                          class="popper-root"
-                          // :class="isShowPopper && 'show'"
+                          // :class="user.role_bg"
+
+                          class="badge rounded-full"
                         >
-                          <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
-                            <ul>
-                              <li>
-                                <a
-                                  href="#"
-                                  class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                >
-                                  Action
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  href="#"
-                                  class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                >
-                                  Another Action
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  href="#"
-                                  class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                >
-                                  Something else
-                                </a>
-                              </li>
-                            </ul>
-                            <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
-                            <ul>
-                              <li>
-                                <a
-                                  href="#"
-                                  class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                >
-                                  Separated Link
-                                </a>
-                              </li>
-                            </ul>
+                          {user.role}
+                          Secondary
+                        </div>
+                      </td>
+                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                        <label class="inline-flex items-center">
+                          <input
+                            // :checked="user.status"
+                            class="form-switch h-5 w-10 rounded-full bg-slate-300 before:rounded-full before:bg-slate-50 checked:bg-primary checked:before:bg-white dark:bg-navy-900 dark:before:bg-navy-300 dark:checked:bg-accent dark:checked:before:bg-white"
+                            type="checkbox"
+                            value={user.status}
+                          />
+                        </label>
+                      </td>
+                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                        <div
+                          // x-data="usePopper({placement:'bottom-end',offset:4})"
+                          // @click.outside="isShowPopper && (isShowPopper = false)"
+                          class="inline-flex"
+                        >
+                          <button
+                            // x-ref="popperRef"
+                            // @click="isShowPopper = !isShowPopper"
+                            class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="h-5 w-5"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                              />
+                            </svg>
+                          </button>
+
+                          <div
+                            // x-ref="popperRoot"
+                            class="popper-root"
+                            // :class="isShowPopper && 'show'"
+                          >
+                            <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
+                              <ul>
+                                <li>
+                                  <a
+                                    href="#"
+                                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                                  >
+                                    Action
+                                  </a>
+                                </li>
+                                <li>
+                                  <a
+                                    href="#"
+                                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                                  >
+                                    Another Action
+                                  </a>
+                                </li>
+                                <li>
+                                  <a
+                                    href="#"
+                                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                                  >
+                                    Something else
+                                  </a>
+                                </li>
+                              </ul>
+                              <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
+                              <ul>
+                                <li>
+                                  <a
+                                    href="#"
+                                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                                  >
+                                    Separated Link
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </td>
-                  </tr>
-                </template>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
 
-          <div class="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5">
+          {/* <div class="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5">
             <div class="flex items-center space-x-2 text-xs+">
               <span>Show</span>
               <label class="block">
@@ -374,7 +399,7 @@ const Members = () => {
             </ol>
 
             <div class="text-xs+">1 - 10 of 10 entries</div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

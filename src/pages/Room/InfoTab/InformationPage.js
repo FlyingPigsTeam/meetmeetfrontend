@@ -47,16 +47,17 @@ export default function TestInf() {
             </button>
           </div>
         </div>
-        <div class="flex flex-col">
+        <div class="flex flex-col my-2">
           <div class="avatar mt-1.5 h-20 w-20">
             <img class="mask is-squircle" src={Avatar200x200} alt="avatar" />
           </div>
         </div>
-        <div className="mt-5 border-t border-gray-200">
-          <dl className="divide-y divide-gray-200">
+
+        <div className="mt-5 border-t border-slate-200 dark:border-navy-500">
+          <dl className="divide-y divide-slate-200 dark:divide-navy-500">
             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
-              <dt className="text-sm font-medium text-gray-500">Title</dt>
-              <dd className="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              <dt className="text-sm font-medium ">Title</dt>
+              <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow">Gorzali</span>
                 {/* <span className="ml-4 flex-shrink-0">
                   <button
@@ -69,8 +70,8 @@ export default function TestInf() {
               </dd>
             </div>
             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
-              <dt className="text-sm font-medium text-gray-500">Status</dt>
-              <dd className="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              <dt className="text-sm font-medium ">Status</dt>
+              <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow space-x-2 space-y-2">
                   <div class="badge space-x-2 bg-primary text-white dark:bg-accent">
                     <svg
@@ -155,22 +156,21 @@ export default function TestInf() {
               </dd>
             </div>
             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
-              <dt className="text-sm font-medium text-gray-500">Password</dt>
-              <dd className="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              <dt className="text-sm font-medium ">Password</dt>
+              <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow">
-                  {" "}
                   <label
                     class="relative flex"
                     onClick={() => setSeePassword(!seePassword)}
                   >
                     <input
-                      class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pr-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                      class="form-input w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary disabled:pointer-events-none disabled:select-none disabled:border-none disabled:bg-zinc-100 dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent dark:disabled:bg-navy-600"
                       placeholder="Password"
                       type={seePassword ? "text" : "password"}
                       value="KAzem"
                       disabled="true"
                     />
-                    <div class="pointer-events-none absolute right-0 flex h-full w-10 items-center justify-center hover:text-secondary-light text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                    <div class="pointer-events-none absolute right-0 flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
                       <svg
                         fill="currentColor"
                         class="h-4.5 w-4.5"
@@ -197,8 +197,8 @@ export default function TestInf() {
               </dd>
             </div>
             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
-              <dt className="text-sm font-medium text-gray-500">Categories</dt>
-              <dd className="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              <dt className="text-sm font-medium ">Categories</dt>
+              <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow space-x-2 space-y-2">
                   <div class="flex">
                     <a
@@ -269,8 +269,8 @@ export default function TestInf() {
               </dd>
             </div>
             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
-              <dt className="text-sm font-medium text-gray-500">Max members</dt>
-              <dd className="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              <dt className="text-sm font-medium ">Max members</dt>
+              <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow">$120,000</span>
                 {/* <span className="ml-4 flex-shrink-0">
                   <button
@@ -283,10 +283,10 @@ export default function TestInf() {
               </dd>
             </div>
             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
-              <dt className="text-sm font-medium text-gray-500">
+              <dt className="text-sm font-medium ">
                 Start Date & End Date
               </dt>
-              <dd className="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow">Backend Developer</span>
                 {/* <span className="ml-4 flex-shrink-0">
                   <button
@@ -299,8 +299,8 @@ export default function TestInf() {
               </dd>
             </div>
             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
-              <dt className="text-sm font-medium text-gray-500">Description</dt>
-              <dd className="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              <dt className="text-sm font-medium ">Description</dt>
+              <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow">
                   Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
                   incididunt cillum culpa consequat. Excepteur qui ipsum aliquip
@@ -319,14 +319,14 @@ export default function TestInf() {
               </dd>
             </div>
             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
-              <dt className="text-sm font-medium text-gray-500">Link</dt>
-              <dd className="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              <dt className="text-sm font-medium ">Link</dt>
+              <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow">
                   <div class="alert flex items-center justify-between rounded-lg bg-primary px-4 py-3 text-white dark:bg-accent sm:px-5">
                     <p id="clipboardContent1">
                       Lorem ipsum dolor sit amet consectetur.
                     </p>
-                    <div >
+                    <div>
                       <button
                         class="btn h-6 shrink-0 rounded mx-1 my-2 bg-white/20 px-2 text-xs text-white active:bg-white/25"
                         //   @click="$clipboard({
@@ -381,9 +381,7 @@ export default function TestInf() {
             </div>
           </dl>
         </div>
-
       </div>
-                
     </>
   );
 }

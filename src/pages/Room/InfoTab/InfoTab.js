@@ -7,7 +7,7 @@ import AddRoom from "../AddRoom";
 import Avatar200x200 from "../../../assets/images/200x200.png";
 import InformationPage from "./InformationPage";
 import Members from "./Members";
-
+import DarkModeToggle from "../../../components/DarkModeToggle";
 
 const InfoTab = () => {
   return (
@@ -60,19 +60,19 @@ const InfoTab = () => {
           className="bg-cyan-900 text-left"
           style={{ width: "85vw", marginLeft: "13.9vw" }}
         > */}
-        <main class="main-content w-full px-[var(--margin-x)] pb-8">
+        <main class="main-content w-full px-[var(--margin-x)] pb-8  border-slate-150 bg-white dark:border-navy-700 dark:bg-navy-800">
+          <DarkModeToggle />
           {/* <TestInf /> */}
           <div class="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
             <div class="col-span-12 lg:col-span-6">
               {/* <VerticalNav />
               <AddRoom /> */}
-                <InformationPage />
-                <Members/>
-
+              <InformationPage />
+              <Members />
             </div>
             <div class="col-span-12 lg:col-span-6">
               {/* <div class="card"> */}
-                <InformationForm Title="Edit" />
+              <InformationForm Title="Edit" />
               {/* </div> */}
             </div>
           </div>
