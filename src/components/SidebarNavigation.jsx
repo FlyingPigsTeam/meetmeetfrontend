@@ -16,12 +16,12 @@ function classNames(...classes) {
 export default function SidebarNavigation() {
   return (
     <div
-      className="flex fixed flex-1 flex-col bg-gray-800"
+      className="flex fixed flex-1 flex-col bg-navy"
       style={{ width: "15vw", height: "88vh" }}
     >
       <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
         <nav
-          className="mt-5 flex-1 space-y-1 bg-gray-800 px-2"
+          className="mt-5 flex-1 space-y-1 bg-navy px-2"
           aria-label="Sidebar"
         >
           {navigation.map((item) => (
@@ -29,16 +29,16 @@ export default function SidebarNavigation() {
               key={item.name}
               className={classNames(
                 item.current
-                  ? "bg-gray-900 text-white text-2xl cursor-pointer"
-                  : "text-gray-300 hover:bg-gray-700 hover:text-white text-2xl cursor-pointer",
+                  ? "bg-myBlueGreen1 text-navy text-2xl cursor-pointer"
+                  : "text-myGrey hover:bg-myGrey hover:text-navy text-2xl cursor-pointer",
                 "group flex items-center px-2 py-2 text-sm font-medium rounded-md text-2xl cursor-pointer"
               )}
             >
               <item.icon
                 className={classNames(
                   item.current
-                    ? "text-gray-300"
-                    : "text-gray-400 group-hover:text-gray-300",
+                    ? "text-navy"
+                    : "text-myGrey group-hover:text-navy",
                   "mr-3 flex-shrink-0 h-6 w-6"
                 )}
                 aria-hidden="true"

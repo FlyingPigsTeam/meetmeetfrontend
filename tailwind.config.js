@@ -38,7 +38,6 @@ const customColors = {
   "error-focus": "#f03000",
 };
 
-
 module.exports = {
   content: [
     // Example content paths...
@@ -110,5 +109,3 @@ module.exports = {
     require("@tailwindcss/container-queries"),
   ],
 };
-
-

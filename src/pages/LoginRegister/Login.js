@@ -111,12 +111,12 @@ const Login = () => {
                   />
                   <span class="line-clamp-1">Remember me</span>
                 </label>
-                <a
-                  href="#"
+                <Link
+                  to={"/forgetpassword"}
                   class="text-xs text-slate-400 transition-colors line-clamp-1 hover:text-slate-800 focus:text-slate-800 dark:text-navy-300 dark:hover:text-navy-100 dark:focus:text-navy-100"
                 >
                   Forgot Password?
-                </a>
+                </Link>
               </div>
               <button
                 className={classNames(
@@ -139,14 +139,14 @@ const Login = () => {
             </form>
             <div class="mt-4 text-center text-xs+">
               <p class="line-clamp-1">
-                <span>Dont have Account?</span>
+                <span>Dont have Account? </span>
 
-                <a
+                <Link
                   class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
-                  href="pages-singup-1.html"
+                  to={"/register"}
                 >
                   Create account
-                </a>
+                </Link>
               </p>
             </div>
             {/* <div class="my-7 flex items-center space-x-3">
@@ -165,11 +165,11 @@ const Login = () => {
               </button>
             </div> */}
           </div>
-          <div class="mt-8 flex justify-center text-xs text-slate-400 dark:text-navy-300">
+          {/* <div class="mt-8 flex justify-center text-xs text-slate-400 dark:text-navy-300">
             <a href="#">Privacy Notice</a>
             <div class="mx-3 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
             <a href="#">Term of service</a>
-          </div>
+          </div> */}
         </div>
       </main>
     </div>
