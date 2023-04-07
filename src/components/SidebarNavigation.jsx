@@ -1,6 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { HomeIcon, UsersIcon } from "@heroicons/react/24/outline";
-
+import DarkModeToggle from "./DarkModeToggle";
 const navigation = [
   { name: "Home", icon: HomeIcon, current: true },
   { name: "Room1", icon: UsersIcon, current: false },
@@ -46,6 +46,7 @@ export default function SidebarNavigation() {
               <span className="flex-1">{item.name}</span>
             </div>
           ))}
+          <DarkModeToggle />
         </nav>
       </div>
     </div>
