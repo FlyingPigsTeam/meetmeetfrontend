@@ -3,8 +3,10 @@ import {
   PlusCircleIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SlideOver from "./SlideOver";
+import axios from "axios";
+import AuthContext from "../context/AuthContext";
 
 const Card = (props) => {
   const data = props.info;
@@ -17,12 +19,28 @@ const Card = (props) => {
   for (let i = 0; i < categories.length; i++) {
     category.push(categories[i].name);
   }
-  // const startDate = mydata ? mydata.start_date.slice(0, 10) : "";
-  // const endDate = mydata ? mydata.end_date.slice(0, 10) : "";
-  const startDate = ""
-  const endDate = ""
+  const startDate = mydata.start_date ? mydata.start_date.slice(0, 10) : "";
+  const endDate = mydata.end_date ? mydata.end_date.slice(0, 10) : "";
+  // const startDate = "";
+  // const endDate = "";
   // const startTime = mydata ? mydata.start_date.slice(11, 19) : "";
   // const endTime = mydata ? mydata.end_date.slice(11, 19) : "";
+  let authTokens = useContext(AuthContext).authTokens;
+  const [joinRequest, setJoinRequest] = useState({});
+  console.log(authTokens.access)
+  const JoinReq = async () => {
+    const { data } = await axios
+      .post(`http://127.0.0.1:8000/api/my-rooms/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + authTokens.access,
+        },
+      })
+      .then((response) => response);
+    setJoinRequest(data);
+  };
+  console.log(joinRequest);
+
   return (
     <div>
       <div className="col-span-1 rounded-lg bg-darkBlue shadow-navy shadow-lg">
@@ -77,13 +95,19 @@ const Card = (props) => {
             More Info!
           </button>
           <button
+            onClick={() => JoinReq()}
             type="button"
             className="inline-flex ml-3 items-center rounded-md border border-transparent bg-myGrey px-4 py-2 text-sm font-medium text-navy shadow-sm hover:bg-navy hover:text-myGrey duration-300"
           >
             <PlusCircleIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
             Join Event{" "}
             <span className="ml-1 text-amber-400">
-              ({mydata ? parseInt(mydata.maximum_member_count) - parseInt(mydata.member_count): ""} Left)
+              (
+              {mydata
+                ? parseInt(mydata.maximum_member_count) -
+                  parseInt(mydata.member_count)
+                : ""}{" "}
+              Left)
             </span>
           </button>
         </div>

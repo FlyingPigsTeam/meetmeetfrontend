@@ -25,12 +25,7 @@ const Homepage = () => {
     maxMember: 40,
   };
   let authTokens = useContext(AuthContext).authTokens 
-  console.log(authTokens.access);
-  //let authTokens = localStorage.getItem("authTokens");
-  // console.log(authTokens)
-  // let data = JSON.parse(authTokens);
-  // let aa = data.access;
-  // console.log(aa);
+  //console.log(authTokens.access);
   const [status, setstatus] = useState("");
   const req = async () => {
     const { data } = await axios

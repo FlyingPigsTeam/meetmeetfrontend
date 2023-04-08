@@ -1,51 +1,90 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { PlusCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import AuthContext from "../context/AuthContext";
+import axios from "axios";
 
 const SlideOver = ({ slideover, setslideover, id }) => {
-  const title = "Hiking in Mount Doom";
-  const description =
-    "Hiking is a long, vigorous walk, usually on trails or footpaths in the countryside. Walking for pleasure developed in Europe during the eighteenth century. 'Hiking' is the preferred term in Canada and the United States";
-  const startDate = "3/30/2023";
-  const endDate = "4/16/2023";
-  const roomType = "Premium";
-  const isPremium = true;
-  const categories = ["sport", "cultural"];
-  const member = 31;
-  const maxMember = 40;
-  const memberList = [
-    {
-      username: "Matin2001",
-      bio: "member of the flying pigs frontend team",
-      image_path: "url(....)",
-    },
-    {
-      username: "M_Mirzaei",
-      bio: "member of the flying pigs frontend team and loves playing football.he is inteligent",
-      image_path: "url(....)",
-    },
-    {
-      username: "AliSoltani",
-      bio: "member of the flying pigs frontend team",
-      image_path: "url(....)",
-    },
-    {
-      username: "Arian Sabet",
-      bio: "member of the flying pigs frontend team",
-      image_path: "url(....)",
-    },
-    {
-      username: "Matin2001",
-      bio: "member of the flying pigs frontend team",
-      image_path: "url(....)",
-    },
-    {
-      username: "Matin2001",
-      bio: "member of the flying pigs frontend team",
-      image_path: "url(....)",
-    },
-  ];
+  let authTokens = useContext(AuthContext).authTokens;
+  //console.log(authTokens.access);
+  const [status, setstatus] = useState("none");
+  const req = async () => {
+    const { data } = await axios
+    .get(`http://127.0.0.1:8000/api/my-rooms/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authTokens.access,
+      },
+      })
+      .then((response) => response);
+    setstatus(data);
+  };
+  useEffect(() => {
+    if (slideover == true) req();
+  }, [slideover]);
+  
+  const [joinRequest, setJoinRequest] = useState({})
+  const JoinReq = async () => {
+    const { data } = await axios
+      .post(`http://127.0.0.1:8000/api/my-rooms/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + authTokens.access,
+        },
+      })
+      .then((response) => response);
+    setJoinRequest(data);
+  };
+  console.log(joinRequest)
+
+  const title = status ? status.title : "";
+  const isPremium = status ? status.is_premium : false;
+  const startDate = status.start_date ? status.start_date.slice(0, 10) : "";
+  const endDate = status.end_date ? status.end_date.slice(0, 10) : "";
+  const startTime = status.start_date ? status.start_date.slice(11, 19) : "";
+  const endTime = status.end_date ? status.end_date.slice(11, 19) : "";
+  const description = status ? status.description : "";
+  const categories = status.categories ? status.categories : {};
+  let category = [];
+  for (let i = 0; i < categories.length; i++) {
+    category.push(categories[i].name);
+  }
+  const members = status ? status.members : {};
+  const member_count = members ? members.length : 0;
+  const member_maximum_count = status ? parseInt(status.maximum_member_count) : 0;
+  // const memberList = [
+  //   {
+  //     username: "Matin2001",
+  //     bio: "member of the flying pigs frontend team",
+  //     image_path: "url(....)",
+  //   },
+  //   {
+  //     username: "M_Mirzaei",
+  //     bio: "member of the flying pigs frontend team and loves playing football.he is inteligent",
+  //     image_path: "url(....)",
+  //   },
+  //   {
+  //     username: "AliSoltani",
+  //     bio: "member of the flying pigs frontend team",
+  //     image_path: "url(....)",
+  //   },
+  //   {
+  //     username: "Arian Sabet",
+  //     bio: "member of the flying pigs frontend team",
+  //     image_path: "url(....)",
+  //   },
+  //   {
+  //     username: "Matin2001",
+  //     bio: "member of the flying pigs frontend team",
+  //     image_path: "url(....)",
+  //   },
+  //   {
+  //     username: "Matin2001",
+  //     bio: "member of the flying pigs frontend team",
+  //     image_path: "url(....)",
+  //   },
+  // ];
   return (
     <div>
       <Transition.Root show={slideover} as={Fragment}>
@@ -108,9 +147,18 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                             <span className="text-myDark1 font-bold">
                               {startDate}
                             </span>{" "}
+                            At{" "}
+                            <span className="text-myDark1 font-bold">
+                              {startTime}
+                            </span>
+                            <br />
                             To{" "}
                             <span className="text-myDark1 font-bold">
                               {endDate}
+                            </span>{" "}
+                            At{" "}
+                            <span className="text-myDark1 font-bold">
+                              {endTime}
                             </span>
                           </p>
                           <div className="text-myDark2 mt-4 font-normal">
@@ -124,7 +172,7 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                           <div className=" text-myDark1 text-xl font-bold mt-2">
                             Categories:
                           </div>
-                          {categories.map((item, index) => (
+                          {category.map((item, index) => (
                             <span
                               key={index}
                               className="inline-block flex-shrink-0 mr-2 rounded-lg text-lg bg-myBlueGreen1 px-3 py-1 mt-2 font-medium text-navy"
@@ -136,14 +184,14 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                             <div className=" text-myDark1 text-xl font-bold mb-2">
                               Members:
                             </div>
-                            {memberList.map((item, index) =>
+                            {members ? members.map((item, index) =>
                               index < 6 ? (
                                 <div
                                   key={index}
                                   className=" grid grid-cols-5 align-middle p-2 items-center hover:bg-myDark1 hover:rounded-lg hover:text-myGrey cursor-pointer duration-200 "
                                 >
                                   <img
-                                    src={item.image_path}
+                                    src={item.picture_path}
                                     alt=""
                                     className=" border-2 border-myDark1 hover:border-2 hover:border-myGrey w-14 h-14 rounded-full"
                                   />
@@ -165,16 +213,17 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                               ) : (
                                 ""
                               )
-                            )}
+                            ) : ""}
                           </div>
                           <div className="h-40 border-darkBlue border-4 rounded-lg p-3 mt-4">
                             Task Part
                           </div>
                           <button
                             type="button"
+                            onClick={JoinReq}
                             className="w-full items-center rounded-md border-transparent border-2 border-navy hover:border-navy bg-navy h-12 py-1 mt-2 text-lg font-semibold text-myGrey shadow-sm hover:bg-myGrey hover:text-navy duration-300"
                           >
-                            Join Event ({maxMember - member} Left)
+                            Join Event ({member_maximum_count - member_count} Left)
                           </button>
                           <div className="h-5"></div>
                         </div>
