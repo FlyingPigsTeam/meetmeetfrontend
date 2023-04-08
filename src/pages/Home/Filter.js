@@ -96,14 +96,16 @@ export default function Filters() {
   //   { id: "Capacity", title: "Capacity" },
   //   { id: "None", title: "None" },
   // ];
-  console.log("category : ", category);
-  console.log("startdate : ", startdate);
-  console.log("enddate : ", enddate);
-  console.log("starttime : ", starttime);
-  console.log("endtime : ", endtime);
-  console.log("capacity : ", capacity);
-  console.log("sort : ", sort);
+
+  // console.log("category : ", category);
+  // console.log("startdate : ", startdate);
+  // console.log("enddate : ", enddate);
+  // console.log("starttime : ", starttime);
+  // console.log("endtime : ", endtime);
+  // console.log("capacity : ", capacity);
+  // console.log("sort : ", sort);
   // console.log("asc : ", asc);
+  
   // if (asc) {
   //   asc_color = "bg-sky-500";
   //   des_color = " ";
@@ -273,12 +275,12 @@ export default function Filters() {
           </fieldset>
         </div> */}
 
-        <div class=" mt-3">
-          <ul class="flex  font-medium mt-0 mr-6 space-x-12 text-1xl">
+        <div className=" mt-3">
+          <ul className="flex  font-medium mt-0 mr-6 space-x-12 text-1xl">
             <li>
               <button
                 onClick={() => setSort("The Earliest")}
-                class="text-myGrey focus:text-myTeal2  hover:underline hover:text-myTeal1 cursor-pointer"
+                className="text-myGrey focus:text-myTeal2  hover:underline hover:text-myTeal1 cursor-pointer"
               >
                 The Earliest
               </button>
@@ -286,7 +288,7 @@ export default function Filters() {
             <li>
               <button
                 onClick={() => setSort("The Latest")}
-                class="text-myGrey focus:text-myTeal2  dark:text-white hover:underline hover:text-myTeal1 cursor-pointer"
+                className="text-myGrey focus:text-myTeal2  dark:text-white hover:underline hover:text-myTeal1 cursor-pointer"
               >
                 The Latest
               </button>
@@ -294,7 +296,7 @@ export default function Filters() {
             <li>
               <button
                 onClick={() => setSort("The Longest")}
-                class="text-myGrey focus:text-myTeal2  hover:underline hover:text-myTeal1 cursor-pointer"
+                className="text-myGrey focus:text-myTeal2  hover:underline hover:text-myTeal1 cursor-pointer"
               >
                 The Longest
               </button>
@@ -302,7 +304,7 @@ export default function Filters() {
             <li>
               <button
                 onClick={() => setSort("The Shortest")}
-                class="text-myGrey focus:text-myTeal2  hover:underline hover:text-myTeal1 cursor-pointer"
+                className="text-myGrey focus:text-myTeal2  hover:underline hover:text-myTeal1 cursor-pointer"
               >
                 The Shortest
               </button>
@@ -310,7 +312,7 @@ export default function Filters() {
             <li>
               <button
                 onClick={() => setSort("More Capacity")}
-                class="text-myGrey focus:text-myTeal2  hover:underline hover:text-myTeal1 cursor-pointer"
+                className="text-myGrey focus:text-myTeal2  hover:underline hover:text-myTeal1 cursor-pointer"
               >
                 More Capacity
               </button>
@@ -318,7 +320,7 @@ export default function Filters() {
             <li>
               <button
                 onClick={() => setSort("Less Capacity")}
-                class="text-myGrey focus:text-myTeal2 hover:underline hover:text-myTeal1 cursor-pointer"
+                className="text-myGrey focus:text-myTeal2 hover:underline hover:text-myTeal1 cursor-pointer"
               >
                 Less Capacity
               </button>
