@@ -148,6 +148,9 @@ export const AuthProvider = ({ children }) => {
     forgetpassUser: forgetpassUser,
   };
   useEffect(() => {
+    if (loading) {
+      updateToken()
+    }
     const interval = setInterval(() => {
       if (authTokens) {
         updateToken();

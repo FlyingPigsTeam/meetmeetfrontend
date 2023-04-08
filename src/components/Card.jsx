@@ -12,13 +12,15 @@ const Card = (props) => {
   const categories = mydata.categories ? mydata.categories : {};
   const [slideover, setslideover] = useState(false);
   const id = mydata ? mydata.id : "";
-  console.log(id);
+  //onsole.log(id);
   let category = [];
   for (let i = 0; i < categories.length; i++) {
     category.push(categories[i].name);
   }
-  const startDate = mydata ? mydata.start_date.slice(0, 10) : "";
-  const endDate = mydata ? mydata.end_date.slice(0, 10) : "";
+  // const startDate = mydata ? mydata.start_date.slice(0, 10) : "";
+  // const endDate = mydata ? mydata.end_date.slice(0, 10) : "";
+  const startDate = ""
+  const endDate = ""
   // const startTime = mydata ? mydata.start_date.slice(11, 19) : "";
   // const endTime = mydata ? mydata.end_date.slice(11, 19) : "";
   return (

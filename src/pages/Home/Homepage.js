@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Card from "../../components/Card";
 import Header from "../../components/Header";
 import SidebarNavigation from "../../components/SidebarNavigation";
 import Filters from "./Filter";
 import axios from "axios";
 import { json } from "react-router-dom";
+import { string } from "yup";
+import AuthContext from "../../context/AuthContext";
 
 const Homepage = () => {
   // const [sort, setSort] = useState("None");
@@ -22,18 +24,20 @@ const Homepage = () => {
     member: 31,
     maxMember: 40,
   };
-  const authTokens = localStorage.getItem("authTokens");
-  let data = JSON.parse(authTokens);
-  const aa = data.access;
+  let authTokens = useContext(AuthContext).authTokens 
+  console.log(authTokens.access);
+  //let authTokens = localStorage.getItem("authTokens");
+  // console.log(authTokens)
+  // let data = JSON.parse(authTokens);
+  // let aa = data.access;
+  // console.log(aa);
   const [status, setstatus] = useState("");
   const req = async () => {
     const { data } = await axios
       .get("http://127.0.0.1:8000/api/rooms", {
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            "Bearer " +
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjkxODMwLCJpYXQiOjE2ODA2OTE1MzAsImp0aSI6IjM0NjJkOGY0ZTA3MDQ0N2Q5OTUxNjVhMTYzMzllZGFmIiwidXNlcl9pZCI6MX0.ISVTtz5LV_jUGyYz3KNFkPzemVpBxhf-u621HQdVnJ8",
+          Authorization: "Bearer " + authTokens.access,
         },
       })
       .then((response) => response);
@@ -42,9 +46,8 @@ const Homepage = () => {
   };
   useEffect(() => {
     req();
-  }, []);
+  }, [authTokens]);
   let cards = status ? status.results : {};
-  console.log(cards);
   return (
     <div>
       <Header />
