@@ -94,25 +94,16 @@ export default function Setting({user ,onUpdate,onCancel }) {
 
     return (
         <>
-            {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-blue-gray-50">
-        <body class="h-full overflow-hidden">
-        ```
-      */}
+        
             <div className="flex h-full">
                 
-                {/* Static sidebar for desktop */}
-
-
+                
+                
                 <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
                     
-
                     <main className="flex flex-1 overflow-hidden">
                         <div className="flex flex-1 flex-col overflow-y-auto xl:overflow-hidden">
-                            {/* Breadcrumb */}
+                            
                             <nav aria-label="Breadcrumb" className="border-b border-blue-gray-200 bg-white xl:hidden">
                                 <div className="mx-auto flex max-w-3xl items-start py-3 px-4 sm:px-6 lg:px-8">
                                     <a
@@ -197,6 +188,7 @@ export default function Setting({user ,onUpdate,onCancel }) {
                                                         autoComplete="given-name"
                                                         className="mt-1 block w-full rounded-md border-blue-gray-300 text-blue-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                                         onChange={(event) => setFName(event.target.value)}
+                                                        required
                                                     />
                                                 </div>
 
@@ -212,29 +204,29 @@ export default function Setting({user ,onUpdate,onCancel }) {
                                                         autoComplete="family-name"
                                                         className="mt-1 block w-full rounded-md border-blue-gray-300 text-blue-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                                         onChange={(event) => setLName(event.target.value)}
+                                                        required
                                                     />
                                                 </div>
 
                                                 <div className="sm:col-span-6">
-                                                    <label htmlFor="username" className="block text-sm font-medium text-blue-gray-900">
-                                                        Username
-                                                    </label>
-                                                    <div className="mt-1 flex rounded-md shadow-sm">
-                                                        {/* <span className="inline-flex items-center rounded-l-md border border-r-0 border-blue-gray-300 bg-blue-gray-50 px-3 text-blue-gray-500 sm:text-sm">
-                                                            workcation.com/
-                                                        </span> */}
-                                                        <input
-                                                            value={userName}
-                                                            type="text"
-                                                            name="username"
-                                                            id="username"
-                                                            autoComplete="username"
-                                                            // defaultValue="lisamarie"
-                                                            className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-blue-gray-300 text-blue-gray-900 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                                                            onChange={(event) => setUserName(event.target.value)}
-                                                        />
-                                                    </div>
-                                                </div>
+  <label htmlFor="username" className="block text-sm font-medium text-blue-gray-900">
+    Username
+  </label>
+  <div className="mt-1 flex rounded-md shadow-sm">
+    
+    <input
+      value={userName}
+      type="text"
+      name="username"
+      id="username"
+      autoComplete="username"
+      className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-blue-gray-300 text-blue-gray-900 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+      onChange={(event) => setUserName(event.target.value)}
+      disabled // Add the disabled attribute
+    />
+  </div>
+</div>
+
 
                                                 <div className="sm:col-span-3">
                                                     <label htmlFor="email-address" className="block text-sm font-medium text-blue-gray-900">
@@ -248,6 +240,7 @@ export default function Setting({user ,onUpdate,onCancel }) {
                                                         autoComplete="email"
                                                         className="mt-1 block w-full rounded-md border-blue-gray-300 text-blue-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                                         onChange={(event) => setEmail(event.target.value)}
+                                                        disabled 
                                                     />
                                                 </div>
 
@@ -278,6 +271,7 @@ export default function Setting({user ,onUpdate,onCancel }) {
                                                             className="block w-full rounded-md border-blue-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                                             defaultValue={''}
                                                             onChange={(event) => setBio(event.target.value)}
+                                                            required
                                                         />
                                                     </div>
                                                     

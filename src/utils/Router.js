@@ -13,6 +13,7 @@ import VerifyEmail from "../pages/LoginRegister/VerifyEmail";
 import ResetPassword from "../pages/LoginRegister/ResetPassword";
 import Profile from "../pages/Profile/Profile"
 import Setting from "../pages/Profile/Setting";
+import ChangePassword from "../pages/Profile/ChangePassword";
 const Router = () => {
   return (
     <div>
@@ -30,6 +31,7 @@ const Router = () => {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profileEdit" element={<Setting />} />
+          <Route path="/change-password" element={<ChangePassword />} />
 
           {/* <Routes>
               <Route path="/" element={<Homepage />} />
