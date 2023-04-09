@@ -4,6 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { PlusCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import AuthContext from "../context/AuthContext";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const SlideOver = ({ slideover, setslideover, id }) => {
   let authTokens = useContext(AuthContext).authTokens;
@@ -11,11 +12,11 @@ const SlideOver = ({ slideover, setslideover, id }) => {
   const [status, setstatus] = useState("none");
   const req = async () => {
     const { data } = await axios
-    .get(`http://127.0.0.1:8000/api/my-rooms/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authTokens.access,
-      },
+      .get(`http://127.0.0.1:8000/api/my-rooms/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + authTokens.access,
+        },
       })
       .then((response) => response);
     setstatus(data);
@@ -23,20 +24,38 @@ const SlideOver = ({ slideover, setslideover, id }) => {
   useEffect(() => {
     if (slideover == true) req();
   }, [slideover]);
-  
-  const [joinRequest, setJoinRequest] = useState({})
+
+  const [joinRequest, setJoinRequest] = useState({});
   const JoinReq = async () => {
-    const { data } = await axios
-      .post(`http://127.0.0.1:8000/api/my-rooms/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      })
-      .then((response) => response);
+    const data = await fetch(`http://127.0.0.1:8000/api/my-rooms/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authTokens.access,
+      },
+    }).then((response) => response);
     setJoinRequest(data);
   };
-  console.log(joinRequest)
+  useEffect(() => {
+    if (joinRequest && joinRequest.status == 406) {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: "User already joined",
+        showConfirmButton: false,
+        timer: 2000
+      })
+    } else if (joinRequest && joinRequest.status == 202) {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: "Request Sent",
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+  }, [joinRequest]);
+
 
   const title = status ? status.title : "";
   const isPremium = status ? status.is_premium : false;
@@ -50,9 +69,11 @@ const SlideOver = ({ slideover, setslideover, id }) => {
   for (let i = 0; i < categories.length; i++) {
     category.push(categories[i].name);
   }
-  const members = status ? status.members : {};
+  const members = status ? status.room_members : {};
   const member_count = members ? members.length : 0;
-  const member_maximum_count = status ? parseInt(status.maximum_member_count) : 0;
+  const member_maximum_count = status
+    ? parseInt(status.maximum_member_count)
+    : 0;
   // const memberList = [
   //   {
   //     username: "Matin2001",
@@ -184,36 +205,38 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                             <div className=" text-myDark1 text-xl font-bold mb-2">
                               Members:
                             </div>
-                            {members ? members.map((item, index) =>
-                              index < 6 ? (
-                                <div
-                                  key={index}
-                                  className=" grid grid-cols-5 align-middle p-2 items-center hover:bg-myDark1 hover:rounded-lg hover:text-myGrey cursor-pointer duration-200 "
-                                >
-                                  <img
-                                    src={item.picture_path}
-                                    alt=""
-                                    className=" border-2 border-myDark1 hover:border-2 hover:border-myGrey w-14 h-14 rounded-full"
-                                  />
-                                  <div className=" col-start-2 col-end-6">
-                                    <div className=" text-lg font-bold">
-                                      {item.username}
+                            {members
+                              ? members.map((item, index) =>
+                                  index < 6 ? (
+                                    <div
+                                      key={index}
+                                      className=" grid grid-cols-5 align-middle p-2 items-center hover:bg-myDark1 hover:rounded-lg hover:text-myGrey cursor-pointer duration-200 "
+                                    >
+                                      <img
+                                        src={item.picture_path}
+                                        alt=""
+                                        className=" border-2 border-myDark1 hover:border-2 hover:border-myGrey w-14 h-14 rounded-full"
+                                      />
+                                      <div className=" col-start-2 col-end-6">
+                                        <div className=" text-lg font-bold">
+                                          {item.username}
+                                        </div>
+                                        {item.bio.length < 70 ? (
+                                          <div className=" opacity-80">
+                                            {item.bio}
+                                          </div>
+                                        ) : (
+                                          <div className=" opacity-80">
+                                            {item.bio.slice(0, 70)}...
+                                          </div>
+                                        )}
+                                      </div>
                                     </div>
-                                    {item.bio.length < 70 ? (
-                                      <div className=" opacity-80">
-                                        {item.bio}
-                                      </div>
-                                    ) : (
-                                      <div className=" opacity-80">
-                                        {item.bio.slice(0, 70)}...
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
-                              ) : (
-                                ""
-                              )
-                            ) : ""}
+                                  ) : (
+                                    ""
+                                  )
+                                )
+                              : ""}
                           </div>
                           <div className="h-40 border-darkBlue border-4 rounded-lg p-3 mt-4">
                             Task Part
@@ -223,7 +246,8 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                             onClick={JoinReq}
                             className="w-full items-center rounded-md border-transparent border-2 border-navy hover:border-navy bg-navy h-12 py-1 mt-2 text-lg font-semibold text-myGrey shadow-sm hover:bg-myGrey hover:text-navy duration-300"
                           >
-                            Join Event ({member_maximum_count - member_count} Left)
+                            Join Event ({member_maximum_count - member_count}{" "}
+                            Left)
                           </button>
                           <div className="h-5"></div>
                         </div>

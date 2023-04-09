@@ -24,20 +24,19 @@ const Homepage = () => {
     member: 31,
     maxMember: 40,
   };
-  let authTokens = useContext(AuthContext).authTokens 
+  let authTokens = useContext(AuthContext).authTokens;
   //console.log(authTokens.access);
   const [status, setstatus] = useState("");
   const req = async () => {
-    const { data } = await axios
-      .get("http://127.0.0.1:8000/api/rooms", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      })
-      .then((response) => response);
+    const { data } = await axios.get("http://127.0.0.1:8000/api/rooms", {
+      
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authTokens.access,
+      },
+    }).then((response) => response);
     setstatus(data);
-    //console.log(data);
+    console.log(data);
   };
   useEffect(() => {
     req();

@@ -7,6 +7,8 @@ import React, { useContext, useEffect, useState } from "react";
 import SlideOver from "./SlideOver";
 import axios from "axios";
 import AuthContext from "../context/AuthContext";
+import Swal from "sweetalert2";
+
 
 const Card = (props) => {
   const data = props.info;
@@ -27,19 +29,35 @@ const Card = (props) => {
   // const endTime = mydata ? mydata.end_date.slice(11, 19) : "";
   let authTokens = useContext(AuthContext).authTokens;
   const [joinRequest, setJoinRequest] = useState({});
-  console.log(authTokens.access)
   const JoinReq = async () => {
-    const { data } = await axios
-      .post(`http://127.0.0.1:8000/api/my-rooms/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      })
-      .then((response) => response);
+    const data = await fetch(`http://127.0.0.1:8000/api/my-rooms/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authTokens.access,
+      },
+    }).then((response) => response);
     setJoinRequest(data);
   };
-  console.log(joinRequest);
+  useEffect(() => {
+    if (joinRequest && joinRequest.status == 406) {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: "User already joined",
+        showConfirmButton: false,
+        timer: 2000
+      })
+    } else if (joinRequest && joinRequest.status == 202) {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: "Request Sent",
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+  }, [joinRequest]);
 
   return (
     <div>
