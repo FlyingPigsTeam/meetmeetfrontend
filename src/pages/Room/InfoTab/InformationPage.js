@@ -245,7 +245,7 @@ export default function TestInf() {
                       href="#"
                       class="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                     >
-                      📸 Photograpgy
+                      📸 Photography
                     </a>
                   </div>
 

@@ -11,17 +11,26 @@ const Members = () => {
       avatar: Avatar200x200,
       name: "Aryan",
       age: 21,
-      phone: 9128504332,
-      role: "Admin",
+      phone: 9199999999,
+      role: "Owner",
       status: true,
     },
     {
       id: 2,
       avatar: Avatar200x200,
       name: "Kioomars",
-      age: 21,
-      phone: 9128585332,
+      age: 22,
+      phone: 9199999999,
       role: "Member",
+      status: true,
+    },
+    {
+      id: 3,
+      avatar: Avatar200x200,
+      name: "Rez",
+      age: 23,
+      phone: 9199999999,
+      role: "Pending",
       status: true,
     },
   ];
@@ -80,7 +89,36 @@ const Members = () => {
       ),
     },
   ];
-
+  const roleDetails = {
+    Owner: {
+      Title: "Owner",
+      ListBadge: (
+        <>
+          <div class="badge rounded-full border border-secondary text-secondary dark:border-secondary-light dark:text-secondary-light">
+            Owner
+          </div>
+        </>
+      ),
+    },
+    Member: {
+      Title: "Member",
+      ListBadge: (
+        <>
+          <div class="badge rounded-full border border-primary text-primary dark:border-accent-light dark:text-accent-light">
+            Member
+          </div>
+        </>
+      ),
+    },
+    Pending: {
+      Title: "Pending",
+      ListBadge: (
+        <>
+            <div class="badge rounded-full border border-info text-info">Pending</div>
+        </>
+      ),
+    },
+  };
   return (
     <>
       <div>
@@ -257,13 +295,8 @@ const Members = () => {
                         {user.phone}
                       </td>
                       <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        <div
-                          // :class="user.role_bg"
-
-                          class="badge rounded-full"
-                        >
-                          {user.role}
-                          Secondary
+                        <div class="badge rounded-full">
+                          {roleDetails[user.role].ListBadge}
                         </div>
                       </td>
                       <td class="whitespace-nowrap px-4 py-3 sm:px-5">
@@ -331,115 +364,6 @@ const Members = () => {
                             </Menu.Items>
                           </Transition>
                         </Menu>
-                        <div
-                          // x-data="usePopper({placement:'bottom-end',offset:4})"
-                          // @click.outside="isShowPopper && (isShowPopper = false)"
-                          class="inline-flex"
-                        >
-                          <div
-                            x-ref="popperRoot"
-                            class="popper-root"
-                            //  :class="isShowPopper && 'show'"
-                          >
-                            <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
-                              <ul>
-                                <li>
-                                  <a
-                                    href="#"
-                                    class="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                  >
-                                    <svg
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      class="mt-px h-4.5 w-4.5"
-                                      fill="none"
-                                      viewBox="0 0 24 24"
-                                      stroke="currentColor"
-                                      stroke-width="1.5"
-                                    >
-                                      <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                      />
-                                      <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                                      />
-                                    </svg>
-                                    <span> View</span>
-                                  </a>
-                                </li>
-                                <li>
-                                  <a
-                                    href="#"
-                                    class="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                  >
-                                    <svg
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      class="h-4.5 w-4.5"
-                                      fill="none"
-                                      viewBox="0 0 24 24"
-                                      stroke="currentColor"
-                                      stroke-width="1.5"
-                                    >
-                                      <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                                      />
-                                    </svg>
-                                    <span> Edit</span>
-                                  </a>
-                                </li>
-                                <li>
-                                  <a
-                                    href="#"
-                                    class="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                  >
-                                    <svg
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      class="h-4.5 w-4.5"
-                                      fill="none"
-                                      viewBox="0 0 24 24"
-                                      stroke="currentColor"
-                                      stroke-width="1.5"
-                                    >
-                                      <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                                      />
-                                    </svg>
-                                    <span> Update</span>
-                                  </a>
-                                </li>
-                                <li>
-                                  <a
-                                    href="#"
-                                    class="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide text-error outline-none transition-all hover:bg-error/20 focus:bg-error/20"
-                                  >
-                                    <svg
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      class="h-4.5 w-4.5"
-                                      fill="none"
-                                      viewBox="0 0 24 24"
-                                      stroke="currentColor"
-                                      stroke-width="1.5"
-                                    >
-                                      <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                                      />
-                                    </svg>
-                                    <span> Delete item</span>
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
                       </td>
                     </tr>
                   );
@@ -555,3 +479,26 @@ const Members = () => {
 };
 
 export default Members;
+
+{
+  /* <a
+href="#"
+class="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide text-error outline-none transition-all hover:bg-error/20 focus:bg-error/20"
+>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  class="h-4.5 w-4.5"
+  fill="none"
+  viewBox="0 0 24 24"
+  stroke="currentColor"
+  stroke-width="1.5"
+>
+  <path
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+  />
+</svg>
+<span> Delete item</span>
+</a> */
+}
