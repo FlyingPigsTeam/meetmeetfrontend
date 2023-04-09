@@ -134,47 +134,62 @@ export default function Setting({user ,onUpdate,onCancel }) {
                                                     </p>
                                                 </div>
 
-
                                                 <div className="sm:col-span-6">
-                                                    <label htmlFor="photo" className="block text-sm font-medium text-blue-gray-900">
-                                                        Photo
-                                                    </label>
-                                                    <div className="mt-1 flex items-center">
-                                                        {image ? (
-                                                            <img
-                                                                className="inline-block h-12 w-12 rounded-full"
-                                                                src={image}
-                                                                alt=""
-                                                            />
-                                                        ) : (
-                                                            <div className="inline-block h-12 w-12 rounded-full bg-blue-gray-100"></div>
-                                                        )}
-                                                        <div className="ml-4 flex">
-                                                            <div className="relative flex cursor-pointer items-center rounded-md border border-blue-gray-300 bg-white py-2 px-3 shadow-sm focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 focus-within:ring-offset-blue-gray-50 hover:bg-blue-gray-50">
-                                                                <label
-                                                                    htmlFor="user-photo"
-                                                                    className="pointer-events-none relative text-sm font-medium text-blue-gray-900"
-                                                                >
-                                                                    <span>Change</span>
-                                                                    <span className="sr-only"> user photo</span>
-                                                                </label>
-                                                                <input
-                                                                    id="user-photo"
-                                                                    name="user-photo"
-                                                                    type="file"
-                                                                    className="absolute inset-0 h-full w-full cursor-pointer rounded-md border-gray-300 opacity-0"
-                                                                    onChange={handleImageUpload}
-                                                                />
-                                                            </div>
-                                                            <button
-                                                                type="button"
-                                                                className="ml-3 rounded-md border border-transparent bg-transparent py-2 px-3 text-sm font-medium text-blue-gray-900 hover:text-blue-gray-700 focus:border-blue-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-blue-gray-50"
-                                                            >
-                                                                Remove
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+  <label htmlFor="photo" className="block text-sm font-medium text-blue-gray-900">
+    Photo
+  </label>
+  <div className="mt-1 flex items-center">
+    {image ? (
+      <img
+        className="inline-block h-12 w-12 rounded-full"
+        src={image}
+        alt=""
+      />
+    ) : (
+      <div className="inline-block h-12 w-12 rounded-full bg-gradient-to-tr from-purple-400 to-pink-500 flex items-center justify-center">
+        <span className="text-white text-2xl font-bold">+</span>
+      </div>
+    )}
+    <div className="ml-4 flex">
+      <div className="flex flex-col">
+        <div className="relative flex cursor-pointer items-center rounded-md border border-blue-gray-300 bg-white py-2 px-3 shadow-sm focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 focus-within:ring-offset-blue-gray-50 hover:bg-blue-gray-50">
+          <label htmlFor="user-photo" className="pointer-events-none relative text-sm font-medium text-blue-gray-900">
+            <span>Change</span>
+            <span className="sr-only"> user photo</span>
+          </label>
+          <input
+            id="user-photo"
+            name="user-photo"
+            type="file"
+            className="absolute inset-0 h-full w-full cursor-pointer rounded-md border-gray-300 opacity-0"
+            onChange={handleImageUpload}
+          />
+        </div>
+        {/* <span className="text-sm text-blue-gray-500 mt-1">(max size: 5MB)</span> */}
+      </div>
+      <div className="ml-3 flex">
+        <div className="relative flex cursor-pointer items-center rounded-md border border-red-500 bg-red-500 py-2 px-3 shadow-sm text-white focus-within:outline-none focus-within:ring-2 focus-within:ring-red-500 focus-within:ring-offset-2 focus-within:ring-offset-red-50 hover:bg-red-600">
+          <label
+            htmlFor="remove-photo"
+            className="pointer-events-none relative text-sm font-medium"
+          >
+            <span>Remove</span>
+            <span className="sr-only"> user photo</span>
+          </label>
+          <input
+            id="remove-photo"
+            name="remove-photo"
+            type="button"
+            className="absolute inset-0 h-full w-full cursor-pointer rounded-md border-gray-300 opacity-0"
+            // onClick={handleRemoveImage}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
                                                 <div className="sm:col-span-3">
                                                     <label htmlFor="first-name" className="block text-sm font-medium text-blue-gray-900">
