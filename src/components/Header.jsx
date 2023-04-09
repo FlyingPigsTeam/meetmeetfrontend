@@ -1,13 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate()
   return (
     <div className="grid bg-myDark2 grid-cols-12 justify-items-start fixed w-screen z-50">
       
-      <div className="text-myGrey hover:text-myBlueGreen1 cursor-pointer col-start-1 col-end-11 m-6 text-5xl font-bold">
+      <div onClick={()=>navigate("/")} className="text-myGrey hover:text-myBlueGreen1 cursor-pointer col-start-1 col-end-11 m-6 text-5xl font-bold">
         <h2>Meet Meet</h2>
       </div>
-      <div className="my-auto ml-20 text-3xl cursor-pointer font-semibold flex">
+      <div onClick={()=>navigate("/profile")} className="my-auto ml-20 text-3xl cursor-pointer font-semibold flex">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

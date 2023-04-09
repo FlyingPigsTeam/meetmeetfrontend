@@ -5,6 +5,8 @@ import ChangePassword from './ChangePassword';
 import ProfileCard from './ProfileCard';
 import '../../index.css';
 import AuthContext from '../../context/AuthContext';
+import Header from "../../components/Header";
+import SidebarNavigation from "../../components/SidebarNavigation";
 
 function Profile() {
   const [isLoading, setIsLoading] = useState(true);
@@ -62,6 +64,9 @@ function Profile() {
   const handleCancelChangePassword = () => {
     setShowChangePassword(false);
   };
+  const handleBackToProfile = () => {
+    setShowChangePassword(false);
+  };
   // const handleSubmitNewPassword = async (e) => {
   //   e.preventDefault();
   //   try {
@@ -81,50 +86,73 @@ function Profile() {
   // };
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-6">
-  {showChangePassword ? (
-    <ChangePassword
-      onUpdate={handleUpdate}
-      user={data}
-      onCancel={handleCancelChangePassword}
-    />
-  ) : (
-    <div className="w-full max-w-lg">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold">Profile</h2>
-        <div>
-          <button
-            className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 mr-2"
-            onClick={handleShowChangePassword}
-          >
-            Change Password
-          </button>
-          {isEditing ? (
+    <div>
+    <Header className="my-20"/>
+    <div
+        style={{
+          paddingTop: "12vh",
+        
+        }}
+      >
+    <SidebarNavigation />
+    <div className="flex flex-col items-center justify-center pt-10"style={{
+          paddingTop: "12vh",
+          
+        }}>
+      <div className="w-full max-w-lg ">
+        {showChangePassword ? (
+          <div className="relative">
             <button
-              className="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
-              onClick={() => setIsEditing(false)}
+              className="absolute top-0 right-0 p-4 text-white bg-blue-500 rounded-full hover:bg-blue-600 mr-2"
+              onClick={handleBackToProfile}
             >
-              Cancel
+              Back
             </button>
-          ) : (
-            <button
-              className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600"
-              onClick={handleEditClick}
-            >
-              Edit
-            </button>
-          )}
-        </div>
+            <ChangePassword onUpdate={handleUpdate} />
+          </div>
+        ) : (
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl font-bold">Profile</h2>
+              <div>
+                <button
+                  className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 mr-2"
+                  onClick={handleShowChangePassword}
+                >
+                  Change Password
+                </button>
+                {isEditing ? (
+                  <button
+                    className="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
+                    onClick={() => setIsEditing(false)}
+                  >
+                    Cancel
+                  </button>
+                ) : (
+                  <button
+                    className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600"
+                    onClick={handleEditClick}
+                  >
+                    Edit
+                  </button>
+                )}
+              </div>
+            </div>
+            {isEditing ? (
+              <Setting user={data} onUpdate={handleUpdate} onCancel={() => setIsEditing(false)} />
+            ) : (
+              <div className="flex flex-col items-center">
+                <div className="mt-6">
+                  <ProfileCard handleEdit={handleEditClick} user={data} />
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
-      {isEditing ? (
-        <Setting user={data} onUpdate={handleUpdate} onCancel={() => setIsEditing(false)} />
-      ) : (
-        <ProfileCard handleEdit={handleEditClick} user={data} />
-      )}
     </div>
-  )}
-</div>
-
+  </div>
+  </div>
   );
 }
 
