@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import AuthContext from '../../context/AuthContext';
 
 const ChangePassword = ({ onUpdate }) => {
+  
   const initialValues = {
     currentPassword: '',
     newPassword: '',
@@ -10,6 +12,7 @@ const ChangePassword = ({ onUpdate }) => {
   };
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
+  const { authTokens, user } = useContext(AuthContext);
   const [submitted, setSubmitted] = useState(false);
 
   const validationSchema = Yup.object({
@@ -21,19 +24,49 @@ const ChangePassword = ({ onUpdate }) => {
       .required('Required')
       .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
   });
+  const handleUpdate = async (updatedUser) => {
+    let response="";
+    try {
+      response = await fetch('http://127.0.0.1:8000/api/profile', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${authTokens.access}`,
+        },
+        body: JSON.stringify(updatedUser),
+      });
+      if ( parseInt(response.status) >= 400 && parseInt(response.status) < 500) {
+        setError("Bad request. Please check your input and try again.");
+      
+      }
+      
+      
+    } catch (error) {
+    //   console.error(error);
+    //   if ( parseInt(error.response.status) >= 400 && parseInt(error.response.status) < 500) {
+    //     setError("Bad request. Please check your input and try again.");
+    //   } else {
+    //     setError("An error occurred. Please try again.");
+    //   }
+    //   setIsSubmitting(false);
+    }
+  };
+
 
   async function handleSubmit(values) {
+    setError(null);
     try {
       setIsSubmitting(true);
       const user = { "current_password": values.currentPassword, "new_password": values.newPassword };
-      const response=await onUpdate(user);
+      const response=await handleUpdate(user);
       
       setIsSubmitting(false);
       console.log(response);
       setSubmitted(true);
+      
     } catch (error) {
       console.error(error);
-      if (error.response && error.response.status >= 400 && error.response.status < 500) {
+      if ( parseInt(error.response.status) >= 400 && parseInt(error.response.status) < 500) {
         setError("Bad request. Please check your input and try again.");
       } else {
         setError("An error occurred. Please try again.");
