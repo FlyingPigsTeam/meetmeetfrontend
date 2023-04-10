@@ -4,6 +4,7 @@ import * as yup from "yup";
 import Flatpickr from "react-flatpickr";
 import Tom from "tom-select";
 
+
 import Avatar200x200 from "../../../assets/images/200x200.png";
 
 const InformationForm = ({ Title, ...props }) => {

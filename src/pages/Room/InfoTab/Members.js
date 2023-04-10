@@ -1,10 +1,35 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, {
+  Fragment,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import axios from "axios";
+
+import AuthContext from "../../../context/AuthContext";
 
 import Avatar200x200 from "../../../assets/images/200x200.png";
 
 const Members = () => {
+  let authTokens = useContext(AuthContext).authTokens;
+  let [users_Data , setUser_Data] = useState([]);
+  const req = async () => {
+    const { data } = await axios
+      .get(`http://127.0.0.1:8000/api/my-rooms/11/requests?show_members=1`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + authTokens.access,
+        },
+      })
+      .then((response) => response);
+      console.log("memberFetch",data)
+      setUser_Data(data)
+    };
+    useEffect(() => {
+      req();
+    }, []);
   const usersData = [
     {
       id: 1,
@@ -114,7 +139,9 @@ const Members = () => {
       Title: "Pending",
       ListBadge: (
         <>
-            <div class="badge rounded-full border border-info text-info">Pending</div>
+          <div class="badge rounded-full border border-info text-info">
+            Pending
+          </div>
         </>
       ),
     },
@@ -247,59 +274,59 @@ const Members = () => {
                     Avatar
                   </th>
                   <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                    Name
+                    Username
                   </th>
                   <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                    Age
+                    Firstname
                   </th>
                   <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                    Phone
+                    Lastname
                   </th>
                   <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Role
                   </th>
-                  <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  {/* <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Status
-                  </th>
+                  </th> */}
                   <th class="whitespace-nowrap rounded-tr-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Action
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {usersData.map((user) => {
+                {users_Data.map((user ,idx) => {
                   return (
                     <tr
-                      key={`user-item-${user.id}`}
+                      key={`user-item-${idx}`}
                       class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
                     >
                       <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        {user.id}
+                        {idx +1}
                       </td>
                       <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                         <div class="avatar flex h-10 w-10">
                           <img
                             class="mask is-squircle"
-                            src={user.avatar}
+                            src={Avatar200x200}
                             alt="avatar"
                           />
                         </div>
                       </td>
                       <td class="whitespace-nowrap px-3 py-3 font-medium text-slate-700 dark:text-navy-100 lg:px-5">
-                        {user.name}
+                        {user.member.username}
                       </td>
                       <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        {user.age}
+                        {user.member.first_name}
                       </td>
                       <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        {user.phone}
+                        {user.member.last_name}
                       </td>
                       <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                         <div class="badge rounded-full">
                           {roleDetails[user.role].ListBadge}
                         </div>
                       </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                      {/* <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                         <label class="inline-flex items-center">
                           <input
                             // :checked="user.status"
@@ -308,7 +335,7 @@ const Members = () => {
                             value={user.status}
                           />
                         </label>
-                      </td>
+                      </td> */}
                       <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                         <Menu
                           as="div"
