@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
+
+
 
 const Header = () => {
   const navigate = useNavigate()
+  let {logoutUser } = useContext(AuthContext);
   return (
     <div className="grid dark:bg-navy-800 bg-slate-400 grid-cols-12 justify-items-start fixed w-screen z-50">
       <div onClick={()=>navigate("/")} className="text-slate-800 dark:text-navy-100 dark:hover:text-navy-200 hover:text-slate-700 cursor-pointer col-start-1 col-end-10 m-6 text-5xl font-bold">
         <h2>Meet Meet</h2>
       </div>
       <div className=" text-slate-200 hover:text-slate-300 bg-slate-800 hover:bg-slate-700 dark:text-navy-800 dark:bg-navy-100 dark:hover:text-navy-700 dark:hover:bg-navy-200 duration-200  cursor-pointer col-start-10 col-end-11 m-6 text-xl mt-6 h-12 pt-2.5 w-32 rounded-lg font-bold">
-        <button>Log Out</button>
+        <button onClick={logoutUser}>Log Out</button>
       </div>
       <div onClick={()=>navigate("/profile")} className="my-auto ml-20 text-3xl cursor-pointer font-semibold flex" >
         <svg
