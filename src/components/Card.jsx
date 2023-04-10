@@ -9,11 +9,13 @@ import axios from "axios";
 import AuthContext from "../context/AuthContext";
 import Swal from "sweetalert2";
 
+import { useNavigate } from "react-router-dom";
 
 const Card = (props) => {
   const data = props.info;
   const mydata = props.data ? props.data : {};
   const categories = mydata.categories ? mydata.categories : {};
+  const navigate = useNavigate()
   const [slideover, setslideover] = useState(false);
   const id = mydata ? mydata.id : "";
   //onsole.log(id);
@@ -65,7 +67,7 @@ const Card = (props) => {
         <div className="flex items-center justify-between p-6">
           <div className="flex-1 truncate">
             <div className="flex items-center space-x-3">
-              <h3 className="text-3xl font-bold text-slate-700 dark:text-navy-100 basis-11/12">
+              <h3 className="text-3xl font-bold text-slate-700 dark:text-navy-100 basis-11/12" onClick={()=>navigate("/room/"+id)}>
                 {mydata.title}
               </h3>
               <div className="grid grid-cols-2 text-2xl text-slate-700 dark:text-navy-100">

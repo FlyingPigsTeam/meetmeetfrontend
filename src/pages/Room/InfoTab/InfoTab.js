@@ -8,8 +8,11 @@ import Avatar200x200 from "../../../assets/images/200x200.png";
 import InformationPage from "./InformationPage";
 import Members from "./Members";
 import DarkModeToggle from "../../../components/DarkModeToggle";
+import { useParams } from "react-router-dom";
 
 const InfoTab = () => {
+  const params = useParams()
+  console.log(params)
   return (
     <>
       <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
@@ -68,11 +71,11 @@ const InfoTab = () => {
               {/* <VerticalNav />
               <AddRoom /> */}
               <InformationPage />
-              <Members />
             </div>
             <div class="col-span-12 lg:col-span-6">
+              <Members />
               {/* <div class="card"> */}
-              <InformationForm Title="Edit" />
+              {/* <InformationForm Title="Add" /> */}
               {/* </div> */}
             </div>
           </div>

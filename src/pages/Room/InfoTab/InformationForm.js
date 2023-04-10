@@ -1,18 +1,38 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Flatpickr from "react-flatpickr";
 import Tom from "tom-select";
+import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
 
-
+import AuthContext from "../../../context/AuthContext";
 import Avatar200x200 from "../../../assets/images/200x200.png";
 
 const InformationForm = ({ Title, ...props }) => {
+  let idroom = useParams().idroom;
+  const navigate = useNavigate();
+  let authTokens = useContext(AuthContext).authTokens;
+  let [roomData, setRoomData] = useState({});
+
+  const req = async () => {
+    const { data } = await axios
+      .get(`http://127.0.0.1:8000/api/my-rooms/${idroom}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + authTokens.access,
+        },
+      })
+      .then((response) => response);
+    console.log("FromDataFetch", data);
+    setRoomData(data);
+  };
+  useEffect(() => {
+    req();
+  }, []);
   const categories = [
-    { value: "AL", label: "Alabama" },
-    { value: "AR", label: "Arkansas" },
-    { value: "CA", label: "California", selected: true },
-    { value: "CO", label: "Colorado" },
+    { value: "cinema", label: "cinema" },
+    { value: "sport", label: "sport", selected: true },
   ];
   const sampleJson = {
     title: "soltaniali208040gmail.com",
@@ -43,6 +63,7 @@ const InformationForm = ({ Title, ...props }) => {
   const fp = useRef(null);
   const [showPassword, setShowPassword] = useState(false);
   const [dateRange, setDateRange] = useState([]);
+  const [formikInitialized, setFormikInitialized] = useState(false);
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -51,7 +72,7 @@ const InformationForm = ({ Title, ...props }) => {
       is_premium: false,
       open_status: false,
       password: "",
-      maximum_member_count: 50,
+      maximum_member_count: 0,
       categories: [],
       dateRange: dateRange,
       // start_date: "",
@@ -102,11 +123,87 @@ const InformationForm = ({ Title, ...props }) => {
           }
         ),
     }),
-    onSubmit: async (data) => {
-      alert(JSON.stringify(data));
+    onSubmit: async (values) => {
+      if (Title === "Edit") {
+        const { data } = await axios
+          .put(
+            `http://127.0.0.1:8000/api/my-rooms/${idroom}`,
+            {
+              title: values.title,
+              description: values.description,
+              room_type: values.room_type ? 1 : 0,
+              is_premium: values.is_premium ? 1 : 0,
+              open_status: values.open_status ? 1 : 0,
+              password: values.password,
+              maximum_member_count: values.maximum_member_count,
+              categories: values.categories?.map((item) => {
+                return { name: item };
+              }),
+              start_date: values.dateRange[0].toISOString(),
+              end_date: values.dateRange[1].toISOString(),
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + authTokens.access,
+              },
+            }
+          )
+          .then((response) => response);
+      } else {
+        const { data } = await axios
+          .post(
+            `http://127.0.0.1:8000/api/rooms`,
+            {
+              title: values.title,
+              description: values.description,
+              room_type: values.room_type ? 1 : 0,
+              is_premium: values.is_premium ? 1 : 0,
+              open_status: values.open_status ? 1 : 0,
+              password: values.password,
+              maximum_member_count: values.maximum_member_count,
+              categories: values.categories?.map((item) => {
+                return { name: item };
+              }),
+              start_date: values.dateRange[0].toISOString(),
+              end_date: values.dateRange[1].toISOString(),
+              main_picture_path: "__",
+              link: "link",
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + authTokens.access,
+              },
+            }
+          )
+          .then((response) => response);
+        navigate(Title === "Add" ? "/" : `/room/${idroom}/info`);
+      }
     },
   });
 
+  useEffect(() => {
+    if (Title === "Edit") {
+      if (!formikInitialized) {
+        setFormikInitialized(true);
+        return;
+      }
+      formik.setValues({
+        title: roomData.title || "",
+        description: roomData.description || "",
+        room_type: Boolean(roomData.room_type),
+        is_premium: Boolean(roomData.is_premium),
+        open_status: Boolean(roomData.open_status),
+        password: roomData.password || "",
+        maximum_member_count: roomData.maximum_member_count || 0,
+        categories: roomData.categories?.map((item) => item.name) || undefined,
+        dateRange: dateRange,
+        main_picture_path: "__",
+        link: "link",
+      });
+    }
+  }, [roomData]);
   const selectCustom = useRef(null);
   useEffect(() => {
     const selectOptions = new Tom(selectCustom.current, {
@@ -459,17 +556,20 @@ const InformationForm = ({ Title, ...props }) => {
             {/* Room Setting */}
           </h2>
           <div class="flex justify-center space-x-2">
-            <button class="btn min-w-[7rem] rounded-full border border-slate-300 font-medium text-slate-700 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-100 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
+            {/* <button class="btn min-w-[7rem] rounded-full border border-slate-300 font-medium text-slate-700 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-100 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
               Cancel
-            </button>
-            <button
-              id="submit"
-              type="submit"
-              disabled={formik.isSubmitting}
-              class="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
-            >
-              {Title === "Add" ? "Add Room" : "Save"}
-            </button>
+            </button> */}
+            <a href="http://localhost:3000/">
+              <button
+                onClass={()=>navigate(`/room/${idroom}/info`)}
+                id="submit"
+                type="submit"
+                disabled={formik.isSubmitting}
+                class="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+              >
+                {Title === "Add" ? "Add Room" : "Save"}
+              </button>
+            </a>
           </div>
         </div>
       </form>
