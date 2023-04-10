@@ -5,10 +5,12 @@ import {
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 import SlideOver from "./SlideOver";
+import { useNavigate } from "react-router-dom";
 
 const Card = (props) => {
   const id = "1111";
   const data = props.info;
+  const navigate = useNavigate()
   const [slideover, setslideover] = useState(false);
   /*   console.log(slideover)
    */ return (
@@ -17,7 +19,7 @@ const Card = (props) => {
         <div className="flex items-center justify-between p-6">
           <div className="flex-1 truncate">
             <div className="flex items-center space-x-3">
-              <h3 className="text-3xl font-bold text-myGrey basis-11/12">
+              <h3 className="text-3xl font-bold text-myGrey basis-11/12" onClick={()=>navigate("/room/"+id)}>
                 {data.name}
               </h3>
               <div className="grid grid-cols-2 text-2xl text-myGrey">

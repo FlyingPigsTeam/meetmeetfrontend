@@ -8,8 +8,11 @@ import Avatar200x200 from "../../../assets/images/200x200.png";
 import InformationPage from "./InformationPage";
 import Members from "./Members";
 import DarkModeToggle from "../../../components/DarkModeToggle";
+import { useParams } from "react-router-dom";
 
 const InfoTab = () => {
+  const params = useParams()
+  console.log(params)
   return (
     <>
       <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
