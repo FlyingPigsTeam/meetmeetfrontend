@@ -12,6 +12,9 @@ import Register from "../pages/LoginRegister/Register";
 import ForgetPassword from "../pages/LoginRegister/ForgetPassword";
 import ResetPassword from "../pages/LoginRegister/ResetPassword";
 import InfoTab from "../pages/Room/InfoTab/InfoTab";
+import InformationForm from "../pages/Room/InfoTab/InformationForm";
+import InformationPage from "../pages/Room/InfoTab/InformationPage";
+
 
 const Router = () => {
   return (
@@ -27,7 +30,10 @@ const Router = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/forgetpassword" element={<ForgetPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/room/info" element={<InfoTab />} />
+          {/* <Route path="/room/info" element={<InfoTab />} /> */}
+          <Route path="/room/:idroom/info" element={<InfoTab />} />
+          <Route path="/room/:idroom/info/edit" element={<InformationForm Title="Edit" />} />
+
 
           {/* <Routes>
               <Route path="/" element={<Homepage />} />
