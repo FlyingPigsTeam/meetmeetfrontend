@@ -22,8 +22,8 @@ export const AuthProvider = ({ children }) => {
 
   const Navigate = useNavigate();
 
-  const loginUser = async (e) => {
-    e.preventDefault();
+  const loginUser = async (values) => {
+    // e.preventDefault();
     //console.log("form submitted")
     const response = await fetch("http://127.0.0.1:8000/auth/login/", {
       method: "POST",
@@ -31,8 +31,8 @@ export const AuthProvider = ({ children }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: e.target.email.value,
-        password: e.target.password.value,
+        email: values.email,
+        password: values.password,
       }),
     });
     const data = await response.json();
@@ -54,8 +54,8 @@ export const AuthProvider = ({ children }) => {
       }
     }
   };
-  const forgetpassUser = async (e) => {
-    e.preventDefault();
+  const forgetpassUser = async (values) => {
+    // e.preventDefault();
     //console.log("form submitted")
     const response = await fetch(
       "http://127.0.0.1:8000/auth/forget-password/",
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: e.target.email.value,
+          email: values.email,
         }),
       }
     );
