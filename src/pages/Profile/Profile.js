@@ -86,8 +86,9 @@ function Profile() {
   // };
 
   return (
-    <div>
-    <Header className="my-20"/>
+    <div className="flex justify-end">
+  <div className="flex-grow">
+    <Header className="my-10"/>
     <div
         style={{
           paddingTop: "12vh",
@@ -95,8 +96,8 @@ function Profile() {
         }}
       >
     <SidebarNavigation />
-    <div className="flex flex-col items-center justify-center pt-10"style={{
-          paddingTop: "12vh",
+    <div className="flex flex-col items-center justify-center  ml-20"style={{
+          paddingTop: "7vh",
           
         }}>
       <div className="w-full max-w-lg ">
@@ -154,6 +155,8 @@ function Profile() {
     </div>
   </div>
   </div>
+</div>
+
   );
 }
 

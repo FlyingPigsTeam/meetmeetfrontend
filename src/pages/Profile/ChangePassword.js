@@ -77,6 +77,8 @@ const ChangePassword = ({ onUpdate }) => {
   }
 
   return (
+    <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="flex items-center justify-between mb-4"></div>
     <div className="max-w-md mx-auto mt-4">
       <h1 className="text-xl font-bold mb-2">Change Password</h1>
       <Formik
@@ -171,6 +173,8 @@ const ChangePassword = ({ onUpdate }) => {
         )}
       </Formik>
     </div>
+    </div>
+    
   );
             }
 export default ChangePassword;
