@@ -7,17 +7,20 @@ import React, {
 } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
 
 import AuthContext from "../../../context/AuthContext";
 
 import Avatar200x200 from "../../../assets/images/200x200.png";
 
 const Members = () => {
+  let idroom =useParams().idroom;
+  const navigate = useNavigate();
   let authTokens = useContext(AuthContext).authTokens;
   let [users_Data, setUser_Data] = useState([]);
   const req = async () => {
     const { data } = await axios
-      .get(`http://127.0.0.1:8000/api/my-rooms/11/requests?show_members=1`, {
+      .get(`http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?show_members=1`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + authTokens.access,
@@ -66,7 +69,7 @@ const Members = () => {
         const acceptUser = async () => {
           const { data } = await axios
             .put(
-              `http://127.0.0.1:8000/api/my-rooms/11/requests_id=${requestId}`,
+              `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests_id=${requestId}`,
               { is_member: true, request_status: 2 },
               {
                 headers: {
@@ -98,7 +101,7 @@ const Members = () => {
         const deleteUser = async () => {
           const { data } = await axios
             .delete(
-              `http://127.0.0.1:8000/api/my-rooms/11/requests_id=${requestId}`,
+              `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests_id=${requestId}`,
               {
                 headers: {
                   "Content-Type": "application/json",
@@ -130,7 +133,7 @@ const Members = () => {
         const deleteUser = async () => {
           const { data } = await axios
             .delete(
-              `http://127.0.0.1:8000/api/my-rooms/11/requests_id=${requestId}`,
+              `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests_id=${requestId}`,
               {
                 headers: {
                   "Content-Type": "application/json",

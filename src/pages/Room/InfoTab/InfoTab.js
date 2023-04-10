@@ -71,11 +71,11 @@ const InfoTab = () => {
               {/* <VerticalNav />
               <AddRoom /> */}
               <InformationPage />
-              <Members />
             </div>
             <div class="col-span-12 lg:col-span-6">
+              <Members />
               {/* <div class="card"> */}
-              <InformationForm Title="Edit" />
+              {/* <InformationForm Title="Add" /> */}
               {/* </div> */}
             </div>
           </div>
