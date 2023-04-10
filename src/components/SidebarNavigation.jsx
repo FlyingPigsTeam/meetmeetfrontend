@@ -13,7 +13,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function SidebarNavigation() {
+export default function SidebarNavigation(props) {
+  
   return (
     <div
       className="flex fixed flex-1 flex-col bg-navy"

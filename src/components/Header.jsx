@@ -9,7 +9,10 @@ const Header = () => {
       <div onClick={()=>navigate("/")} className="text-myGrey hover:text-myBlueGreen1 cursor-pointer col-start-1 col-end-11 m-6 text-5xl font-bold">
         <h2>Meet Meet</h2>
       </div>
-      <div onClick={()=>navigate("/profile")} className="my-auto ml-20 text-3xl cursor-pointer font-semibold flex">
+      <div className="text-myDark2 duration-200 hover:text-myGrey cursor-pointer col-start-10 col-end-11 m-6 text-xl mt-6 bg-myGrey hover:bg-myBlueGreen1 h-12 pt-2.5 w-32 rounded-lg font-bold">
+        <button>Log Out</button>
+      </div>
+      <div className="my-auto ml-20 text-3xl cursor-pointer font-semibold flex">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
