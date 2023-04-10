@@ -4,8 +4,7 @@ import Header from "../../components/Header";
 import SidebarNavigation from "../../components/SidebarNavigation";
 import Filters from "./Filter";
 import axios from "axios";
-import { json } from "react-router-dom";
-import { string } from "yup";
+
 import AuthContext from "../../context/AuthContext";
 
 const Homepage = () => {
@@ -24,17 +23,35 @@ const Homepage = () => {
     member: 31,
     maxMember: 40,
   };
-  let authTokens = useContext(AuthContext).authTokens 
+  let authTokens = useContext(AuthContext).authTokens;
   console.log(authTokens.access);
-  //let authTokens = localStorage.getItem("authTokens");
-  // console.log(authTokens)
-  // let data = JSON.parse(authTokens);
-  // let aa = data.access;
-  // console.log(aa);
+  const [paramsFilter, setparamsFilter] = useState("");
+  // console.log("Homepage: ", paramsFilter);
+  const removeEmptyValues = (object) => {
+    const keys = Object.keys(object);
+    for (var i = 0; i < keys.length; ++i) {
+      const key = keys[i];
+      const value = object[key];
+      if (value === null || value === undefined || value === "") {
+        delete object[key];
+      }
+    }
+  };
+  removeEmptyValues(paramsFilter);
+  console.log("JSON paramFinal: ", paramsFilter);
+
+  let url = new URLSearchParams(paramsFilter).toString();
+
+  url = url.replaceAll("%3D", "=");
+  url = url.replaceAll("%26", "&");
+  url = url.replaceAll("%3A", ":");
+  url = url.replace("categories=", "");
+  console.log("params", url);
+
   const [status, setstatus] = useState("");
   const req = async () => {
     const { data } = await axios
-      .get("http://127.0.0.1:8000/api/rooms", {
+      .get(`http://127.0.0.1:8000/api/rooms?${url}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + authTokens.access,
@@ -46,7 +63,7 @@ const Homepage = () => {
   };
   useEffect(() => {
     req();
-  }, [authTokens]);
+  }, [authTokens, paramsFilter]);
   let cards = status ? status.results : {};
   return (
     <div>
@@ -64,7 +81,10 @@ const Homepage = () => {
           style={{ width: "85vw", marginLeft: "13.9vw" }}
         >
           <div className="text-5xl font-bold text-myGrey mb-8 mt-5">Events</div>
-          <Filters />
+          <Filters
+            paramsFilter={paramsFilter}
+            setparamsFilter={setparamsFilter}
+          />
 
           <div
             className="grid grid-cols-2 gap-4"

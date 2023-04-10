@@ -1,16 +1,16 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 // var asc_color = "bg-sky-500";
 // var des_color = " ";
 
-export default function Filters() {
+export default function Filters({ paramsFilter, setparamsFilter }) {
   const [category, setcategory] = useState([]);
   const [startdate, setstartdate] = useState("");
   const [enddate, setenddate] = useState("");
   const [starttime, setstarttime] = useState("");
   const [endtime, setendtime] = useState("");
-  const [capacity, setcapacity] = useState(0);
+  const [capacity, setcapacity] = useState("");
   const [sort, setSort] = useState("None");
   // const [asc, setasc] = useState(1);
 
@@ -79,13 +79,13 @@ export default function Filters() {
         },
         {
           value: "cinema",
-          label: "Tees",
+          label: "cinema",
           checked: category.includes("cinema") ? true : false,
         },
         {
-          value: "climbing",
-          label: "climbing",
-          checked: category.includes("climbing") ? true : false,
+          value: "religion",
+          label: "religion",
+          checked: category.includes("religion") ? true : false,
         },
       ],
     },
@@ -104,8 +104,51 @@ export default function Filters() {
   // console.log("endtime : ", endtime);
   // console.log("capacity : ", capacity);
   // console.log("sort : ", sort);
-  // console.log("asc : ", asc);
-  
+  let asc = 1;
+  let sort_type = "";
+
+  if (sort === "The Earliest") {
+    sort_type = "time";
+    asc = 1;
+  }
+  if (sort === "The Latest") {
+    sort_type = "time";
+    asc = 0;
+  }
+  if (sort === "The Shortest") {
+    sort_type = "duration";
+    asc = 1;
+  }
+  if (sort === "The Longest") {
+    sort_type = "duration";
+    asc = 0;
+  }
+  if (sort === "Less Capacity") {
+    sort_type = "capacity";
+    asc = 1;
+  }
+  if (sort === "More Capacity") {
+    sort_type = "capacity";
+    asc = 0;
+  }
+  let set_category = "";
+  for (let i = 0; i < category.length; i++) {
+    set_category += `categories=${category[i]}&`;
+  }
+  set_category = set_category.substring(0, set_category.length - 1);
+  const filter_params = {
+    start_date:
+      startdate && starttime ? `${startdate}T${starttime}` : startdate,
+    end_date: enddate && endtime ? `${enddate}T${endtime}` : enddate,
+    categories: set_category,
+    member_count: capacity,
+    order: asc,
+    sort: sort_type,
+  };
+
+  useEffect(() => {
+    setparamsFilter(filter_params);
+  }, [startdate, enddate, starttime, endtime, category, capacity, sort]);
   // if (asc) {
   //   asc_color = "bg-sky-500";
   //   des_color = " ";
@@ -141,7 +184,7 @@ export default function Filters() {
                       type="time"
                       className="bg-myDark1 border-myGrey rounded-md mb-7 py-2  text-myGrey text-sm  focus:ring-myBlueGreen1 focus:border-myBlueGreen1 block w-full pl-10 p-2.5  dark:bg-myGrey dark:border-myGrey dark:placeholder-myGrey dark:text-myGrey dark:focus:ring-myBlueGreen1 dark:focus:border-myDark2"
                       placeholder="Select time start"
-                      onChange={(e) => setenddate(e.target.value)}
+                      onChange={(e) => setstarttime(e.target.value)}
                     />
                   </div>
                   <span className="mb-7 py-2 mr-3 ml-6 text-myGrey">to</span>
@@ -151,7 +194,7 @@ export default function Filters() {
                       type="Date"
                       className="bg-myDark1 border-myGrey rounded-md mb-7 py-2  text-myGrey text-sm  focus:ring-myBlueGreen1 focus:border-myBlueGreen1 block w-full pl-10 p-2.5  dark:bg-myGrey dark:border-myGrey dark:placeholder-myGrey dark:text-myGrey dark:focus:ring-myBlueGreen1 dark:focus:border-myDark2"
                       placeholder="Select date end"
-                      onChange={(e) => setstarttime(e.target.value)}
+                      onChange={(e) => setenddate(e.target.value)}
                     />
                   </div>
                   <div className="relative inset-y-0 left-0 flex items-center pl-3  ">
@@ -175,10 +218,12 @@ export default function Filters() {
                   value={capacity}
                   onChange={(e) => setcapacity(e.target.value)}
                 >
-                  <option value="None">No Matter</option>
-                  <option value="1-10">1-10</option>
-                  <option value="10-20">10-20</option>
-                  <option value="20<">More than 20</option>
+                  <option value="">No Matter</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="40">40</option>
+                  <option value="50">50</option>
                 </select>
               </div>
               <div className="hidden sm:block">
