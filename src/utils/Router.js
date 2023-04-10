@@ -1,16 +1,17 @@
 import { Route, Routes } from "react-router-dom";
 import Homepage from "../pages/Home/Homepage";
 import React from "react";
-// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import Login from "../pages/LoginRegister/Login";
+
+import { AuthProvider } from "../context/AuthContext";
+import PrivateRoute from "../utils/PrivateRoute";
+
 // import Home from "../pages/Home/Home";
+// import Header from "../components/Header";
+import Login from "../pages/LoginRegister/Login";
 import Register from "../pages/LoginRegister/Register";
 import ForgetPassword from "../pages/LoginRegister/ForgetPassword";
-// import Header from "../components/Header";
-import PrivateRoute from "../utils/PrivateRoute";
-import { AuthProvider } from "../context/AuthContext";
-import VerifyEmail from "../pages/LoginRegister/VerifyEmail";
 import ResetPassword from "../pages/LoginRegister/ResetPassword";
+import InfoTab from "../pages/Room/InfoTab/InfoTab";
 
 const Router = () => {
   return (
@@ -25,8 +26,9 @@ const Router = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgetpassword" element={<ForgetPassword />} />
-          <Route path="/email-verify" element={<VerifyEmail />} />
           <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/room/info" element={<InfoTab />} />
+
           {/* <Routes>
               <Route path="/" element={<Homepage />} />
             </Routes> */}

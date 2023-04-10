@@ -77,7 +77,7 @@ const Homepage = () => {
       >
         <SidebarNavigation />
         <div
-          className="bg-myDark1 text-left pb-10 pl-10"
+          className=" bg-slate-100 dark:bg-navy-900 text-left pb-10 pl-10"
           style={{ width: "85vw", marginLeft: "13.9vw" }}
         >
           <div className="text-5xl font-bold text-myGrey mb-8 mt-5">Events</div>
@@ -87,7 +87,7 @@ const Homepage = () => {
           />
 
           <div
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-2 gap-6"
             style={{ width: "75.6vw", marginTop: "5vh" }}
           >
             {status ? (
