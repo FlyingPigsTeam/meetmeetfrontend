@@ -59,7 +59,7 @@ const Homepage = () => {
       })
       .then((response) => response);
     setstatus(data);
-    //console.log(data);
+    console.log(data);
   };
   useEffect(() => {
     req();
