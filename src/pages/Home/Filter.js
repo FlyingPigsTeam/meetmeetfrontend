@@ -116,7 +116,7 @@ export default function Filters() {
 
   return (
     <div>
-      <div className="bg-white w-11/12">
+      <div className="w-11/12">
         {/* Filters */}
         <section aria-labelledby="filter-heading">
           <div className="border-b border-myGrey1 bg-myDark1 pb-0">
