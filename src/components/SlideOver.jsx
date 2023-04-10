@@ -39,23 +39,22 @@ const SlideOver = ({ slideover, setslideover, id }) => {
   useEffect(() => {
     if (joinRequest && joinRequest.status == 406) {
       Swal.fire({
-        position: 'center',
-        icon: 'error',
+        position: "center",
+        icon: "error",
         title: "User already joined",
         showConfirmButton: false,
-        timer: 2000
-      })
+        timer: 2000,
+      });
     } else if (joinRequest && joinRequest.status == 202) {
       Swal.fire({
-        position: 'center',
-        icon: 'success',
+        position: "center",
+        icon: "success",
         title: "Request Sent",
         showConfirmButton: false,
-        timer: 2000
-      })
+        timer: 2000,
+      });
     }
   }, [joinRequest]);
-
 
   const title = status ? status.title : "";
   const isPremium = status ? status.is_premium : false;
@@ -131,17 +130,17 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                   leaveTo="translate-x-full"
                 >
                   <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                    <div className="flex h-full flex-col overflow-y-scroll bg-myGrey py-6 shadow-xl">
+                    <div className="flex h-full flex-col overflow-y-scroll bg-slate-200 dark:bg-navy-600 py-6 shadow-xl">
                       <div className="px-4 sm:px-6">
                         {isPremium ? (
-                          <div className=" -ml-4 -mt-4 bg-gold text-lg text-navy opacity-90 -rotate-12 font-bold w-36 p-1 z-0 border-myDark1 rounded-2xl">
+                          <div className=" -ml-4 -mt-4 bg-amber-400 text-slate-900 dark:text-navy-800 text-lg opacity-90 -rotate-12 font-bold w-36 p-1 z-0 rounded-2xl">
                             Premium Room
                           </div>
                         ) : (
                           ""
                         )}
                         <div className="flex mt-4 items-start justify-between">
-                          <Dialog.Title className="text-2xl font-bold text-myDark1 z-10">
+                          <Dialog.Title className="text-2xl font-bold text-slate-800 dark:text-navy-50 z-10">
                             {title}
                           </Dialog.Title>
                           <div className="ml-3 flex items-center">
@@ -163,26 +162,16 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                       </div>
                       <div className="relative h-full m-6 mt-4 flex-1 px-4 sm:px-6">
                         <div className="absolute inset-0">
-                          <p className=" truncate text-lg font-normal  text-myDark1">
-                            From{" "}
-                            <span className="text-myDark1 font-bold">
-                              {startDate}
-                            </span>{" "}
-                            At{" "}
-                            <span className="text-myDark1 font-bold">
-                              {startTime}
-                            </span>
+                          <p className=" truncate text-lg font-normal text-slate-800 dark:text-navy-50">
+                            From <span className="font-bold">{startDate}</span>{" "}
+                            At <span className="font-bold">{startTime}</span>
                             <br />
-                            To{" "}
-                            <span className="text-myDark1 font-bold">
+                            To <span className="font-bold">
                               {endDate}
-                            </span>{" "}
-                            At{" "}
-                            <span className="text-myDark1 font-bold">
-                              {endTime}
-                            </span>
+                            </span> At{" "}
+                            <span className="font-bold">{endTime}</span>
                           </p>
-                          <div className="text-myDark2 mt-4 font-normal">
+                          <div className="text-slate-800 dark:text-navy-50 mt-4 font-medium text-sm">
                             {description}
                           </div>
                           {/* <div className="text-myDark1 mt-4">
@@ -190,19 +179,19 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                             <span className="text-xl">{startDate}</span> to <span className="text-xl">{endDate}</span>
                       
                           </div> */}
-                          <div className=" text-myDark1 text-xl font-bold mt-2">
+                          <div className=" text-slate-800 dark:text-navy-50 text-xl font-bold mt-2">
                             Categories:
                           </div>
                           {category.map((item, index) => (
                             <span
                               key={index}
-                              className="inline-block flex-shrink-0 mr-2 rounded-lg text-lg bg-myBlueGreen1 px-3 py-1 mt-2 font-medium text-navy"
+                              className="inline-block flex-shrink-0 mr-2 rounded-lg text-lg px-3 py-1 mt-2 font-medium bg-slate-400 text-slate-900"
                             >
                               {item}
                             </span>
                           ))}
                           <div className="  mt-4">
-                            <div className=" text-myDark1 text-xl font-bold mb-2">
+                            <div className=" text-slate-800 dark:text-navy-50 text-xl font-bold mb-2">
                               Members:
                             </div>
                             {members
@@ -210,12 +199,12 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                                   index < 6 ? (
                                     <div
                                       key={index}
-                                      className=" grid grid-cols-5 align-middle p-2 items-center hover:bg-myDark1 hover:rounded-lg hover:text-myGrey cursor-pointer duration-200 "
+                                      className=" grid grid-cols-5 align-middle p-2 items-center hover:rounded-lg hover:bg-slate-500 hover:text-slate-200 text-slate-800 dark:hover:bg-navy-200 dark:hover:text-navy-800 dark:text-navy-50 cursor-pointer duration-200 "
                                     >
                                       <img
                                         src={item.picture_path}
                                         alt=""
-                                        className=" border-2 border-myDark1 hover:border-2 hover:border-myGrey w-14 h-14 rounded-full"
+                                        className=" border-2 border-slate-500 dark:border-navy-100 hover:border-2 hover:border-slate-200 dark:hover:border-navy-800 w-14 h-14 rounded-full"
                                       />
                                       <div className=" col-start-2 col-end-6">
                                         <div className=" text-lg font-bold">
@@ -244,7 +233,7 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                           <button
                             type="button"
                             onClick={JoinReq}
-                            className="w-full items-center rounded-md border-transparent border-2 border-navy hover:border-navy bg-navy h-12 py-1 mt-2 text-lg font-semibold text-myGrey shadow-sm hover:bg-myGrey hover:text-navy duration-300"
+                            className="w-full items-center rounded-md border-2 h-12 py-1 mt-2 text-lg font-semibold shadow-sm hover:bg-slate-200 hover:border-slate-800 hover:text-slate-800 text-slate-800 bg-slate-400 dark:hover:bg-navy-100 dark:hover:border-navy-100 dark:hover:text-navy-800 dark:text-navy-50 dark:bg-navy-400 dark:border-navy-400 duration-300"
                           >
                             Join Event ({member_maximum_count - member_count}{" "}
                             Left)
