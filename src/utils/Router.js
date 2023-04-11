@@ -14,6 +14,7 @@ import ResetPassword from "../pages/LoginRegister/ResetPassword";
 import InfoTab from "../pages/Room/InfoTab/InfoTab";
 import InformationForm from "../pages/Room/InfoTab/InformationForm";
 import InformationPage from "../pages/Room/InfoTab/InformationPage";
+import Panel from "../pages/Home/Panel";
 
 
 import Profile from "../pages/Profile/Profile";
@@ -36,6 +37,7 @@ const Router = () => {
           {/* <Route path="/room/info" element={<InfoTab />} /> */}
           <Route path="/room/:idroom/info" element={<InfoTab />} />
           <Route path="/room/:idroom/info/edit" element={<InformationForm Title="Edit" />} />
+          <Route path="/panel" element={<Panel/>} />
 
 
           {/* <Routes>
