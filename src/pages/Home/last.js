@@ -63,7 +63,7 @@ const Homepage = () => {
       .then((response) => response);
       setstatus(data);
       setTotalPages(10);
-      console.log(url);
+      console.log(data);
   };
   useEffect(() => {
     req();
@@ -76,7 +76,7 @@ const Homepage = () => {
     setparamsFilter(filterParams);
     setCurrentPage(1); // Reset to page 1 when filters change
   };
-  console.log(`data is ${status}`);
+
   let cards = status ? status.results : {};
   return (
     <div>
