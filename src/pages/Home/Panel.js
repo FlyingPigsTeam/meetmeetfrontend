@@ -1,4 +1,7 @@
 import React from 'react'
+import Avatar200x200 from "../../assets/images/200x200.png";
+
+
 
 const Panel = () => {
   return (
@@ -282,7 +285,7 @@ const Panel = () => {
                     <div class="avatar h-10 w-10">
                       <img
                         class="rounded-full"
-                        src="images/200x200.png"
+                        src={Avatar200x200}
                         alt="avatar"
                       />
                       <div
@@ -297,7 +300,7 @@ const Panel = () => {
                     <div class="avatar h-10 w-10">
                       <img
                         class="rounded-full"
-                        src="images/200x200.png"
+                        src={Avatar200x200}
                         alt="avatar"
                       />
                     </div>
@@ -309,7 +312,7 @@ const Panel = () => {
                     <div class="avatar h-10 w-10">
                       <img
                         class="rounded-full"
-                        src="images/200x200.png"
+                        src={Avatar200x200}
                         alt="avatar"
                       />
 
@@ -329,7 +332,7 @@ const Panel = () => {
                     <div class="avatar h-10 w-10">
                       <img
                         class="rounded-full"
-                        src="images/200x200.png"
+                        src={Avatar200x200}
                         alt="avatar"
                       />
                       <div
@@ -344,7 +347,7 @@ const Panel = () => {
                     <div class="avatar h-10 w-10">
                       <img
                         class="rounded-full"
-                        src="images/200x200.png"
+                        src={Avatar200x200}
                         alt="avatar"
                       />
                       <div
@@ -359,7 +362,7 @@ const Panel = () => {
                     <div class="avatar h-10 w-10">
                       <img
                         class="rounded-full"
-                        src="images/200x200.png"
+                        src={Avatar200x200}
                         alt="avatar"
                       />
                     </div>
@@ -371,7 +374,7 @@ const Panel = () => {
                     <div class="avatar h-10 w-10">
                       <img
                         class="rounded-full"
-                        src="images/200x200.png"
+                        src={Avatar200x200}
                         alt="avatar"
                       />
                     </div>
@@ -383,7 +386,7 @@ const Panel = () => {
                     <div class="avatar h-10 w-10">
                       <img
                         class="rounded-full"
-                        src="images/200x200.png"
+                        src={Avatar200x200}
                         alt="avatar"
                       />
                     </div>
@@ -395,7 +398,7 @@ const Panel = () => {
                     <div class="avatar h-10 w-10">
                       <img
                         class="rounded-full"
-                        src="images/200x200.png"
+                        src={Avatar200x200}
                         alt="avatar"
                       />
                       <div
@@ -410,7 +413,7 @@ const Panel = () => {
                     <div class="avatar h-10 w-10">
                       <img
                         class="rounded-full"
-                        src="images/200x200.png"
+                        src={Avatar200x200}
                         alt="avatar"
                       />
                     </div>
@@ -422,7 +425,7 @@ const Panel = () => {
                     <div class="avatar h-10 w-10">
                       <img
                         class="rounded-full"
-                        src="images/200x200.png"
+                        src={Avatar200x200}
                         alt="avatar"
                       />
                       <div
@@ -441,7 +444,7 @@ const Panel = () => {
                     <div class="avatar h-10 w-10">
                       <img
                         class="rounded-full"
-                        src="images/200x200.png"
+                        src={Avatar200x200}
                         alt="avatar"
                       />
                       <div
@@ -456,7 +459,7 @@ const Panel = () => {
                     <div class="avatar h-10 w-10">
                       <img
                         class="rounded-full"
-                        src="images/200x200.png"
+                        src={Avatar200x200}
                         alt="avatar"
                       />
                       <div
@@ -471,7 +474,7 @@ const Panel = () => {
                     <div class="avatar h-10 w-10">
                       <img
                         class="rounded-full"
-                        src="images/200x200.png"
+                        src={Avatar200x200}
                         alt="avatar"
                       />
                     </div>
@@ -483,7 +486,7 @@ const Panel = () => {
                     <div class="avatar h-10 w-10">
                       <img
                         class="rounded-full"
-                        src="images/200x200.png"
+                        src={Avatar200x200}
                         alt="avatar"
                       />
                     </div>
@@ -495,7 +498,7 @@ const Panel = () => {
                     <div class="avatar h-10 w-10">
                       <img
                         class="rounded-full"
-                        src="images/200x200.png"
+                        src={Avatar200x200}
                         alt="avatar"
                       />
                     </div>
@@ -619,7 +622,7 @@ const Panel = () => {
                 >
                   <img
                     class="rounded-full"
-                    src="images/200x200.png"
+                    src={Avatar200x200}
                     alt="avatar"
                   />
                   <span
@@ -641,7 +644,7 @@ const Panel = () => {
                       <div class="avatar h-14 w-14">
                         <img
                           class="rounded-full"
-                          src="images/200x200.png"
+                          src={Avatar200x200}
                           alt="avatar"
                         />
                       </div>
