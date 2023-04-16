@@ -1,11 +1,10 @@
-import React from 'react'
+import React from "react";
 import Avatar200x200 from "../../assets/images/200x200.png";
-
-
+import AppLogo from '../../assets/images/app-logo.svg';
 
 const Panel = () => {
   return (
-<div
+    <div
       id="root"
       class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900"
       x-cloak
@@ -14,24 +13,20 @@ const Panel = () => {
       <div class="sidebar print:hidden">
         {/* <!-- Main Sidebar --> */}
         <div class="main-sidebar">
-          <div
-            class="flex h-full w-full flex-col items-center border-r border-slate-150 bg-white dark:border-navy-700 dark:bg-navy-800"
-          >
+          <div class="flex h-full w-full flex-col items-center border-r border-slate-150 bg-white dark:border-navy-700 dark:bg-navy-800">
             {/* <!-- Application Logo --> */}
             <div class="flex pt-4">
               <a href="/">
                 <img
                   class="h-11 w-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
-                  src="images/app-logo.svg"
+                  src={AppLogo}
                   alt="logo"
                 />
               </a>
             </div>
 
             {/* <!-- Main Sections Links --> */}
-            <div
-              class="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6"
-            >
+            <div class="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6">
               {/* <!-- Dashobards --> */}
               <a
                 href="dashboards-crm-analytics.html"
@@ -222,15 +217,10 @@ const Panel = () => {
                   />
                 </svg>
               </a>
-              
             </div>
             <div class="flex h-[calc(100%-4.5rem)] grow flex-col">
-              <div
-                class="is-scrollbar-hidden flex grow flex-col overflow-y-auto"
-              >
-                <ul
-                  class="mt-2 flex flex-col items-center justify-center space-y-1"
-                >
+              <div class="is-scrollbar-hidden flex grow flex-col overflow-y-auto">
+                <ul class="mt-2 flex flex-col items-center justify-center space-y-1">
                   <li>
                     <a
                       href="#"
@@ -274,9 +264,7 @@ const Panel = () => {
                     </a>
                   </li>
                 </ul>
-                <div
-                  class="my-4 mx-4 h-px shrink-0 bg-slate-200 dark:bg-navy-500"
-                ></div>
+                <div class="my-4 mx-4 h-px shrink-0 bg-slate-200 dark:bg-navy-500"></div>
                 <div class="flex flex-col">
                   <div
                     // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
@@ -288,9 +276,7 @@ const Panel = () => {
                         src={Avatar200x200}
                         alt="avatar"
                       />
-                      <div
-                        class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"
-                      ></div>
+                      <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
                     </div>
                   </div>
                   <div
@@ -316,12 +302,8 @@ const Panel = () => {
                         alt="avatar"
                       />
 
-                      <div
-                        class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-primary dark:border-navy-700 dark:bg-accent"
-                      >
-                        <span
-                          class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-80 dark:bg-accent"
-                        ></span>
+                      <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-primary dark:border-navy-700 dark:bg-accent">
+                        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-80 dark:bg-accent"></span>
                       </div>
                     </div>
                   </div>
@@ -335,172 +317,7 @@ const Panel = () => {
                         src={Avatar200x200}
                         alt="avatar"
                       />
-                      <div
-                        class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"
-                      ></div>
-                    </div>
-                  </div>
-                  <div
-                    // @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/200x200.png',name:'Katrina West'})"
-                    class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
-                  >
-                    <div class="avatar h-10 w-10">
-                      <img
-                        class="rounded-full"
-                        src={Avatar200x200}
-                        alt="avatar"
-                      />
-                      <div
-                        class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"
-                      ></div>
-                    </div>
-                  </div>
-                  <div
-                    // @click="$dispatch('change-active-chat',{chatId:'chat-3',avatar_url:'images/200x200.png',name:'Corey Evans'})"
-                    class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
-                  >
-                    <div class="avatar h-10 w-10">
-                      <img
-                        class="rounded-full"
-                        src={Avatar200x200}
-                        alt="avatar"
-                      />
-                    </div>
-                  </div>
-                  <div
-                    // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Anthony Jensen'})"
-                    class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
-                  >
-                    <div class="avatar h-10 w-10">
-                      <img
-                        class="rounded-full"
-                        src={Avatar200x200}
-                        alt="avatar"
-                      />
-                    </div>
-                  </div>
-                  <div
-                    // @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/200x200.png',name:'Lance Tucker'})"
-                    class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
-                  >
-                    <div class="avatar h-10 w-10">
-                      <img
-                        class="rounded-full"
-                        src={Avatar200x200}
-                        alt="avatar"
-                      />
-                    </div>
-                  </div>
-                  <div
-                    // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
-                    class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
-                  >
-                    <div class="avatar h-10 w-10">
-                      <img
-                        class="rounded-full"
-                        src={Avatar200x200}
-                        alt="avatar"
-                      />
-                      <div
-                        class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"
-                      ></div>
-                    </div>
-                  </div>
-                  <div
-                    // @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/200x200.png',name:'Konnor Guzman'})"
-                    class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
-                  >
-                    <div class="avatar h-10 w-10">
-                      <img
-                        class="rounded-full"
-                        src={Avatar200x200}
-                        alt="avatar"
-                      />
-                    </div>
-                  </div>
-                  <div
-                    // @click="$dispatch('change-active-chat',{chatId:'chat-3',avatar_url:'images/200x200.png',name:'Travis Fuller'})"
-                    class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
-                  >
-                    <div class="avatar h-10 w-10">
-                      <img
-                        class="rounded-full"
-                        src={Avatar200x200}
-                        alt="avatar"
-                      />
-                      <div
-                        class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-primary dark:border-navy-700 dark:bg-accent"
-                      >
-                        <span
-                          class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-80 dark:bg-accent"
-                        ></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Derrick Simmons'})"
-                    class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
-                  >
-                    <div class="avatar h-10 w-10">
-                      <img
-                        class="rounded-full"
-                        src={Avatar200x200}
-                        alt="avatar"
-                      />
-                      <div
-                        class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"
-                      ></div>
-                    </div>
-                  </div>
-                  <div
-                    // @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/200x200.png',name:'Katrina West'})"
-                    class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
-                  >
-                    <div class="avatar h-10 w-10">
-                      <img
-                        class="rounded-full"
-                        src={Avatar200x200}
-                        alt="avatar"
-                      />
-                      <div
-                        class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"
-                      ></div>
-                    </div>
-                  </div>
-                  <div
-                    // @click="$dispatch('change-active-chat',{chatId:'chat-3',avatar_url:'images/200x200.png',name:'Corey Evans'})"
-                    class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
-                  >
-                    <div class="avatar h-10 w-10">
-                      <img
-                        class="rounded-full"
-                        src={Avatar200x200}
-                        alt="avatar"
-                      />
-                    </div>
-                  </div>
-                  <div
-                    // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Anthony Jensen'})"
-                    class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
-                  >
-                    <div class="avatar h-10 w-10">
-                      <img
-                        class="rounded-full"
-                        src={Avatar200x200}
-                        alt="avatar"
-                      />
-                    </div>
-                  </div>
-                  <div
-                    // @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/200x200.png',name:'Lance Tucker'})"
-                    class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
-                  >
-                    <div class="avatar h-10 w-10">
-                      <img
-                        class="rounded-full"
-                        src={Avatar200x200}
-                        alt="avatar"
-                      />
+                      <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
                     </div>
                   </div>
                 </div>
@@ -539,42 +356,42 @@ const Panel = () => {
                       class="popper-root"
                       // :class="isShowPopper && 'show'"
                     >
-                      <div
-                        class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700"
-                      >
+                      <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
                         <ul>
                           <li>
                             <a
                               href="#"
                               class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                              >Action</a
                             >
+                              Action
+                            </a>
                           </li>
                           <li>
                             <a
                               href="#"
                               class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                              >Another Action</a
                             >
+                              Another Action
+                            </a>
                           </li>
                           <li>
                             <a
                               href="#"
                               class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                              >Something else</a
                             >
+                              Something else
+                            </a>
                           </li>
                         </ul>
-                        <div
-                          class="my-1 h-px bg-slate-150 dark:bg-navy-500"
-                        ></div>
+                        <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
                         <ul>
                           <li>
                             <a
                               href="#"
                               class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                              >Separated Link</a
                             >
+                              Separated Link
+                            </a>
                           </li>
                         </ul>
                       </div>
@@ -620,14 +437,8 @@ const Panel = () => {
                   x-ref="popperRef"
                   class="avatar h-12 w-12"
                 >
-                  <img
-                    class="rounded-full"
-                    src={Avatar200x200}
-                    alt="avatar"
-                  />
-                  <span
-                    class="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"
-                  ></span>
+                  <img class="rounded-full" src={Avatar200x200} alt="avatar" />
+                  <span class="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
                 </button>
 
                 <div
@@ -635,12 +446,8 @@ const Panel = () => {
                   class="popper-root fixed"
                   x-ref="popperRoot"
                 >
-                  <div
-                    class="popper-box w-64 rounded-lg border border-slate-150 bg-white shadow-soft dark:border-navy-600 dark:bg-navy-700"
-                  >
-                    <div
-                      class="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800"
-                    >
+                  <div class="popper-box w-64 rounded-lg border border-slate-150 bg-white shadow-soft dark:border-navy-600 dark:bg-navy-700">
+                    <div class="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
                       <div class="avatar h-14 w-14">
                         <img
                           class="rounded-full"
@@ -665,9 +472,7 @@ const Panel = () => {
                         href="#"
                         class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       >
-                        <div
-                          class="flex h-8 w-8 items-center justify-center rounded-lg bg-warning text-white"
-                        >
+                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-warning text-white">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-4.5 w-4.5"
@@ -685,14 +490,10 @@ const Panel = () => {
                         </div>
 
                         <div>
-                          <h2
-                            class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
-                          >
+                          <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                             Profile
                           </h2>
-                          <div
-                            class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
-                          >
+                          <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                             Your profile setting
                           </div>
                         </div>
@@ -701,9 +502,7 @@ const Panel = () => {
                         href="#"
                         class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       >
-                        <div
-                          class="flex h-8 w-8 items-center justify-center rounded-lg bg-info text-white"
-                        >
+                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-info text-white">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-4.5 w-4.5"
@@ -721,14 +520,10 @@ const Panel = () => {
                         </div>
 
                         <div>
-                          <h2
-                            class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
-                          >
+                          <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                             Messages
                           </h2>
-                          <div
-                            class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
-                          >
+                          <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                             Your messages and tasks
                           </div>
                         </div>
@@ -737,9 +532,7 @@ const Panel = () => {
                         href="#"
                         class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       >
-                        <div
-                          class="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary text-white"
-                        >
+                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary text-white">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-4.5 w-4.5"
@@ -757,14 +550,10 @@ const Panel = () => {
                         </div>
 
                         <div>
-                          <h2
-                            class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
-                          >
+                          <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                             Team
                           </h2>
-                          <div
-                            class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
-                          >
+                          <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                             Your team activity
                           </div>
                         </div>
@@ -773,9 +562,7 @@ const Panel = () => {
                         href="#"
                         class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       >
-                        <div
-                          class="flex h-8 w-8 items-center justify-center rounded-lg bg-error text-white"
-                        >
+                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-error text-white">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-4.5 w-4.5"
@@ -793,14 +580,10 @@ const Panel = () => {
                         </div>
 
                         <div>
-                          <h2
-                            class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
-                          >
+                          <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                             Activity
                           </h2>
-                          <div
-                            class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
-                          >
+                          <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                             Your activity and events
                           </div>
                         </div>
@@ -809,9 +592,7 @@ const Panel = () => {
                         href="#"
                         class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       >
-                        <div
-                          class="flex h-8 w-8 items-center justify-center rounded-lg bg-success text-white"
-                        >
+                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-success text-white">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-4.5 w-4.5"
@@ -834,22 +615,16 @@ const Panel = () => {
                         </div>
 
                         <div>
-                          <h2
-                            class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
-                          >
+                          <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                             Settings
                           </h2>
-                          <div
-                            class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
-                          >
+                          <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                             Webapp settings
                           </div>
                         </div>
                       </a>
                       <div class="mt-3 px-4">
-                        <button
-                          class="btn h-9 w-full space-x-2 bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
-                        >
+                        <button class="btn h-9 w-full space-x-2 bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-5 w-5"
@@ -877,13 +652,9 @@ const Panel = () => {
 
         {/* <!-- Sidebar Panel --> */}
         <div class="sidebar-panel">
-          <div
-            class="flex h-full grow flex-col bg-white pl-[var(--main-sidebar-width)] dark:bg-navy-750"
-          >
+          <div class="flex h-full grow flex-col bg-white pl-[var(--main-sidebar-width)] dark:bg-navy-750">
             {/* <!-- Sidebar Panel Header --> */}
-            <div
-              class="flex h-18 w-full items-center justify-between pl-4 pr-1"
-            >
+            <div class="flex h-18 w-full items-center justify-between pl-4 pr-1">
               <div class="flex items-center">
                 <div class="avatar mr-3 hidden h-9 w-9 lg:flex">
                   <div class="is-initial rounded-full bg-info/10 text-info">
@@ -909,9 +680,7 @@ const Panel = () => {
                     </svg>
                   </div>
                 </div>
-                <p
-                  class="text-lg font-medium tracking-wider text-slate-800 dark:text-navy-100"
-                >
+                <p class="text-lg font-medium tracking-wider text-slate-800 dark:text-navy-100">
                   Todo
                 </p>
               </div>
@@ -940,9 +709,7 @@ const Panel = () => {
             <div class="flex h-[calc(100%-4.5rem)] grow flex-col">
               <div class="is-scrollbar-hidden grow overflow-y-auto">
                 <div class="mt-2 px-4">
-                  <button
-                    class="btn w-full space-x-2 rounded-full border border-slate-200 py-2 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-500 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
-                  >
+                  <button class="btn w-full space-x-2 rounded-full border border-slate-200 py-2 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-500 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       class="h-4 w-4"
@@ -960,9 +727,7 @@ const Panel = () => {
                     <span> New Task </span>
                   </button>
                 </div>
-                <ul
-                  class="mt-5 space-y-1.5 px-2 font-inter text-xs+ font-medium"
-                >
+                <ul class="mt-5 space-y-1.5 px-2 font-inter text-xs+ font-medium">
                   <li>
                     <a
                       class="group flex space-x-2 rounded-lg bg-primary/10 p-2 tracking-wide text-primary outline-none transition-all dark:bg-accent-light/10 dark:text-accent-light"
@@ -1078,9 +843,7 @@ const Panel = () => {
                 <div class="flex items-center justify-between px-4">
                   <span class="text-xs font-medium uppercase">Labels</span>
                   <div class="-mr-1.5 flex">
-                    <button
-                      class="btn h-6 w-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                    >
+                    <button class="btn h-6 w-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         class="h-3.5 w-3.5"
@@ -1128,42 +891,42 @@ const Panel = () => {
                         class="popper-root"
                         // :class="isShowPopper && 'show'"
                       >
-                        <div
-                          class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700"
-                        >
+                        <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
                           <ul>
                             <li>
                               <a
                                 href="#"
                                 class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                >Action</a
                               >
+                                Action
+                              </a>
                             </li>
                             <li>
                               <a
                                 href="#"
                                 class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                >Another Action</a
                               >
+                                Another Action
+                              </a>
                             </li>
                             <li>
                               <a
                                 href="#"
                                 class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                >Something else</a
                               >
+                                Something else
+                              </a>
                             </li>
                           </ul>
-                          <div
-                            class="my-1 h-px bg-slate-150 dark:bg-navy-500"
-                          ></div>
+                          <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
                           <ul>
                             <li>
                               <a
                                 href="#"
                                 class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                >Separated Link</a
                               >
+                                Separated Link
+                              </a>
                             </li>
                           </ul>
                         </div>
@@ -1171,9 +934,7 @@ const Panel = () => {
                     </div>
                   </div>
                 </div>
-                <ul
-                  class="mt-1 space-y-1.5 px-2 font-inter text-xs+ font-medium"
-                >
+                <ul class="mt-1 space-y-1.5 px-2 font-inter text-xs+ font-medium">
                   <li>
                     <a
                       class="group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-success/20 focus:bg-success/20"
@@ -1225,9 +986,9 @@ const Panel = () => {
                           stroke-linejoin="round"
                         />
                       </svg>
-                      <span class="text-slate-800 dark:text-navy-100"
-                        >Medium</span
-                      >
+                      <span class="text-slate-800 dark:text-navy-100">
+                        Medium
+                      </span>
                     </a>
                   </li>
                   <li>
@@ -1254,9 +1015,9 @@ const Panel = () => {
                           stroke-linejoin="round"
                         />
                       </svg>
-                      <span class="text-slate-800 dark:text-navy-100"
-                        >High</span
-                      >
+                      <span class="text-slate-800 dark:text-navy-100">
+                        High
+                      </span>
                     </a>
                   </li>
                   <li>
@@ -1283,9 +1044,9 @@ const Panel = () => {
                           stroke-linejoin="round"
                         />
                       </svg>
-                      <span class="text-slate-800 dark:text-navy-100"
-                        >Update</span
-                      >
+                      <span class="text-slate-800 dark:text-navy-100">
+                        Update
+                      </span>
                     </a>
                   </li>
                 </ul>
@@ -1398,15 +1159,11 @@ const Panel = () => {
         </div>
 
         {/* <!-- Minimized Sidebar Panel --> */}
-        
+
         <div class="sidebar-panel-min">
-          <div
-            class="flex h-full flex-col items-center bg-white dark:bg-navy-750"
-          >
+          <div class="flex h-full flex-col items-center bg-white dark:bg-navy-750">
             <div class="flex h-18 shrink-0 items-center justify-center">
-              <div
-                class="avatar flex h-10 w-10 rounded-full bg-info/10 text-info"
-              >
+              <div class="avatar flex h-10 w-10 rounded-full bg-info/10 text-info">
                 <div class="is-initial">
                   <svg
                     class="h-5 w-5"
@@ -1432,9 +1189,7 @@ const Panel = () => {
               </div>
             </div>
             <div class="flex h-[calc(100%-4.5rem)] grow flex-col">
-              <div
-                class="is-scrollbar-hidden flex grow flex-col overflow-y-auto"
-              >
+              <div class="is-scrollbar-hidden flex grow flex-col overflow-y-auto">
                 <ul class="mt-4 space-y-1">
                   <li>
                     <a
@@ -1684,47 +1439,47 @@ const Panel = () => {
                       class="popper-root"
                       // :class="isShowPopper && 'show'"
                     >
-                      <div
-                        class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700"
-                      >
+                      <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
                         <ul>
                           <li>
                             <a
                               href="#"
                               class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                              >Action</a
                             >
+                              Action
+                            </a>
                           </li>
                           <li>
                             <a
                               href="#"
                               class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                              >Another Action</a
                             >
+                              Another Action
+                            </a>
                           </li>
                           <li>
                             <a
                               href="#"
                               class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                              >Something else</a
                             >
+                              Something else
+                            </a>
                           </li>
                         </ul>
-                        <div
-                          class="my-1 h-px bg-slate-150 dark:bg-navy-500"
-                        ></div>
+                        <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
                         <ul>
                           <li>
                             <a
                               href="#"
                               class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                              >Separated Link</a
                             >
+                              Separated Link
+                            </a>
                           </li>
                         </ul>
                       </div>
-                    </div></template
-                  >
+                    </div>
+                  </template>
                 </div>
               </div>
             </div>
@@ -1734,9 +1489,7 @@ const Panel = () => {
       {/* <!-- App Header Wrapper--> */}
       <nav class="header print:hidden">
         {/* <!-- App Header  --> */}
-        <div
-          class="header-container relative flex w-full bg-white dark:bg-navy-750 print:hidden"
-        >
+        <div class="header-container relative flex w-full bg-white dark:bg-navy-750 print:hidden">
           {/* <!-- Header Items --> */}
           <div class="flex w-full items-center justify-between">
             {/* <!-- Left: Sidebar Toggle Button --> */}
@@ -1791,9 +1544,7 @@ const Panel = () => {
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path
-                    d="M11.75 3.412a.818.818 0 01-.07.917 6.332 6.332 0 00-1.4 3.971c0 3.564 2.98 6.494 6.706 6.494a6.86 6.86 0 002.856-.617.818.818 0 011.1 1.047C19.593 18.614 16.218 21 12.283 21 7.18 21 3 16.973 3 11.956c0-4.563 3.46-8.31 7.925-8.948a.818.818 0 01.826.404z"
-                  />
+                  <path d="M11.75 3.412a.818.818 0 01-.07.917 6.332 6.332 0 00-1.4 3.971c0 3.564 2.98 6.494 6.706 6.494a6.86 6.86 0 002.856-.617.818.818 0 011.1 1.047C19.593 18.614 16.218 21 12.283 21 7.18 21 3 16.973 3 11.956c0-4.563 3.46-8.31 7.925-8.948a.818.818 0 01.826.404z" />
                 </svg>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -1817,9 +1568,7 @@ const Panel = () => {
                 // @click="$store.global.isMonochromeModeEnabled = !$store.global.isMonochromeModeEnabled"
                 class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
               >
-                <i
-                  class="fa-solid fa-palette bg-gradient-to-r from-sky-400 to-blue-600 bg-clip-text text-lg font-semibold text-transparent"
-                ></i>
+                <i class="fa-solid fa-palette bg-gradient-to-r from-sky-400 to-blue-600 bg-clip-text text-lg font-semibold text-transparent"></i>
               </button>
 
               {/* <!-- Notification--> */}
@@ -1849,15 +1598,9 @@ const Panel = () => {
                     />
                   </svg>
 
-                  <span
-                    class="absolute -top-px -right-px flex h-3 w-3 items-center justify-center"
-                  >
-                    <span
-                      class="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary opacity-80"
-                    ></span>
-                    <span
-                      class="inline-flex h-2 w-2 rounded-full bg-secondary"
-                    ></span>
+                  <span class="absolute -top-px -right-px flex h-3 w-3 items-center justify-center">
+                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary opacity-80"></span>
+                    <span class="inline-flex h-2 w-2 rounded-full bg-secondary"></span>
                   </span>
                 </button>
                 <div
@@ -1869,26 +1612,18 @@ const Panel = () => {
                     x-data="{activeTab:'tabAll'}"
                     class="popper-box mx-4 mt-1 flex max-h-[calc(100vh-6rem)] w-[calc(100vw-2rem)] flex-col rounded-lg border border-slate-150 bg-white shadow-soft dark:border-navy-800 dark:bg-navy-700 dark:shadow-soft-dark sm:m-0 sm:w-80"
                   >
-                    <div
-                      class="rounded-t-lg bg-slate-100 text-slate-600 dark:bg-navy-800 dark:text-navy-200"
-                    >
+                    <div class="rounded-t-lg bg-slate-100 text-slate-600 dark:bg-navy-800 dark:text-navy-200">
                       <div class="flex items-center justify-between px-4 pt-2">
                         <div class="flex items-center space-x-2">
-                          <h3
-                            class="font-medium text-slate-700 dark:text-navy-100"
-                          >
+                          <h3 class="font-medium text-slate-700 dark:text-navy-100">
                             Notifications
                           </h3>
-                          <div
-                            class="badge h-5 rounded-full bg-primary/10 px-1.5 text-primary dark:bg-accent-light/15 dark:text-accent-light"
-                          >
+                          <div class="badge h-5 rounded-full bg-primary/10 px-1.5 text-primary dark:bg-accent-light/15 dark:text-accent-light">
                             26
                           </div>
                         </div>
 
-                        <button
-                          class="btn -mr-1.5 h-7 w-7 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                        >
+                        <button class="btn -mr-1.5 h-7 w-7 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-4.5 w-4.5"
@@ -1911,9 +1646,7 @@ const Panel = () => {
                         </button>
                       </div>
 
-                      <div
-                        class="is-scrollbar-hidden flex shrink-0 overflow-x-auto px-3"
-                      >
+                      <div class="is-scrollbar-hidden flex shrink-0 overflow-x-auto px-3">
                         <button
                           // @click="activeTab = 'tabAll'"
                           // :class="activeTab === 'tabAll' ? 'border-primary dark:border-accent text-primary dark:text-accent-light' : 'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
@@ -1954,30 +1687,20 @@ const Panel = () => {
                         class="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
                       >
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary/10 dark:bg-secondary-light/15"
-                          >
-                            <i
-                              class="fa fa-user-edit text-secondary dark:text-secondary-light"
-                            ></i>
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary/10 dark:bg-secondary-light/15">
+                            <i class="fa fa-user-edit text-secondary dark:text-secondary-light"></i>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               User Photo Changed
                             </p>
-                            <div
-                              class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
-                            >
+                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               John Doe changed his avatar photo
                             </div>
                           </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15"
-                          >
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               class="h-5 w-5 text-info"
@@ -1994,68 +1717,46 @@ const Panel = () => {
                             </svg>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               Mon, June 14, 2021
                             </p>
-                            <div
-                              class="mt-1 flex text-xs text-slate-400 dark:text-navy-300"
-                            >
+                            <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
                               <span class="shrink-0">08:00 - 09:00</span>
-                              <div
-                                class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"
-                              ></div>
+                              <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
 
                               <span class="line-clamp-1">Frontend Conf</span>
                             </div>
                           </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 dark:bg-accent-light/15"
-                          >
-                            <i
-                              class="fa-solid fa-image text-primary dark:text-accent-light"
-                            ></i>
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 dark:bg-accent-light/15">
+                            <i class="fa-solid fa-image text-primary dark:text-accent-light"></i>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               Images Added
                             </p>
-                            <div
-                              class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
-                            >
+                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               Mores Clarke added new image gallery
                             </div>
                           </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-success/10 dark:bg-success/15"
-                          >
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-success/10 dark:bg-success/15">
                             <i class="fa fa-leaf text-success"></i>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               Design Completed
                             </p>
-                            <div
-                              class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
-                            >
+                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               Robert Nolan completed the design of the CRM
                               application
                             </div>
                           </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15"
-                          >
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               class="h-5 w-5 text-info"
@@ -2072,46 +1773,32 @@ const Panel = () => {
                             </svg>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               Wed, June 21, 2021
                             </p>
-                            <div
-                              class="mt-1 flex text-xs text-slate-400 dark:text-navy-300"
-                            >
+                            <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
                               <span class="shrink-0">16:00 - 20:00</span>
-                              <div
-                                class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"
-                              ></div>
+                              <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
 
                               <span class="line-clamp-1">UI/UX Conf</span>
                             </div>
                           </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15"
-                          >
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
                             <i class="fa fa-project-diagram text-warning"></i>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               ER Diagram
                             </p>
-                            <div
-                              class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
-                            >
+                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               Team completed the ER diagram app
                             </div>
                           </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15"
-                          >
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               class="h-5 w-5 text-warning"
@@ -2128,39 +1815,27 @@ const Panel = () => {
                             </svg>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               THU, May 11, 2021
                             </p>
-                            <div
-                              class="mt-1 flex text-xs text-slate-400 dark:text-navy-300"
-                            >
+                            <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
                               <span class="shrink-0">10:00 - 11:30</span>
-                              <div
-                                class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"
-                              ></div>
-                              <span class="line-clamp-1"
-                                >Interview, Konnor Guzman
+                              <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                              <span class="line-clamp-1">
+                                Interview, Konnor Guzman
                               </span>
                             </div>
                           </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-error/10 dark:bg-error/15"
-                          >
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-error/10 dark:bg-error/15">
                             <i class="fa fa-history text-error"></i>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               Weekly Report
                             </p>
-                            <div
-                              class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
-                            >
+                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               The weekly report was uploaded
                             </div>
                           </div>
@@ -2174,101 +1849,67 @@ const Panel = () => {
                         class="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
                       >
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary/10 dark:bg-secondary-light/15"
-                          >
-                            <i
-                              class="fa fa-user-edit text-secondary dark:text-secondary-light"
-                            ></i>
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary/10 dark:bg-secondary-light/15">
+                            <i class="fa fa-user-edit text-secondary dark:text-secondary-light"></i>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               User Photo Changed
                             </p>
-                            <div
-                              class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
-                            >
+                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               John Doe changed his avatar photo
                             </div>
                           </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 dark:bg-accent-light/15"
-                          >
-                            <i
-                              class="fa-solid fa-image text-primary dark:text-accent-light"
-                            ></i>
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 dark:bg-accent-light/15">
+                            <i class="fa-solid fa-image text-primary dark:text-accent-light"></i>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               Images Added
                             </p>
-                            <div
-                              class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
-                            >
+                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               Mores Clarke added new image gallery
                             </div>
                           </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-success/10 dark:bg-success/15"
-                          >
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-success/10 dark:bg-success/15">
                             <i class="fa fa-leaf text-success"></i>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               Design Completed
                             </p>
-                            <div
-                              class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
-                            >
+                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               Robert Nolan completed the design of the CRM
                               application
                             </div>
                           </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15"
-                          >
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
                             <i class="fa fa-project-diagram text-warning"></i>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               ER Diagram
                             </p>
-                            <div
-                              class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
-                            >
+                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               Team completed the ER diagram app
                             </div>
                           </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-error/10 dark:bg-error/15"
-                          >
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-error/10 dark:bg-error/15">
                             <i class="fa fa-history text-error"></i>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               Weekly Report
                             </p>
-                            <div
-                              class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
-                            >
+                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               The weekly report was uploaded
                             </div>
                           </div>
@@ -2282,9 +1923,7 @@ const Panel = () => {
                         class="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
                       >
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15"
-                          >
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               class="h-5 w-5 text-info"
@@ -2301,27 +1940,19 @@ const Panel = () => {
                             </svg>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               Mon, June 14, 2021
                             </p>
-                            <div
-                              class="mt-1 flex text-xs text-slate-400 dark:text-navy-300"
-                            >
+                            <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
                               <span class="shrink-0">08:00 - 09:00</span>
-                              <div
-                                class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"
-                              ></div>
+                              <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
 
                               <span class="line-clamp-1">Frontend Conf</span>
                             </div>
                           </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15"
-                          >
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               class="h-5 w-5 text-info"
@@ -2338,27 +1969,19 @@ const Panel = () => {
                             </svg>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               Wed, June 21, 2021
                             </p>
-                            <div
-                              class="mt-1 flex text-xs text-slate-400 dark:text-navy-300"
-                            >
+                            <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
                               <span class="shrink-0">16:00 - 20:00</span>
-                              <div
-                                class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"
-                              ></div>
+                              <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
 
                               <span class="line-clamp-1">UI/UX Conf</span>
                             </div>
                           </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15"
-                          >
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               class="h-5 w-5 text-warning"
@@ -2375,28 +1998,20 @@ const Panel = () => {
                             </svg>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               THU, May 11, 2021
                             </p>
-                            <div
-                              class="mt-1 flex text-xs text-slate-400 dark:text-navy-300"
-                            >
+                            <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
                               <span class="shrink-0">10:00 - 11:30</span>
-                              <div
-                                class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"
-                              ></div>
-                              <span class="line-clamp-1"
-                                >Interview, Konnor Guzman
+                              <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                              <span class="line-clamp-1">
+                                Interview, Konnor Guzman
                               </span>
                             </div>
                           </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15"
-                          >
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               class="h-5 w-5 text-info"
@@ -2413,27 +2028,19 @@ const Panel = () => {
                             </svg>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               Mon, Jul 16, 2021
                             </p>
-                            <div
-                              class="mt-1 flex text-xs text-slate-400 dark:text-navy-300"
-                            >
+                            <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
                               <span class="shrink-0">06:00 - 16:00</span>
-                              <div
-                                class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"
-                              ></div>
+                              <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
 
                               <span class="line-clamp-1">Laravel Conf</span>
                             </div>
                           </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                          <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15"
-                          >
+                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               class="h-5 w-5 text-warning"
@@ -2450,20 +2057,14 @@ const Panel = () => {
                             </svg>
                           </div>
                           <div>
-                            <p
-                              class="font-medium text-slate-600 dark:text-navy-100"
-                            >
+                            <p class="font-medium text-slate-600 dark:text-navy-100">
                               Wed, Jun 16, 2021
                             </p>
-                            <div
-                              class="mt-1 flex text-xs text-slate-400 dark:text-navy-300"
-                            >
+                            <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
                               <span class="shrink-0">15:30 - 11:30</span>
-                              <div
-                                class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"
-                              ></div>
-                              <span class="line-clamp-1"
-                                >Interview, Jonh Doe
+                              <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                              <span class="line-clamp-1">
+                                Interview, Jonh Doe
                               </span>
                             </div>
                           </div>
@@ -2483,9 +2084,7 @@ const Panel = () => {
                             alt="image"
                           />
                           <div class="mt-5">
-                            <p
-                              class="text-base font-semibold text-slate-700 dark:text-navy-100"
-                            >
+                            <p class="text-base font-semibold text-slate-700 dark:text-navy-100">
                               No any logs
                             </p>
                             <p class="text-slate-400 dark:text-navy-300">
@@ -2523,19 +2122,9 @@ const Panel = () => {
           </div>
         </div>
       </nav>
-
-      {/* <!-- Mobile Searchbar --> */}
-]
-      {/* <!-- Main Content Wrapper --> */}
-
-
-
-      <div
-        class="fixed right-3 bottom-3 rounded-full bg-white dark:bg-navy-700"
-      >
-        <button
-          class="btn h-14 w-14 rounded-full bg-info p-0 font-medium text-white hover:bg-info-focus focus:bg-info-focus active:bg-info-focus/90 sm:hidden"
-        >
+      {/* <!-- Mobile Searchbar --> */}]{/* <!-- Main Content Wrapper --> */}
+      <div class="fixed right-3 bottom-3 rounded-full bg-white dark:bg-navy-700">
+        <button class="btn h-14 w-14 rounded-full bg-info p-0 font-medium text-white hover:bg-info-focus focus:bg-info-focus active:bg-info-focus/90 sm:hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-7 w-7"
@@ -2553,7 +2142,7 @@ const Panel = () => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Panel;
