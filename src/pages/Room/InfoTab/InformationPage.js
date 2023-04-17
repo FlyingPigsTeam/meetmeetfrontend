@@ -6,7 +6,7 @@ import Avatar200x200 from "../../../assets/images/200x200.png";
 import { useParams, useNavigate } from "react-router-dom";
 
 export default function TestInf() {
-  let idroom =useParams().idroom;
+  let idroom = useParams().idroom;
   const navigate = useNavigate();
   let authTokens = useContext(AuthContext).authTokens;
 
@@ -32,7 +32,7 @@ export default function TestInf() {
   }, []);
   const refreshLink = async () => {
     const { data } = await axios
-      .put(`http://127.0.0.1:8000/api/my-rooms/${idroom}?link=${link}`,null, {
+      .put(`http://127.0.0.1:8000/api/my-rooms/${idroom}?link=${link}`, null, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + authTokens.access,
@@ -50,7 +50,7 @@ export default function TestInf() {
         },
       })
       .then();
-      navigate("/");
+    navigate("/");
   };
 
   function copyToClipboard() {
@@ -66,7 +66,10 @@ export default function TestInf() {
           </h2>
           {roomData.is_admin && (
             <div class="flex justify-center space-x-2">
-              <button onClick={deleteRoom} class="badge space-x-2 bg-error text-white">
+              <button
+                onClick={deleteRoom}
+                class="badge space-x-2 bg-error text-white"
+              >
                 <span>Delete</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +86,10 @@ export default function TestInf() {
                   />
                 </svg>
               </button>
-              <button onClick={()=>navigate(`/room/${idroom}/info/edit`)}class="badge space-x-2 bg-slate-150 text-slate-800 dark:bg-navy-500 dark:text-navy-100">
+              <button
+                onClick={() => navigate(`/room/${idroom}/info/edit`)}
+                class="badge space-x-2 bg-slate-150 text-slate-800 dark:bg-navy-500 dark:text-navy-100"
+              >
                 <span>Edit</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
