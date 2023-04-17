@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import Avatar200x200 from "../../assets/images/200x200.png";
 import AppLogo from "../../assets/images/app-logo.svg";
-import DarkModeToggle from '../../components/DarkModeToggle'
-
+import DarkModeToggle from "../../components/DarkModeToggle";
 
 const Panel = () => {
-  const [ isSidebarExpanded, setSidebarExpanded ] = useState(false);
+  const [isSidebarExpanded, setSidebarExpanded] = useState(false);
+  isSidebarExpanded
+    ? document.body.classList.add("is-sidebar-open")
+    : document.body.classList.remove("is-sidebar-open");
   return (
-    <div
-      id="root"
-      class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900"
-    >
+    <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
       {/* <!-- Sidebar --> */}
       <div class="sidebar print:hidden">
         {/* <!-- Main Sidebar --> */}
@@ -220,49 +219,49 @@ const Panel = () => {
                 </svg>
               </a>
               <ul class="mt-2 flex flex-col items-center justify-center space-y-1">
-                  <li>
-                    <a
-                      href="#"
-                      class="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                <li>
+                  <a
+                    href="#"
+                    class="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5.5 w-5.5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="1.5"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5.5 w-5.5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="1.5"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                      />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5.5 w-5.5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="1.5"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5.5 w-5.5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="1.5"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                </ul>
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
               <div class="my-4 mx-4 h-px shrink-0 bg-slate-200 dark:bg-navy-500"></div>
               <div class="flex flex-col">
                 <div
@@ -372,9 +371,7 @@ const Panel = () => {
                   </div>
                 </div>
               </div>
-              
             </div>
-
 
             {/* <!-- Bottom Links --> */}
             <div class="flex flex-col items-center space-y-3 py-3">
@@ -660,7 +657,9 @@ const Panel = () => {
                 </p>
               </div>
               <button
-                // @click="$store.global.isSidebarExpanded = false"
+                onClick={() => {
+                  setSidebarExpanded((curr) => !curr);
+                }}
                 class="btn h-7 w-7 rounded-full p-0 text-primary hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:text-accent-light/80 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 xl:hidden"
               >
                 <svg
@@ -1473,6 +1472,9 @@ const Panel = () => {
                 class="menu-toggle ml-0.5 flex h-7 w-7 flex-col justify-center space-y-1.5 text-primary outline-none focus:outline-none dark:text-accent-light/80"
                 // :class="$store.global.isSidebarExpanded && 'active'"
                 // @click="$store.global.isSidebarExpanded = !$store.global.isSidebarExpanded"
+                onClick={() => {
+                  setSidebarExpanded((curr) => !curr);
+                }}
               >
                 <span></span>
                 <span></span>
@@ -1506,7 +1508,7 @@ const Panel = () => {
               {/* <!-- Main Searchbar --> */}
 
               {/* <!-- Dark Mode Toggle --> */}
-              <DarkModeToggle/>
+              <DarkModeToggle />
 
               {/* <!-- Monochrome Mode Toggle --> */}
               <button
