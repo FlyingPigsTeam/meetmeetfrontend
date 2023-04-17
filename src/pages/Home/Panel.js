@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar200x200 from "../../assets/images/200x200.png";
-import AppLogo from '../../assets/images/app-logo.svg';
+import AppLogo from "../../assets/images/app-logo.svg";
 
 const Panel = () => {
+  const [ isSidebarExpanded, setSidebarExpanded ] = useState(false);
   return (
     <div
       id="root"
       class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900"
-      x-cloak
     >
       {/* <!-- Sidebar --> */}
       <div class="sidebar print:hidden">
@@ -217,10 +217,7 @@ const Panel = () => {
                   />
                 </svg>
               </a>
-            </div>
-            <div class="flex h-[calc(100%-4.5rem)] grow flex-col">
-              <div class="is-scrollbar-hidden flex grow flex-col overflow-y-auto">
-                <ul class="mt-2 flex flex-col items-center justify-center space-y-1">
+              <ul class="mt-2 flex flex-col items-center justify-center space-y-1">
                   <li>
                     <a
                       href="#"
@@ -264,142 +261,118 @@ const Panel = () => {
                     </a>
                   </li>
                 </ul>
-                <div class="my-4 mx-4 h-px shrink-0 bg-slate-200 dark:bg-navy-500"></div>
-                <div class="flex flex-col">
-                  <div
-                    // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
-                    class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
-                  >
-                    <div class="avatar h-10 w-10">
-                      <img
-                        class="rounded-full"
-                        src={Avatar200x200}
-                        alt="avatar"
-                      />
-                      <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
-                    </div>
-                  </div>
-                  <div
-                    // @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/200x200.png',name:'Konnor Guzman'})"
-                    class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
-                  >
-                    <div class="avatar h-10 w-10">
-                      <img
-                        class="rounded-full"
-                        src={Avatar200x200}
-                        alt="avatar"
-                      />
-                    </div>
-                  </div>
-                  <div
-                    // @click="$dispatch('change-active-chat',{chatId:'chat-3',avatar_url:'images/200x200.png',name:'Travis Fuller'})"
-                    class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
-                  >
-                    <div class="avatar h-10 w-10">
-                      <img
-                        class="rounded-full"
-                        src={Avatar200x200}
-                        alt="avatar"
-                      />
-
-                      <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-primary dark:border-navy-700 dark:bg-accent">
-                        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-80 dark:bg-accent"></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Derrick Simmons'})"
-                    class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
-                  >
-                    <div class="avatar h-10 w-10">
-                      <img
-                        class="rounded-full"
-                        src={Avatar200x200}
-                        alt="avatar"
-                      />
-                      <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex flex-col items-center justify-center py-3">
+              <div class="my-4 mx-4 h-px shrink-0 bg-slate-200 dark:bg-navy-500"></div>
+              <div class="flex flex-col">
                 <div
-                  x-data="usePopper({placement:'right-start',offset:4})"
-                  // @click.outside="isShowPopper && (isShowPopper = false)"
-                  class="inline-flex"
+                  // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
+                  class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
                 >
-                  <button
-                    x-ref="popperRef"
-                    // @click="isShowPopper = !isShowPopper"
-                    class="btn h-10 w-10 rounded-full border border-slate-200 p-0 font-medium hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-500 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                      />
-                    </svg>
-                  </button>
+                  <div class="avatar h-10 w-10">
+                    <img
+                      class="rounded-full"
+                      src={Avatar200x200}
+                      alt="avatar"
+                    />
+                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                  </div>
+                </div>
+                <div
+                  // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
+                  class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+                >
+                  <div class="avatar h-10 w-10">
+                    <img
+                      class="rounded-full"
+                      src={Avatar200x200}
+                      alt="avatar"
+                    />
+                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                  </div>
+                </div>
+                <div
+                  // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
+                  class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+                >
+                  <div class="avatar h-10 w-10">
+                    <img
+                      class="rounded-full"
+                      src={Avatar200x200}
+                      alt="avatar"
+                    />
+                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                  </div>
+                </div>
+                <div
+                  // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
+                  class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+                >
+                  <div class="avatar h-10 w-10">
+                    <img
+                      class="rounded-full"
+                      src={Avatar200x200}
+                      alt="avatar"
+                    />
+                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                  </div>
+                </div>
+                <div
+                  // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
+                  class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+                >
+                  <div class="avatar h-10 w-10">
+                    <img
+                      class="rounded-full"
+                      src={Avatar200x200}
+                      alt="avatar"
+                    />
+                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                  </div>
+                </div>
+                <div
+                  // @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/200x200.png',name:'Konnor Guzman'})"
+                  class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+                >
+                  <div class="avatar h-10 w-10">
+                    <img
+                      class="rounded-full"
+                      src={Avatar200x200}
+                      alt="avatar"
+                    />
+                  </div>
+                </div>
+                <div
+                  // @click="$dispatch('change-active-chat',{chatId:'chat-3',avatar_url:'images/200x200.png',name:'Travis Fuller'})"
+                  class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+                >
+                  <div class="avatar h-10 w-10">
+                    <img
+                      class="rounded-full"
+                      src={Avatar200x200}
+                      alt="avatar"
+                    />
 
-                  <template x-teleport="#x-teleport-target">
-                    <div
-                      x-ref="popperRoot"
-                      class="popper-root"
-                      // :class="isShowPopper && 'show'"
-                    >
-                      <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
-                        <ul>
-                          <li>
-                            <a
-                              href="#"
-                              class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                            >
-                              Action
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                            >
-                              Another Action
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                            >
-                              Something else
-                            </a>
-                          </li>
-                        </ul>
-                        <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
-                        <ul>
-                          <li>
-                            <a
-                              href="#"
-                              class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                            >
-                              Separated Link
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
+                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-primary dark:border-navy-700 dark:bg-accent">
+                      <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-80 dark:bg-accent"></span>
                     </div>
-                  </template>
+                  </div>
+                </div>
+                <div
+                  // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Derrick Simmons'})"
+                  class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+                >
+                  <div class="avatar h-10 w-10">
+                    <img
+                      class="rounded-full"
+                      src={Avatar200x200}
+                      alt="avatar"
+                    />
+                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                  </div>
                 </div>
               </div>
+              
             </div>
+
 
             {/* <!-- Bottom Links --> */}
             <div class="flex flex-col items-center space-y-3 py-3">
