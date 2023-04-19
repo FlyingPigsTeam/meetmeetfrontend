@@ -8,10 +8,71 @@ const Task = () => {
   const [slideoverAdd, setslideoverAdd] = useState(false);
   const [slideoverEdit, setslideoverEdit] = useState(false);
   const data = [
-    { title: "Hello World", isFinished: true, difficulty: "easy" },
+    {
+      title: "Hello World",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      isFinished: true,
+      difficulty: "easy",
+    },
     { title: "Hello World", isFinished: false, difficulty: "medium" },
     { title: "Hello World", isFinished: true, difficulty: "hard" },
   ];
+  // this part is for getting all tasks of a room
+  //   const [tasks, settasks] = useState([]);
+  //   const req = async () => {
+  //   const { data } = await axios
+  //     .get(`http://127.0.0.1:8000/api/rooms?${url}`, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: "Bearer " + authTokens.access,
+  //       },
+  //     })
+  //     .then((response) => response);
+  //   settasks(data);
+  //   console.log(data);
+  // };
+  // useEffect(() => {
+  //   req();
+  // }, [authTokens]);
+
+
+
+  // this part is for deleting a task of a room
+  //   const [dalete, setdelete] = useState([]);
+  //   const req = async () => {
+  //   const { data } = await axios
+  //     .get(`http://127.0.0.1:8000/api/rooms?${url}`, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: "Bearer " + authTokens.access,
+  //       },
+  //     })
+  //     .then((response) => response);
+  //   setdelete(data);
+  //   console.log(data);
+  // };
+  // useEffect(() => {
+  //   if (delete) {
+  //     Swal.fire({
+  //       position: 'center',
+  //       icon: 'error',
+  //       title: "User already joined",
+  //       showConfirmButton: false,
+  //       timer: 2000
+  //     })
+  //   } else if (joinRequest && joinRequest.status == 202) {
+  //     Swal.fire({
+  //       position: 'center',
+  //       icon: 'success',
+  //       title: "Request Sent",
+  //       showConfirmButton: false,
+  //       timer: 2000
+  //     })
+  //   }
+  // }, [delete]);
+
+
   return (
     <div class="main-content todo-app w-full px-[var(--margin-x)] pb-8 m-auto">
       <div
@@ -27,8 +88,6 @@ const Task = () => {
           slideover={slideoverEdit}
           setslideover={setslideoverEdit}
         />
-        {/* <Slider/> */}
-
         <div
           x-show="!isSearchbarActive"
           class="flex items-center justify-between"
@@ -69,21 +128,24 @@ const Task = () => {
                       <input
                         checked
                         type="checkbox"
-                        class="form-checkbox is-outline h-5 w-5 rounded-full border-slate-400/70 before:bg-primary checked:border-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:before:bg-accent dark:checked:border-accent dark:hover:border-accent dark:focus:border-accent"
+                        class="form-checkbox is-outline h-5 w-5 rounded-full border-slate-400/70 before:bg-white checked:border-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:before:bg-white dark:checked:border-accent dark:hover:border-accent dark:focus:border-accent"
                       />
                     </label>
                   ) : (
                     <label class="flex">
                       <input
                         type="checkbox"
-                        class="form-checkbox is-outline h-5 w-5 rounded-full border-slate-400/70 before:bg-primary checked:border-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:before:bg-accent dark:checked:border-accent dark:hover:border-accent dark:focus:border-accent"
+                        class="form-checkbox is-outline h-5 w-5 rounded-full border-slate-400/70 before:bg-white checked:border-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:before:bg-white dark:checked:border-accent dark:hover:border-accent dark:focus:border-accent"
                       />
                     </label>
                   )}
-                  <h2 class="cursor-pointer text-lg font-bold text-slate-600 line-clamp-1 dark:text-navy-100">
+                  <h2 class="text-lg font-bold text-slate-600 line-clamp-1 dark:text-navy-100">
                     {item.title}
                   </h2>
                 </div>
+                <h2 class="text-left mt-2 text-sm font-medium text-slate-500 line-clamp-1 dark:text-navy-200">
+                  {item.description}
+                </h2>
                 <div className="grid grid-cols-2 w-64 items-center">
                   <div class="mt-1 flex items-end justify-between">
                     {item.difficulty == "easy" ? (

@@ -4,11 +4,15 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function SliderForAdding({ slideover, setslideover, id }) {
-  const [open, setOpen] = useState(true);
-  const [selectedDifficulty, setSelectedDifficulty] = useState("");
+  const [title, settitle] = useState("");
+  const [description, setdescription] = useState("");
+  const [selectedDifficulty, setSelectedDifficulty] = useState("Low");
   function handleDifficultyChange(event) {
     setSelectedDifficulty(event.target.value);
   }
+  console.log(title);
+  console.log(description);
+  console.log(selectedDifficulty);
   return (
     <Transition.Root show={slideover} as={Fragment}>
       <Dialog
@@ -64,6 +68,7 @@ export default function SliderForAdding({ slideover, setslideover, id }) {
                         <label class="block">
                           <span>Task Title</span>
                           <input
+                            onChange={(e) => settitle(e.target.value)}
                             class="form-input mt-1.5 h-9 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                             placeholder="Enter todo title"
                             type="text"
@@ -72,6 +77,7 @@ export default function SliderForAdding({ slideover, setslideover, id }) {
                         <label class="block">
                           <span>Task Description</span>
                           <textarea
+                            onChange={(e) => setdescription(e.target.value)}
                             class="form-input mt-1.5 h-24 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                             placeholder="Enter todo title"
                             type="text"

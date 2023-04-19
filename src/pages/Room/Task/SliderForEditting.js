@@ -4,7 +4,9 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function SliderForEditting({ slideover, setslideover, id }) {
-  const [selectedDifficulty, setSelectedDifficulty] = useState("");
+  const [title, settitle] = useState("Hello world");
+  const [description, setdescription] = useState("vsdvrdvdvecsc");
+  const [selectedDifficulty, setSelectedDifficulty] = useState("Hard");
   function handleDifficultyChange(event) {
     setSelectedDifficulty(event.target.value);
   }
@@ -63,6 +65,8 @@ export default function SliderForEditting({ slideover, setslideover, id }) {
                         <label class="block">
                           <span>Task Title</span>
                           <input
+                            value={title}
+                            onChange={(e) => settitle(e.target.value)}
                             class="form-input mt-1.5 h-9 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                             placeholder="Enter todo title"
                             type="text"
@@ -71,6 +75,8 @@ export default function SliderForEditting({ slideover, setslideover, id }) {
                         <label class="block">
                           <span>Task Description</span>
                           <textarea
+                            onChange={(e) => setdescription(e.target.value)}
+                            value={description}
                             class="form-input mt-1.5 h-24 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                             placeholder="Enter todo title"
                             type="text"
@@ -87,9 +93,9 @@ export default function SliderForEditting({ slideover, setslideover, id }) {
                             placeholder="Select difficulty of the task"
                             //autocomplete="off"
                           >
-                            <option value="Low">Low</option>
+                            <option value="Easy">Easy</option>
                             <option value="Medium">Medium</option>
-                            <option value="High">High</option>
+                            <option value="Hard">Hard</option>
                           </select>
                         </label>
                         <label class="block z-40">
