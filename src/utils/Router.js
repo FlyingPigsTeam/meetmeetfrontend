@@ -14,12 +14,14 @@ import ResetPassword from "../pages/LoginRegister/ResetPassword";
 import InfoTab from "../pages/Room/InfoTab/InfoTab";
 import InformationForm from "../pages/Room/InfoTab/InformationForm";
 import InformationPage from "../pages/Room/InfoTab/InformationPage";
-import Panel from "../pages/Home/Panel";
+import PanelMain from "../pages/Home/PanelMain";
+import Paneltest from "../pages/Home/Paneltest";
 
 
 import Profile from "../pages/Profile/Profile";
 import Setting from "../pages/Profile/Setting";
 import ChangePassword from "../pages/Profile/ChangePassword";
+
 const Router = () => {
   return (
     <div>
@@ -37,7 +39,8 @@ const Router = () => {
           {/* <Route path="/room/info" element={<InfoTab />} /> */}
           <Route path="/room/:idroom/info" element={<InfoTab />} />
           <Route path="/room/:idroom/info/edit" element={<InformationForm Title="Edit" />} />
-          <Route path="/panel" element={<Panel/>} />
+          <Route path="/panel" element={<PanelMain/>} />
+          <Route path="/panel2" element={<Paneltest/>} />
 
 
           {/* <Routes>

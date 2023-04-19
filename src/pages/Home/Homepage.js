@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Card from "../../components/Card";
-import Header from "../../components/Header";
+import Header from "../../components/tm_Header";
 import SidebarNavigation from "../../components/SidebarNavigation";
 import Filters from "./Filter";
 import axios from "axios";
