@@ -54,7 +54,7 @@ const Paneltest = () => {
             <Sidebar.Secondary.Minimized.Header />
             <Sidebar.Secondary.Minimized.Body>
               <Sidebar.Secondary.Minimized.Body.Middle />
-              <Sidebar.Secondary.Minimized.Body.Actions/>
+              <Sidebar.Secondary.Minimized.Body.MoreActions/>
             </Sidebar.Secondary.Minimized.Body>
           </Sidebar.Secondary.Minimized>
         </Sidebar.Secondary>

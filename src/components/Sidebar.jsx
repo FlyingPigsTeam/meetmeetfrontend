@@ -1502,83 +1502,87 @@ Sidebar.Secondary.Minimized.Body.Middle = function ({
     </div>
   );
 };
-Sidebar.Secondary.Minimized.Body.Actions = function ({
+Sidebar.Secondary.Minimized.Body.MoreActions = function ({
   classes,
   children,
   ...restProps
-}) {return(              <div class="py-3">
-<div
-  x-data="usePopper({placement:'right-start',offset:4})"
-  // @click.outside="isShowPopper && (isShowPopper = false)"
-  class="inline-flex"
->
-  <button
-    x-ref="popperRef"
-    // @click="isShowPopper = !isShowPopper"
-    class="btn h-10 w-10 rounded-full border border-slate-300 p-0 font-medium hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-6 w-6"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      stroke-width="2"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-      />
-    </svg>
-  </button>
+}) {
+  return (
+    <div class="py-3">
+      <div
+        x-data="usePopper({placement:'right-start',offset:4})"
+        // @click.outside="isShowPopper && (isShowPopper = false)"
+        class="inline-flex"
+      >
+        <button
+          x-ref="popperRef"
+          // @click="isShowPopper = !isShowPopper"
+          class="btn h-10 w-10 rounded-full border border-slate-300 p-0 font-medium hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+            />
+          </svg>
+        </button>
 
-  <template x-teleport="#x-teleport-target">
-    <div
-      x-ref="popperRoot"
-      class="popper-root"
-      // :class="isShowPopper && 'show'"
-    >
-      <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
-        <ul>
-          <li>
-            <a
-              href="#"
-              class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-            >
-              Action
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-            >
-              Another Action
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-            >
-              Something else
-            </a>
-          </li>
-        </ul>
-        <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
-        <ul>
-          <li>
-            <a
-              href="#"
-              class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-            >
-              Separated Link
-            </a>
-          </li>
-        </ul>
+        <template x-teleport="#x-teleport-target">
+          <div
+            x-ref="popperRoot"
+            class="popper-root"
+            // :class="isShowPopper && 'show'"
+          >
+            <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
+              <ul>
+                <li>
+                  <a
+                    href="#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                  >
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                  >
+                    Another Action
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                  >
+                    Something else
+                  </a>
+                </li>
+              </ul>
+              <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
+              <ul>
+                <li>
+                  <a
+                    href="#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                  >
+                    Separated Link
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </template>
       </div>
     </div>
-  </template>
-</div>
-</div>)}
+  );
+};
