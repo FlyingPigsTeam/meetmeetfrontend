@@ -9,6 +9,7 @@
 @import "./components/badge.css";
 @import "./components/table.css";
 @import "./components/popper.css";
+@import "./components/pagination.css";
 /* 
 @import "./components/skeleton.css";
 @import "./components/simplebar.css";
@@ -19,7 +20,6 @@
 @import "./components/notification.css";
 @import "./components/steps.css";
 @import "./components/timeline.css";
-@import "./components/pagination.css";
 @import "./components/swiper.css";
 @import "./components/apexcharts.css";
 @import "./components/tableGrid.css"; 

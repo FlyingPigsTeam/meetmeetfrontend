@@ -1,170 +1,150 @@
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/20/solid';
-import { useEffect,useState } from 'react';
-const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
-  const [pageNumbers,setgetPageNumbers]= useState([]);
-  const goToPreviousPage = () => {
-    setCurrentPage(currentPage > 1 ? currentPage - 1 : 1);
-    setgetPageNumbers(getPageNumbers(currentPage -1));
-  };
+import { useEffect, useState } from 'react';
+import { usePaginated } from '@makotot/paginated';
 
+const Pagination = ({current,total ,setPage}) => {
 
+  const [currentP,setCurrentP] = useState(current);
+  const { pages, currentPage, hasPrev, hasNext, getFirstBoundary, getLastBoundary, isPrevTruncated, isNextTruncated } = usePaginated({ currentPage: current, totalPage: total, siblingsSize: 2, boundarySize: 2 });
   const goToNextPage = () => {
-    setCurrentPage(currentPage < totalPages ? currentPage + 1 : totalPages);
-    setgetPageNumbers(getPageNumbers(currentPage+1));
-  };
-
-  const getPageNumbers = (current_page) => {
-    let b=0;
-    let page_numbers=[]
-    if (totalPages <= 10) {
-      for (let i = 1; i <= totalPages; i++) {
-        page_numbers.push(i);
-      }
-    } 
-    else{
-      if( current_page<5){
-        for (let i = 1; i <= 5; i++) {
-            page_numbers.push(i);
-        }
-        // page_numbers.push('...');
-        for (let i = totalPages - 2; i <= totalPages; i++) {
-          page_numbers.push(i);
-        }
-      }
-      else if(current_page >= 5 && current_page < totalPages - 3) {
-        page_numbers.push(1);
-        // page_numbers.push('...');
-        for (let i = current_page-1; i <=current_page +1 ; i++) {
-          page_numbers.push(i);
-        }
-        // page_numbers.push('...');
-        
-        for (let i = totalPages - 2; i <= totalPages; i++) {
-          page_numbers.push(i);
-        }
-        
-      }
-    else {
-      page_numbers.push(1);
-        // page_numbers.push('...');
-        for (let i = current_page-1; i <=totalPages; i++) {
-          page_numbers.push(i);
-        }
-
-    }
-    }
+    setPage(currentPage < total ? currentPage + 1 : total);
+    setCurrentP(currentPage < total ? currentPage + 1 : total);
     
-    // if (totalPages <= 10) {
-    //   for (let i = 1; i <= totalPages; i++) {
-    //     page_numbers.push(i);
-    //   }
-    // } 
-    // else {  
-    //   if (currentPage < 5) {
-    //     console.log("333333333333333333333333333333333333333333333");
-    //     console.log(pageNumbers);
-    //     page_numbers.splice(1,1);
-    //     console.log(page_numbers);
-    //     b=0;
-    //     for (let i = 1; i <= 5; i++) {
-    //       page_numbers.push(i);
-    //     }
-    //     page_numbers.push('...');
-    //     for (let i = totalPages - 2; i <= totalPages; i++) {
-    //       page_numbers.push(i);
-    //     }
-    //   } 
-    //   else if (currentPage > totalPages - 4) {
-    //     for (let i = 1; i <= 3; i++) {
-    //       page_numbers.push(i);
-    //     }
-    //     page_numbers.push('...');
-    //     for (let i = totalPages - 4; i <= totalPages; i++) {
-    //       page_numbers.push(i);
-    //     }
-    //   }
-    //   else if (currentPage >= 5) {
-    //     page_numbers.push(1);
-    //     if(b===0)
-    //     page_numbers.push("...");
-    //             for (let i = currentPage; i <= currentPage+2; i++) {
-    //       page_numbers.push(i);
-    //     }
-    //     page_numbers.push('...');
-    //     for (let i = totalPages - 2; i <= totalPages; i++) {
-    //       page_numbers.push(i);
-    //     }
-    //     b=1;
-      // }
-      // else {
-      //   pageNumbers.push(1);
-      //   if(pageNumbers[1]==="..."){
-      //     pageNumbers.splice(1,1);
-      //     console.log("less than 5");
-      //   }
-      //   else
-      //     pageNumbers.push('...');
-      //   pageNumbers.push(currentPage - 1);
-      //   pageNumbers.push(currentPage);
-      //   pageNumbers.push(currentPage + 1);
-      //   pageNumbers.push('...');
-      //   pageNumbers.push(totalPages);
-      // }
-      
-    // }
-  
-    return page_numbers;
   };
-  useEffect(() => {
-    setgetPageNumbers(getPageNumbers(currentPage));
-  }, [totalPages]);
-
-  
+  const goToPreviousPage = () => {
+    setPage(currentPage > 1 ? currentPage - 1 : 1);
+    setCurrentP(currentPage > 1 ? currentPage - 1 : 1);
+   
+  };
   return (
-    <nav className="flex items-center justify-between border-t border-gray-200 px-4 sm:px-0">
-  <div className="-mt-px flex w-0 flex-1">
-    <button
-      onClick={goToPreviousPage}
-      className="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+
+    <div
+      class="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5"
     >
-      <ArrowLongLeftIcon className="mr-3 h-5 w-5 text-gray-400" aria-hidden="true" />
-      Previous
-    </button>
-  </div>
-  <div className="hidden md:-mt-px md:flex">
-    {pageNumbers.map((pageNumber) => {
-      const isActive = currentPage === pageNumber;
-      const isEllipsis = pageNumber === '...';
-      return (
-        <button
-          key={pageNumber}
-          onClick={() =>{ setCurrentPage(pageNumber);
-          setgetPageNumbers(getPageNumbers(pageNumber));
-          }
-        
-        }
-          className={`inline-flex items-center border-t-2 border-${isActive ? 'indigo' : 'transparent'
-            } ${isActive ? 'text-indigo-600' : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'} px-4 pt-4 text-sm font-medium ${isEllipsis ? '' : 'rounded-full'} ${isActive ? 'bg-indigo-600 text-white' : ''}`}
-          aria-current={isActive ? 'page' : undefined}
-          disabled={isEllipsis}
-        >
-          {isEllipsis ? '...' : <span className="w-5 h-5 flex items-center justify-center">{pageNumber}</span>}
-        </button>
-      );
-    })}
-  </div>
-  <div className="-mt-px flex w-0 flex-1 justify-end">
-    <button
-      onClick={goToNextPage}
-      className="inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-    >
-      Next
-      <ArrowLongRightIcon className="ml-3 h-5 w-5 text-gray-400" aria-hidden="true" />
-    </button>
-  </div>
-</nav>
+      <div class="flex items-center space-x-2 text-xs+">
+        {/* <span>Show</span>
+        <label class="block">
+          <select
+            class="form-select rounded-full border border-slate-300 bg-white px-2 py-1 pr-6 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
+          >
+            <option>10</option>
+            <option>30</option>
+            <option>50</option>
+          </select>
+        </label>
+        <span>entries</span> */}
+      </div>
+
+      <ol class="pagination">
+        {hasPrev() && <li class="rounded-l-lg bg-slate-150 dark:bg-navy-500">
+          <a
+            onClick={goToPreviousPage}
+            class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </a>
+        </li>}
+        {getFirstBoundary().map(boundary => <li class="bg-slate-150 dark:bg-navy-500">
+      <a
+        onClick={() =>{ setPage(boundary);
+          setCurrentP(boundary);
+        }}
+        class="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+      >{boundary}</a
+      >
+    </li>)}
+        {isPrevTruncated && <SimpleButton >...</SimpleButton>}
+        {pages.map(page => {
+          return page === currentPage ? (
+            <li class="bg-slate-150 dark:bg-navy-500">
+      <a
+        onClick={() =>{ setPage(page);
+          setCurrentP(page);
+        }}
+        class="flex h-8 min-w-[2rem] items-center justify-center rounded-lg bg-primary px-3 leading-tight text-white transition-colors hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+      >{page}</a
+      >
+    </li>
+          ) : (
+            <li class="bg-slate-150 dark:bg-navy-500">
+      <a
+        onClick={() =>{ setPage(page);
+          setCurrentP(page);
+        }}
+        class="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+      >{page}</a
+      >
+    </li>
+          );
+        })}
+
+        {isNextTruncated && <SimpleButton >...</SimpleButton>}
+        {getLastBoundary().map(boundary => <li class="bg-slate-150 dark:bg-navy-500">
+      <a
+        onClick={() =>{ setPage(boundary);
+          setCurrentP(boundary);
+        }}
+        class="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+      >{boundary}</a
+      >
+    </li>)}
+
+
+
+
+        {hasNext() && <li class="rounded-r-lg bg-slate-150 dark:bg-navy-500">
+          <a
+            onClick={goToNextPage}
+            class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </a>
+        </li>}
+      </ol>
+
+      <div class="text-xs+">1 - 10 of 10 entries</div>
+    </div>
 
   );
-      }
+}
+
+
+const SimpleButton = ({ children }) => {
+  return (
+    <li class="bg-slate-150 dark:bg-navy-500">
+      <a
+      
+        class="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+      >{children}</a
+      >
+    </li>
+  );
+}
 
 export default Pagination;

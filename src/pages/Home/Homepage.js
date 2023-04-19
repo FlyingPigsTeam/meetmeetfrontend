@@ -7,6 +7,7 @@ import axios from "axios";
 import Pagination from "./Pagination";
 
 import AuthContext from "../../context/AuthContext";
+import { number } from "yup";
 
 const Homepage = () => {
   // const [sort, setSort] = useState("None");
@@ -27,7 +28,7 @@ const Homepage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(10);
   let authTokens = useContext(AuthContext).authTokens;
-  console.log(authTokens.access);
+  // console.log(authTokens.access);
   const [paramsFilter, setparamsFilter] = useState("");
   // console.log("Homepage: ", paramsFilter);
   const removeEmptyValues = (object) => {
@@ -41,7 +42,7 @@ const Homepage = () => {
     }
   };
   removeEmptyValues(paramsFilter);
-  console.log("JSON paramFinal: ", paramsFilter);
+  // console.log("JSON paramFinal: ", paramsFilter);
 
   let url = new URLSearchParams(paramsFilter).toString();
 
@@ -49,27 +50,38 @@ const Homepage = () => {
   url = url.replaceAll("%26", "&");
   url = url.replaceAll("%3A", ":");
   url = url.replace("categories=", "");
-  console.log("params", url);
+  // console.log("params", url);
 
   const [status, setstatus] = useState("");
   const req = async () => {
     const { data } = await axios
-      .get(`http://127.0.0.1:8000/api/rooms?${url}&${currentPage}`, {
+      .get(`http://127.0.0.1:8000/api/rooms?${url}&page=${currentPage}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + authTokens.access,
         },
+        
       })
       // .then((response) => response);
       setstatus(data);
-      console.log(`${url}url`);
-      console.log(currentPage);
-      setTotalPages(85);
-      console.log(url);
+      // console.log(`http://127.0.0.1:8000/api/rooms?${url}&page=${currentPage}`);
+      // console.log(currentPage);
+      let count=data.count;
+      let number=1;
+      if(count%10==0){
+        number= count/10;
+      }
+      else{
+        number=((count-(count%10))/10)+1;
+      }
+      setTotalPages(number);
+      // console.log(url);
   };
+
+  
   useEffect(() => {
     req();
-  }, [authTokens, paramsFilter,currentPage]);
+  }, [authTokens, paramsFilter,currentPage,totalPages]);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -78,7 +90,7 @@ const Homepage = () => {
     setparamsFilter(filterParams);
     setCurrentPage(1); // Reset to page 1 when filters change
   };
-  console.log(`data is ${status.results}`);
+  // console.log(`data is ${status.results}`);
   let cards = status ? status.results : {};
   return (
     <div>
@@ -98,7 +110,7 @@ const Homepage = () => {
           <div className="text-5xl font-bold text-myGrey mb-8 mt-5">Events</div>
           <Filters
             paramsFilter={paramsFilter}
-            setparamsFilter={setparamsFilter}
+            setparamsFilter={handleFilterChange}
           />
 
           <div
@@ -114,10 +126,11 @@ const Homepage = () => {
             )}
           </div>
           <Pagination
-            currentPage={currentPage}
-            setCurrentPage={handlePageChange}
-            totalPages={20}
+            current={currentPage}
             
+            total={totalPages}
+            
+            setPage={(page)=>setCurrentPage(page)}
           />
         </div>
       </div>
