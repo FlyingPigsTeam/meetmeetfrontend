@@ -152,8 +152,8 @@ export default function Setting({user ,onUpdate,onCancel }) {
     )}
     <div className="ml-4 flex">
       <div className="flex flex-col">
-        <div className="relative flex cursor-pointer items-center rounded-md border border-blue-gray-300 bg-white py-2 px-3 shadow-sm focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 focus-within:ring-offset-blue-gray-50 hover:bg-blue-gray-50">
-          <label htmlFor="user-photo" className="pointer-events-none relative text-sm font-medium text-blue-gray-900">
+        <div className="relative flex cursor-pointer items-center rounded-md border border-blue-gray-300 text-white bg-indigo-600 hover:bg-indigo-700 py-2 px-3 shadow-sm focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 focus-within:ring-offset-blue-gray-50 hover:bg-blue-gray-50">
+          <label htmlFor="user-photo" className="pointer-events-none relative  text-sm font-medium text-blue-gray-900">
             <span>Change</span>
             <span className="sr-only"> user photo</span>
           </label>
@@ -168,7 +168,7 @@ export default function Setting({user ,onUpdate,onCancel }) {
         {/* <span className="text-sm text-blue-gray-500 mt-1">(max size: 5MB)</span> */}
       </div>
       <div className="ml-3 flex">
-        <div className="relative flex cursor-pointer items-center rounded-md border border-red-500 bg-red-500 py-2 px-3 shadow-sm text-white focus-within:outline-none focus-within:ring-2 focus-within:ring-red-500 focus-within:ring-offset-2 focus-within:ring-offset-red-50 hover:bg-red-600">
+        <div className="relative flex cursor-pointer items-center rounded-md border border-red-500 bg-blue-600 py-2 px-3 shadow-sm text-white focus-within:outline-none focus-within:ring-2 focus-within:ring-red-500 focus-within:ring-offset-2 focus-within:ring-offset-red-50 hover:bg-red-600">
           <label
             htmlFor="remove-photo"
             className="pointer-events-none relative text-sm font-medium"
@@ -305,7 +305,7 @@ export default function Setting({user ,onUpdate,onCancel }) {
                                                 </button>
                                                 <button
                                                     type="submit"
-                                                    className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                                    className="ml-3 inline-flex justify-center rounded-md border border-transparent text-white bg-indigo-600 hover:bg-indigo-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                                                 >
                                                     Save
                                                 </button>

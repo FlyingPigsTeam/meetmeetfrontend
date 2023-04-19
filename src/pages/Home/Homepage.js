@@ -54,15 +54,17 @@ const Homepage = () => {
   const [status, setstatus] = useState("");
   const req = async () => {
     const { data } = await axios
-      .get(`http://127.0.0.1:8000/api/rooms?${url}&page=${currentPage}`, {
+      .get(`http://127.0.0.1:8000/api/rooms?${url}&${currentPage}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + authTokens.access,
         },
       })
-      .then((response) => response);
+      // .then((response) => response);
       setstatus(data);
-      setTotalPages(10);
+      console.log(`${url}url`);
+      console.log(currentPage);
+      setTotalPages(85);
       console.log(url);
   };
   useEffect(() => {
@@ -76,7 +78,7 @@ const Homepage = () => {
     setparamsFilter(filterParams);
     setCurrentPage(1); // Reset to page 1 when filters change
   };
-  console.log(`data is ${status}`);
+  console.log(`data is ${status.results}`);
   let cards = status ? status.results : {};
   return (
     <div>
@@ -114,7 +116,7 @@ const Homepage = () => {
           <Pagination
             currentPage={currentPage}
             setCurrentPage={handlePageChange}
-            totalPages={totalPages}
+            totalPages={20}
             
           />
         </div>
