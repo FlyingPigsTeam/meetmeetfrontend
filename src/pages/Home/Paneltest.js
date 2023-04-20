@@ -3,10 +3,11 @@ import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 
 import DarkModeToggle from "../../components/DarkModeToggle";
-
+import PageWrapper from "../../components/PageWrapper";
+import MainSection from "../../components/MainSection";
 const Paneltest = () => {
   return (
-    <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
+    <PageWrapper>
       <Header>
         <Header.Items>
           <Header.SidebarToggle />
@@ -18,7 +19,17 @@ const Paneltest = () => {
       <Sidebar>
         <Sidebar.Primary>
           <Sidebar.Primary.Logo />
-          <Sidebar.Primary.Middle />
+          <Sidebar.Primary.Middle>
+            <Sidebar.Primary.Middle.Home />
+            {/* <Sidebar.Primary.Middle.LaterThings/> */}
+            <Sidebar.Secondary.Expanded.Body.Middle.Divider />
+            <Sidebar.Primary.Middle.Rooms>
+              <Sidebar.Primary.Middle.Rooms.Item />
+              <Sidebar.Primary.Middle.Rooms.AddRoom />
+
+              {/* <Sidebar.Primary.Middle.Rooms.AllItem/> */}
+            </Sidebar.Primary.Middle.Rooms>
+          </Sidebar.Primary.Middle>
           <Sidebar.Primary.Bottom>
             <Sidebar.Primary.Bottom.Settings />
             <Sidebar.Primary.Bottom.Profile />
@@ -37,9 +48,12 @@ const Paneltest = () => {
             </Sidebar.Secondary.Expanded.Header>
             <Sidebar.Secondary.Expanded.Body>
               <Sidebar.Secondary.Expanded.Body.Tabs>
-                <Sidebar.Secondary.Expanded.Body.Tabs.AllItems />
+                <Sidebar.Secondary.Expanded.Body.Tabs.Chat />
+                <Sidebar.Secondary.Expanded.Body.Tabs.Todo />
+                <Sidebar.Secondary.Expanded.Body.Tabs.InfoTab />
+                {/* <Sidebar.Secondary.Expanded.Body.Tabs.AllItems /> */}
               </Sidebar.Secondary.Expanded.Body.Tabs>
-              <Sidebar.Secondary.Expanded.Body.Middle.TopButton />
+              {/* <Sidebar.Secondary.Expanded.Body.Middle.TopButton />
               <Sidebar.Secondary.Expanded.Body.Middle.Items>
                 <Sidebar.Secondary.Expanded.Body.Middle.Items.AllItem />
               </Sidebar.Secondary.Expanded.Body.Middle.Items>
@@ -47,19 +61,20 @@ const Paneltest = () => {
               <Sidebar.Secondary.Expanded.Body.Middle.SectionHeader />
               <Sidebar.Secondary.Expanded.Body.Middle.Items>
                 <Sidebar.Secondary.Expanded.Body.Middle.Items.AllLabelItems />
-              </Sidebar.Secondary.Expanded.Body.Middle.Items>
+              </Sidebar.Secondary.Expanded.Body.Middle.Items> */}
             </Sidebar.Secondary.Expanded.Body>
           </Sidebar.Secondary.Expanded>
           <Sidebar.Secondary.Minimized>
             <Sidebar.Secondary.Minimized.Header />
-            <Sidebar.Secondary.Minimized.Body>
+            {/* <Sidebar.Secondary.Minimized.Body>
               <Sidebar.Secondary.Minimized.Body.Middle />
-              <Sidebar.Secondary.Minimized.Body.MoreActions/>
-            </Sidebar.Secondary.Minimized.Body>
+              <Sidebar.Secondary.Minimized.Body.MoreActions />
+            </Sidebar.Secondary.Minimized.Body> */}
           </Sidebar.Secondary.Minimized>
         </Sidebar.Secondary>
       </Sidebar>
-    </div>
+      <MainSection></MainSection>
+    </PageWrapper>
   );
 };
 
