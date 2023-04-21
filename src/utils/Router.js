@@ -11,12 +11,12 @@ import Login from "../pages/LoginRegister/Login";
 import Register from "../pages/LoginRegister/Register";
 import ForgetPassword from "../pages/LoginRegister/ForgetPassword";
 import ResetPassword from "../pages/LoginRegister/ResetPassword";
+import VerifyEmail from "../pages/LoginRegister/VerifyEmail";
 import InfoTab from "../pages/Room/InfoTab/InfoTab";
 import InformationForm from "../pages/Room/InfoTab/InformationForm";
 import InformationPage from "../pages/Room/InfoTab/InformationPage";
 import PanelMain from "../pages/Home/PanelMain";
 import Paneltest from "../pages/Home/Paneltest";
-
 
 import Profile from "../pages/Profile/Profile";
 import Setting from "../pages/Profile/Setting";
@@ -36,12 +36,21 @@ const Router = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/forgetpassword" element={<ForgetPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
+
+          <Route path="/email-verify" element={<VerifyEmail />} />
+          <Route path="/change-password" element={<ChangePassword />} />
+
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profileEdit" element={<Setting />} />
+
           {/* <Route path="/room/info" element={<InfoTab />} /> */}
           <Route path="/room/:idroom/info" element={<InfoTab />} />
-          <Route path="/room/:idroom/info/edit" element={<InformationForm Title="Edit" />} />
-          <Route path="/panel" element={<PanelMain/>} />
-          <Route path="/panel2" element={<Paneltest/>} />
-
+          <Route
+            path="/room/:idroom/info/edit"
+            element={<InformationForm Title="Edit" />}
+          />
+          <Route path="/panel" element={<PanelMain />} />
+          <Route path="/panel2" element={<Paneltest />} />
 
           {/* <Routes>
               <Route path="/" element={<Homepage />} />

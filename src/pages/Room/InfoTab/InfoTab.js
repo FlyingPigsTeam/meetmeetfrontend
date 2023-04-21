@@ -1,70 +1,94 @@
 import React from "react";
-
-import SidebarNavigation from "../../../components/SidebarNavigation";
-import Header from "../../../components/Header";
-import InformationForm from "./InformationForm";
-import AddRoom from "../AddRoom";
-import Avatar200x200 from "../../../assets/images/200x200.png";
-import InformationPage from "./InformationPage";
-import Members from "./Members";
-import DarkModeToggle from "../../../components/DarkModeToggle";
 import { useParams } from "react-router-dom";
 
+import Header from "../../../components/Header";
+import Sidebar from "../../../components/Sidebar";
+
+import DarkModeToggle from "../../../components/DarkModeToggle";
+import PageWrapper from "../../../components/PageWrapper";
+import MainSection from "../../../components/MainSection";
+
+import AddRoom from "../AddRoom";
+
+import InformationForm from "./InformationForm";
+import InformationPage from "./InformationPage";
+import Members from "./Members";
+
+import Avatar200x200 from "../../../assets/images/200x200.png";
+
 const InfoTab = () => {
-  const params = useParams()
-  console.log(params)
+  const params = useParams();
+  console.log(params);
   return (
     <>
-      <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
-        {/* <div class="flex items-center space-x-4 py-5 lg:py-6">
-          <h2 class="text-xl font-medium text-slate-800 dark:text-navy-50 lg:text-2xl">
-            Form Layout 5
-          </h2>
-          <div class="hidden h-full py-1 sm:flex">
-            <div class="h-full w-px bg-slate-300 dark:bg-navy-600"></div>
-          </div>
-          <ul class="hidden flex-wrap items-center space-x-2 sm:flex">
-            <li class="flex items-center space-x-2">
-              <a
-                class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
-                href="#"
-              >
-                Forms
-              </a>
-              <svg
-                x-ignore
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </li>
-            <li>Form Layout 5</li>
-          </ul>
-        </div> */}
-        {/* <Header />
-      <div
-        style={{
-          paddingTop: "12vh",
-          display: "grid",
-          gridTemplateColumns: "1fr 4fr",
-        }}
-      >
-        <SidebarNavigation />
-        <div
-          className="bg-cyan-900 text-left"
-          style={{ width: "85vw", marginLeft: "13.9vw" }}
-        > */}
-        <main class="main-content w-full px-[var(--margin-x)] pb-8  border-slate-150 bg-white dark:border-navy-700 dark:bg-navy-800">
-          <DarkModeToggle />
+      <PageWrapper>
+        <Header>
+          <Header.Items>
+            <Header.SidebarToggle />
+            <Header.Right>
+              <DarkModeToggle />
+            </Header.Right>
+          </Header.Items>
+        </Header>
+        <Sidebar>
+          <Sidebar.Primary>
+            <Sidebar.Primary.Logo />
+            <Sidebar.Primary.Middle>
+              <Sidebar.Primary.Middle.Home />
+              {/* <Sidebar.Primary.Middle.LaterThings/> */}
+              <Sidebar.Secondary.Expanded.Body.Middle.Divider />
+              <Sidebar.Primary.Middle.Rooms>
+                <Sidebar.Primary.Middle.Rooms.Item />
+                <Sidebar.Primary.Middle.Rooms.AddRoom />
+
+                {/* <Sidebar.Primary.Middle.Rooms.AllItem/> */}
+              </Sidebar.Primary.Middle.Rooms>
+            </Sidebar.Primary.Middle>
+            <Sidebar.Primary.Bottom>
+              <Sidebar.Primary.Bottom.Settings />
+              <Sidebar.Primary.Bottom.Profile />
+            </Sidebar.Primary.Bottom>
+          </Sidebar.Primary>
+          <Sidebar.Secondary>
+            <Sidebar.Secondary.Expanded>
+              <Sidebar.Secondary.Expanded.Header>
+                <Sidebar.Secondary.Expanded.Header.Title>
+                  <Sidebar.Secondary.Expanded.Header.Title.Icon />
+                  <Sidebar.Secondary.Expanded.Header.Title.Text>
+                    Todo
+                  </Sidebar.Secondary.Expanded.Header.Title.Text>
+                </Sidebar.Secondary.Expanded.Header.Title>
+                <Sidebar.Secondary.Expanded.Header.MinimizeButton />
+              </Sidebar.Secondary.Expanded.Header>
+              <Sidebar.Secondary.Expanded.Body>
+                <Sidebar.Secondary.Expanded.Body.Tabs>
+                  <Sidebar.Secondary.Expanded.Body.Tabs.Chat />
+                  <Sidebar.Secondary.Expanded.Body.Tabs.Todo />
+                  <Sidebar.Secondary.Expanded.Body.Tabs.InfoTab />
+                  {/* <Sidebar.Secondary.Expanded.Body.Tabs.AllItems /> */}
+                </Sidebar.Secondary.Expanded.Body.Tabs>
+                {/* <Sidebar.Secondary.Expanded.Body.Middle.TopButton />
+              <Sidebar.Secondary.Expanded.Body.Middle.Items>
+                <Sidebar.Secondary.Expanded.Body.Middle.Items.AllItem />
+              </Sidebar.Secondary.Expanded.Body.Middle.Items>
+              <Sidebar.Secondary.Expanded.Body.Middle.Divider />
+              <Sidebar.Secondary.Expanded.Body.Middle.SectionHeader />
+              <Sidebar.Secondary.Expanded.Body.Middle.Items>
+                <Sidebar.Secondary.Expanded.Body.Middle.Items.AllLabelItems />
+              </Sidebar.Secondary.Expanded.Body.Middle.Items> */}
+              </Sidebar.Secondary.Expanded.Body>
+            </Sidebar.Secondary.Expanded>
+            <Sidebar.Secondary.Minimized>
+              <Sidebar.Secondary.Minimized.Header />
+              {/* <Sidebar.Secondary.Minimized.Body>
+              <Sidebar.Secondary.Minimized.Body.Middle />
+              <Sidebar.Secondary.Minimized.Body.MoreActions />
+            </Sidebar.Secondary.Minimized.Body> */}
+            </Sidebar.Secondary.Minimized>
+          </Sidebar.Secondary>
+        </Sidebar>
+        <MainSection>
+
           {/* <TestInf /> */}
           <div class="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
             <div class="col-span-12 lg:col-span-6">
@@ -79,10 +103,8 @@ const InfoTab = () => {
               {/* </div> */}
             </div>
           </div>
-        </main>
-        {/* </div>
-      </div> */}
-      </div>
+        </MainSection>
+      </PageWrapper>
     </>
   );
 };

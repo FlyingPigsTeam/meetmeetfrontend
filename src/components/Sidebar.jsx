@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import classNames from "../utils/classNames";
 
 import Avatar200x200 from "../assets/images/200x200.png";
@@ -482,6 +483,7 @@ Sidebar.Primary.Bottom.Settings = function SidebarSettings() {
   );
 };
 Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
+  const navigate = useNavigate();
   return (
     <>
       <div
@@ -493,6 +495,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
           // @click="isShowPopper = !isShowPopper"
           x-ref="popperRef"
           class="avatar h-12 w-12"
+          onClick={() => navigate("/profile")}
         >
           <img class="rounded-full" src={Avatar200x200} alt="avatar" />
           <span class="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>

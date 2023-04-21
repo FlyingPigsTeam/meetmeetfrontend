@@ -1,9 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import Card from "../../components/Card";
-import Header from "../../components/tm_Header";
-import SidebarNavigation from "../../components/SidebarNavigation";
-import Filters from "./Filter";
 import axios from "axios";
+
+import PageWrapper from "../../components/PageWrapper";
+import MainSection from "../../components/MainSection";
+
+import Header from "../../components/Header";
+import Sidebar from "../../components/Sidebar";
+
+import DarkModeToggle from "../../components/DarkModeToggle";
+import Card from "../../components/Card";
+import Filters from "./Filter";
+import AddRoom from "../Room/AddRoom";
 
 import AuthContext from "../../context/AuthContext";
 
@@ -66,41 +73,67 @@ const Homepage = () => {
   }, [authTokens, paramsFilter]);
   let cards = status ? status.results : {};
   return (
-    <div>
-      <Header />
-      <div
-        style={{
-          paddingTop: "12vh",
-          display: "grid",
-          gridTemplateColumns: "1fr 4fr",
-        }}
-      >
-        <SidebarNavigation />
-        <div
-          className=" bg-slate-100 dark:bg-navy-900 text-left pb-10 pl-10"
-          style={{ width: "85vw", marginLeft: "13.9vw" }}
-        >
-          <div className="text-5xl font-bold text-myGrey mb-8 mt-5">Events</div>
-          <Filters
-            paramsFilter={paramsFilter}
-            setparamsFilter={setparamsFilter}
-          />
+    <>
+      <PageWrapper>
+        <Header>
+          <Header.Items>
+            {/* <Header.SidebarToggle /> */}
+            <Header.Right>
+              <DarkModeToggle />
+            </Header.Right>
+          </Header.Items>
+        </Header>
+        <Sidebar>
+          <Sidebar.Primary>
+            <Sidebar.Primary.Logo />
+            <Sidebar.Primary.Middle>
+              <Sidebar.Primary.Middle.Home />
+              {/* <Sidebar.Primary.Middle.LaterThings/> */}
+              <Sidebar.Secondary.Expanded.Body.Middle.Divider />
+              <Sidebar.Primary.Middle.Rooms>
+                <Sidebar.Primary.Middle.Rooms.Item />
+                <Sidebar.Primary.Middle.Rooms.AddRoom />
 
+                {/* <Sidebar.Primary.Middle.Rooms.AllItem/> */}
+              </Sidebar.Primary.Middle.Rooms>
+            </Sidebar.Primary.Middle>
+            <Sidebar.Primary.Bottom>
+              <Sidebar.Primary.Bottom.Settings />
+              <Sidebar.Primary.Bottom.Profile />
+            </Sidebar.Primary.Bottom>
+          </Sidebar.Primary>
+        
+        </Sidebar>
+        <MainSection>
           <div
-            className="grid grid-cols-2 gap-6"
-            style={{ width: "75.6vw", marginTop: "5vh" }}
+            className=" bg-slate-100 dark:bg-navy-900 text-left pb-10 pl-10"
+
           >
-            {status ? (
-              cards.map((item, index) => (
-                <Card key={index} info={information} data={item} />
-              ))
-            ) : (
-              <Card info={information} />
-            )}
+            <div className="text-5xl font-bold text-myGrey mb-8 mt-5">
+              Events
+            </div>
+            <Filters
+              paramsFilter={paramsFilter}
+              setparamsFilter={setparamsFilter}
+            />
+
+            <div
+              className="grid grid-cols-2 gap-6"
+              style={{ width: "75.6vw", marginTop: "5vh" }}
+            >
+              {status ? (
+                cards.map((item, index) => (
+                  <Card key={index} info={information} data={item} />
+                ))
+              ) : (
+                <Card info={information} />
+              )}
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
+          <AddRoom/>
+        </MainSection>
+      </PageWrapper>
+    </>
   );
 };
 
