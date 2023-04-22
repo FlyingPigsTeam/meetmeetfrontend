@@ -32,7 +32,7 @@ const InformationForm = ({ Title, ...props }) => {
   }, []);
   const categories = [
     { value: "cinema", label: "cinema" },
-    { value: "sport", label: "sport", selected: true },
+    { value: "sport", label: "sport"},
   ];
   const sampleJson = {
     title: "soltaniali208040gmail.com",
@@ -210,11 +210,21 @@ const InformationForm = ({ Title, ...props }) => {
       valueField: "value",
       labelField: "label",
       options: categories,
+      items: [],
+      placeholder: "Select some Categories",
+
+      hidePlaceholder: true,
+      onBlur: () => {
+        formik.setFieldTouched("categories", true);
+        formik.validateForm();
+      },
       onChange: (value) => {
         formik.setFieldValue("categories", value);
         formik.validateForm();
       },
-    });
+    }
+    );
+
     return () => {
       selectOptions.destroy();
     };
@@ -337,7 +347,6 @@ const InformationForm = ({ Title, ...props }) => {
               <select
                 ref={selectCustom}
                 className="mt-1.5 w-full"
-                placeholder="Select an option..."
                 autocomplete="off"
                 multiple
                 id="categories"
@@ -448,7 +457,7 @@ const InformationForm = ({ Title, ...props }) => {
                 </span>
               )}
             </label>
-            <div class="grid grid-cols-2 gap-4 sm:grid-cols-2 py-7 px-2">
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-1 py-7 px-2">
               <label class="inline-flex items-center space-x-2">
                 <input
                   class="form-switch h-5 w-10 rounded-lg bg-slate-300 before:rounded-md before:bg-slate-50 checked:bg-primary checked:!bg-none checked:before:bg-white dark:bg-navy-900 dark:before:bg-navy-300 dark:checked:bg-accent dark:checked:before:bg-white"
@@ -561,7 +570,7 @@ const InformationForm = ({ Title, ...props }) => {
             </button> */}
             <a href="http://localhost:3000/">
               <button
-                onClass={()=>navigate(`/room/${idroom}/info`)}
+                onClick={() => navigate(`/room/${idroom}/info`)}
                 id="submit"
                 type="submit"
                 disabled={formik.isSubmitting}
