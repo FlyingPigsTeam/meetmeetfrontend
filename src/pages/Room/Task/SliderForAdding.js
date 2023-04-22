@@ -64,30 +64,30 @@ export default function SliderForAdding({ slideover, setslideover, id }) {
                           aria-hidden="true"
                         />
                       </div>
-                      <div class="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto p-4">
-                        <label class="block">
+                      <div className="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto p-4">
+                        <label className="block">
                           <span>Task Title</span>
                           <input
                             onChange={(e) => settitle(e.target.value)}
-                            class="form-input mt-1.5 h-9 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                            className="form-input mt-1.5 h-9 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                             placeholder="Enter todo title"
                             type="text"
                           />
                         </label>
-                        <label class="block">
+                        <label className="block">
                           <span>Task Description</span>
                           <textarea
                             onChange={(e) => setdescription(e.target.value)}
-                            class="form-input mt-1.5 h-24 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                            className="form-input mt-1.5 h-24 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                             placeholder="Enter todo title"
                             type="text"
                           />
                         </label>
-                        <label class="block z-40">
+                        <label className="block z-40">
                           <span>Difficulty:</span>
                           <select
                             //x-init="$el._x_tom = new Tom($el)"
-                            class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                            className="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                             //multiple
                             value={selectedDifficulty}
                             onChange={handleDifficultyChange}
@@ -99,11 +99,11 @@ export default function SliderForAdding({ slideover, setslideover, id }) {
                             <option value="High">High</option>
                           </select>
                         </label>
-                        <label class="block z-40">
+                        <label className="block z-40">
                           <span>Assigned To:</span>
                           <select
                             //x-init="$el._x_tom = new Tom($el)"
-                            class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                            className="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                             //multiple
                             value={selectedDifficulty}
                             onChange={handleDifficultyChange}
@@ -114,8 +114,8 @@ export default function SliderForAdding({ slideover, setslideover, id }) {
                           </select>
                         </label>
                       </div>
-                      <div class="flex items-center justify-between mt-20 xl:mt-52 py-3 px-4">
-                        <button class="z-20 grid h-10 w-full items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm bg-primary text-slate-100 hover:opacity-80 dark:text-navy-900 duration-300">
+                      <div className="flex items-center justify-between mt-20 xl:mt-52 py-3 px-4">
+                        <button className="z-20 grid h-10 w-full items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm bg-primary text-slate-100 hover:opacity-80 dark:text-navy-900 duration-300">
                           Add
                         </button>
                       </div>
