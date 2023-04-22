@@ -10,7 +10,7 @@ import Sidebar from "../../components/Sidebar";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Card from "../../components/Card";
 import Filters from "./Filter";
-import AddRoom from "../Room/AddRoom";
+
 
 import AuthContext from "../../context/AuthContext";
 
@@ -130,7 +130,6 @@ const Homepage = () => {
               )}
             </div>
           </div>
-          <AddRoom/>
         </MainSection>
       </PageWrapper>
     </>

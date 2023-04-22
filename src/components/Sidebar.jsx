@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import classNames from "../utils/classNames";
+import AddRoom from "../pages/Room/AddRoom";
 
 import Avatar200x200 from "../assets/images/200x200.png";
 import AppLogo from "../assets/images/app-logo.svg";
@@ -53,7 +54,7 @@ Sidebar.Primary.Middle.Home = function PrimarySidebar({
     <a
       href="dashboards-crm-analytics.html"
       class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-      // x-tooltip.placement.right="'Dashboards'"
+    // x-tooltip.placement.right="'Dashboards'"
     >
       <svg
         class="h-7 w-7"
@@ -93,7 +94,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="dashboards-crm-analytics.html"
         class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-        // x-tooltip.placement.right="'Dashboards'"
+      // x-tooltip.placement.right="'Dashboards'"
       >
         <svg
           class="h-7 w-7"
@@ -125,7 +126,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="apps-list.html"
         class="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
-        // x-tooltip.placement.right="'Applications'"
+      // x-tooltip.placement.right="'Applications'"
       >
         <svg
           class="h-7 w-7"
@@ -157,7 +158,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="pages-card-user-1.html"
         class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-        // x-tooltip.placement.right="'Pages & Layouts'"
+      // x-tooltip.placement.right="'Pages & Layouts'"
       >
         <svg
           class="h-7 w-7"
@@ -191,7 +192,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="form-input-text.html"
         class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-        // x-tooltip.placement.right="'Forms'"
+      // x-tooltip.placement.right="'Forms'"
       >
         <svg
           class="h-7 w-7"
@@ -220,7 +221,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="components-accordion.html"
         class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-        // x-tooltip.placement.right="'Components'"
+      // x-tooltip.placement.right="'Components'"
       >
         <svg
           class="h-7 w-7"
@@ -249,7 +250,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="elements-avatar.html"
         class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-        // x-tooltip.placement.right="'Elements'"
+      // x-tooltip.placement.right="'Elements'"
       >
         <svg
           class="h-7 w-7"
@@ -347,22 +348,7 @@ Sidebar.Primary.Middle.Rooms.AddRoom = function AddRoomButton({
 }) {
   return (
     <>
-      <button class="btn h-10 w-10 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-8 w-8"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M12 4v16m8-8H4"
-          ></path>
-        </svg>
-      </button>
+      <AddRoom />
     </>
   );
 };
@@ -1259,7 +1245,7 @@ Sidebar.Secondary.Expanded.Body.Middle.SectionHeader = function ({
             <div
               x-ref="popperRoot"
               class="popper-root"
-              // :class="isShowPopper && 'show'"
+            // :class="isShowPopper && 'show'"
             >
               <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
                 <ul>
@@ -1738,7 +1724,7 @@ Sidebar.Secondary.Minimized.Body.MoreActions = function ({
           <div
             x-ref="popperRoot"
             class="popper-root"
-            // :class="isShowPopper && 'show'"
+          // :class="isShowPopper && 'show'"
           >
             <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
               <ul>
