@@ -1,18 +1,67 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import AuthContext from "../../../context/AuthContext";
+import axios from "axios";
+import Swal from "sweetalert2";
 
-export default function SliderForAdding({ slideover, setslideover, id }) {
+export default function SliderForAdding({
+  slideover,
+  setslideover,
+  roomId,
+  setaddChanges,
+}) {
   const [title, settitle] = useState("");
   const [description, setdescription] = useState("");
-  const [selectedDifficulty, setSelectedDifficulty] = useState("Low");
+  const [selectedDifficulty, setSelectedDifficulty] = useState(3);
   function handleDifficultyChange(event) {
     setSelectedDifficulty(event.target.value);
   }
-  console.log(title);
-  console.log(description);
-  console.log(selectedDifficulty);
+
+  let authTokens = useContext(AuthContext).authTokens;
+  const [addStatus, setaddStatus] = useState([]);
+  const reqForAdding = async () => {
+    const { data } = await axios
+      .post(
+        `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks`,
+        JSON.stringify({
+          title: title,
+          priority: selectedDifficulty,
+          description: description,
+          done: 0,
+          user: 2,
+          room: roomId,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + authTokens.access,
+          },
+        }
+      )
+      .then((response) => response);
+    setaddStatus(data);
+    setaddChanges((e) => e + 1);
+    //console.log(data);
+  };
+  //console.log(addStatus)
+
+  useEffect(() => {
+    if (addStatus && addStatus.length != 0) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "New Task Added",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
+  }, [addStatus]);
+
+  // console.log(title);
+  // console.log(description);
+  // console.log(selectedDifficulty);
   return (
     <Transition.Root show={slideover} as={Fragment}>
       <Dialog
@@ -79,12 +128,12 @@ export default function SliderForAdding({ slideover, setslideover, id }) {
                           <textarea
                             onChange={(e) => setdescription(e.target.value)}
                             className="form-input mt-1.5 h-24 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                            placeholder="Enter todo title"
+                            placeholder="Enter todo description"
                             type="text"
                           />
                         </label>
                         <label className="block z-40">
-                          <span>Difficulty:</span>
+                          <span>Priority:</span>
                           <select
                             //x-init="$el._x_tom = new Tom($el)"
                             className="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
@@ -94,9 +143,9 @@ export default function SliderForAdding({ slideover, setslideover, id }) {
                             placeholder="Select difficulty of the task"
                             //autocomplete="off"
                           >
-                            <option value="Low">Low</option>
-                            <option value="Medium">Medium</option>
-                            <option value="High">High</option>
+                            <option value="3">Low</option>
+                            <option value="2">Medium</option>
+                            <option value="1">High</option>
                           </select>
                         </label>
                         <label className="block z-40">
@@ -115,7 +164,10 @@ export default function SliderForAdding({ slideover, setslideover, id }) {
                         </label>
                       </div>
                       <div className="flex items-center justify-between mt-20 xl:mt-52 py-3 px-4">
-                        <button className="z-20 grid h-10 w-full items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm bg-primary text-slate-100 hover:opacity-80 dark:text-navy-900 duration-300">
+                        <button
+                          onClick={reqForAdding}
+                          className="z-20 grid h-10 w-full items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm bg-primary text-slate-100 hover:opacity-80 dark:text-navy-900 duration-300"
+                        >
                           Add
                         </button>
                       </div>

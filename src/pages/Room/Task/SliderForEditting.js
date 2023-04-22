@@ -1,15 +1,80 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import AuthContext from "../../../context/AuthContext";
+import axios from "axios";
+import Swal from "sweetalert2";
 
-export default function SliderForEditting({ slideover, setslideover, id }) {
-  const [title, settitle] = useState("Hello world");
-  const [description, setdescription] = useState("vsdvrdvdvecsc");
-  const [selectedDifficulty, setSelectedDifficulty] = useState("Hard");
+export default function SliderForEditting({
+  slideover,
+  setslideover,
+  roomId,
+  taskId,
+  seteditChanges,
+}) {
+  const [title, settitle] = useState();
+  const [description, setdescription] = useState();
+  const [selectedDifficulty, setSelectedDifficulty] = useState();
   function handleDifficultyChange(event) {
     setSelectedDifficulty(event.target.value);
   }
+  let authTokens = useContext(AuthContext).authTokens;
+  const reqForGettingTask = async () => {
+    const { data } = await axios
+      .get(
+        `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?task_id=${taskId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + authTokens.access,
+          },
+        }
+      )
+      .then((response) => response);
+    settitle(data.title);
+    setdescription(data.description);
+    setSelectedDifficulty(data.priority);
+  };
+  useEffect(() => {
+    reqForGettingTask();
+  }, [slideover]);
+
+  const [editStatus, seteditStatus] = useState([]);
+  const reqForEditing = async () => {
+    const { data } = await axios
+      .put(
+        `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?task_id=${taskId}`,
+        JSON.stringify({
+          title: title,
+          priority: selectedDifficulty,
+          description: description,
+          user: 2,
+          room: roomId,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + authTokens.access,
+          },
+        }
+      )
+      .then((response) => response);
+    seteditStatus(data);
+    seteditChanges((e) => e + 1);
+  };
+  useEffect(() => {
+    if (editStatus && editStatus.length != 0) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Task Edited",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
+  }, [editStatus]);
+
   return (
     <Transition.Root show={slideover} as={Fragment}>
       <Dialog
@@ -83,7 +148,7 @@ export default function SliderForEditting({ slideover, setslideover, id }) {
                           />
                         </label>
                         <label className="block z-40">
-                          <span>Difficulty:</span>
+                          <span>Priority:</span>
                           <select
                             //x-init="$el._x_tom = new Tom($el)"
                             className="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
@@ -93,9 +158,9 @@ export default function SliderForEditting({ slideover, setslideover, id }) {
                             placeholder="Select difficulty of the task"
                             //autocomplete="off"
                           >
-                            <option value="Easy">Easy</option>
-                            <option value="Medium">Medium</option>
-                            <option value="Hard">Hard</option>
+                            <option value="3">Low</option>
+                            <option value="2">Medium</option>
+                            <option value="1">Hard</option>
                           </select>
                         </label>
                         <label className="block z-40">
@@ -114,7 +179,13 @@ export default function SliderForEditting({ slideover, setslideover, id }) {
                         </label>
                       </div>
                       <div className="flex items-center justify-between mt-20 xl:mt-52 py-3 px-4">
-                        <button className=" z-20 grid h-10 w-full items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm bg-primary text-slate-100 hover:opacity-80 dark:text-navy-900 duration-300">
+                        <button
+                          onClick={() => {
+                            reqForEditing();
+                            setslideover(false);
+                          }}
+                          className=" z-20 grid h-10 w-full items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm bg-primary text-slate-100 hover:opacity-80 dark:text-navy-900 duration-300"
+                        >
                           Save
                         </button>
                       </div>
