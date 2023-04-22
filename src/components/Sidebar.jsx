@@ -347,7 +347,7 @@ Sidebar.Primary.Middle.Rooms.AddRoom = function AddRoomButton({
 }) {
   return (
     <>
-      <button class="btn h-11 w-11 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+      <button class="btn h-10 w-10 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-8 w-8"

@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import Homepage from "../pages/Home/Homepage";
 import React from "react";
 
 import { AuthProvider } from "../context/AuthContext";
+import Homepage from "../pages/Home/Homepage";
 import PrivateRoute from "../utils/PrivateRoute";
 
 // import Home from "../pages/Home/Home";
@@ -50,7 +50,7 @@ const Router = () => {
             element={<InformationForm Title="Edit" />}
           />
           <Route path="/panel" element={<PanelMain />} />
-          <Route path="/panel2" element={<Paneltest />} />
+          <Route path="/panel2" element={<Paneltest />} /> 
 
           {/* <Routes>
               <Route path="/" element={<Homepage />} />
