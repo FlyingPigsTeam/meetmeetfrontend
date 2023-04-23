@@ -6,6 +6,12 @@ import AddRoom from "../pages/Room/AddRoom";
 import Avatar200x200 from "../assets/images/200x200.png";
 import AppLogo from "../assets/images/app-logo.svg";
 
+
+// TODO : ACTIVE SELECTION
+// TODO : HOVER COLORIZE
+// TODO : HOME BUTTON SHAPE CHANGES ON OVERFLOW ROOMS
+// TODO : ROOMS HOVER HAVE PROBLEM
+// TODO : ACTIVE NOTIF ON ROOMS 
 export default function Sidebar({ classes, children, ...restProps }) {
   return <div className="sidebar print:hidden">{children}</div>;
 }
