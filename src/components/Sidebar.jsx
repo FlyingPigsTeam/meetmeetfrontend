@@ -1,11 +1,13 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import classNames from "../utils/classNames";
+import axios from 'axios';
+import AuthContext from "../context/AuthContext";
+
 import AddRoom from "../pages/Room/AddRoom";
+import classNames from "../utils/classNames";
 
 import Avatar200x200 from "../assets/images/200x200.png";
 import AppLogo from "../assets/images/app-logo.svg";
-
 
 // TODO : ACTIVE SELECTION
 // TODO : HOVER COLORIZE
@@ -329,20 +331,55 @@ Sidebar.Primary.Middle.Rooms = function PrimaryRoomsSections({
 }) {
   return <div class="flex flex-col">{children}</div>;
 };
-Sidebar.Primary.Middle.Rooms.Item = function PrimaryRoomsItems({
+Sidebar.Primary.Middle.Rooms.LoadItems = function LoaderRoomsItems({
   classes,
   children,
   ...restProps
 }) {
+  let authTokens = useContext(AuthContext).authTokens;
+  const [myrooms, setMyRooms] = useState([])
+  const req = async () => {
+    const { data } = await axios
+      .get(`http://127.0.0.1:8000/api/my-rooms/`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + authTokens.access,
+        },
+      })
+      .then((response) => response);
+    console.log("roomDataFetch", data);
+    setMyRooms(data);
+  };
+  useEffect(() => {
+    req();
+  }, []);
+  return (
+    <>
+      {
+        myrooms?.map(item =>
+          <Sidebar.Primary.Middle.Rooms.Item item={item} />
+        )
+      }
+    </>
+  );
+};
+Sidebar.Primary.Middle.Rooms.Item = function PrimaryRoomsItems({
+  classes,
+  item,
+  children,
+  ...restProps
+}) {
+  const navigate = useNavigate();
   return (
     <>
       <div
         // @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/200x200.png',name:'Konnor Guzman'})"
         class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
       >
-        <div class="avatar h-10 w-10">
+        <button onClick={() => navigate(`room/${item.id}/info`)}
+          class="avatar h-10 w-10">
           <img class="rounded-full" src={Avatar200x200} alt="avatar" />
-        </div>
+        </button>
       </div>
     </>
   );

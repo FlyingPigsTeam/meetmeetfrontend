@@ -110,7 +110,6 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
         }),
         onSubmit: async (values) => {
             // TODO: CREATE API PROXY + ACCELRATORS
-            setModalOpen(false);
             const { data } = await axios
                 .post(
                     `http://127.0.0.1:8000/api/rooms`,
@@ -138,6 +137,7 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
                     }
                 )
                 .then((response) => response);
+            setModalOpen(false);
             // TODO : NAVIGATE AFTER SUBMITION
             // TODO : IS SUBMITTING HANDLE
             // TODO : SPINNER COMPONENT
@@ -384,7 +384,7 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
                                     options={{
                                         mode: "range",
                                         enableTime: true,
-                                        dateFormat: "Y-m-d H:i", 
+                                        dateFormat: "Y-m-d H:i",
                                         // defaultDate: ["2016-10-10", "2016-10-20"],
                                         onChange: (selectedDates) => {
                                             formik.setFieldValue("dateRange", selectedDates);
@@ -571,7 +571,14 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
                             disabled={formik.isSubmitting}
                             class="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
                         >
-                            Add Room
+                            {formik.isSubmitting ? (
+                                <>
+                                    <div class="spinner h-7 w-7 animate-spin rounded-full border-[3px] border-primary/30 border-r-primary dark:border-accent/30 dark:border-r-accent"></div>
+                                </>
+                            ) : (
+                                "Add Room"
+                            )}
+
                         </button>
 
                     </div>

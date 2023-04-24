@@ -38,7 +38,7 @@ const InfoTab = () => {
               {/* <Sidebar.Primary.Middle.LaterThings/> */}
               <Sidebar.Secondary.Expanded.Body.Middle.Divider />
               <Sidebar.Primary.Middle.Rooms>
-                <Sidebar.Primary.Middle.Rooms.Item />
+                <Sidebar.Primary.Middle.Rooms.LoadItems />
                 <Sidebar.Primary.Middle.Rooms.AddRoom />
 
                 {/* <Sidebar.Primary.Middle.Rooms.AllItem/> */}
@@ -55,7 +55,7 @@ const InfoTab = () => {
                 <Sidebar.Secondary.Expanded.Header.Title>
                   <Sidebar.Secondary.Expanded.Header.Title.Icon />
                   <Sidebar.Secondary.Expanded.Header.Title.Text>
-                    Todo
+                    Tabs
                   </Sidebar.Secondary.Expanded.Header.Title.Text>
                 </Sidebar.Secondary.Expanded.Header.Title>
                 <Sidebar.Secondary.Expanded.Header.MinimizeButton />

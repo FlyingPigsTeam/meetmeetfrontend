@@ -91,7 +91,8 @@ const Homepage = () => {
               {/* <Sidebar.Primary.Middle.LaterThings/> */}
               <Sidebar.Secondary.Expanded.Body.Middle.Divider />
               <Sidebar.Primary.Middle.Rooms>
-                <Sidebar.Primary.Middle.Rooms.Item />
+                {/* <Sidebar.Primary.Middle.Rooms.Item /> */}
+                <Sidebar.Primary.Middle.Rooms.LoadItems/>
                 <Sidebar.Primary.Middle.Rooms.AddRoom />
 
                 {/* <Sidebar.Primary.Middle.Rooms.AllItem/> */}
