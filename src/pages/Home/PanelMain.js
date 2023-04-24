@@ -9,17 +9,17 @@ const PanelMain = () => {
     ? document.body.classList.add("is-sidebar-open")
     : document.body.classList.remove("is-sidebar-open");
   return (
-    <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
+    <div id="root" className="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
       {/* <!-- Sidebar --> */}
-      <div class="sidebar print:hidden">
+      <div className="sidebar print:hidden">
         {/* <!-- Main Sidebar --> */}
-        <div class="main-sidebar">
-          <div class="flex h-full w-full flex-col items-center border-r border-slate-150 bg-white dark:border-navy-700 dark:bg-navy-800">
+        <div className="main-sidebar">
+          <div className="flex h-full w-full flex-col items-center border-r border-slate-150 bg-white dark:border-navy-700 dark:bg-navy-800">
             {/* <!-- Application Logo --> */}
-            <div class="flex pt-4">
+            <div className="flex pt-4">
               <a href="/">
                 <img
-                  class="h-11 w-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
+                  className="h-11 w-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
                   src={AppLogo}
                   alt="logo"
                 />
@@ -27,15 +27,15 @@ const PanelMain = () => {
             </div>
 
             {/* <!-- Main Sections Links --> */}
-            <div class="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6">
+            <div className="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6">
               {/* <!-- Dashobards --> */}
               <a
                 href="dashboards-crm-analytics.html"
-                class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                 // x-tooltip.placement.right="'Dashboards'"
               >
                 <svg
-                  class="h-7 w-7"
+                  className="h-7 w-7"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -63,11 +63,11 @@ const PanelMain = () => {
               {/* <!-- Apps --> */}
               <a
                 href="apps-list.html"
-                class="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                 // x-tooltip.placement.right="'Applications'"
               >
                 <svg
-                  class="h-7 w-7"
+                  className="h-7 w-7"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -106,11 +106,11 @@ const PanelMain = () => {
               {/* <!-- Pages And Layouts --> */}
               <a
                 href="pages-card-user-1.html"
-                class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                 // x-tooltip.placement.right="'Pages & Layouts'"
               >
                 <svg
-                  class="h-7 w-7"
+                  className="h-7 w-7"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -140,11 +140,11 @@ const PanelMain = () => {
               {/* <!-- Forms --> */}
               <a
                 href="form-input-text.html"
-                class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                 // x-tooltip.placement.right="'Forms'"
               >
                 <svg
-                  class="h-7 w-7"
+                  className="h-7 w-7"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -169,11 +169,11 @@ const PanelMain = () => {
               {/* <!-- Components --> */}
               <a
                 href="components-accordion.html"
-                class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                 // x-tooltip.placement.right="'Components'"
               >
                 <svg
-                  class="h-7 w-7"
+                  className="h-7 w-7"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -198,11 +198,11 @@ const PanelMain = () => {
               {/* <!-- Elements --> */}
               <a
                 href="elements-avatar.html"
-                class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                 // x-tooltip.placement.right="'Elements'"
               >
                 <svg
-                  class="h-7 w-7"
+                  className="h-7 w-7"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -218,15 +218,15 @@ const PanelMain = () => {
                   />
                 </svg>
               </a>
-              <ul class="mt-2 flex flex-col items-center justify-center space-y-1">
+              <ul className="mt-2 flex flex-col items-center justify-center space-y-1">
                 <li>
                   <a
                     href="#"
-                    class="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                    className="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="h-5.5 w-5.5"
+                      className="h-5.5 w-5.5"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -243,11 +243,11 @@ const PanelMain = () => {
                 <li>
                   <a
                     href="#"
-                    class="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                    className="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="h-5.5 w-5.5"
+                      className="h-5.5 w-5.5"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -262,80 +262,80 @@ const PanelMain = () => {
                   </a>
                 </li>
               </ul>
-              <div class="my-4 mx-4 h-px shrink-0 bg-slate-200 dark:bg-navy-500"></div>
-              <div class="flex flex-col">
+              <div className="my-4 mx-4 h-px shrink-0 bg-slate-200 dark:bg-navy-500"></div>
+              <div className="flex flex-col">
                 <div
                   // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
-                  class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+                  className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
                 >
-                  <div class="avatar h-10 w-10">
+                  <div className="avatar h-10 w-10">
                     <img
-                      class="rounded-full"
+                      className="rounded-full"
                       src={Avatar200x200}
                       alt="avatar"
                     />
-                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                    <div className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
                   </div>
                 </div>
                 <div
                   // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
-                  class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+                  className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
                 >
-                  <div class="avatar h-10 w-10">
+                  <div className="avatar h-10 w-10">
                     <img
-                      class="rounded-full"
+                      className="rounded-full"
                       src={Avatar200x200}
                       alt="avatar"
                     />
-                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                    <div className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
                   </div>
                 </div>
                 <div
                   // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
-                  class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+                  className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
                 >
-                  <div class="avatar h-10 w-10">
+                  <div className="avatar h-10 w-10">
                     <img
-                      class="rounded-full"
+                      className="rounded-full"
                       src={Avatar200x200}
                       alt="avatar"
                     />
-                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                    <div className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
                   </div>
                 </div>
                 <div
                   // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
-                  class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+                  className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
                 >
-                  <div class="avatar h-10 w-10">
+                  <div className="avatar h-10 w-10">
                     <img
-                      class="rounded-full"
+                      className="rounded-full"
                       src={Avatar200x200}
                       alt="avatar"
                     />
-                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                    <div className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
                   </div>
                 </div>
                 <div
                   // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
-                  class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+                  className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
                 >
-                  <div class="avatar h-10 w-10">
+                  <div className="avatar h-10 w-10">
                     <img
-                      class="rounded-full"
+                      className="rounded-full"
                       src={Avatar200x200}
                       alt="avatar"
                     />
-                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                    <div className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
                   </div>
                 </div>
                 <div
                   // @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/200x200.png',name:'Konnor Guzman'})"
-                  class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+                  className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
                 >
-                  <div class="avatar h-10 w-10">
+                  <div className="avatar h-10 w-10">
                     <img
-                      class="rounded-full"
+                      className="rounded-full"
                       src={Avatar200x200}
                       alt="avatar"
                     />
@@ -343,45 +343,45 @@ const PanelMain = () => {
                 </div>
                 <div
                   // @click="$dispatch('change-active-chat',{chatId:'chat-3',avatar_url:'images/200x200.png',name:'Travis Fuller'})"
-                  class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+                  className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
                 >
-                  <div class="avatar h-10 w-10">
+                  <div className="avatar h-10 w-10">
                     <img
-                      class="rounded-full"
+                      className="rounded-full"
                       src={Avatar200x200}
                       alt="avatar"
                     />
 
-                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-primary dark:border-navy-700 dark:bg-accent">
-                      <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-80 dark:bg-accent"></span>
+                    <div className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-primary dark:border-navy-700 dark:bg-accent">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-80 dark:bg-accent"></span>
                     </div>
                   </div>
                 </div>
                 <div
                   // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Derrick Simmons'})"
-                  class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+                  className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
                 >
-                  <div class="avatar h-10 w-10">
+                  <div className="avatar h-10 w-10">
                     <img
-                      class="rounded-full"
+                      className="rounded-full"
                       src={Avatar200x200}
                       alt="avatar"
                     />
-                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                    <div className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* <!-- Bottom Links --> */}
-            <div class="flex flex-col items-center space-y-3 py-3">
+            <div className="flex flex-col items-center space-y-3 py-3">
               {/* <!-- Settings --> */}
               <a
                 href="form-layout-5.html"
-                class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
               >
                 <svg
-                  class="h-7 w-7"
+                  className="h-7 w-7"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -402,27 +402,27 @@ const PanelMain = () => {
               <div
                 x-data="usePopper({placement:'right-end',offset:12})"
                 // @click.outside="isShowPopper && (isShowPopper = false)"
-                class="flex"
+                className="flex"
               >
                 <button
                   // @click="isShowPopper = !isShowPopper"
                   x-ref="popperRef"
-                  class="avatar h-12 w-12"
+                  className="avatar h-12 w-12"
                 >
-                  <img class="rounded-full" src={Avatar200x200} alt="avatar" />
-                  <span class="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
+                  <img className="rounded-full" src={Avatar200x200} alt="avatar" />
+                  <span className="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
                 </button>
 
                 <div
-                  // :class="isShowPopper && 'show'"
-                  class="popper-root fixed"
+                  // :className="isShowPopper && 'show'"
+                  className="popper-root fixed"
                   x-ref="popperRoot"
                 >
-                  <div class="popper-box w-64 rounded-lg border border-slate-150 bg-white shadow-soft dark:border-navy-600 dark:bg-navy-700">
-                    <div class="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
-                      <div class="avatar h-14 w-14">
+                  <div className="popper-box w-64 rounded-lg border border-slate-150 bg-white shadow-soft dark:border-navy-600 dark:bg-navy-700">
+                    <div className="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
+                      <div className="avatar h-14 w-14">
                         <img
-                          class="rounded-full"
+                          className="rounded-full"
                           src={Avatar200x200}
                           alt="avatar"
                         />
@@ -430,24 +430,24 @@ const PanelMain = () => {
                       <div>
                         <a
                           href="#"
-                          class="text-base font-medium text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light"
+                          className="text-base font-medium text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light"
                         >
                           Travis Fuller
                         </a>
-                        <p class="text-xs text-slate-400 dark:text-navy-300">
+                        <p className="text-xs text-slate-400 dark:text-navy-300">
                           Product Designer
                         </p>
                       </div>
                     </div>
-                    <div class="flex flex-col pt-2 pb-5">
+                    <div className="flex flex-col pt-2 pb-5">
                       <a
                         href="#"
-                        class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                        className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       >
-                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-warning text-white">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-warning text-white">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="h-4.5 w-4.5"
+                            className="h-4.5 w-4.5"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -462,22 +462,22 @@ const PanelMain = () => {
                         </div>
 
                         <div>
-                          <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                          <h2 className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                             Profile
                           </h2>
-                          <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                          <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                             Your profile setting
                           </div>
                         </div>
                       </a>
                       <a
                         href="#"
-                        class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                        className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       >
-                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-info text-white">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-info text-white">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="h-4.5 w-4.5"
+                            className="h-4.5 w-4.5"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -492,22 +492,22 @@ const PanelMain = () => {
                         </div>
 
                         <div>
-                          <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                          <h2 className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                             Messages
                           </h2>
-                          <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                          <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                             Your messages and tasks
                           </div>
                         </div>
                       </a>
                       <a
                         href="#"
-                        class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                        className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       >
-                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary text-white">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary text-white">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="h-4.5 w-4.5"
+                            className="h-4.5 w-4.5"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -522,22 +522,22 @@ const PanelMain = () => {
                         </div>
 
                         <div>
-                          <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                          <h2 className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                             Team
                           </h2>
-                          <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                          <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                             Your team activity
                           </div>
                         </div>
                       </a>
                       <a
                         href="#"
-                        class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                        className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       >
-                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-error text-white">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-error text-white">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="h-4.5 w-4.5"
+                            className="h-4.5 w-4.5"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -552,22 +552,22 @@ const PanelMain = () => {
                         </div>
 
                         <div>
-                          <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                          <h2 className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                             Activity
                           </h2>
-                          <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                          <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                             Your activity and events
                           </div>
                         </div>
                       </a>
                       <a
                         href="#"
-                        class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                        className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       >
-                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-success text-white">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-success text-white">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="h-4.5 w-4.5"
+                            className="h-4.5 w-4.5"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -587,19 +587,19 @@ const PanelMain = () => {
                         </div>
 
                         <div>
-                          <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                          <h2 className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                             Settings
                           </h2>
-                          <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                          <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                             Webapp settings
                           </div>
                         </div>
                       </a>
-                      <div class="mt-3 px-4">
-                        <button class="btn h-9 w-full space-x-2 bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                      <div className="mt-3 px-4">
+                        <button className="btn h-9 w-full space-x-2 bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="h-5 w-5"
+                            className="h-5 w-5"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -623,15 +623,15 @@ const PanelMain = () => {
         </div>
 
         {/* <!-- Sidebar Panel --> */}
-        <div class="sidebar-panel">
-          <div class="flex h-full grow flex-col bg-white pl-[var(--main-sidebar-width)] dark:bg-navy-750">
+        <div className="sidebar-panel">
+          <div className="flex h-full grow flex-col bg-white pl-[var(--main-sidebar-width)] dark:bg-navy-750">
             {/* <!-- Sidebar Panel Header --> */}
-            <div class="flex h-18 w-full items-center justify-between pl-4 pr-1">
-              <div class="flex items-center">
-                <div class="avatar mr-3 hidden h-9 w-9 lg:flex">
-                  <div class="is-initial rounded-full bg-info/10 text-info">
+            <div className="flex h-18 w-full items-center justify-between pl-4 pr-1">
+              <div className="flex items-center">
+                <div className="avatar mr-3 hidden h-9 w-9 lg:flex">
+                  <div className="is-initial rounded-full bg-info/10 text-info">
                     <svg
-                      class="h-5 w-5"
+                      className="h-5 w-5"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -652,7 +652,7 @@ const PanelMain = () => {
                     </svg>
                   </div>
                 </div>
-                <p class="text-lg font-medium tracking-wider text-slate-800 dark:text-navy-100">
+                <p className="text-lg font-medium tracking-wider text-slate-800 dark:text-navy-100">
                   Todo
                 </p>
               </div>
@@ -660,11 +660,11 @@ const PanelMain = () => {
                 onClick={() => {
                   setSidebarExpanded((curr) => !curr);
                 }}
-                class="btn h-7 w-7 rounded-full p-0 text-primary hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:text-accent-light/80 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 xl:hidden"
+                className="btn h-7 w-7 rounded-full p-0 text-primary hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:text-accent-light/80 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 xl:hidden"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
+                  className="h-6 w-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -680,17 +680,17 @@ const PanelMain = () => {
             </div>
 
             {/* <!-- Sidebar Panel Body --> */}
-            <div class="flex h-[calc(100%-4.5rem)] grow flex-col">
+            <div className="flex h-[calc(100%-4.5rem)] grow flex-col">
                             {/* <!--TABS--> */}
-              <div class="flex shrink-0 justify-between px-1.5 py-1">
+              <div className="flex shrink-0 justify-between px-1.5 py-1">
                 <a
                   href="apps-mail.html"
                   x-tooltip="'Mail App'"
-                  class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                  className="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
+                    className="h-5 w-5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -706,11 +706,11 @@ const PanelMain = () => {
                 <a
                   href="apps-kanban.html"
                   x-tooltip="'Kanban App'"
-                  class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                  className="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
+                    className="h-5 w-5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -726,11 +726,11 @@ const PanelMain = () => {
                 <a
                   href="apps-chat.html"
                   x-tooltip="'Chat App'"
-                  class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                  className="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
+                    className="h-5 w-5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -746,11 +746,11 @@ const PanelMain = () => {
                 <a
                   href="apps-pos.html"
                   x-tooltip="'POS App'"
-                  class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                  className="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
+                    className="h-5 w-5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -766,11 +766,11 @@ const PanelMain = () => {
                 <a
                   href="apps-filemanager.html"
                   x-tooltip="'File Manager App'"
-                  class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                  className="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
+                    className="h-5 w-5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -785,12 +785,12 @@ const PanelMain = () => {
                 </a>
               </div>
               
-              <div class="is-scrollbar-hidden grow overflow-y-auto">
-                <div class="mt-2 px-4">
-                  <button class="btn w-full space-x-2 rounded-full border border-slate-200 py-2 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-500 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
+              <div className="is-scrollbar-hidden grow overflow-y-auto">
+                <div className="mt-2 px-4">
+                  <button className="btn w-full space-x-2 rounded-full border border-slate-200 py-2 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-500 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="h-4 w-4"
+                      className="h-4 w-4"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -805,15 +805,15 @@ const PanelMain = () => {
                     <span> New Task </span>
                   </button>
                 </div>
-                <ul class="mt-5 space-y-1.5 px-2 font-inter text-xs+ font-medium">
+                <ul className="mt-5 space-y-1.5 px-2 font-inter text-xs+ font-medium">
                   <li>
                     <a
-                      class="group flex space-x-2 rounded-lg bg-primary/10 p-2 tracking-wide text-primary outline-none transition-all dark:bg-accent-light/10 dark:text-accent-light"
+                      className="group flex space-x-2 rounded-lg bg-primary/10 p-2 tracking-wide text-primary outline-none transition-all dark:bg-accent-light/10 dark:text-accent-light"
                       href="#"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-4.5 w-4.5"
+                        className="h-4.5 w-4.5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -830,12 +830,12 @@ const PanelMain = () => {
                   </li>
                   <li>
                     <a
-                      class="group flex space-x-2 rounded-lg p-2 tracking-wide text-slate-800 outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                      className="group flex space-x-2 rounded-lg p-2 tracking-wide text-slate-800 outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       href="#"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-4.5 w-4.5 text-slate-400 transition-colors group-hover:text-slate-500 group-focus:text-slate-500 dark:text-navy-300 dark:group-hover:text-navy-200 dark:group-focus:text-navy-200"
+                        className="h-4.5 w-4.5 text-slate-400 transition-colors group-hover:text-slate-500 group-focus:text-slate-500 dark:text-navy-300 dark:group-hover:text-navy-200 dark:group-focus:text-navy-200"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -852,12 +852,12 @@ const PanelMain = () => {
                   </li>
                   <li>
                     <a
-                      class="group flex space-x-2 rounded-lg p-2 tracking-wide text-slate-800 outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                      className="group flex space-x-2 rounded-lg p-2 tracking-wide text-slate-800 outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       href="#"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-4.5 w-4.5 text-slate-400 transition-colors group-hover:text-slate-500 group-focus:text-slate-500 dark:text-navy-300 dark:group-hover:text-navy-200 dark:group-focus:text-navy-200"
+                        className="h-4.5 w-4.5 text-slate-400 transition-colors group-hover:text-slate-500 group-focus:text-slate-500 dark:text-navy-300 dark:group-hover:text-navy-200 dark:group-focus:text-navy-200"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -874,12 +874,12 @@ const PanelMain = () => {
                   </li>
                   <li>
                     <a
-                      class="group flex space-x-2 rounded-lg p-2 tracking-wide text-slate-800 outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                      className="group flex space-x-2 rounded-lg p-2 tracking-wide text-slate-800 outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       href="#"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-4.5 w-4.5 text-slate-400 transition-colors group-hover:text-slate-500 group-focus:text-slate-500 dark:text-navy-300 dark:group-hover:text-navy-200 dark:group-focus:text-navy-200"
+                        className="h-4.5 w-4.5 text-slate-400 transition-colors group-hover:text-slate-500 group-focus:text-slate-500 dark:text-navy-300 dark:group-hover:text-navy-200 dark:group-focus:text-navy-200"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -896,12 +896,12 @@ const PanelMain = () => {
                   </li>
                   <li>
                     <a
-                      class="group flex space-x-2 rounded-lg p-2 tracking-wide text-error outline-none transition-all hover:bg-error/20 focus:bg-error/20"
+                      className="group flex space-x-2 rounded-lg p-2 tracking-wide text-error outline-none transition-all hover:bg-error/20 focus:bg-error/20"
                       href="#"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-4.5 w-4.5"
+                        className="h-4.5 w-4.5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -917,14 +917,14 @@ const PanelMain = () => {
                     </a>
                   </li>
                 </ul>
-                <div class="my-4 mx-4 h-px bg-slate-200 dark:bg-navy-500"></div>
-                <div class="flex items-center justify-between px-4">
-                  <span class="text-xs font-medium uppercase">Labels</span>
-                  <div class="-mr-1.5 flex">
-                    <button class="btn h-6 w-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                <div className="my-4 mx-4 h-px bg-slate-200 dark:bg-navy-500"></div>
+                <div className="flex items-center justify-between px-4">
+                  <span className="text-xs font-medium uppercase">Labels</span>
+                  <div className="-mr-1.5 flex">
+                    <button className="btn h-6 w-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-3.5 w-3.5"
+                        className="h-3.5 w-3.5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -941,16 +941,16 @@ const PanelMain = () => {
                     <div
                       x-data="usePopper({placement:'bottom-end',offset:4})"
                       // @click.outside="isShowPopper && (isShowPopper = false)"
-                      class="inline-flex"
+                      className="inline-flex"
                     >
                       <button
                         x-ref="popperRef"
                         // @click="isShowPopper = !isShowPopper"
-                        class="btn h-6 w-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                        className="btn h-6 w-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-3.5 w-3.5"
+                          className="h-3.5 w-3.5"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -966,15 +966,15 @@ const PanelMain = () => {
 
                       <div
                         x-ref="popperRoot"
-                        class="popper-root"
-                        // :class="isShowPopper && 'show'"
+                        className="popper-root"
+                        // :className="isShowPopper && 'show'"
                       >
-                        <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
+                        <div className="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
                           <ul>
                             <li>
                               <a
                                 href="#"
-                                class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                                className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                               >
                                 Action
                               </a>
@@ -982,7 +982,7 @@ const PanelMain = () => {
                             <li>
                               <a
                                 href="#"
-                                class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                                className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                               >
                                 Another Action
                               </a>
@@ -990,18 +990,18 @@ const PanelMain = () => {
                             <li>
                               <a
                                 href="#"
-                                class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                                className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                               >
                                 Something else
                               </a>
                             </li>
                           </ul>
-                          <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
+                          <div className="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
                           <ul>
                             <li>
                               <a
                                 href="#"
-                                class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                                className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                               >
                                 Separated Link
                               </a>
@@ -1012,14 +1012,14 @@ const PanelMain = () => {
                     </div>
                   </div>
                 </div>
-                <ul class="mt-1 space-y-1.5 px-2 font-inter text-xs+ font-medium">
+                <ul className="mt-1 space-y-1.5 px-2 font-inter text-xs+ font-medium">
                   <li>
                     <a
-                      class="group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-success/20 focus:bg-success/20"
+                      className="group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-success/20 focus:bg-success/20"
                       href="#"
                     >
                       <svg
-                        class="h-4.5 w-4.5 text-success"
+                        className="h-4.5 w-4.5 text-success"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
@@ -1037,16 +1037,16 @@ const PanelMain = () => {
                           stroke-linejoin="round"
                         />
                       </svg>
-                      <span class="text-slate-800 dark:text-navy-100">Low</span>
+                      <span className="text-slate-800 dark:text-navy-100">Low</span>
                     </a>
                   </li>
                   <li>
                     <a
-                      class="group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-warning/20 focus:bg-warning/20"
+                      className="group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-warning/20 focus:bg-warning/20"
                       href="#"
                     >
                       <svg
-                        class="h-4.5 w-4.5 text-warning"
+                        className="h-4.5 w-4.5 text-warning"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
@@ -1064,18 +1064,18 @@ const PanelMain = () => {
                           stroke-linejoin="round"
                         />
                       </svg>
-                      <span class="text-slate-800 dark:text-navy-100">
+                      <span className="text-slate-800 dark:text-navy-100">
                         Medium
                       </span>
                     </a>
                   </li>
                   <li>
                     <a
-                      class="group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-error/20 focus:bg-error/20"
+                      className="group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-error/20 focus:bg-error/20"
                       href="#"
                     >
                       <svg
-                        class="h-4.5 w-4.5 text-error"
+                        className="h-4.5 w-4.5 text-error"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
@@ -1093,18 +1093,18 @@ const PanelMain = () => {
                           stroke-linejoin="round"
                         />
                       </svg>
-                      <span class="text-slate-800 dark:text-navy-100">
+                      <span className="text-slate-800 dark:text-navy-100">
                         High
                       </span>
                     </a>
                   </li>
                   <li>
                     <a
-                      class="group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-info/20 focus:bg-info/20"
+                      className="group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-info/20 focus:bg-info/20"
                       href="#"
                     >
                       <svg
-                        class="h-4.5 w-4.5 text-info"
+                        className="h-4.5 w-4.5 text-info"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
@@ -1122,7 +1122,7 @@ const PanelMain = () => {
                           stroke-linejoin="round"
                         />
                       </svg>
-                      <span class="text-slate-800 dark:text-navy-100">
+                      <span className="text-slate-800 dark:text-navy-100">
                         Update
                       </span>
                     </a>
@@ -1136,13 +1136,13 @@ const PanelMain = () => {
 
         {/* <!-- Minimized Sidebar Panel --> */}
 
-        <div class="sidebar-panel-min">
-          <div class="flex h-full flex-col items-center bg-white dark:bg-navy-750">
-            <div class="flex h-18 shrink-0 items-center justify-center">
-              <div class="avatar flex h-10 w-10 rounded-full bg-info/10 text-info">
-                <div class="is-initial">
+        <div className="sidebar-panel-min">
+          <div className="flex h-full flex-col items-center bg-white dark:bg-navy-750">
+            <div className="flex h-18 shrink-0 items-center justify-center">
+              <div className="avatar flex h-10 w-10 rounded-full bg-info/10 text-info">
+                <div className="is-initial">
                   <svg
-                    class="h-5 w-5"
+                    className="h-5 w-5"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -1164,17 +1164,17 @@ const PanelMain = () => {
                 </div>
               </div>
             </div>
-            <div class="flex h-[calc(100%-4.5rem)] grow flex-col">
-              <div class="is-scrollbar-hidden flex grow flex-col overflow-y-auto">
-                <ul class="mt-4 space-y-1">
+            <div className="flex h-[calc(100%-4.5rem)] grow flex-col">
+              <div className="is-scrollbar-hidden flex grow flex-col overflow-y-auto">
+                <ul className="mt-4 space-y-1">
                   <li>
                     <a
                       href="#"
-                      class="btn h-10 w-10 bg-primary/10 p-0 font-medium text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                      className="btn h-10 w-10 bg-primary/10 p-0 font-medium text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-5.5 w-5.5"
+                        className="h-5.5 w-5.5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -1191,11 +1191,11 @@ const PanelMain = () => {
                   <li>
                     <a
                       href="#"
-                      class="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                      className="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-5.5 w-5.5"
+                        className="h-5.5 w-5.5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -1212,11 +1212,11 @@ const PanelMain = () => {
                   <li>
                     <a
                       href="#"
-                      class="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                      className="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-5.5 w-5.5"
+                        className="h-5.5 w-5.5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -1233,11 +1233,11 @@ const PanelMain = () => {
                   <li>
                     <a
                       href="#"
-                      class="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                      className="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-5.5 w-5.5"
+                        className="h-5.5 w-5.5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -1254,11 +1254,11 @@ const PanelMain = () => {
                   <li>
                     <a
                       href="#"
-                      class="btn h-10 w-10 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25"
+                      className="btn h-10 w-10 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-5.5 w-5.5"
+                        className="h-5.5 w-5.5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -1273,15 +1273,15 @@ const PanelMain = () => {
                     </a>
                   </li>
                 </ul>
-                <div class="my-4 h-px bg-slate-200 dark:bg-navy-500"></div>
-                <ul class="space-y-1">
+                <div className="my-4 h-px bg-slate-200 dark:bg-navy-500"></div>
+                <ul className="space-y-1">
                   <li>
                     <a
                       href="#"
-                      class="btn h-10 w-10 p-0 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25"
+                      className="btn h-10 w-10 p-0 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25"
                     >
                       <svg
-                        class="h-5.5 w-5.5"
+                        className="h-5.5 w-5.5"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
@@ -1304,10 +1304,10 @@ const PanelMain = () => {
                   <li>
                     <a
                       href="#"
-                      class="btn h-10 w-10 p-0 text-warning hover:bg-warning/20 focus:bg-warning/20 active:bg-warning/25"
+                      className="btn h-10 w-10 p-0 text-warning hover:bg-warning/20 focus:bg-warning/20 active:bg-warning/25"
                     >
                       <svg
-                        class="h-5.5 w-5.5"
+                        className="h-5.5 w-5.5"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
@@ -1330,10 +1330,10 @@ const PanelMain = () => {
                   <li>
                     <a
                       href="#"
-                      class="btn h-10 w-10 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25"
+                      className="btn h-10 w-10 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25"
                     >
                       <svg
-                        class="h-5.5 w-5.5"
+                        className="h-5.5 w-5.5"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
@@ -1356,10 +1356,10 @@ const PanelMain = () => {
                   <li>
                     <a
                       href="#"
-                      class="btn h-10 w-10 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25"
+                      className="btn h-10 w-10 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25"
                     >
                       <svg
-                        class="h-5.5 w-5.5"
+                        className="h-5.5 w-5.5"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
@@ -1382,20 +1382,20 @@ const PanelMain = () => {
                 </ul>
               </div>
 
-              <div class="py-3">
+              <div className="py-3">
                 <div
                   x-data="usePopper({placement:'right-start',offset:4})"
                   // @click.outside="isShowPopper && (isShowPopper = false)"
-                  class="inline-flex"
+                  className="inline-flex"
                 >
                   <button
                     x-ref="popperRef"
                     // @click="isShowPopper = !isShowPopper"
-                    class="btn h-10 w-10 rounded-full border border-slate-300 p-0 font-medium hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
+                    className="btn h-10 w-10 rounded-full border border-slate-300 p-0 font-medium hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="h-6 w-6"
+                      className="h-6 w-6"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -1412,15 +1412,15 @@ const PanelMain = () => {
                   <template x-teleport="#x-teleport-target">
                     <div
                       x-ref="popperRoot"
-                      class="popper-root"
-                      // :class="isShowPopper && 'show'"
+                      className="popper-root"
+                      // :className="isShowPopper && 'show'"
                     >
-                      <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
+                      <div className="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
                         <ul>
                           <li>
                             <a
                               href="#"
-                              class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                              className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                             >
                               Action
                             </a>
@@ -1428,7 +1428,7 @@ const PanelMain = () => {
                           <li>
                             <a
                               href="#"
-                              class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                              className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                             >
                               Another Action
                             </a>
@@ -1436,18 +1436,18 @@ const PanelMain = () => {
                           <li>
                             <a
                               href="#"
-                              class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                              className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                             >
                               Something else
                             </a>
                           </li>
                         </ul>
-                        <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
+                        <div className="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
                         <ul>
                           <li>
                             <a
                               href="#"
-                              class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                              className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                             >
                               Separated Link
                             </a>
@@ -1463,16 +1463,16 @@ const PanelMain = () => {
         </div>
       </div>
       {/* <!-- App Header Wrapper--> */}
-      <nav class="header print:hidden">
+      <nav className="header print:hidden">
         {/* <!-- App Header  --> */}
-        <div class="header-container relative flex w-full bg-white dark:bg-navy-750 print:hidden">
+        <div className="header-container relative flex w-full bg-white dark:bg-navy-750 print:hidden">
           {/* <!-- Header Items --> */}
-          <div class="flex w-full items-center justify-between">
+          <div className="flex w-full items-center justify-between">
             {/* <!-- Left: Sidebar Toggle Button --> */}
-            <div class="h-7 w-7">
+            <div className="h-7 w-7">
               <button
-                class="menu-toggle ml-0.5 flex h-7 w-7 flex-col justify-center space-y-1.5 text-primary outline-none focus:outline-none dark:text-accent-light/80"
-                // :class="$store.global.isSidebarExpanded && 'active'"
+                className="menu-toggle ml-0.5 flex h-7 w-7 flex-col justify-center space-y-1.5 text-primary outline-none focus:outline-none dark:text-accent-light/80"
+                // :className="$store.global.isSidebarExpanded && 'active'"
                 // @click="$store.global.isSidebarExpanded = !$store.global.isSidebarExpanded"
                 onClick={() => {
                   setSidebarExpanded((curr) => !curr);
@@ -1485,15 +1485,15 @@ const PanelMain = () => {
             </div>
 
             {/* <!-- Right: Header buttons --> */}
-            <div class="-mr-1.5 flex items-center space-x-2">
+            <div className="-mr-1.5 flex items-center space-x-2">
               {/* <!-- Mobile Search Toggle --> */}
               <button
                 // @click="$store.global.isSearchbarActive = !$store.global.isSearchbarActive"
-                class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 sm:hidden"
+                className="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 sm:hidden"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-5.5 w-5.5 text-slate-500 dark:text-navy-100"
+                  className="h-5.5 w-5.5 text-slate-500 dark:text-navy-100"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -1515,9 +1515,9 @@ const PanelMain = () => {
               {/* <!-- Monochrome Mode Toggle --> */}
               <button
                 // @click="$store.global.isMonochromeModeEnabled = !$store.global.isMonochromeModeEnabled"
-                class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                className="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
               >
-                <i class="fa-solid fa-palette bg-gradient-to-r from-sky-400 to-blue-600 bg-clip-text text-lg font-semibold text-transparent"></i>
+                <i className="fa-solid fa-palette bg-gradient-to-r from-sky-400 to-blue-600 bg-clip-text text-lg font-semibold text-transparent"></i>
               </button>
 
               {/* <!-- Notification--> */}
@@ -1525,16 +1525,16 @@ const PanelMain = () => {
                 x-effect="if($store.global.isSearchbarActive) isShowPopper = false"
                 x-data="usePopper({placement:'bottom-end',offset:12})"
                 // @click.outside="isShowPopper && (isShowPopper = false)"
-                class="flex"
+                className="flex"
               >
                 <button
                   // @click="isShowPopper = !isShowPopper"
                   x-ref="popperRef"
-                  class="btn relative h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                  className="btn relative h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 text-slate-500 dark:text-navy-100"
+                    className="h-5 w-5 text-slate-500 dark:text-navy-100"
                     stroke="currentColor"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -1547,35 +1547,35 @@ const PanelMain = () => {
                     />
                   </svg>
 
-                  <span class="absolute -top-px -right-px flex h-3 w-3 items-center justify-center">
-                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary opacity-80"></span>
-                    <span class="inline-flex h-2 w-2 rounded-full bg-secondary"></span>
+                  <span className="absolute -top-px -right-px flex h-3 w-3 items-center justify-center">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary opacity-80"></span>
+                    <span className="inline-flex h-2 w-2 rounded-full bg-secondary"></span>
                   </span>
                 </button>
                 <div
-                  // :class="isShowPopper && 'show'"
-                  class="popper-root"
+                  // :className="isShowPopper && 'show'"
+                  className="popper-root"
                   x-ref="popperRoot"
                 >
                   <div
                     x-data="{activeTab:'tabAll'}"
-                    class="popper-box mx-4 mt-1 flex max-h-[calc(100vh-6rem)] w-[calc(100vw-2rem)] flex-col rounded-lg border border-slate-150 bg-white shadow-soft dark:border-navy-800 dark:bg-navy-700 dark:shadow-soft-dark sm:m-0 sm:w-80"
+                    className="popper-box mx-4 mt-1 flex max-h-[calc(100vh-6rem)] w-[calc(100vw-2rem)] flex-col rounded-lg border border-slate-150 bg-white shadow-soft dark:border-navy-800 dark:bg-navy-700 dark:shadow-soft-dark sm:m-0 sm:w-80"
                   >
-                    <div class="rounded-t-lg bg-slate-100 text-slate-600 dark:bg-navy-800 dark:text-navy-200">
-                      <div class="flex items-center justify-between px-4 pt-2">
-                        <div class="flex items-center space-x-2">
-                          <h3 class="font-medium text-slate-700 dark:text-navy-100">
+                    <div className="rounded-t-lg bg-slate-100 text-slate-600 dark:bg-navy-800 dark:text-navy-200">
+                      <div className="flex items-center justify-between px-4 pt-2">
+                        <div className="flex items-center space-x-2">
+                          <h3 className="font-medium text-slate-700 dark:text-navy-100">
                             Notifications
                           </h3>
-                          <div class="badge h-5 rounded-full bg-primary/10 px-1.5 text-primary dark:bg-accent-light/15 dark:text-accent-light">
+                          <div className="badge h-5 rounded-full bg-primary/10 px-1.5 text-primary dark:bg-accent-light/15 dark:text-accent-light">
                             26
                           </div>
                         </div>
 
-                        <button class="btn -mr-1.5 h-7 w-7 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                        <button className="btn -mr-1.5 h-7 w-7 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="h-4.5 w-4.5"
+                            className="h-4.5 w-4.5"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -1595,64 +1595,64 @@ const PanelMain = () => {
                         </button>
                       </div>
 
-                      <div class="is-scrollbar-hidden flex shrink-0 overflow-x-auto px-3">
+                      <div className="is-scrollbar-hidden flex shrink-0 overflow-x-auto px-3">
                         <button
                           // @click="activeTab = 'tabAll'"
-                          // :class="activeTab === 'tabAll' ? 'border-primary dark:border-accent text-primary dark:text-accent-light' : 'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
-                          class="btn shrink-0 rounded-none border-b-2 px-3.5 py-2.5"
+                          // :className="activeTab === 'tabAll' ? 'border-primary dark:border-accent text-primary dark:text-accent-light' : 'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
+                          className="btn shrink-0 rounded-none border-b-2 px-3.5 py-2.5"
                         >
                           <span>All</span>
                         </button>
                         <button
                           // @click="activeTab = 'tabAlerts'"
-                          // :class="activeTab === 'tabAlerts' ? 'border-primary dark:border-accent text-primary dark:text-accent-light' : 'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
-                          class="btn shrink-0 rounded-none border-b-2 px-3.5 py-2.5"
+                          // :className="activeTab === 'tabAlerts' ? 'border-primary dark:border-accent text-primary dark:text-accent-light' : 'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
+                          className="btn shrink-0 rounded-none border-b-2 px-3.5 py-2.5"
                         >
                           <span>Alerts</span>
                         </button>
                         <button
                           // @click="activeTab = 'tabEvents'"
-                          // :class="activeTab === 'tabEvents' ? 'border-primary dark:border-accent text-primary dark:text-accent-light' : 'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
-                          class="btn shrink-0 rounded-none border-b-2 px-3.5 py-2.5"
+                          // :className="activeTab === 'tabEvents' ? 'border-primary dark:border-accent text-primary dark:text-accent-light' : 'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
+                          className="btn shrink-0 rounded-none border-b-2 px-3.5 py-2.5"
                         >
                           <span>Events</span>
                         </button>
                         <button
                           // @click="activeTab = 'tabLogs'"
-                          // :class="activeTab === 'tabLogs' ? 'border-primary dark:border-accent text-primary dark:text-accent-light' : 'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
-                          class="btn shrink-0 rounded-none border-b-2 px-3.5 py-2.5"
+                          // :className="activeTab === 'tabLogs' ? 'border-primary dark:border-accent text-primary dark:text-accent-light' : 'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
+                          className="btn shrink-0 rounded-none border-b-2 px-3.5 py-2.5"
                         >
                           <span>Logs</span>
                         </button>
                       </div>
                     </div>
 
-                    <div class="tab-content flex flex-col overflow-hidden">
+                    <div className="tab-content flex flex-col overflow-hidden">
                       <div
                         x-show="activeTab === 'tabAll'"
                         // x-transition:enter="transition-all duration-300 easy-in-out"
                         // x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]"
                         // x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]"
-                        class="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
+                        className="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
                       >
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary/10 dark:bg-secondary-light/15">
-                            <i class="fa fa-user-edit text-secondary dark:text-secondary-light"></i>
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary/10 dark:bg-secondary-light/15">
+                            <i className="fa fa-user-edit text-secondary dark:text-secondary-light"></i>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               User Photo Changed
                             </p>
-                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                            <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               John Doe changed his avatar photo
                             </div>
                           </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              class="h-5 w-5 text-info"
+                              className="h-5 w-5 text-info"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -1666,49 +1666,49 @@ const PanelMain = () => {
                             </svg>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               Mon, June 14, 2021
                             </p>
-                            <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
-                              <span class="shrink-0">08:00 - 09:00</span>
-                              <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                            <div className="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                              <span className="shrink-0">08:00 - 09:00</span>
+                              <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
 
-                              <span class="line-clamp-1">Frontend Conf</span>
+                              <span className="line-clamp-1">Frontend Conf</span>
                             </div>
                           </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 dark:bg-accent-light/15">
-                            <i class="fa-solid fa-image text-primary dark:text-accent-light"></i>
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 dark:bg-accent-light/15">
+                            <i className="fa-solid fa-image text-primary dark:text-accent-light"></i>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               Images Added
                             </p>
-                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                            <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               Mores Clarke added new image gallery
                             </div>
                           </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-success/10 dark:bg-success/15">
-                            <i class="fa fa-leaf text-success"></i>
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-success/10 dark:bg-success/15">
+                            <i className="fa fa-leaf text-success"></i>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               Design Completed
                             </p>
-                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                            <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               Robert Nolan completed the design of the CRM
                               application
                             </div>
                           </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              class="h-5 w-5 text-info"
+                              className="h-5 w-5 text-info"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -1722,35 +1722,35 @@ const PanelMain = () => {
                             </svg>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               Wed, June 21, 2021
                             </p>
-                            <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
-                              <span class="shrink-0">16:00 - 20:00</span>
-                              <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                            <div className="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                              <span className="shrink-0">16:00 - 20:00</span>
+                              <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
 
-                              <span class="line-clamp-1">UI/UX Conf</span>
+                              <span className="line-clamp-1">UI/UX Conf</span>
                             </div>
                           </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
-                            <i class="fa fa-project-diagram text-warning"></i>
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
+                            <i className="fa fa-project-diagram text-warning"></i>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               ER Diagram
                             </p>
-                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                            <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               Team completed the ER diagram app
                             </div>
                           </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              class="h-5 w-5 text-warning"
+                              className="h-5 w-5 text-warning"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -1764,27 +1764,27 @@ const PanelMain = () => {
                             </svg>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               THU, May 11, 2021
                             </p>
-                            <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
-                              <span class="shrink-0">10:00 - 11:30</span>
-                              <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
-                              <span class="line-clamp-1">
+                            <div className="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                              <span className="shrink-0">10:00 - 11:30</span>
+                              <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                              <span className="line-clamp-1">
                                 Interview, Konnor Guzman
                               </span>
                             </div>
                           </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-error/10 dark:bg-error/15">
-                            <i class="fa fa-history text-error"></i>
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-error/10 dark:bg-error/15">
+                            <i className="fa fa-history text-error"></i>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               Weekly Report
                             </p>
-                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                            <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               The weekly report was uploaded
                             </div>
                           </div>
@@ -1795,70 +1795,70 @@ const PanelMain = () => {
                         // x-transition:enter="transition-all duration-300 easy-in-out"
                         // x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]"
                         // x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]"
-                        class="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
+                        className="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
                       >
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary/10 dark:bg-secondary-light/15">
-                            <i class="fa fa-user-edit text-secondary dark:text-secondary-light"></i>
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary/10 dark:bg-secondary-light/15">
+                            <i className="fa fa-user-edit text-secondary dark:text-secondary-light"></i>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               User Photo Changed
                             </p>
-                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                            <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               John Doe changed his avatar photo
                             </div>
                           </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 dark:bg-accent-light/15">
-                            <i class="fa-solid fa-image text-primary dark:text-accent-light"></i>
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 dark:bg-accent-light/15">
+                            <i className="fa-solid fa-image text-primary dark:text-accent-light"></i>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               Images Added
                             </p>
-                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                            <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               Mores Clarke added new image gallery
                             </div>
                           </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-success/10 dark:bg-success/15">
-                            <i class="fa fa-leaf text-success"></i>
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-success/10 dark:bg-success/15">
+                            <i className="fa fa-leaf text-success"></i>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               Design Completed
                             </p>
-                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                            <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               Robert Nolan completed the design of the CRM
                               application
                             </div>
                           </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
-                            <i class="fa fa-project-diagram text-warning"></i>
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
+                            <i className="fa fa-project-diagram text-warning"></i>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               ER Diagram
                             </p>
-                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                            <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               Team completed the ER diagram app
                             </div>
                           </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-error/10 dark:bg-error/15">
-                            <i class="fa fa-history text-error"></i>
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-error/10 dark:bg-error/15">
+                            <i className="fa fa-history text-error"></i>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               Weekly Report
                             </p>
-                            <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                            <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                               The weekly report was uploaded
                             </div>
                           </div>
@@ -1869,13 +1869,13 @@ const PanelMain = () => {
                         // x-transition:enter="transition-all duration-300 easy-in-out"
                         // x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]"
                         // x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]"
-                        class="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
+                        className="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
                       >
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              class="h-5 w-5 text-info"
+                              className="h-5 w-5 text-info"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -1889,22 +1889,22 @@ const PanelMain = () => {
                             </svg>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               Mon, June 14, 2021
                             </p>
-                            <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
-                              <span class="shrink-0">08:00 - 09:00</span>
-                              <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                            <div className="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                              <span className="shrink-0">08:00 - 09:00</span>
+                              <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
 
-                              <span class="line-clamp-1">Frontend Conf</span>
+                              <span className="line-clamp-1">Frontend Conf</span>
                             </div>
                           </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              class="h-5 w-5 text-info"
+                              className="h-5 w-5 text-info"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -1918,22 +1918,22 @@ const PanelMain = () => {
                             </svg>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               Wed, June 21, 2021
                             </p>
-                            <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
-                              <span class="shrink-0">16:00 - 20:00</span>
-                              <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                            <div className="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                              <span className="shrink-0">16:00 - 20:00</span>
+                              <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
 
-                              <span class="line-clamp-1">UI/UX Conf</span>
+                              <span className="line-clamp-1">UI/UX Conf</span>
                             </div>
                           </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              class="h-5 w-5 text-warning"
+                              className="h-5 w-5 text-warning"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -1947,23 +1947,23 @@ const PanelMain = () => {
                             </svg>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               THU, May 11, 2021
                             </p>
-                            <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
-                              <span class="shrink-0">10:00 - 11:30</span>
-                              <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
-                              <span class="line-clamp-1">
+                            <div className="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                              <span className="shrink-0">10:00 - 11:30</span>
+                              <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                              <span className="line-clamp-1">
                                 Interview, Konnor Guzman
                               </span>
                             </div>
                           </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              class="h-5 w-5 text-info"
+                              className="h-5 w-5 text-info"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -1977,22 +1977,22 @@ const PanelMain = () => {
                             </svg>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               Mon, Jul 16, 2021
                             </p>
-                            <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
-                              <span class="shrink-0">06:00 - 16:00</span>
-                              <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                            <div className="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                              <span className="shrink-0">06:00 - 16:00</span>
+                              <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
 
-                              <span class="line-clamp-1">Laravel Conf</span>
+                              <span className="line-clamp-1">Laravel Conf</span>
                             </div>
                           </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
+                        <div className="flex items-center space-x-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              class="h-5 w-5 text-warning"
+                              className="h-5 w-5 text-warning"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -2006,13 +2006,13 @@ const PanelMain = () => {
                             </svg>
                           </div>
                           <div>
-                            <p class="font-medium text-slate-600 dark:text-navy-100">
+                            <p className="font-medium text-slate-600 dark:text-navy-100">
                               Wed, Jun 16, 2021
                             </p>
-                            <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
-                              <span class="shrink-0">15:30 - 11:30</span>
-                              <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
-                              <span class="line-clamp-1">
+                            <div className="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                              <span className="shrink-0">15:30 - 11:30</span>
+                              <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                              <span className="line-clamp-1">
                                 Interview, Jonh Doe
                               </span>
                             </div>
@@ -2024,19 +2024,19 @@ const PanelMain = () => {
                         // x-transition:enter="transition-all duration-300 easy-in-out"
                         // x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]"
                         // x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]"
-                        class="is-scrollbar-hidden overflow-y-auto px-4"
+                        className="is-scrollbar-hidden overflow-y-auto px-4"
                       >
-                        <div class="mt-8 pb-8 text-center">
+                        <div className="mt-8 pb-8 text-center">
                           <img
-                            class="mx-auto w-36"
+                            className="mx-auto w-36"
                             src="images/illustrations/empty-girl-box.svg"
                             alt="image"
                           />
-                          <div class="mt-5">
-                            <p class="text-base font-semibold text-slate-700 dark:text-navy-100">
+                          <div className="mt-5">
+                            <p className="text-base font-semibold text-slate-700 dark:text-navy-100">
                               No any logs
                             </p>
-                            <p class="text-slate-400 dark:text-navy-300">
+                            <p className="text-slate-400 dark:text-navy-300">
                               There are no unread logs yet
                             </p>
                           </div>
@@ -2050,11 +2050,11 @@ const PanelMain = () => {
               {/* <!-- Right Sidebar Toggle --> */}
               <button
                 // @click="$store.global.isRightSidebarExpanded = true"
-                class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                className="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-5.5 w-5.5 text-slate-500 dark:text-navy-100"
+                  className="h-5.5 w-5.5 text-slate-500 dark:text-navy-100"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -2072,11 +2072,11 @@ const PanelMain = () => {
         </div>
       </nav>
       {/* <!-- Mobile Searchbar --> */}]{/* <!-- Main Content Wrapper --> */}
-      <div class="fixed right-3 bottom-3 rounded-full bg-white dark:bg-navy-700">
-        <button class="btn h-14 w-14 rounded-full bg-info p-0 font-medium text-white hover:bg-info-focus focus:bg-info-focus active:bg-info-focus/90 sm:hidden">
+      <div className="fixed right-3 bottom-3 rounded-full bg-white dark:bg-navy-700">
+        <button className="btn h-14 w-14 rounded-full bg-info p-0 font-medium text-white hover:bg-info-focus focus:bg-info-focus active:bg-info-focus/90 sm:hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-7 w-7"
+            className="h-7 w-7"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

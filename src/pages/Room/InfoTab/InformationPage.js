@@ -60,13 +60,13 @@ export default function TestInf() {
   return (
     <>
       <div className="text-left p-6">
-        <div class="flex flex-col items-center space-y-4 border-b border-slate-200 p-4 dark:border-navy-500 sm:flex-row sm:justify-between sm:space-y-0 sm:px-5">
-          <h2 class="text-lg font-medium tracking-wide text-slate-700 dark:text-navy-100">
+        <div className="flex flex-col items-center space-y-4 border-b border-slate-200 p-4 dark:border-navy-500 sm:flex-row sm:justify-between sm:space-y-0 sm:px-5">
+          <h2 className="text-lg font-medium tracking-wide text-slate-700 dark:text-navy-100">
             Room Information
           </h2>
           {roomData.is_admin && (
-            <div class="flex justify-center space-x-2">
-              <button onClick={deleteRoom} class="badge space-x-2 bg-error text-white">
+            <div className="flex justify-center space-x-2">
+              <button onClick={deleteRoom} className="badge space-x-2 bg-error text-white">
                 <span>Delete</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +74,7 @@ export default function TestInf() {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="w-4 h-4"
+                  className="w-4 h-4"
                 >
                   <path
                     stroke-linecap="round"
@@ -83,7 +83,7 @@ export default function TestInf() {
                   />
                 </svg>
               </button>
-              <button onClick={()=>navigate(`/room/${idroom}/info/edit`)}class="badge space-x-2 bg-slate-150 text-slate-800 dark:bg-navy-500 dark:text-navy-100">
+              <button onClick={()=>navigate(`/room/${idroom}/info/edit`)}className="badge space-x-2 bg-slate-150 text-slate-800 dark:bg-navy-500 dark:text-navy-100">
                 <span>Edit</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +91,7 @@ export default function TestInf() {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="w-4 h-4"
+                  className="w-4 h-4"
                 >
                   <path
                     stroke-linecap="round"
@@ -103,9 +103,9 @@ export default function TestInf() {
             </div>
           )}
         </div>
-        <div class="flex flex-col my-2">
-          <div class="avatar mt-1.5 h-20 w-20">
-            <img class="mask is-squircle" src={Avatar200x200} alt="avatar" />
+        <div className="flex flex-col my-2">
+          <div className="avatar mt-1.5 h-20 w-20">
+            <img className="mask is-squircle" src={Avatar200x200} alt="avatar" />
           </div>
         </div>
 
@@ -129,7 +129,7 @@ export default function TestInf() {
               <dt className="text-sm font-medium ">Status</dt>
               <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow space-x-2 space-y-2">
-                  <div class="badge space-x-2 bg-primary text-white dark:bg-accent">
+                  <div className="badge space-x-2 bg-primary text-white dark:bg-accent">
                     {!roomData.room_type ? (
                       <>
                         <svg
@@ -138,7 +138,7 @@ export default function TestInf() {
                           viewBox="0 0 24 24"
                           stroke-width="1.5"
                           stroke="currentColor"
-                          class="w-4 h-4"
+                          className="w-4 h-4"
                         >
                           <path
                             stroke-linecap="round"
@@ -157,7 +157,7 @@ export default function TestInf() {
                           viewBox="0 0 24 24"
                           stroke-width="1.5"
                           stroke="currentColor"
-                          class="w-4 h-4"
+                          className="w-4 h-4"
                         >
                           <path
                             stroke-linecap="round"
@@ -170,14 +170,14 @@ export default function TestInf() {
                     )}
                   </div>
                   {roomData.is_premium && (
-                    <div class="badge space-x-2 bg-secondary text-white">
+                    <div className="badge space-x-2 bg-secondary text-white">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-4 h-4"
+                        className="w-4 h-4"
                       >
                         <path
                           stroke-linecap="round"
@@ -189,13 +189,13 @@ export default function TestInf() {
                       <span>Premium</span>
                     </div>
                   )}
-                  <div class="badge space-x-2 bg-info text-white">
+                  <div className="badge space-x-2 bg-info text-white">
                     {roomData.open_status ? (
                       <>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 576 512"
-                          class="h-4 w-4"
+                          className="h-4 w-4"
                           fill="currentColor"
                         >
                           <path d="M320 32c0-9.9-4.5-19.2-12.3-25.2S289.8-1.4 280.2 1l-179.9 45C79 51.3 64 70.5 64 92.5V448H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H96 288h32V480 32zM256 256c0 17.7-10.7 32-24 32s-24-14.3-24-32s10.7-32 24-32s24 14.3 24 32zm96-128h96V480c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H512V128c0-35.3-28.7-64-64-64H352v64z" />
@@ -207,7 +207,7 @@ export default function TestInf() {
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 576 512"
-                          class="h-4 w-4"
+                          className="h-4 w-4"
                           fill="currentColor"
                         >
                           <path d="M96 64c0-35.3 28.7-64 64-64H416c35.3 0 64 28.7 64 64V448h64c17.7 0 32 14.3 32 32s-14.3 32-32 32H432 144 32c-17.7 0-32-14.3-32-32s14.3-32 32-32H96V64zM384 288a32 32 0 1 0 0-64 32 32 0 1 0 0 64z" />
@@ -232,20 +232,20 @@ export default function TestInf() {
               <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow">
                   <label
-                    class="relative flex"
+                    className="relative flex"
                     onClick={() => setSeePassword(!seePassword)}
                   >
                     <input
-                      class="form-input w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary disabled:pointer-events-none disabled:select-none disabled:border-none disabled:bg-zinc-100 dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent dark:disabled:bg-navy-600"
+                      className="form-input w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary disabled:pointer-events-none disabled:select-none disabled:border-none disabled:bg-zinc-100 dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent dark:disabled:bg-navy-600"
                       placeholder="Password"
                       type={seePassword ? "text" : "password"}
                       value={roomData.password}
                       disabled="true"
                     />
-                    <div class="pointer-events-none absolute right-0 flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                    <div className="pointer-events-none absolute right-0 flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
                       <svg
                         fill="currentColor"
-                        class="h-4.5 w-4.5"
+                        className="h-4.5 w-4.5"
                         viewBox="0 0 20 20"
                       >
                         <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
@@ -274,10 +274,10 @@ export default function TestInf() {
                 {roomData?.categories && (
                   <span className="flex-grow space-x-2 space-y-2">
                     {roomData.categories.map((item) => (
-                      <div class="flex">
+                      <div className="flex">
                         <a
                           href="#"
-                          class="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                          className="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                         >
                           {item.name}
                         </a>
@@ -363,7 +363,7 @@ export default function TestInf() {
               <dt className="text-sm font-medium ">Link</dt>
               <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow">
-                  <div class="alert flex items-center justify-between rounded-lg bg-primary px-4 py-3 text-white dark:bg-accent sm:px-5">
+                  <div className="alert flex items-center justify-between rounded-lg bg-primary px-4 py-3 text-white dark:bg-accent sm:px-5">
                     <p id="clipboardContent1">
                       {"http://localhost:3000/joinroom/" + link}
                     </p>
@@ -371,7 +371,7 @@ export default function TestInf() {
                       <button
                         id={"clipBoardCopy"}
                         onClick={copyToClipboard}
-                        class="btn h-6 shrink-0 rounded mx-1 my-2 bg-white/20 px-2 text-xs text-white active:bg-white/25"
+                        className="btn h-6 shrink-0 rounded mx-1 my-2 bg-white/20 px-2 text-xs text-white active:bg-white/25"
                         //   @click="$clipboard({
                         //     content:document.querySelector('#clipboardContent1').innerText,
                         //     success:()=>$notification({text:'Text Copied',variant:'success'}),
@@ -384,7 +384,7 @@ export default function TestInf() {
                           viewBox="0 0 24 24"
                           stroke-width="1.5"
                           stroke="currentColor"
-                          class="w-4 h-4"
+                          className="w-4 h-4"
                         >
                           <path
                             stroke-linecap="round"
@@ -398,7 +398,7 @@ export default function TestInf() {
                         <>
                           <button
                             onClick={refreshLink}
-                            class="btn h-6 shrink-0 rounded mx-1 my-2 bg-white/20 px-2 space-x-1 space-y-2 text-xs text-white active:bg-white/25"
+                            className="btn h-6 shrink-0 rounded mx-1 my-2 bg-white/20 px-2 space-x-1 space-y-2 text-xs text-white active:bg-white/25"
                             //   @click="$clipboard({
                             //     content:document.querySelector('#clipboardContent1').innerText,
                             //     success:()=>$notification({text:'Text Copied',variant:'success'}),
@@ -407,7 +407,7 @@ export default function TestInf() {
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              class="h-4 w-4"
+                              className="h-4 w-4"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -434,18 +434,18 @@ export default function TestInf() {
   );
 }
 
-// <div class="flex">
+// <div className="flex">
 //   <a
 //     href="#"
-//     class="tag h-7 rounded-full bg-primary text-xs+ text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+//     className="tag h-7 rounded-full bg-primary text-xs+ text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
 //   >
 //     🔥 All
 //   </a>
 // </div>
-// <div class="flex">
+// <div className="flex">
 //   <a
 //     href="#"
-//     class="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+//     className="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
 //   >
 //     🎨 Art
 //   </a>
@@ -453,7 +453,7 @@ export default function TestInf() {
 // <div>
 //   <a
 //     href="#"
-//     class="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+//     className="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
 //   >
 //     🎵 Music
 //   </a>
@@ -461,7 +461,7 @@ export default function TestInf() {
 // <div>
 //   <a
 //     href="#"
-//     class="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+//     className="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
 //   >
 //     🎯 Game
 //   </a>
@@ -469,7 +469,7 @@ export default function TestInf() {
 // <div>
 //   <a
 //     href="#"
-//     class="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+//     className="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
 //   >
 //     👗 Fashion
 //   </a>
@@ -477,7 +477,7 @@ export default function TestInf() {
 // <div>
 //   <a
 //     href="#"
-//     class="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+//     className="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
 //   >
 //     📸 Photography
 //   </a>
@@ -486,7 +486,7 @@ export default function TestInf() {
 // <div>
 //   <a
 //     href="#"
-//     class="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+//     className="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
 //   >
 //     🤽‍♂️ Sport
 //   </a>

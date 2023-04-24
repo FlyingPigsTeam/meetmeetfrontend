@@ -90,15 +90,15 @@ const InfoTab = () => {
         <MainSection>
 
           {/* <TestInf /> */}
-          <div class="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
-            <div class="col-span-12 lg:col-span-6">
+          <div className="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
+            <div className="col-span-12 lg:col-span-6">
               {/* <VerticalNav />
               <AddRoom /> */}
               <InformationPage />
             </div>
-            <div class="col-span-12 lg:col-span-6">
+            <div className="col-span-12 lg:col-span-6">
               <Members />
-              {/* <div class="card"> */}
+              {/* <div className="card"> */}
               {/* <InformationForm Title="Add" /> */}
               {/* </div> */}
             </div>
@@ -114,35 +114,35 @@ export default InfoTab;
 const VerticalNav = () => {
   return (
     <>
-      <div class="card p-4 sm:p-5">
-        <div class="flex items-center space-x-4">
-          <div class="avatar h-14 w-14">
-            <img class="rounded-full" src={Avatar200x200} alt="avatar" />
+      <div className="card p-4 sm:p-5">
+        <div className="flex items-center space-x-4">
+          <div className="avatar h-14 w-14">
+            <img className="rounded-full" src={Avatar200x200} alt="avatar" />
           </div>
           <div>
-            <h3 class="text-base font-medium text-slate-700 dark:text-navy-100">
+            <h3 className="text-base font-medium text-slate-700 dark:text-navy-100">
               Travis Fuller
             </h3>
-            <p class="text-xs+ text-left">Admin</p>
+            <p className="text-xs+ text-left">Admin</p>
           </div>
         </div>
-        <ul class="mt-6 space-y-1.5 font-inter font-medium">
+        <ul className="mt-6 space-y-1.5 font-inter font-medium">
           <li>
             <a
-              class="flex items-center space-x-2 rounded-lg bg-primary px-4 py-2.5 tracking-wide text-white outline-none transition-all dark:bg-accent"
+              className="flex items-center space-x-2 rounded-lg bg-primary px-4 py-2.5 tracking-wide text-white outline-none transition-all dark:bg-accent"
               href="#"
             >
-              <i class="fa-solid fa-circle-info "></i>
+              <i className="fa-solid fa-circle-info "></i>
 
               <span>Information</span>
             </a>
           </li>
           <li>
             <a
-              class="group flex space-x-2 rounded-lg px-4 py-2.5 tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+              className="group flex space-x-2 rounded-lg px-4 py-2.5 tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
               href="#"
             >
-              <i class="fa-solid fa-users"></i>
+              <i className="fa-solid fa-users"></i>
 
               <span>Members</span>
             </a>

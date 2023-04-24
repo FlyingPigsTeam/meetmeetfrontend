@@ -232,32 +232,32 @@ const InformationForm = ({ Title, ...props }) => {
 
   return (
     <>
-      <div class="flex flex-col items-center space-y-4 border-b border-slate-200 p-4 dark:border-navy-500 sm:flex-row sm:justify-between sm:space-y-0 sm:px-5">
-        <h2 class="text-lg font-medium tracking-wide text-slate-700 dark:text-navy-100">
+      <div className="flex flex-col items-center space-y-4 border-b border-slate-200 p-4 dark:border-navy-500 sm:flex-row sm:justify-between sm:space-y-0 sm:px-5">
+        <h2 className="text-lg font-medium tracking-wide text-slate-700 dark:text-navy-100">
           {Title + " Room"}
         </h2>
-        <div class="flex justify-center space-x-2">
-          {/* <button class="btn min-w-[7rem] rounded-full border border-slate-300 font-medium text-slate-700 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-100 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
+        <div className="flex justify-center space-x-2">
+          {/* <button className="btn min-w-[7rem] rounded-full border border-slate-300 font-medium text-slate-700 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-100 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
             Cancel
           </button>
-          <button class="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+          <button className="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
             Save
           </button> */}
         </div>
       </div>
       <form onSubmit={formik.handleSubmit}>
-        <div class="p-4 sm:p-5">
-          <div class="flex flex-col">
-            <span class="text-base text-left font-medium text-slate-600 dark:text-navy-100">
+        <div className="p-4 sm:p-5">
+          <div className="flex flex-col">
+            <span className="text-base text-left font-medium text-slate-600 dark:text-navy-100">
               Avatar
             </span>
-            <div class="avatar mt-1.5 h-20 w-20">
-              <img class="mask is-squircle" src={Avatar200x200} alt="avatar" />
-              <div class="absolute bottom-0 right-0 flex items-center justify-center rounded-full bg-white dark:bg-navy-700">
-                <button class="btn h-6 w-6 rounded-full border border-slate-200 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:border-navy-500 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+            <div className="avatar mt-1.5 h-20 w-20">
+              <img className="mask is-squircle" src={Avatar200x200} alt="avatar" />
+              <div className="absolute bottom-0 right-0 flex items-center justify-center rounded-full bg-white dark:bg-navy-700">
+                <button className="btn h-6 w-6 rounded-full border border-slate-200 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:border-navy-500 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-3.5 w-3.5"
+                    className="h-3.5 w-3.5"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
@@ -267,13 +267,13 @@ const InformationForm = ({ Title, ...props }) => {
               </div>
             </div>
           </div>
-          <div class="my-7 h-px bg-slate-200 dark:bg-navy-500"></div>
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <label class="block text-left">
+          <div className="my-7 h-px bg-slate-200 dark:bg-navy-500"></div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <label className="block text-left">
               <span>Title</span>
-              <span class="relative mt-1.5 flex">
+              <span className="relative mt-1.5 flex">
                 <input
-                  class="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                  className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                   placeholder="Enter Title"
                   type="text"
                   value={formik.values.title}
@@ -282,7 +282,7 @@ const InformationForm = ({ Title, ...props }) => {
                   name="title"
                   id="title"
                 />
-                <span class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                <span className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -306,11 +306,11 @@ const InformationForm = ({ Title, ...props }) => {
               )}
             </label>
             {/* Check BOXES */}
-            <label class="block text-left">
+            <label className="block text-left">
               <span>Password</span>
-              <span class="relative mt-1.5 flex">
+              <span className="relative mt-1.5 flex">
                 <input
-                  class="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                  className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                   placeholder="Enter Password"
                   type="password"
                   value={formik.values.password}
@@ -319,7 +319,7 @@ const InformationForm = ({ Title, ...props }) => {
                   name="password"
                   id="password"
                 />
-                <span class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                <span className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -342,7 +342,7 @@ const InformationForm = ({ Title, ...props }) => {
                 </span>
               )}
             </label>
-            <label class="block text-left">
+            <label className="block text-left">
               <span>Select Categories</span>
               <select
                 ref={selectCustom}
@@ -364,7 +364,7 @@ const InformationForm = ({ Title, ...props }) => {
                 </span>
               )}
             </label>
-            <label class="block text-left">
+            <label className="block text-left">
               <span>Max members</span>
               <select
                 value={formik.values.maximum_member_count}
@@ -372,7 +372,7 @@ const InformationForm = ({ Title, ...props }) => {
                 onChange={formik.handleChange}
                 name="maximum_member_count"
                 id="maximum_member_count"
-                class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
+                className="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
               >
                 <option>Corporate event</option>
                 <option>25</option>
@@ -386,9 +386,9 @@ const InformationForm = ({ Title, ...props }) => {
                   </span>
                 )}
             </label>
-            <label class="block text-left">
+            <label className="block text-left">
               <span>Start Date & End Date</span>
-              <span class="relative mt-1.5 flex">
+              <span className="relative mt-1.5 flex">
                 <Flatpickr
                   ref={fp}
                   options={{
@@ -406,7 +406,7 @@ const InformationForm = ({ Title, ...props }) => {
                       <input
                         defaultValue={defaultValue}
                         ref={ref}
-                        class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                        className="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                         placeholder="Choose date..."
                         type="text"
                         onChange={() => console.log(fp)}
@@ -414,7 +414,7 @@ const InformationForm = ({ Title, ...props }) => {
                     );
                   }}
                 />
-                <span class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                <span className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -437,13 +437,13 @@ const InformationForm = ({ Title, ...props }) => {
                 </span>
               )}
             </label>
-            <label class="block text-left">
+            <label className="block text-left">
               <span>Description</span>
-              <span class="relative mt-1.5 flex">
+              <span className="relative mt-1.5 flex">
                 <textarea
                   rows="2"
                   placeholder=" Enter Text"
-                  class="form-textarea resize-none w-full rounded-lg border border-slate-300 bg-transparent p-2.5 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                  className="form-textarea resize-none w-full rounded-lg border border-slate-300 bg-transparent p-2.5 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                   value={formik.values.description}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
@@ -457,10 +457,10 @@ const InformationForm = ({ Title, ...props }) => {
                 </span>
               )}
             </label>
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-1 py-7 px-2">
-              <label class="inline-flex items-center space-x-2">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 py-7 px-2">
+              <label className="inline-flex items-center space-x-2">
                 <input
-                  class="form-switch h-5 w-10 rounded-lg bg-slate-300 before:rounded-md before:bg-slate-50 checked:bg-primary checked:!bg-none checked:before:bg-white dark:bg-navy-900 dark:before:bg-navy-300 dark:checked:bg-accent dark:checked:before:bg-white"
+                  className="form-switch h-5 w-10 rounded-lg bg-slate-300 before:rounded-md before:bg-slate-50 checked:bg-primary checked:!bg-none checked:before:bg-white dark:bg-navy-900 dark:before:bg-navy-300 dark:checked:bg-accent dark:checked:before:bg-white"
                   type="checkbox"
                   value={formik.values.room_type}
                   onBlur={formik.handleBlur}
@@ -475,9 +475,9 @@ const InformationForm = ({ Title, ...props }) => {
                   </span>
                 )}
               </label>{" "}
-              <label class="inline-flex items-center space-x-2">
+              <label className="inline-flex items-center space-x-2">
                 <input
-                  class="form-switch h-5 w-10 rounded-lg bg-slate-300 before:rounded-md before:bg-slate-50 checked:!bg-info checked:!bg-none checked:before:bg-white dark:bg-navy-900 dark:before:bg-navy-300 dark:checked:before:bg-white"
+                  className="form-switch h-5 w-10 rounded-lg bg-slate-300 before:rounded-md before:bg-slate-50 checked:!bg-info checked:!bg-none checked:before:bg-white dark:bg-navy-900 dark:before:bg-navy-300 dark:checked:before:bg-white"
                   type="checkbox"
                   value={formik.values.open_status}
                   onBlur={formik.handleBlur}
@@ -492,9 +492,9 @@ const InformationForm = ({ Title, ...props }) => {
                   </span>
                 )}
               </label>
-              <label class="inline-flex items-center space-x-2">
+              <label className="inline-flex items-center space-x-2">
                 <input
-                  class="form-switch h-5 w-10 rounded-lg bg-slate-300 before:rounded-md before:bg-slate-50 checked:bg-secondary checked:!bg-none checked:before:bg-white dark:bg-navy-900 dark:before:bg-navy-300 dark:checked:bg-secondary-light dark:checked:before:bg-white"
+                  className="form-switch h-5 w-10 rounded-lg bg-slate-300 before:rounded-md before:bg-slate-50 checked:bg-secondary checked:!bg-none checked:before:bg-white dark:bg-navy-900 dark:before:bg-navy-300 dark:checked:bg-secondary-light dark:checked:before:bg-white"
                   type="checkbox"
                   value={formik.values.is_premium}
                   onBlur={formik.handleBlur}
@@ -510,25 +510,25 @@ const InformationForm = ({ Title, ...props }) => {
                 )}
               </label>
               {/* RadioBox */}
-              {/* <label class="inline-flex items-center space-x-2">
+              {/* <label className="inline-flex items-center space-x-2">
               <input
-                class="form-radio is-basic h-5 w-5 rounded-full border-slate-400/70 bg-slate-100 checked:border-primary checked:bg-primary hover:border-primary focus:border-primary dark:border-navy-500 dark:bg-navy-900 dark:checked:border-accent dark:checked:bg-accent dark:hover:border-accent dark:focus:border-accent"
+                className="form-radio is-basic h-5 w-5 rounded-full border-slate-400/70 bg-slate-100 checked:border-primary checked:bg-primary hover:border-primary focus:border-primary dark:border-navy-500 dark:bg-navy-900 dark:checked:border-accent dark:checked:bg-accent dark:hover:border-accent dark:focus:border-accent"
                 name="basic_filled"
                 type="radio"
               />
               <p>Primary</p>
             </label>
-            <label class="inline-flex items-center space-x-2">
+            <label className="inline-flex items-center space-x-2">
               <input
-                class="form-radio is-basic h-5 w-5 rounded-full border-slate-400/70 bg-slate-100 checked:border-secondary checked:bg-secondary hover:border-secondary focus:border-secondary dark:border-navy-500 dark:bg-navy-900 dark:checked:border-secondary-light dark:checked:bg-secondary-light dark:hover:border-secondary-light dark:focus:border-secondary-light"
+                className="form-radio is-basic h-5 w-5 rounded-full border-slate-400/70 bg-slate-100 checked:border-secondary checked:bg-secondary hover:border-secondary focus:border-secondary dark:border-navy-500 dark:bg-navy-900 dark:checked:border-secondary-light dark:checked:bg-secondary-light dark:hover:border-secondary-light dark:focus:border-secondary-light"
                 name="basic_filled"
                 type="radio"
               />
               <p>Secondary</p>
             </label>
-            <label class="inline-flex items-center space-x-2">
+            <label className="inline-flex items-center space-x-2">
               <input
-                class="form-radio is-basic h-5 w-5 rounded-full border-slate-400/70 bg-slate-100 checked:!border-info checked:!bg-info hover:!border-info focus:!border-info dark:border-navy-500 dark:bg-navy-900"
+                className="form-radio is-basic h-5 w-5 rounded-full border-slate-400/70 bg-slate-100 checked:!border-info checked:!bg-info hover:!border-info focus:!border-info dark:border-navy-500 dark:bg-navy-900"
                 name="basic_filled"
                 type="radio"
               />
@@ -537,35 +537,35 @@ const InformationForm = ({ Title, ...props }) => {
             </div>
           </div>
 
-          {/* <div class="my-7 h-px bg-slate-200 dark:bg-navy-500"></div>
+          {/* <div className="my-7 h-px bg-slate-200 dark:bg-navy-500"></div>
                 <div>
-                  <h3 class="text-base font-medium text-slate-600 dark:text-navy-100">
+                  <h3 className="text-base font-medium text-slate-600 dark:text-navy-100">
                     Linked Accounts
                   </h3>
-                  <p class="text-xs+ text-slate-400 dark:text-navy-300">
+                  <p className="text-xs+ text-slate-400 dark:text-navy-300">
                     Lorem ipsum dolor sit amet consectetur.
                   </p>
-                  <div class="flex items-center justify-between pt-4">
-                    <div class="flex items-center space-x-4">
-                      <div class="h-12 w-12">
+                  <div className="flex items-center justify-between pt-4">
+                    <div className="flex items-center space-x-4">
+                      <div className="h-12 w-12">
                         <img src="images/100x100.png" alt="logo" />
                       </div>
-                      <p class="font-medium line-clamp-1">
+                      <p className="font-medium line-clamp-1">
                         Sign In with Google
                       </p>
                     </div>
-                    <button class="btn h-8 rounded-full border border-slate-200 px-3 text-xs+ font-medium text-primary hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-500 dark:text-accent-light dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
+                    <button className="btn h-8 rounded-full border border-slate-200 px-3 text-xs+ font-medium text-primary hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-500 dark:text-accent-light dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
                       Connect
                     </button>
                   </div>
                 </div> */}
         </div>
-        <div class="flex flex-col items-center space-y-4 border-t border-slate-200 p-4 dark:border-navy-500 sm:flex-row sm:justify-between sm:space-y-0 sm:px-5">
-          <h2 class="text-lg font-medium tracking-wide text-slate-700 dark:text-navy-100">
+        <div className="flex flex-col items-center space-y-4 border-t border-slate-200 p-4 dark:border-navy-500 sm:flex-row sm:justify-between sm:space-y-0 sm:px-5">
+          <h2 className="text-lg font-medium tracking-wide text-slate-700 dark:text-navy-100">
             {/* Room Setting */}
           </h2>
-          <div class="flex justify-center space-x-2">
-            {/* <button class="btn min-w-[7rem] rounded-full border border-slate-300 font-medium text-slate-700 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-100 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
+          <div className="flex justify-center space-x-2">
+            {/* <button className="btn min-w-[7rem] rounded-full border border-slate-300 font-medium text-slate-700 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-100 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
               Cancel
             </button> */}
             <a href="http://localhost:3000/">
@@ -574,7 +574,7 @@ const InformationForm = ({ Title, ...props }) => {
                 id="submit"
                 type="submit"
                 disabled={formik.isSubmitting}
-                class="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+                className="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
               >
                 {Title === "Add" ? "Add Room" : "Save"}
               </button>

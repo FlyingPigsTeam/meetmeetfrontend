@@ -29,10 +29,10 @@ Sidebar.Primary = function PrimarySidebar({ classes, children, ...restProps }) {
 };
 Sidebar.Primary.Logo = function SidebarLogo() {
   return (
-    <div class="flex pt-4">
+    <div className="flex pt-4">
       <a href="/">
         <img
-          class="h-11 w-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
+          className="h-11 w-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
           src={AppLogo}
           alt="logo"
         />
@@ -47,7 +47,7 @@ Sidebar.Primary.Middle = function SidebarMiddlebar({
 }) {
   return (
     <>
-      <div class="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6">
+      <div className="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6">
         {children}
       </div>
     </>
@@ -61,11 +61,11 @@ Sidebar.Primary.Middle.Home = function PrimarySidebar({
   return (
     <a
       href="dashboards-crm-analytics.html"
-      class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+      className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
     // x-tooltip.placement.right="'Dashboards'"
     >
       <svg
-        class="h-7 w-7"
+        className="h-7 w-7"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
@@ -101,11 +101,11 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       {/* <!-- Dashobards --> */}
       <a
         href="dashboards-crm-analytics.html"
-        class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+        className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
       // x-tooltip.placement.right="'Dashboards'"
       >
         <svg
-          class="h-7 w-7"
+          className="h-7 w-7"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -133,11 +133,11 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       {/* <!-- Apps --> */}
       <a
         href="apps-list.html"
-        class="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+        className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
       // x-tooltip.placement.right="'Applications'"
       >
         <svg
-          class="h-7 w-7"
+          className="h-7 w-7"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -165,11 +165,11 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       {/* <!-- Pages And Layouts --> */}
       <a
         href="pages-card-user-1.html"
-        class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+        className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
       // x-tooltip.placement.right="'Pages & Layouts'"
       >
         <svg
-          class="h-7 w-7"
+          className="h-7 w-7"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -199,11 +199,11 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       {/* <!-- Forms --> */}
       <a
         href="form-input-text.html"
-        class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+        className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
       // x-tooltip.placement.right="'Forms'"
       >
         <svg
-          class="h-7 w-7"
+          className="h-7 w-7"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -228,11 +228,11 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       {/* <!-- Components --> */}
       <a
         href="components-accordion.html"
-        class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+        className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
       // x-tooltip.placement.right="'Components'"
       >
         <svg
-          class="h-7 w-7"
+          className="h-7 w-7"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -257,11 +257,11 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       {/* <!-- Elements --> */}
       <a
         href="elements-avatar.html"
-        class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+        className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
       // x-tooltip.placement.right="'Elements'"
       >
         <svg
-          class="h-7 w-7"
+          className="h-7 w-7"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -277,15 +277,15 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
           />
         </svg>
       </a>
-      <ul class="mt-2 flex flex-col items-center justify-center space-y-1">
+      <ul className="mt-2 flex flex-col items-center justify-center space-y-1">
         <li>
           <a
             href="#"
-            class="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            className="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5.5 w-5.5"
+              className="h-5.5 w-5.5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -302,11 +302,11 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
         <li>
           <a
             href="#"
-            class="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            className="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5.5 w-5.5"
+              className="h-5.5 w-5.5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -329,7 +329,7 @@ Sidebar.Primary.Middle.Rooms = function PrimaryRoomsSections({
   children,
   ...restProps
 }) {
-  return <div class="flex flex-col">{children}</div>;
+  return <div className="flex flex-col">{children}</div>;
 };
 Sidebar.Primary.Middle.Rooms.LoadItems = function LoaderRoomsItems({
   classes,
@@ -374,11 +374,11 @@ Sidebar.Primary.Middle.Rooms.Item = function PrimaryRoomsItems({
     <>
       <div
         // @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/200x200.png',name:'Konnor Guzman'})"
-        class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+        className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
       >
         <button onClick={() => navigate(`room/${item.id}/info`)}
-          class="avatar h-10 w-10">
-          <img class="rounded-full" src={Avatar200x200} alt="avatar" />
+          className="avatar h-10 w-10">
+          <img className="rounded-full" src={Avatar200x200} alt="avatar" />
         </button>
       </div>
     </>
@@ -405,76 +405,76 @@ Sidebar.Primary.Middle.Rooms.AllItem = function PrimaryRoomsAllitems({
       {" "}
       <div
         // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
-        class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+        className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
       >
-        <div class="avatar h-10 w-10">
-          <img class="rounded-full" src={Avatar200x200} alt="avatar" />
-          <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+        <div className="avatar h-10 w-10">
+          <img className="rounded-full" src={Avatar200x200} alt="avatar" />
+          <div className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
         </div>
       </div>
       <div
         // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
-        class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+        className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
       >
-        <div class="avatar h-10 w-10">
-          <img class="rounded-full" src={Avatar200x200} alt="avatar" />
-          <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+        <div className="avatar h-10 w-10">
+          <img className="rounded-full" src={Avatar200x200} alt="avatar" />
+          <div className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
         </div>
       </div>
       <div
         // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
-        class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+        className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
       >
-        <div class="avatar h-10 w-10">
-          <img class="rounded-full" src={Avatar200x200} alt="avatar" />
-          <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+        <div className="avatar h-10 w-10">
+          <img className="rounded-full" src={Avatar200x200} alt="avatar" />
+          <div className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
         </div>
       </div>
       <div
         // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
-        class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+        className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
       >
-        <div class="avatar h-10 w-10">
-          <img class="rounded-full" src={Avatar200x200} alt="avatar" />
-          <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+        <div className="avatar h-10 w-10">
+          <img className="rounded-full" src={Avatar200x200} alt="avatar" />
+          <div className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
         </div>
       </div>
       <div
         // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Alfredo Elliott'})"
-        class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+        className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
       >
-        <div class="avatar h-10 w-10">
-          <img class="rounded-full" src={Avatar200x200} alt="avatar" />
-          <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+        <div className="avatar h-10 w-10">
+          <img className="rounded-full" src={Avatar200x200} alt="avatar" />
+          <div className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
         </div>
       </div>
       <div
         // @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/200x200.png',name:'Konnor Guzman'})"
-        class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+        className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
       >
-        <div class="avatar h-10 w-10">
-          <img class="rounded-full" src={Avatar200x200} alt="avatar" />
+        <div className="avatar h-10 w-10">
+          <img className="rounded-full" src={Avatar200x200} alt="avatar" />
         </div>
       </div>
       <div
         // @click="$dispatch('change-active-chat',{chatId:'chat-3',avatar_url:'images/200x200.png',name:'Travis Fuller'})"
-        class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+        className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
       >
-        <div class="avatar h-10 w-10">
-          <img class="rounded-full" src={Avatar200x200} alt="avatar" />
+        <div className="avatar h-10 w-10">
+          <img className="rounded-full" src={Avatar200x200} alt="avatar" />
 
-          <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-primary dark:border-navy-700 dark:bg-accent">
-            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-80 dark:bg-accent"></span>
+          <div className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-primary dark:border-navy-700 dark:bg-accent">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-80 dark:bg-accent"></span>
           </div>
         </div>
       </div>
       <div
         // @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/200x200.png',name:'Derrick Simmons'})"
-        class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+        className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
       >
-        <div class="avatar h-10 w-10">
-          <img class="rounded-full" src={Avatar200x200} alt="avatar" />
-          <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+        <div className="avatar h-10 w-10">
+          <img className="rounded-full" src={Avatar200x200} alt="avatar" />
+          <div className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
         </div>
       </div>
     </>
@@ -483,17 +483,17 @@ Sidebar.Primary.Middle.Rooms.AllItem = function PrimaryRoomsAllitems({
 
 Sidebar.Primary.Bottom = function SidebarBottomSection({ children }) {
   return (
-    <div class="flex flex-col items-center space-y-3 py-3">{children}</div>
+    <div className="flex flex-col items-center space-y-3 py-3">{children}</div>
   );
 };
 Sidebar.Primary.Bottom.Settings = function SidebarSettings() {
   return (
     <a
       href="#"
-      class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+      className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
     >
       <svg
-        class="h-7 w-7"
+        className="h-7 w-7"
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -518,49 +518,49 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
       <div
         x-data="usePopper({placement:'right-end',offset:12})"
         // @click.outside="isShowPopper && (isShowPopper = false)"
-        class="flex"
+        className="flex"
       >
         <button
           // @click="isShowPopper = !isShowPopper"
           x-ref="popperRef"
-          class="avatar h-12 w-12"
+          className="avatar h-12 w-12"
           onClick={() => navigate("/profile")}
         >
-          <img class="rounded-full" src={Avatar200x200} alt="avatar" />
-          <span class="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
+          <img className="rounded-full" src={Avatar200x200} alt="avatar" />
+          <span className="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
         </button>
 
         <div
-          // :class="isShowPopper && 'show'"
-          class="popper-root fixed"
+          // :className="isShowPopper && 'show'"
+          className="popper-root fixed"
           x-ref="popperRoot"
         >
-          <div class="popper-box w-64 rounded-lg border border-slate-150 bg-white shadow-soft dark:border-navy-600 dark:bg-navy-700">
-            <div class="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
-              <div class="avatar h-14 w-14">
-                <img class="rounded-full" src={Avatar200x200} alt="avatar" />
+          <div className="popper-box w-64 rounded-lg border border-slate-150 bg-white shadow-soft dark:border-navy-600 dark:bg-navy-700">
+            <div className="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
+              <div className="avatar h-14 w-14">
+                <img className="rounded-full" src={Avatar200x200} alt="avatar" />
               </div>
               <div>
                 <a
                   href="#"
-                  class="text-base font-medium text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light"
+                  className="text-base font-medium text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light"
                 >
                   Travis Fuller
                 </a>
-                <p class="text-xs text-slate-400 dark:text-navy-300">
+                <p className="text-xs text-slate-400 dark:text-navy-300">
                   Product Designer
                 </p>
               </div>
             </div>
-            <div class="flex flex-col pt-2 pb-5">
+            <div className="flex flex-col pt-2 pb-5">
               <a
                 href="#"
-                class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
               >
-                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-warning text-white">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-warning text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-4.5 w-4.5"
+                    className="h-4.5 w-4.5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -575,22 +575,22 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                 </div>
 
                 <div>
-                  <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                  <h2 className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                     Profile
                   </h2>
-                  <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                  <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                     Your profile setting
                   </div>
                 </div>
               </a>
               <a
                 href="#"
-                class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
               >
-                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-info text-white">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-info text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-4.5 w-4.5"
+                    className="h-4.5 w-4.5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -605,22 +605,22 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                 </div>
 
                 <div>
-                  <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                  <h2 className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                     Messages
                   </h2>
-                  <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                  <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                     Your messages and tasks
                   </div>
                 </div>
               </a>
               <a
                 href="#"
-                class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
               >
-                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary text-white">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-4.5 w-4.5"
+                    className="h-4.5 w-4.5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -635,22 +635,22 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                 </div>
 
                 <div>
-                  <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                  <h2 className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                     Team
                   </h2>
-                  <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                  <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                     Your team activity
                   </div>
                 </div>
               </a>
               <a
                 href="#"
-                class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
               >
-                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-error text-white">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-error text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-4.5 w-4.5"
+                    className="h-4.5 w-4.5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -665,22 +665,22 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                 </div>
 
                 <div>
-                  <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                  <h2 className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                     Activity
                   </h2>
-                  <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                  <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                     Your activity and events
                   </div>
                 </div>
               </a>
               <a
                 href="#"
-                class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
               >
-                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-success text-white">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-success text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-4.5 w-4.5"
+                    className="h-4.5 w-4.5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -700,19 +700,19 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                 </div>
 
                 <div>
-                  <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                  <h2 className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                     Settings
                   </h2>
-                  <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                  <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                     Webapp settings
                   </div>
                 </div>
               </a>
-              <div class="mt-3 px-4">
-                <button class="btn h-9 w-full space-x-2 bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+              <div className="mt-3 px-4">
+                <button className="btn h-9 w-full space-x-2 bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
+                    className="h-5 w-5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -740,8 +740,8 @@ Sidebar.Secondary = function ({ classes, children, ...restProps }) {
 };
 Sidebar.Secondary.Expanded = function ({ classes, children, ...restProps }) {
   return (
-    <div class="sidebar-panel">
-      <div class="flex h-full grow flex-col bg-white pl-[var(--main-sidebar-width)] dark:bg-navy-750">
+    <div className="sidebar-panel">
+      <div className="flex h-full grow flex-col bg-white pl-[var(--main-sidebar-width)] dark:bg-navy-750">
         {children}
       </div>
     </div>
@@ -753,7 +753,7 @@ Sidebar.Secondary.Expanded.Header = function ({
   ...restProps
 }) {
   return (
-    <div class="flex h-18 w-full items-center justify-between pl-4 pr-1">
+    <div className="flex h-18 w-full items-center justify-between pl-4 pr-1">
       {children}
     </div>
   );
@@ -763,7 +763,7 @@ Sidebar.Secondary.Expanded.Header.Title = function ({
   children,
   ...restProps
 }) {
-  return <div class="flex items-center">{children}</div>;
+  return <div className="flex items-center">{children}</div>;
 };
 Sidebar.Secondary.Expanded.Header.Title.Text = function ({
   classes,
@@ -771,17 +771,17 @@ Sidebar.Secondary.Expanded.Header.Title.Text = function ({
   ...restProps
 }) {
   return (
-    <p class="text-lg font-medium tracking-wider text-slate-800 dark:text-navy-100">
+    <p className="text-lg font-medium tracking-wider text-slate-800 dark:text-navy-100">
       {children}
     </p>
   );
 };
 Sidebar.Secondary.Expanded.Header.Title.Icon = function () {
   return (
-    <div class="avatar mr-3 hidden h-9 w-9 lg:flex">
-      <div class="is-initial rounded-full bg-info/10 text-info">
+    <div className="avatar mr-3 hidden h-9 w-9 lg:flex">
+      <div className="is-initial rounded-full bg-info/10 text-info">
         <svg
-          class="h-5 w-5"
+          className="h-5 w-5"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -818,11 +818,11 @@ Sidebar.Secondary.Expanded.Header.MinimizeButton = function Minimizebutton({
       onClick={() => {
         setSidebarExpanded((curr) => !curr);
       }}
-      class="btn h-7 w-7 rounded-full p-0 text-primary hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:text-accent-light/80 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 xl:hidden"
+      className="btn h-7 w-7 rounded-full p-0 text-primary hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:text-accent-light/80 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 xl:hidden"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6"
+        className="h-6 w-6"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -842,7 +842,7 @@ Sidebar.Secondary.Expanded.Body = function ({
   children,
   ...restProps
 }) {
-  return <div class="flex h-[calc(100%-4.5rem)] grow flex-col">{children}</div>;
+  return <div className="flex h-[calc(100%-4.5rem)] grow flex-col">{children}</div>;
 };
 Sidebar.Secondary.Expanded.Body.Tabs = function ({
   classes,
@@ -850,7 +850,7 @@ Sidebar.Secondary.Expanded.Body.Tabs = function ({
   ...restProps
 }) {
   return (
-    <div class="flex shrink-0 justify-between px-1.5 py-1">{children}</div>
+    <div className="flex shrink-0 justify-between px-1.5 py-1">{children}</div>
   );
 };
 Sidebar.Secondary.Expanded.Body.Tabs.Chat = function ({
@@ -862,11 +862,11 @@ Sidebar.Secondary.Expanded.Body.Tabs.Chat = function ({
     <a
       href="apps-chat.html"
       x-tooltip="'Chat App'"
-      class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+      className="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
+        className="h-5 w-5"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -890,10 +890,10 @@ Sidebar.Secondary.Expanded.Body.Tabs.Todo = function ({
     <a
       href="apps-chat.html"
       x-tooltip="'Chat App'"
-      class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+      className="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
     >
       <svg
-        class="h-5 w-5"
+        className="h-5 w-5"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -924,10 +924,10 @@ Sidebar.Secondary.Expanded.Body.Tabs.InfoTab = function ({
     <a
       href="apps-chat.html"
       x-tooltip="'Chat App'"
-      class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+      className="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
     >
       <svg
-        class="h-5 w-5"
+        className="h-5 w-5"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -953,11 +953,11 @@ Sidebar.Secondary.Expanded.Body.Tabs.AllItems = function ({
       <a
         href="apps-mail.html"
         x-tooltip="'Mail App'"
-        class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+        className="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
+          className="h-5 w-5"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -973,11 +973,11 @@ Sidebar.Secondary.Expanded.Body.Tabs.AllItems = function ({
       <a
         href="apps-kanban.html"
         x-tooltip="'Kanban App'"
-        class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+        className="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
+          className="h-5 w-5"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -993,11 +993,11 @@ Sidebar.Secondary.Expanded.Body.Tabs.AllItems = function ({
       <a
         href="apps-chat.html"
         x-tooltip="'Chat App'"
-        class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+        className="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
+          className="h-5 w-5"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -1013,11 +1013,11 @@ Sidebar.Secondary.Expanded.Body.Tabs.AllItems = function ({
       <a
         href="apps-pos.html"
         x-tooltip="'POS App'"
-        class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+        className="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
+          className="h-5 w-5"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -1033,11 +1033,11 @@ Sidebar.Secondary.Expanded.Body.Tabs.AllItems = function ({
       <a
         href="apps-filemanager.html"
         x-tooltip="'File Manager App'"
-        class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+        className="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
+          className="h-5 w-5"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -1058,7 +1058,7 @@ Sidebar.Secondary.Expanded.Body.Middle = function ({
   children,
   ...restProps
 }) {
-  return <div class="is-scrollbar-hidden grow overflow-y-auto">{children}</div>;
+  return <div className="is-scrollbar-hidden grow overflow-y-auto">{children}</div>;
 };
 Sidebar.Secondary.Expanded.Body.Middle.TopButton = function ({
   classes,
@@ -1066,11 +1066,11 @@ Sidebar.Secondary.Expanded.Body.Middle.TopButton = function ({
   ...restProps
 }) {
   return (
-    <div class="mt-2 px-4">
-      <button class="btn w-full space-x-2 rounded-full border border-slate-200 py-2 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-500 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
+    <div className="mt-2 px-4">
+      <button className="btn w-full space-x-2 rounded-full border border-slate-200 py-2 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-500 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-4 w-4"
+          className="h-4 w-4"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -1093,7 +1093,7 @@ Sidebar.Secondary.Expanded.Body.Middle.Items = function ({
   ...restProps
 }) {
   return (
-    <ul class="mt-5 space-y-1.5 px-2 font-inter text-xs+ font-medium">
+    <ul className="mt-5 space-y-1.5 px-2 font-inter text-xs+ font-medium">
       {children}
     </ul>
   );
@@ -1114,12 +1114,12 @@ Sidebar.Secondary.Expanded.Body.Middle.Items.AllItem = function ({
     <>
       <li>
         <a
-          class="group flex space-x-2 rounded-lg bg-primary/10 p-2 tracking-wide text-primary outline-none transition-all dark:bg-accent-light/10 dark:text-accent-light"
+          className="group flex space-x-2 rounded-lg bg-primary/10 p-2 tracking-wide text-primary outline-none transition-all dark:bg-accent-light/10 dark:text-accent-light"
           href="#"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-4.5 w-4.5"
+            className="h-4.5 w-4.5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -1136,12 +1136,12 @@ Sidebar.Secondary.Expanded.Body.Middle.Items.AllItem = function ({
       </li>
       <li>
         <a
-          class="group flex space-x-2 rounded-lg p-2 tracking-wide text-slate-800 outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+          className="group flex space-x-2 rounded-lg p-2 tracking-wide text-slate-800 outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
           href="#"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-4.5 w-4.5 text-slate-400 transition-colors group-hover:text-slate-500 group-focus:text-slate-500 dark:text-navy-300 dark:group-hover:text-navy-200 dark:group-focus:text-navy-200"
+            className="h-4.5 w-4.5 text-slate-400 transition-colors group-hover:text-slate-500 group-focus:text-slate-500 dark:text-navy-300 dark:group-hover:text-navy-200 dark:group-focus:text-navy-200"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -1158,12 +1158,12 @@ Sidebar.Secondary.Expanded.Body.Middle.Items.AllItem = function ({
       </li>
       <li>
         <a
-          class="group flex space-x-2 rounded-lg p-2 tracking-wide text-slate-800 outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+          className="group flex space-x-2 rounded-lg p-2 tracking-wide text-slate-800 outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
           href="#"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-4.5 w-4.5 text-slate-400 transition-colors group-hover:text-slate-500 group-focus:text-slate-500 dark:text-navy-300 dark:group-hover:text-navy-200 dark:group-focus:text-navy-200"
+            className="h-4.5 w-4.5 text-slate-400 transition-colors group-hover:text-slate-500 group-focus:text-slate-500 dark:text-navy-300 dark:group-hover:text-navy-200 dark:group-focus:text-navy-200"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -1180,12 +1180,12 @@ Sidebar.Secondary.Expanded.Body.Middle.Items.AllItem = function ({
       </li>
       <li>
         <a
-          class="group flex space-x-2 rounded-lg p-2 tracking-wide text-slate-800 outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+          className="group flex space-x-2 rounded-lg p-2 tracking-wide text-slate-800 outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
           href="#"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-4.5 w-4.5 text-slate-400 transition-colors group-hover:text-slate-500 group-focus:text-slate-500 dark:text-navy-300 dark:group-hover:text-navy-200 dark:group-focus:text-navy-200"
+            className="h-4.5 w-4.5 text-slate-400 transition-colors group-hover:text-slate-500 group-focus:text-slate-500 dark:text-navy-300 dark:group-hover:text-navy-200 dark:group-focus:text-navy-200"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -1202,12 +1202,12 @@ Sidebar.Secondary.Expanded.Body.Middle.Items.AllItem = function ({
       </li>
       <li>
         <a
-          class="group flex space-x-2 rounded-lg p-2 tracking-wide text-error outline-none transition-all hover:bg-error/20 focus:bg-error/20"
+          className="group flex space-x-2 rounded-lg p-2 tracking-wide text-error outline-none transition-all hover:bg-error/20 focus:bg-error/20"
           href="#"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-4.5 w-4.5"
+            className="h-4.5 w-4.5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -1230,7 +1230,7 @@ Sidebar.Secondary.Expanded.Body.Middle.Divider = function ({
   children,
   ...restProps
 }) {
-  return <div class="my-4 mx-4 h-px bg-slate-200 dark:bg-navy-500"></div>;
+  return <div className="my-4 mx-4 h-px bg-slate-200 dark:bg-navy-500"></div>;
 };
 Sidebar.Secondary.Expanded.Body.Middle.SectionHeader = function ({
   classes,
@@ -1239,13 +1239,13 @@ Sidebar.Secondary.Expanded.Body.Middle.SectionHeader = function ({
 }) {
   return (
     <>
-      <div class="flex items-center justify-between px-4">
-        <span class="text-xs font-medium uppercase">Labels</span>
-        <div class="-mr-1.5 flex">
-          <button class="btn h-6 w-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+      <div className="flex items-center justify-between px-4">
+        <span className="text-xs font-medium uppercase">Labels</span>
+        <div className="-mr-1.5 flex">
+          <button className="btn h-6 w-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-3.5 w-3.5"
+              className="h-3.5 w-3.5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -1262,16 +1262,16 @@ Sidebar.Secondary.Expanded.Body.Middle.SectionHeader = function ({
           <div
             x-data="usePopper({placement:'bottom-end',offset:4})"
             // @click.outside="isShowPopper && (isShowPopper = false)"
-            class="inline-flex"
+            className="inline-flex"
           >
             <button
               x-ref="popperRef"
               // @click="isShowPopper = !isShowPopper"
-              class="btn h-6 w-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+              className="btn h-6 w-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-3.5 w-3.5"
+                className="h-3.5 w-3.5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -1287,15 +1287,15 @@ Sidebar.Secondary.Expanded.Body.Middle.SectionHeader = function ({
 
             <div
               x-ref="popperRoot"
-              class="popper-root"
-            // :class="isShowPopper && 'show'"
+              className="popper-root"
+            // :className="isShowPopper && 'show'"
             >
-              <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
+              <div className="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
                 <ul>
                   <li>
                     <a
                       href="#"
-                      class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                      className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                     >
                       Action
                     </a>
@@ -1303,7 +1303,7 @@ Sidebar.Secondary.Expanded.Body.Middle.SectionHeader = function ({
                   <li>
                     <a
                       href="#"
-                      class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                      className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                     >
                       Another Action
                     </a>
@@ -1311,18 +1311,18 @@ Sidebar.Secondary.Expanded.Body.Middle.SectionHeader = function ({
                   <li>
                     <a
                       href="#"
-                      class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                      className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                     >
                       Something else
                     </a>
                   </li>
                 </ul>
-                <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
+                <div className="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
                 <ul>
                   <li>
                     <a
                       href="#"
-                      class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                      className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                     >
                       Separated Link
                     </a>
@@ -1345,11 +1345,11 @@ Sidebar.Secondary.Expanded.Body.Middle.Items.AllLabelItems = function ({
     <>
       <li>
         <a
-          class="group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-success/20 focus:bg-success/20"
+          className="group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-success/20 focus:bg-success/20"
           href="#"
         >
           <svg
-            class="h-4.5 w-4.5 text-success"
+            className="h-4.5 w-4.5 text-success"
             stroke="currentColor"
             viewBox="0 0 24 24"
             stroke-width="1.5"
@@ -1367,16 +1367,16 @@ Sidebar.Secondary.Expanded.Body.Middle.Items.AllLabelItems = function ({
               stroke-linejoin="round"
             />
           </svg>
-          <span class="text-slate-800 dark:text-navy-100">Low</span>
+          <span className="text-slate-800 dark:text-navy-100">Low</span>
         </a>
       </li>
       <li>
         <a
-          class="group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-warning/20 focus:bg-warning/20"
+          className="group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-warning/20 focus:bg-warning/20"
           href="#"
         >
           <svg
-            class="h-4.5 w-4.5 text-warning"
+            className="h-4.5 w-4.5 text-warning"
             stroke="currentColor"
             viewBox="0 0 24 24"
             stroke-width="1.5"
@@ -1394,16 +1394,16 @@ Sidebar.Secondary.Expanded.Body.Middle.Items.AllLabelItems = function ({
               stroke-linejoin="round"
             />
           </svg>
-          <span class="text-slate-800 dark:text-navy-100">Medium</span>
+          <span className="text-slate-800 dark:text-navy-100">Medium</span>
         </a>
       </li>
       <li>
         <a
-          class="group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-error/20 focus:bg-error/20"
+          className="group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-error/20 focus:bg-error/20"
           href="#"
         >
           <svg
-            class="h-4.5 w-4.5 text-error"
+            className="h-4.5 w-4.5 text-error"
             stroke="currentColor"
             viewBox="0 0 24 24"
             stroke-width="1.5"
@@ -1421,16 +1421,16 @@ Sidebar.Secondary.Expanded.Body.Middle.Items.AllLabelItems = function ({
               stroke-linejoin="round"
             />
           </svg>
-          <span class="text-slate-800 dark:text-navy-100">High</span>
+          <span className="text-slate-800 dark:text-navy-100">High</span>
         </a>
       </li>
       <li>
         <a
-          class="group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-info/20 focus:bg-info/20"
+          className="group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-info/20 focus:bg-info/20"
           href="#"
         >
           <svg
-            class="h-4.5 w-4.5 text-info"
+            className="h-4.5 w-4.5 text-info"
             stroke="currentColor"
             viewBox="0 0 24 24"
             stroke-width="1.5"
@@ -1448,7 +1448,7 @@ Sidebar.Secondary.Expanded.Body.Middle.Items.AllLabelItems = function ({
               stroke-linejoin="round"
             />
           </svg>
-          <span class="text-slate-800 dark:text-navy-100">Update</span>
+          <span className="text-slate-800 dark:text-navy-100">Update</span>
         </a>
       </li>
     </>
@@ -1456,8 +1456,8 @@ Sidebar.Secondary.Expanded.Body.Middle.Items.AllLabelItems = function ({
 };
 Sidebar.Secondary.Minimized = function ({ classes, children, ...restProps }) {
   return (
-    <div class="sidebar-panel-min">
-      <div class="flex h-full flex-col items-center bg-white dark:bg-navy-750">
+    <div className="sidebar-panel-min">
+      <div className="flex h-full flex-col items-center bg-white dark:bg-navy-750">
         {children}
       </div>
     </div>
@@ -1469,11 +1469,11 @@ Sidebar.Secondary.Minimized.Header = function ({
   ...restProps
 }) {
   return (
-    <div class="flex h-18 shrink-0 items-center justify-center">
-      <div class="avatar flex h-10 w-10 rounded-full bg-info/10 text-info">
-        <div class="is-initial">
+    <div className="flex h-18 shrink-0 items-center justify-center">
+      <div className="avatar flex h-10 w-10 rounded-full bg-info/10 text-info">
+        <div className="is-initial">
           <svg
-            class="h-5 w-5"
+            className="h-5 w-5"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -1503,7 +1503,7 @@ Sidebar.Secondary.Minimized.Body = function ({
   children,
   ...restProps
 }) {
-  return <div class="flex h-[calc(100%-4.5rem)] grow flex-col">{children}</div>;
+  return <div className="flex h-[calc(100%-4.5rem)] grow flex-col">{children}</div>;
 };
 
 Sidebar.Secondary.Minimized.Body.Middle = function ({
@@ -1512,16 +1512,16 @@ Sidebar.Secondary.Minimized.Body.Middle = function ({
   ...restProps
 }) {
   return (
-    <div class="is-scrollbar-hidden flex grow flex-col overflow-y-auto">
-      <ul class="mt-4 space-y-1">
+    <div className="is-scrollbar-hidden flex grow flex-col overflow-y-auto">
+      <ul className="mt-4 space-y-1">
         <li>
           <a
             href="#"
-            class="btn h-10 w-10 bg-primary/10 p-0 font-medium text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+            className="btn h-10 w-10 bg-primary/10 p-0 font-medium text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5.5 w-5.5"
+              className="h-5.5 w-5.5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -1538,11 +1538,11 @@ Sidebar.Secondary.Minimized.Body.Middle = function ({
         <li>
           <a
             href="#"
-            class="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            className="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5.5 w-5.5"
+              className="h-5.5 w-5.5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -1559,11 +1559,11 @@ Sidebar.Secondary.Minimized.Body.Middle = function ({
         <li>
           <a
             href="#"
-            class="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            className="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5.5 w-5.5"
+              className="h-5.5 w-5.5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -1580,11 +1580,11 @@ Sidebar.Secondary.Minimized.Body.Middle = function ({
         <li>
           <a
             href="#"
-            class="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            className="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5.5 w-5.5"
+              className="h-5.5 w-5.5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -1601,11 +1601,11 @@ Sidebar.Secondary.Minimized.Body.Middle = function ({
         <li>
           <a
             href="#"
-            class="btn h-10 w-10 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25"
+            className="btn h-10 w-10 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5.5 w-5.5"
+              className="h-5.5 w-5.5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -1620,15 +1620,15 @@ Sidebar.Secondary.Minimized.Body.Middle = function ({
           </a>
         </li>
       </ul>
-      <div class="my-4 h-px bg-slate-200 dark:bg-navy-500"></div>
-      <ul class="space-y-1">
+      <div className="my-4 h-px bg-slate-200 dark:bg-navy-500"></div>
+      <ul className="space-y-1">
         <li>
           <a
             href="#"
-            class="btn h-10 w-10 p-0 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25"
+            className="btn h-10 w-10 p-0 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25"
           >
             <svg
-              class="h-5.5 w-5.5"
+              className="h-5.5 w-5.5"
               stroke="currentColor"
               viewBox="0 0 24 24"
               stroke-width="1.5"
@@ -1651,10 +1651,10 @@ Sidebar.Secondary.Minimized.Body.Middle = function ({
         <li>
           <a
             href="#"
-            class="btn h-10 w-10 p-0 text-warning hover:bg-warning/20 focus:bg-warning/20 active:bg-warning/25"
+            className="btn h-10 w-10 p-0 text-warning hover:bg-warning/20 focus:bg-warning/20 active:bg-warning/25"
           >
             <svg
-              class="h-5.5 w-5.5"
+              className="h-5.5 w-5.5"
               stroke="currentColor"
               viewBox="0 0 24 24"
               stroke-width="1.5"
@@ -1677,10 +1677,10 @@ Sidebar.Secondary.Minimized.Body.Middle = function ({
         <li>
           <a
             href="#"
-            class="btn h-10 w-10 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25"
+            className="btn h-10 w-10 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25"
           >
             <svg
-              class="h-5.5 w-5.5"
+              className="h-5.5 w-5.5"
               stroke="currentColor"
               viewBox="0 0 24 24"
               stroke-width="1.5"
@@ -1703,10 +1703,10 @@ Sidebar.Secondary.Minimized.Body.Middle = function ({
         <li>
           <a
             href="#"
-            class="btn h-10 w-10 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25"
+            className="btn h-10 w-10 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25"
           >
             <svg
-              class="h-5.5 w-5.5"
+              className="h-5.5 w-5.5"
               stroke="currentColor"
               viewBox="0 0 24 24"
               stroke-width="1.5"
@@ -1736,20 +1736,20 @@ Sidebar.Secondary.Minimized.Body.MoreActions = function ({
   ...restProps
 }) {
   return (
-    <div class="py-3">
+    <div className="py-3">
       <div
         x-data="usePopper({placement:'right-start',offset:4})"
         // @click.outside="isShowPopper && (isShowPopper = false)"
-        class="inline-flex"
+        className="inline-flex"
       >
         <button
           x-ref="popperRef"
           // @click="isShowPopper = !isShowPopper"
-          class="btn h-10 w-10 rounded-full border border-slate-300 p-0 font-medium hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
+          className="btn h-10 w-10 rounded-full border border-slate-300 p-0 font-medium hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
+            className="h-6 w-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -1766,15 +1766,15 @@ Sidebar.Secondary.Minimized.Body.MoreActions = function ({
         <template x-teleport="#x-teleport-target">
           <div
             x-ref="popperRoot"
-            class="popper-root"
-          // :class="isShowPopper && 'show'"
+            className="popper-root"
+          // :className="isShowPopper && 'show'"
           >
-            <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
+            <div className="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
               <ul>
                 <li>
                   <a
                     href="#"
-                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                   >
                     Action
                   </a>
@@ -1782,7 +1782,7 @@ Sidebar.Secondary.Minimized.Body.MoreActions = function ({
                 <li>
                   <a
                     href="#"
-                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                   >
                     Another Action
                   </a>
@@ -1790,18 +1790,18 @@ Sidebar.Secondary.Minimized.Body.MoreActions = function ({
                 <li>
                   <a
                     href="#"
-                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                   >
                     Something else
                   </a>
                 </li>
               </ul>
-              <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
+              <div className="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
               <ul>
                 <li>
                   <a
                     href="#"
-                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                   >
                     Separated Link
                   </a>

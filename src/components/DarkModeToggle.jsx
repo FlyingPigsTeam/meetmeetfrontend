@@ -17,7 +17,7 @@ export default function DarkModeToggle() {
     <>
       <button
         onClick={toggleDarkMode}
-        class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+        className="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
       >
         {!(colorTheme === "light" )? (
           <svg
@@ -25,7 +25,7 @@ export default function DarkModeToggle() {
             // x-transition:enter="transition-transform duration-200 ease-out absolute origin-top"
             // x-transition:enter-start="scale-75"
             // x-transition:enter-end="scale-100 static"
-            class="h-6 w-6 text-amber-400"
+            className="h-6 w-6 text-amber-400"
             fill="currentColor"
             viewBox="0 0 24 24"
           >
@@ -38,7 +38,7 @@ export default function DarkModeToggle() {
             // x-transition:enter="transition-transform duration-200 ease-out absolute origin-top"
             // x-transition:enter-start="scale-75"
             // x-transition:enter-end="scale-100 static"
-            class="h-6 w-6 text-amber-400"
+            className="h-6 w-6 text-amber-400"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
