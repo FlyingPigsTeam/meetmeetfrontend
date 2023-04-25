@@ -15,7 +15,6 @@ import VerifyEmail from "../pages/LoginRegister/VerifyEmail";
 import InfoTab from "../pages/Room/InfoTab/InfoTab";
 import InformationForm from "../pages/Room/InfoTab/InformationForm";
 import InformationPage from "../pages/Room/InfoTab/InformationPage";
-import VerifyEmail from "../pages/LoginRegister/VerifyEmail";
 import PanelMain from "../pages/Home/PanelMain";
 import Paneltest from "../pages/Home/Paneltest";
 
@@ -23,6 +22,7 @@ import Profile from "../pages/Profile/Profile";
 import Setting from "../pages/Profile/Setting";
 import ChangePassword from "../pages/Profile/ChangePassword";
 import Task from "../pages/Room/Task/Task";
+import Chat from "../pages/Chat/Chat";
 
 const Router = () => {
   return (
@@ -37,7 +37,6 @@ const Router = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/email-verify" element={<VerifyEmail />} />
-          <Route path="/task" element={<Task />} />
           <Route path="/forgetpassword" element={<ForgetPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
 
@@ -49,14 +48,19 @@ const Router = () => {
 
           {/* <Route path="/room/info" element={<InfoTab />} /> */}
           <Route path="/room/:idroom/info" element={<InfoTab />} />
-          <Route path="/room/:idroom/info/edit" element={<InformationForm Title="Edit" />} />
+          <Route
+            path="/room/:idroom/info/edit"
+            element={<InformationForm Title="Edit" />}
+          />
+          <Route path="/room/:idroom/task" element={<Task />} />
+          <Route path="/room/:idroom/chat" element={<Chat />} />
           <Route path="/profile" element={<Profile />} />
           <Route
             path="/room/:idroom/info/edit"
             element={<InformationForm Title="Edit" />}
           />
           <Route path="/panel" element={<PanelMain />} />
-          <Route path="/panel2" element={<Paneltest />} /> 
+          <Route path="/panel2" element={<Paneltest />} />
 
           {/* <Routes>
               <Route path="/" element={<Homepage />} />

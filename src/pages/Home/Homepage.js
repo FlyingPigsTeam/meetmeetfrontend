@@ -130,7 +130,10 @@ const Homepage = () => {
           </Sidebar.Primary>
         </Sidebar>
         <MainSection>
-          <div className=" bg-slate-100 dark:bg-navy-900 text-left pb-10 pl-10">
+
+          <div
+            className=" text-left pb-10 pl-10"
+          >
             <div className="text-5xl font-bold text-myGrey mb-8 mt-5">
               Events
             </div>
@@ -139,24 +142,25 @@ const Homepage = () => {
               setparamsFilter={handleFilterChange}
             />
 
-            <div
-              className="grid grid-cols-2 gap-6"
-              style={{ width: "75.6vw", marginTop: "5vh" }}
-            >
-              {status ? (
-                cards.map((item, index) => (
-                  <Card key={index} info={information} data={item} />
-                ))
-              ) : (
-                <Card info={information} />
-              )}
+              <div
+                className="grid grid-cols-2 gap-6"
+                style={{ width: "75.6vw", marginTop: "5vh" }}
+              >
+                {status ? (
+                  cards.map((item, index) => (
+                    <Card key={index} info={information} data={item} />
+                  ))
+                ) : (
+                  <Card info={information} />
+                )}
+              </div>
             </div>
-          </div>
-          <Pagination
-            current={currentPage}
-            total={totalPages}
-            setPage={(page) => setCurrentPage(page)}
-          />
+            <Pagination
+              current={currentPage}
+              total={totalPages}
+              setPage={(page) => setCurrentPage(page)}
+            />
+
         </MainSection>
       </PageWrapper>
     </>

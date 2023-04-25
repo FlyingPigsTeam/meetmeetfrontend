@@ -51,7 +51,7 @@ const Pagination = ({current,total ,setPage}) => {
             >
               <path
                 stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinejoin="round"
                 d="M15 19l-7-7 7-7"
               />
             </svg>
@@ -119,7 +119,7 @@ const Pagination = ({current,total ,setPage}) => {
             >
               <path
                 stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinejoin="round"
                 stroke-width="2"
                 d="M9 5l7 7-7 7"
               />

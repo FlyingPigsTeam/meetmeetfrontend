@@ -23,7 +23,7 @@ export default function AddRoom() {
         >
           <path
             stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             d="M12 4v16m8-8H4"
           ></path>
         </svg>
@@ -119,7 +119,7 @@ export default function AddRoom() {
                     >
                       <path
                         stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                         d="M6 18L18 6M6 6l12 12"
                       ></path>
                     </svg>
