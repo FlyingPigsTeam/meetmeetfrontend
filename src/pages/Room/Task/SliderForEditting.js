@@ -99,7 +99,7 @@ export default function SliderForEditting({
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-96 max-w-md">
-                  <div className="flex h-full flex-col overflow-y-scroll bg-white pb-6 shadow-xl">
+                  <div className="flex h-full flex-col overflow-y-scroll bg-white dark:bg-navy-600 pb-6 shadow-xl">
                     <div className="px-4 sm:px-6 bg-slate-150 p-4 dark:bg-navy-800">
                       <div className="flex items-start justify-between">
                         <Dialog.Title className="text-base font-medium text-slate-700 dark:text-navy-100">
@@ -128,30 +128,30 @@ export default function SliderForEditting({
                       </div>
                       <div className="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto p-4">
                         <label className="block">
-                          <span>Task Title</span>
+                          <span className=" dark:text-navy-50">Task Title</span>
                           <input
                             value={title}
                             onChange={(e) => settitle(e.target.value)}
-                            className="form-input mt-1.5 h-9 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                            className="form-input mt-1.5 h-9 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
                             placeholder="Enter todo title"
                             type="text"
                           />
                         </label>
                         <label className="block">
-                          <span>Task Description</span>
+                          <span className=" dark:text-navy-50">Task Description</span>
                           <textarea
                             onChange={(e) => setdescription(e.target.value)}
                             value={description}
-                            className="form-input mt-1.5 h-24 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                            className="form-input mt-1.5 h-24 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
                             placeholder="Enter todo title"
                             type="text"
                           />
                         </label>
                         <label className="block z-40">
-                          <span>Priority:</span>
+                          <span className=" dark:text-navy-50">Priority:</span>
                           <select
                             //x-init="$el._x_tom = new Tom($el)"
-                            className="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                            className="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent dark:bg-navy-600 px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
                             //multiple
                             value={selectedDifficulty}
                             onChange={handleDifficultyChange}
@@ -164,10 +164,10 @@ export default function SliderForEditting({
                           </select>
                         </label>
                         <label className="block z-40">
-                          <span>Assigned To:</span>
+                          <span className=" dark:text-navy-50">Assigned To:</span>
                           <select
                             //x-init="$el._x_tom = new Tom($el)"
-                            className="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                            className="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
                             //multiple
                             value={selectedDifficulty}
                             onChange={handleDifficultyChange}
@@ -184,7 +184,7 @@ export default function SliderForEditting({
                             reqForEditing();
                             setslideover(false);
                           }}
-                          className=" z-20 grid h-10 w-full items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm bg-primary text-slate-100 hover:opacity-80 dark:text-navy-900 duration-300"
+                          className=" z-20 grid h-10 w-full items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm bg-primary text-slate-100 hover:opacity-80 dark:text-navy-50 duration-300"
                         >
                           Save
                         </button>
