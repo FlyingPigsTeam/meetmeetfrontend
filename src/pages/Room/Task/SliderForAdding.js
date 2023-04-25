@@ -66,7 +66,7 @@ export default function SliderForAdding({
     <Transition.Root show={slideover} as={Fragment}>
       <Dialog
         as="div"
-        className="relative z-10"
+        className="relative z-50"
         onClose={() => {
           setslideover(false);
         }}
@@ -87,7 +87,7 @@ export default function SliderForAdding({
               >
                 <Dialog.Panel className="pointer-events-auto w-96 max-w-md z-50">
                   <div className="flex h-full flex-col overflow-y-scroll pb-6 shadow-xl bg-white dark:bg-navy-600">
-                    <div className="px-4 sm:px-6 bg-slate-150 p-4 dark:bg-navy-800">
+                    <div className="px-4 sm:px-6 bg-slate-150 p-4 dark:bg-navy-500">
                       <div className="flex items-start justify-between">
                         <Dialog.Title className="text-base font-medium text-slate-700 dark:text-navy-100">
                           Add Task
