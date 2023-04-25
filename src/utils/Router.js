@@ -19,6 +19,7 @@ import VerifyEmail from "../pages/LoginRegister/VerifyEmail";
 import Profile from "../pages/Profile/Profile";
 import Setting from "../pages/Profile/Setting";
 import ChangePassword from "../pages/Profile/ChangePassword";
+import Task from "../pages/Room/Task/Task";
 const Router = () => {
   return (
     <div>
@@ -32,6 +33,7 @@ const Router = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/email-verify" element={<VerifyEmail />} />
+          <Route path="/task" element={<Task />} />
           <Route path="/forgetpassword" element={<ForgetPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           {/* <Route path="/room/info" element={<InfoTab />} /> */}
