@@ -31,25 +31,25 @@ const Login = () => {
   });
 
   return (
-    <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
-      <main class="grid w-full grow grid-cols-1 place-items-center">
-        <div class="w-full max-w-[26rem] p-4 sm:px-5">
-          <div class="text-center">
+    <div id="root" className="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
+      <main className="grid w-full grow grid-cols-1 place-items-center">
+        <div className="w-full max-w-[26rem] p-4 sm:px-5">
+          <div className="text-center">
             <img
-              class="mx-auto h-16 w-16"
+              className="mx-auto h-16 w-16"
               src="images/app-logo.svg"
               alt="logo"
             />
-            <div class="mt-4">
-              <h2 class="text-2xl font-semibold text-slate-600 dark:text-navy-100">
+            <div className="mt-4">
+              <h2 className="text-2xl font-semibold text-slate-600 dark:text-navy-100">
                 Welcome Back
               </h2>
-              <p class="text-slate-400 dark:text-navy-300">
+              <p className="text-slate-400 dark:text-navy-300">
                 Please sign in to continue
               </p>
             </div>
           </div>
-          <div class="card mt-5 rounded-lg p-5 lg:p-7">
+          <div className="card mt-5 rounded-lg p-5 lg:p-7">
             <form onSubmit={formik.handleSubmit}>
               <label className="relative mt-4 flex">
                 <input
@@ -69,7 +69,7 @@ const Login = () => {
                   required
                 />
                 <span className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
-                  <i class="fa-solid fa-envelope"></i>
+                  <i className="fa-solid fa-envelope"></i>
                 </span>
               </label>
               {formik.errors.email && formik.touched.email && (
@@ -95,7 +95,7 @@ const Login = () => {
                   required
                 />
                 <span className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
-                  <i class="fa-solid fa-lock"></i>
+                  <i className="fa-solid fa-lock"></i>
                 </span>
               </label>
               {formik.errors.password && formik.touched.password && (
@@ -103,17 +103,17 @@ const Login = () => {
                   {formik.errors.password}
                 </span>
               )}
-              <div class="mt-4 flex items-center justify-between space-x-2">
-                <label class="inline-flex items-center space-x-2">
+              <div className="mt-4 flex items-center justify-between space-x-2">
+                <label className="inline-flex items-center space-x-2">
                   <input
-                    class="form-checkbox is-basic h-5 w-5 rounded border-slate-400/70 checked:border-primary checked:bg-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:checked:border-accent dark:checked:bg-accent dark:hover:border-accent dark:focus:border-accent"
+                    className="form-checkbox is-basic h-5 w-5 rounded border-slate-400/70 checked:border-primary checked:bg-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:checked:border-accent dark:checked:bg-accent dark:hover:border-accent dark:focus:border-accent"
                     type="checkbox"
                   />
-                  <span class="line-clamp-1">Remember me</span>
+                  <span className="line-clamp-1">Remember me</span>
                 </label>
                 <Link
                   to={"/forgetpassword"}
-                  class="text-xs text-slate-400 transition-colors line-clamp-1 hover:text-slate-800 focus:text-slate-800 dark:text-navy-300 dark:hover:text-navy-100 dark:focus:text-navy-100"
+                  className="text-xs text-slate-400 transition-colors line-clamp-1 hover:text-slate-800 focus:text-slate-800 dark:text-navy-300 dark:hover:text-navy-100 dark:focus:text-navy-100"
                 >
                   Forgot Password?
                 </Link>
@@ -130,44 +130,44 @@ const Login = () => {
               >
                 {formik.isSubmitting ? (
                   <>
-                    <div class="spinner h-7 w-7 animate-spin rounded-full border-[3px] border-primary/30 border-r-primary dark:border-accent/30 dark:border-r-accent"></div>
+                    <div className="spinner h-7 w-7 animate-spin rounded-full border-[3px] border-primary/30 border-r-primary dark:border-accent/30 dark:border-r-accent"></div>
                   </>
                 ) : (
                   "Sign In"
                 )}
               </button>
             </form>
-            <div class="mt-4 text-center text-xs+">
-              <p class="line-clamp-1">
+            <div className="mt-4 text-center text-xs+">
+              <p className="line-clamp-1">
                 <span>Dont have Account? </span>
 
                 <Link
-                  class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+                  className="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
                   to={"/register"}
                 >
                   Create account
                 </Link>
               </p>
             </div>
-            {/* <div class="my-7 flex items-center space-x-3">
-              <div class="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+            {/* <div className="my-7 flex items-center space-x-3">
+              <div className="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
               <p>OR</p>
-              <div class="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+              <div className="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
             </div>
-            <div class="flex space-x-4">
-              <button class="btn w-full space-x-3 border border-slate-300 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
-                <img class="h-5.5 w-5.5" src="images/100x100.png" alt="logo" />
+            <div className="flex space-x-4">
+              <button className="btn w-full space-x-3 border border-slate-300 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
+                <img className="h-5.5 w-5.5" src="images/100x100.png" alt="logo" />
                 <span>Google</span>
               </button>
-              <button class="btn w-full space-x-3 border border-slate-300 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
-                <img class="h-5.5 w-5.5" src="images/100x100.png" alt="logo" />
+              <button className="btn w-full space-x-3 border border-slate-300 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
+                <img className="h-5.5 w-5.5" src="images/100x100.png" alt="logo" />
                 <span>Github</span>
               </button>
             </div> */}
           </div>
-          {/* <div class="mt-8 flex justify-center text-xs text-slate-400 dark:text-navy-300">
+          {/* <div className="mt-8 flex justify-center text-xs text-slate-400 dark:text-navy-300">
             <a href="#">Privacy Notice</a>
-            <div class="mx-3 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+            <div className="mx-3 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
             <a href="#">Term of service</a>
           </div> */}
         </div>

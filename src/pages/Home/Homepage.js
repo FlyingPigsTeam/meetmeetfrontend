@@ -1,10 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import Card from "../../components/Card";
-import Header from "../../components/Header";
-import SidebarNavigation from "../../components/SidebarNavigation";
-import Filters from "./Filter";
 import axios from "axios";
 import Pagination from "./Pagination";
+
+import PageWrapper from "../../components/PageWrapper";
+import MainSection from "../../components/MainSection";
+
+import Header from "../../components/Header";
+import Sidebar from "../../components/Sidebar";
+
+import DarkModeToggle from "../../components/DarkModeToggle";
+import Card from "../../components/Card";
+import Filters from "./Filter";
 
 import AuthContext from "../../context/AuthContext";
 import { number } from "yup";
@@ -54,34 +60,33 @@ const Homepage = () => {
 
   const [status, setstatus] = useState("");
   const req = async () => {
-    const { data } = await axios
-      .get(`http://127.0.0.1:8000/api/rooms?${url}&page=${currentPage}`, {
+    const { data } = await axios.get(
+      `http://127.0.0.1:8000/api/rooms?${url}&page=${currentPage}`,
+      {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + authTokens.access,
         },
-        
-      })
-      // .then((response) => response);
-      setstatus(data);
-      // console.log(`http://127.0.0.1:8000/api/rooms?${url}&page=${currentPage}`);
-      // console.log(currentPage);
-      let count=data.count;
-      let number=1;
-      if(count%10==0){
-        number= count/10;
       }
-      else{
-        number=((count-(count%10))/10)+1;
-      }
-      setTotalPages(number);
-      // console.log(url);
+    );
+    // .then((response) => response);
+    setstatus(data);
+    // console.log(`http://127.0.0.1:8000/api/rooms?${url}&page=${currentPage}`);
+    // console.log(currentPage);
+    let count = data.count;
+    let number = 1;
+    if (count % 10 == 0) {
+      number = count / 10;
+    } else {
+      number = (count - (count % 10)) / 10 + 1;
+    }
+    setTotalPages(number);
+    // console.log(url);
   };
 
-  
   useEffect(() => {
     req();
-  }, [authTokens, paramsFilter,currentPage,totalPages]);
+  }, [authTokens, paramsFilter, currentPage, totalPages]);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -93,48 +98,68 @@ const Homepage = () => {
   // console.log(`data is ${status.results}`);
   let cards = status ? status.results : {};
   return (
-    <div>
-      <Header />
-      <div
-        style={{
-          paddingTop: "12vh",
-          display: "grid",
-          gridTemplateColumns: "1fr 4fr",
-        }}
-      >
-        <SidebarNavigation />
-        <div
-          className=" bg-slate-100 dark:bg-navy-900 text-left pb-10 pl-10"
-          style={{ width: "85vw", marginLeft: "13.9vw" }}
-        >
-          <div className="text-5xl font-bold text-myGrey mb-8 mt-5">Events</div>
-          <Filters
-            paramsFilter={paramsFilter}
-            setparamsFilter={handleFilterChange}
-          />
+    <>
+      <PageWrapper>
+        <Header>
+          <Header.Items>
+            {/* <Header.SidebarToggle /> */}
+            <Header.Right>
+              <DarkModeToggle />
+            </Header.Right>
+          </Header.Items>
+        </Header>
+        <Sidebar>
+          <Sidebar.Primary>
+            <Sidebar.Primary.Logo />
+            <Sidebar.Primary.Middle>
+              <Sidebar.Primary.Middle.Home />
+              {/* <Sidebar.Primary.Middle.LaterThings/> */}
+              <Sidebar.Secondary.Expanded.Body.Middle.Divider />
+              <Sidebar.Primary.Middle.Rooms>
+                {/* <Sidebar.Primary.Middle.Rooms.Item /> */}
+                <Sidebar.Primary.Middle.Rooms.LoadItems />
+                <Sidebar.Primary.Middle.Rooms.AddRoom />
 
-          <div
-            className="grid grid-cols-2 gap-6"
-            style={{ width: "75.6vw", marginTop: "5vh" }}
-          >
-            {status ? (
-              cards.map((item, index) => (
-                <Card key={index} info={information} data={item} />
-              ))
-            ) : (
-              <Card info={information} />
-            )}
+                {/* <Sidebar.Primary.Middle.Rooms.AllItem/> */}
+              </Sidebar.Primary.Middle.Rooms>
+            </Sidebar.Primary.Middle>
+            <Sidebar.Primary.Bottom>
+              <Sidebar.Primary.Bottom.Settings />
+              <Sidebar.Primary.Bottom.Profile />
+            </Sidebar.Primary.Bottom>
+          </Sidebar.Primary>
+        </Sidebar>
+        <MainSection>
+          <div className=" bg-slate-100 dark:bg-navy-900 text-left pb-10 pl-10">
+            <div className="text-5xl font-bold text-myGrey mb-8 mt-5">
+              Events
+            </div>
+            <Filters
+              paramsFilter={paramsFilter}
+              setparamsFilter={handleFilterChange}
+            />
+
+            <div
+              className="grid grid-cols-2 gap-6"
+              style={{ width: "75.6vw", marginTop: "5vh" }}
+            >
+              {status ? (
+                cards.map((item, index) => (
+                  <Card key={index} info={information} data={item} />
+                ))
+              ) : (
+                <Card info={information} />
+              )}
+            </div>
           </div>
           <Pagination
             current={currentPage}
-            
             total={totalPages}
-            
-            setPage={(page)=>setCurrentPage(page)}
+            setPage={(page) => setCurrentPage(page)}
           />
-        </div>
-      </div>
-    </div>
+        </MainSection>
+      </PageWrapper>
+    </>
   );
 };
 

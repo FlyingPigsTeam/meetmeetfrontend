@@ -154,7 +154,7 @@ const Members = () => {
       Title: "Owner",
       ListBadge: (
         <>
-          <div class="badge rounded-full border border-secondary text-secondary dark:border-secondary-light dark:text-secondary-light">
+          <div className="badge rounded-full border border-secondary text-secondary dark:border-secondary-light dark:text-secondary-light">
             Owner
           </div>
         </>
@@ -165,7 +165,7 @@ const Members = () => {
       Title: "Member",
       ListBadge: (
         <>
-          <div class="badge rounded-full border border-primary text-primary dark:border-accent-light dark:text-accent-light">
+          <div className="badge rounded-full border border-primary text-primary dark:border-accent-light dark:text-accent-light">
             Member
           </div>
         </>
@@ -176,7 +176,7 @@ const Members = () => {
       Title: "Pending",
       ListBadge: (
         <>
-          <div class="badge rounded-full border border-info text-info">
+          <div className="badge rounded-full border border-info text-info">
             Pending
           </div>
         </>
@@ -187,29 +187,29 @@ const Members = () => {
   return (
     <>
       <div>
-        {/* <div class="flex items-center justify-between">
-          <h2 class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
+        {/* <div className="flex items-center justify-between">
+          <h2 className="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
             Users Table
           </h2>
-          <div class="flex">
+          <div className="flex">
 
-            <div class="flex items-center" x-data="{isInputActive:false}">
-              <label class="block">
+            <div className="flex items-center" x-data="{isInputActive:false}">
+              <label className="block">
                 <input
                   // x-effect="isInputActive === true && $nextTick(() => { $el.focus()});"
-                  // :class="isInputActive ? 'w-32 lg:w-48' : 'w-0'"
-                  class="form-input bg-transparent px-1 text-right transition-all duration-100 placeholder:text-slate-500 dark:placeholder:text-navy-200"
+                  // :className="isInputActive ? 'w-32 lg:w-48' : 'w-0'"
+                  className="form-input bg-transparent px-1 text-right transition-all duration-100 placeholder:text-slate-500 dark:placeholder:text-navy-200"
                   placeholder="Search here..."
                   type="text"
                 />
               </label>
               <button
                 // @click="isInputActive = !isInputActive"
-                class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                className="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-4.5 w-4.5"
+                  className="h-4.5 w-4.5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -227,16 +227,16 @@ const Members = () => {
             <div
               // x-data="usePopper({placement:'bottom-end',offset:4})"
               // @click.outside="isShowPopper && (isShowPopper = false)"
-              class="inline-flex"
+              className="inline-flex"
             >
               <button
                 // x-ref="popperRef"
                 // @click="isShowPopper = !isShowPopper"
-                class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                className="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-4.5 w-4.5"
+                  className="h-4.5 w-4.5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -251,15 +251,15 @@ const Members = () => {
               </button>
               <div
                 x-ref="popperRoot"
-                class="popper-root"
-                // :class="isShowPopper && 'show'"
+                className="popper-root"
+                // :className="isShowPopper && 'show'"
               >
-                <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
+                <div className="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
                   <ul>
                     <li>
                       <a
                         href="#"
-                        class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                        className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                       >
                         Action
                       </a>
@@ -267,7 +267,7 @@ const Members = () => {
                     <li>
                       <a
                         href="#"
-                        class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                        className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                       >
                         Another Action
                       </a>
@@ -275,18 +275,18 @@ const Members = () => {
                     <li>
                       <a
                         href="#"
-                        class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                        className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                       >
                         Something else
                       </a>
                     </li>
                   </ul>
-                  <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
+                  <div className="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
                   <ul>
                     <li>
                       <a
                         href="#"
-                        class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                        className="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                       >
                         Separated Link
                       </a>
@@ -297,36 +297,36 @@ const Members = () => {
             </div>
           </div>
         </div> */}
-        <div class="card mt-3">
+        <div className="card mt-3">
           <div
-            class="is-scrollbar-hidden min-w-full overflow-x-auto"
+            className="is-scrollbar-hidden min-w-full overflow-x-auto"
             // x-data="pages.tables.initExample1"
           >
-            <table class="is-hoverable w-full text-left">
+            <table className="is-hoverable w-full text-left">
               <thead>
                 <tr>
-                  <th class="whitespace-nowrap rounded-tl-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  <th className="whitespace-nowrap rounded-tl-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     #
                   </th>
-                  <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Avatar
                   </th>
-                  <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Username
                   </th>
-                  <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Firstname
                   </th>
-                  <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Lastname
                   </th>
-                  <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Role
                   </th>
-                  {/* <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  {/* <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Status
                   </th> */}
-                  <th class="whitespace-nowrap rounded-tr-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  <th className="whitespace-nowrap rounded-tr-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Action
                   </th>
                 </tr>
@@ -336,54 +336,54 @@ const Members = () => {
                   return (
                     <tr
                       key={`user-item-${idx}`}
-                      class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
+                      className="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
                     >
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                      <td className="whitespace-nowrap px-4 py-3 sm:px-5">
                         {idx + 1}
                       </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        <div class="avatar flex h-10 w-10">
+                      <td className="whitespace-nowrap px-4 py-3 sm:px-5">
+                        <div className="avatar flex h-10 w-10">
                           <img
-                            class="mask is-squircle"
+                            className="mask is-squircle"
                             src={Avatar200x200}
                             alt="avatar"
                           />
                         </div>
                       </td>
-                      <td class="whitespace-nowrap px-3 py-3 font-medium text-slate-700 dark:text-navy-100 lg:px-5">
+                      <td className="whitespace-nowrap px-3 py-3 font-medium text-slate-700 dark:text-navy-100 lg:px-5">
                         {user.member.username}
                       </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                      <td className="whitespace-nowrap px-4 py-3 sm:px-5">
                         {user.member.first_name}
                       </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                      <td className="whitespace-nowrap px-4 py-3 sm:px-5">
                         {user.member.last_name}
                       </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        <div class="badge rounded-full">
+                      <td className="whitespace-nowrap px-4 py-3 sm:px-5">
+                        <div className="badge rounded-full">
                           {roleDetails[ConvertRole(user)].ListBadge}
                         </div>
                       </td>
-                      {/* <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        <label class="inline-flex items-center">
+                      {/* <td className="whitespace-nowrap px-4 py-3 sm:px-5">
+                        <label className="inline-flex items-center">
                           <input
                             // :checked="user.status"
-                            class="form-switch h-5 w-10 rounded-full bg-slate-300 before:rounded-full before:bg-slate-50 checked:bg-primary checked:before:bg-white dark:bg-navy-900 dark:before:bg-navy-300 dark:checked:bg-accent dark:checked:before:bg-white"
+                            className="form-switch h-5 w-10 rounded-full bg-slate-300 before:rounded-full before:bg-slate-50 checked:bg-primary checked:before:bg-white dark:bg-navy-900 dark:before:bg-navy-300 dark:checked:bg-accent dark:checked:before:bg-white"
                             type="checkbox"
                             value={user.status}
                           />
                         </label>
                       </td> */}
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                      <td className="whitespace-nowrap px-4 py-3 sm:px-5">
                         <Menu
                           as="div"
                           className="relative inline-block text-left"
                         >
                           <div>
-                            <Menu.Button class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                            <Menu.Button className="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5"
+                                className="h-5 w-5"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -420,7 +420,7 @@ const Members = () => {
                                           >
                                             <svg
                                               xmlns="http://www.w3.org/2000/svg"
-                                              class="mt-px h-4.5 w-4.5"
+                                              className="mt-px h-4.5 w-4.5"
                                               fill="none"
                                               viewBox="0 0 24 24"
                                               stroke="currentColor"
@@ -453,11 +453,11 @@ const Members = () => {
             </table>
           </div>
 
-          {/* <div class="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5">
-            <div class="flex items-center space-x-2 text-xs+">
+          {/* <div className="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5">
+            <div className="flex items-center space-x-2 text-xs+">
               <span>Show</span>
-              <label class="block">
-                <select class="form-select rounded-full border border-slate-300 bg-white px-2 py-1 pr-6 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
+              <label className="block">
+                <select className="form-select rounded-full border border-slate-300 bg-white px-2 py-1 pr-6 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
                   <option>10</option>
                   <option>30</option>
                   <option>50</option>
@@ -466,15 +466,15 @@ const Members = () => {
               <span>entries</span>
             </div>
 
-            <ol class="pagination">
-              <li class="rounded-l-lg bg-slate-150 dark:bg-navy-500">
+            <ol className="pagination">
+              <li className="rounded-l-lg bg-slate-150 dark:bg-navy-500">
                 <a
                   href="#"
-                  class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                  className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-4 w-4"
+                    className="h-4 w-4"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -488,54 +488,54 @@ const Members = () => {
                   </svg>
                 </a>
               </li>
-              <li class="bg-slate-150 dark:bg-navy-500">
+              <li className="bg-slate-150 dark:bg-navy-500">
                 <a
                   href="#"
-                  class="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                  className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                 >
                   1
                 </a>
               </li>
-              <li class="bg-slate-150 dark:bg-navy-500">
+              <li className="bg-slate-150 dark:bg-navy-500">
                 <a
                   href="#"
-                  class="flex h-8 min-w-[2rem] items-center justify-center rounded-lg bg-primary px-3 leading-tight text-white transition-colors hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+                  className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg bg-primary px-3 leading-tight text-white transition-colors hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
                 >
                   2
                 </a>
               </li>
-              <li class="bg-slate-150 dark:bg-navy-500">
+              <li className="bg-slate-150 dark:bg-navy-500">
                 <a
                   href="#"
-                  class="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                  className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                 >
                   3
                 </a>
               </li>
-              <li class="bg-slate-150 dark:bg-navy-500">
+              <li className="bg-slate-150 dark:bg-navy-500">
                 <a
                   href="#"
-                  class="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                  className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                 >
                   4
                 </a>
               </li>
-              <li class="bg-slate-150 dark:bg-navy-500">
+              <li className="bg-slate-150 dark:bg-navy-500">
                 <a
                   href="#"
-                  class="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                  className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                 >
                   5
                 </a>
               </li>
-              <li class="rounded-r-lg bg-slate-150 dark:bg-navy-500">
+              <li className="rounded-r-lg bg-slate-150 dark:bg-navy-500">
                 <a
                   href="#"
-                  class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                  className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-4 w-4"
+                    className="h-4 w-4"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -551,7 +551,7 @@ const Members = () => {
               </li>
             </ol>
 
-            <div class="text-xs+">1 - 10 of 10 entries</div>
+            <div className="text-xs+">1 - 10 of 10 entries</div>
           </div> */}
         </div>
       </div>
@@ -564,11 +564,11 @@ export default Members;
 {
   /* <a
 href="#"
-class="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide text-error outline-none transition-all hover:bg-error/20 focus:bg-error/20"
+className="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide text-error outline-none transition-all hover:bg-error/20 focus:bg-error/20"
 >
 <svg
   xmlns="http://www.w3.org/2000/svg"
-  class="h-4.5 w-4.5"
+  className="h-4.5 w-4.5"
   fill="none"
   viewBox="0 0 24 24"
   stroke="currentColor"

@@ -28,25 +28,25 @@ const ForgetPassword = () => {
   });
 
   return (
-    <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
-      <main class="grid w-full grow grid-cols-1 place-items-center">
-        <div class="w-full max-w-[26rem] p-4 sm:px-5">
-          <div class="text-center">
+    <div id="root" className="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
+      <main className="grid w-full grow grid-cols-1 place-items-center">
+        <div className="w-full max-w-[26rem] p-4 sm:px-5">
+          <div className="text-center">
             <img
-              class="mx-auto h-16 w-16"
+              className="mx-auto h-16 w-16"
               src="images/app-logo.svg"
               alt="logo"
             />
-            <div class="mt-4">
-              <h2 class="text-2xl font-semibold text-slate-600 dark:text-navy-100">
+            <div className="mt-4">
+              <h2 className="text-2xl font-semibold text-slate-600 dark:text-navy-100">
                 Reset Password
               </h2>
-              <p class="text-slate-400 dark:text-navy-300">
+              <p className="text-slate-400 dark:text-navy-300">
                 Please enter your Email to continue
               </p>
             </div>
           </div>
-          <div class="card mt-5 rounded-lg p-5 lg:p-7">
+          <div className="card mt-5 rounded-lg p-5 lg:p-7">
             <form onSubmit={formik.handleSubmit}>
               <label className="relative mt-4 flex">
                 <input
@@ -66,7 +66,7 @@ const ForgetPassword = () => {
                   required
                 />
                 <span className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
-                  <i class="fa-solid fa-envelope"></i>
+                  <i className="fa-solid fa-envelope"></i>
                 </span>
               </label>
               {formik.errors.email && formik.touched.email && (
@@ -86,7 +86,7 @@ const ForgetPassword = () => {
               >
                 {formik.isSubmitting ? (
                   <>
-                    <div class="spinner h-7 w-7 animate-spin rounded-full border-[3px] border-primary/30 border-r-primary dark:border-accent/30 dark:border-r-accent"></div>
+                    <div className="spinner h-7 w-7 animate-spin rounded-full border-[3px] border-primary/30 border-r-primary dark:border-accent/30 dark:border-r-accent"></div>
                   </>
                 ) : (
                   "Send Email"
@@ -94,9 +94,9 @@ const ForgetPassword = () => {
               </button>
             </form>
           </div>
-          {/* <div class="mt-8 flex justify-center text-xs text-slate-400 dark:text-navy-300">
+          {/* <div className="mt-8 flex justify-center text-xs text-slate-400 dark:text-navy-300">
             <a href="#">Privacy Notice</a>
-            <div class="mx-3 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+            <div className="mx-3 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
             <a href="#">Term of service</a>
           </div> */}
         </div>

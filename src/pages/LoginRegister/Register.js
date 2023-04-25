@@ -101,7 +101,7 @@ export const Register = () => {
                   required
                 />
                 <span className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
-                  <i class="fa-solid fa-circle-user"></i>
+                  <i className="fa-solid fa-circle-user"></i>
                 </span>
               </label>
               {formik.errors.first_name && formik.touched.first_name && (
@@ -127,7 +127,7 @@ export const Register = () => {
                   required
                 />
                 <span className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
-                  <i class="fa-solid fa-circle-user"></i>
+                  <i className="fa-solid fa-circle-user"></i>
                 </span>
               </label>
               {formik.errors.last_name && formik.touched.last_name && (
@@ -153,7 +153,7 @@ export const Register = () => {
                   required
                 />
                 <span className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
-                  <i class="fa-solid fa-envelope"></i>
+                  <i className="fa-solid fa-envelope"></i>
                 </span>
               </label>
               {formik.errors.email && formik.touched.email && (
@@ -180,7 +180,7 @@ export const Register = () => {
                   required
                 />
                 <span className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
-                  <i class="fa-solid fa-user"></i>
+                  <i className="fa-solid fa-user"></i>
                 </span>
               </label>
               {formik.errors.username && formik.touched.username && (
@@ -207,7 +207,7 @@ export const Register = () => {
                   required
                 />
                 <span className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
-                  <i class="fa-solid fa-lock"></i>
+                  <i className="fa-solid fa-lock"></i>
                 </span>
               </label>
               {formik.errors.password && formik.touched.password && (
@@ -235,7 +235,7 @@ export const Register = () => {
                   required
                 />
                 <span className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
-                  <i class="fa-solid fa-lock"></i>
+                  <i className="fa-solid fa-lock"></i>
                 </span>
               </label>
               {formik.errors.repeat_password &&
@@ -289,7 +289,7 @@ export const Register = () => {
               >
                 {formik.isSubmitting ? (
                   <>
-                    <div class="spinner h-7 w-7 animate-spin rounded-full border-[3px] border-primary/30 border-r-primary dark:border-accent/30 dark:border-r-accent"></div>
+                    <div className="spinner h-7 w-7 animate-spin rounded-full border-[3px] border-primary/30 border-r-primary dark:border-accent/30 dark:border-r-accent"></div>
                   </>
                 ) : (
                   "Sign Up"
