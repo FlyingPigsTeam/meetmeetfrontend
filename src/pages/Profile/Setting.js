@@ -104,7 +104,7 @@ export default function Setting({user ,onUpdate,onCancel }) {
                     <main className="flex flex-1 overflow-hidden">
                         <div className="flex flex-1 flex-col overflow-y-auto xl:overflow-hidden">
                             
-                            <nav aria-label="Breadcrumb" className="border-b border-blue-gray-200 bg-white xl:hidden">
+                            <nav aria-label="Breadcrumb" className="border-b border-blue-gray-200 card dark:bg-navy-800 xl:hidden">
                                 <div className="mx-auto flex max-w-3xl items-start py-3 px-4 sm:px-6 lg:px-8">
                                     <a
                                         href="#"
@@ -122,7 +122,7 @@ export default function Setting({user ,onUpdate,onCancel }) {
 
                                 {/* Main content */}
                                 <div className="flex-1 xl:overflow-y-auto">
-                                    <div className="mx-auto max-w-3xl py-10 px-4 sm:px-6 lg:py-12 lg:px-8">
+                                    <div className="text-left mx-auto max-w-3xl py-10 px-4 sm:px-6 lg:py-12 lg:px-8">
                                         <h1 className="text-3xl font-bold tracking-tight text-blue-gray-900">Account</h1>
 
                                         <form className="divide-y-blue-gray-200 mt-6 space-y-8 divide-y" onSubmit={handleSubmit}>
@@ -192,7 +192,7 @@ export default function Setting({user ,onUpdate,onCancel }) {
 
 
                                                 <div className="sm:col-span-3">
-                                                    <label htmlFor="first-name" className="block text-sm font-medium text-blue-gray-900">
+                                                    <label htmlFor="first-name" className="block text-sm font-medium ">
                                                         First name
                                                     </label>
                                                     <input
@@ -201,14 +201,14 @@ export default function Setting({user ,onUpdate,onCancel }) {
                                                         name="first-name"
                                                         id="first-name"
                                                         autoComplete="given-name"
-                                                        className="mt-1 block w-full rounded-md border-blue-gray-300 text-blue-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                                                        className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                                         onChange={(event) => setFName(event.target.value)}
                                                         required
                                                     />
                                                 </div>
 
                                                 <div className="sm:col-span-3">
-                                                    <label htmlFor="last-name" className="block text-sm font-medium text-blue-gray-900">
+                                                    <label htmlFor="last-name" className="block text-sm font-medium ">
                                                         Last name
                                                     </label>
                                                     <input
@@ -217,14 +217,14 @@ export default function Setting({user ,onUpdate,onCancel }) {
                                                         name="last-name"
                                                         id="last-name"
                                                         autoComplete="family-name"
-                                                        className="mt-1 block w-full rounded-md border-blue-gray-300 text-blue-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                                                        className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                                         onChange={(event) => setLName(event.target.value)}
                                                         required
                                                     />
                                                 </div>
 
                                                 <div className="sm:col-span-6">
-  <label htmlFor="username" className="block text-sm font-medium text-blue-gray-900">
+  <label htmlFor="username" className="block text-sm font-medium ">
     Username
   </label>
   <div className="mt-1 flex rounded-md shadow-sm">
@@ -235,7 +235,7 @@ export default function Setting({user ,onUpdate,onCancel }) {
       name="username"
       id="username"
       autoComplete="username"
-      className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-blue-gray-300 text-blue-gray-900 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+      className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
       onChange={(event) => setUserName(event.target.value)}
       disabled // Add the disabled attribute
     />
@@ -253,7 +253,7 @@ export default function Setting({user ,onUpdate,onCancel }) {
                                                         name="email-address"
                                                         id="email-address"
                                                         autoComplete="email"
-                                                        className="mt-1 block w-full rounded-md border-blue-gray-300 text-blue-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                                                        className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                                         onChange={(event) => setEmail(event.target.value)}
                                                         disabled 
                                                     />
@@ -274,7 +274,7 @@ export default function Setting({user ,onUpdate,onCancel }) {
                                                 </div>
 
                                                 <div className="sm:col-span-6">
-                                                    <label htmlFor="description" className="block text-sm font-medium text-blue-gray-900">
+                                                    <label htmlFor="description" className="block text-sm  font-medium text-blue-gray-900">
                                                         Description
                                                     </label>
                                                     <div className="mt-1">
@@ -283,7 +283,7 @@ export default function Setting({user ,onUpdate,onCancel }) {
                                                             id="description"
                                                             name="description"
                                                             rows={4}
-                                                            className="block w-full rounded-md border-blue-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                                                            className="form-textarea resize-none w-full rounded-lg border border-slate-300 bg-transparent p-2.5 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                                             defaultValue={''}
                                                             onChange={(event) => setBio(event.target.value)}
                                                             required
@@ -298,7 +298,7 @@ export default function Setting({user ,onUpdate,onCancel }) {
                                             <div className="flex justify-end pt-8">
                                                 <button
                                                     type="button"
-                                                    className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-blue-gray-900 shadow-sm hover:bg-blue-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                                    className="rounded-md border border-gray-300  py-2 px-4 text-sm font-medium text-blue-gray-900 shadow-sm hover:bg-blue-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                                                     onClick={() =>onCancel()}
                                                 >
                                                     Cancel

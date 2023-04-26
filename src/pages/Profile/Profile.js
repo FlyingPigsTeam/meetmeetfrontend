@@ -7,6 +7,7 @@ import "../../index.css";
 import AuthContext from "../../context/AuthContext";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
+import MainSection from "../../components/MainSection";
 import PageWrapper from "../../components/PageWrapper";
 import DarkModeToggle from "../../components/DarkModeToggle";
 
@@ -119,15 +120,12 @@ function Profile() {
             </Sidebar.Primary.Bottom>
           </Sidebar.Primary>
         </Sidebar>
-        <mainSection>
+        <MainSection>
           <div
-            className="flex flex-col items-center justify-center"
-            style={{
-              paddingTop: "7vh",
-              paddingLeft:"40vw"
-            }}
+            className=" w-full card dark:bg-navy-800"
+
           >
-            <div className="w-full max-w-lg ">
+            <div>
               {showChangePassword ? (
                 <div className="relative">
                   <button
@@ -139,8 +137,8 @@ function Profile() {
                   <ChangePassword onUpdate={handleUpdate} />
                 </div>
               ) : (
-                <div className="bg-white rounded-lg shadow-md p-6">
-                  <div className="flex items-center justify-between mb-4">
+                <div className=" rounded-lg  p-6">
+                  <div className="flex items-center justify-center space-x-2 mb-4">
                     <h2 className="text-2xl font-bold">Profile</h2>
                     <div>
                       <button
@@ -184,7 +182,7 @@ function Profile() {
               )}
             </div>
           </div>
-        </mainSection>
+        </MainSection>
       </PageWrapper>
     </>
   );
