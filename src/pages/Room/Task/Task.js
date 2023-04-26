@@ -339,94 +339,94 @@ const Task = () => {
                 </div>
               ))}
 
-              {/*           
-          <div class="border-b border-slate-150 py-3 dark:border-navy-500">
-            <div class="flex items-center space-x-2 sm:space-x-3">
-              <label class="flex">
+                {/*           
+          <div className="border-b border-slate-150 py-3 dark:border-navy-500">
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              <label className="flex">
                 <input
                   type="checkbox"
-                  class="form-checkbox is-outline h-5 w-5 rounded-full border-slate-400/70 before:bg-primary checked:border-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:before:bg-accent dark:checked:border-accent dark:hover:border-accent dark:focus:border-accent"
+                  className="form-checkbox is-outline h-5 w-5 rounded-full border-slate-400/70 before:bg-primary checked:border-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:before:bg-accent dark:checked:border-accent dark:hover:border-accent dark:focus:border-accent"
                 />
               </label>
-              <h2 class="cursor-pointer text-slate-600 line-clamp-1 dark:text-navy-100">
+              <h2 className="cursor-pointer text-slate-600 line-clamp-1 dark:text-navy-100">
                 Lorem ipsum dolor.
               </h2>
             </div>
-            <div class="mt-1 flex items-end justify-between">
-              <div class="flex flex-wrap items-center font-inter text-xs">
-                <div class="badge space-x-2.5 px-1 text-warning">
-                  <div class="h-2 w-2 rounded-full bg-current"></div>
+            <div className="mt-1 flex items-end justify-between">
+              <div className="flex flex-wrap items-center font-inter text-xs">
+                <div className="badge space-x-2.5 px-1 text-warning">
+                  <div className="h-2 w-2 rounded-full bg-current"></div>
                   <span>Medium</span>
                 </div>
-                <div class="m-1.5 w-px self-stretch bg-slate-200 dark:bg-navy-500"></div>
-                <div class="badge space-x-2.5 px-1 text-info">
-                  <div class="h-2 w-2 rounded-full bg-current"></div>
+                <div className="m-1.5 w-px self-stretch bg-slate-200 dark:bg-navy-500"></div>
+                <div className="badge space-x-2.5 px-1 text-info">
+                  <div className="h-2 w-2 rounded-full bg-current"></div>
                   <span>Update</span>
                 </div>
               </div>
             </div>
           </div>
-          <div class="border-b border-slate-150 py-3 dark:border-navy-500">
-            <div class="flex items-center space-x-2 sm:space-x-3">
-              <label class="flex">
+          <div className="border-b border-slate-150 py-3 dark:border-navy-500">
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              <label className="flex">
                 <input
                   type="checkbox"
-                  class="form-checkbox is-outline h-5 w-5 rounded-full border-slate-400/70 before:bg-primary checked:border-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:before:bg-accent dark:checked:border-accent dark:hover:border-accent dark:focus:border-accent"
+                  className="form-checkbox is-outline h-5 w-5 rounded-full border-slate-400/70 before:bg-primary checked:border-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:before:bg-accent dark:checked:border-accent dark:hover:border-accent dark:focus:border-accent"
                 />
               </label>
-              <h2 class="cursor-pointer text-slate-600 line-clamp-1 dark:text-navy-100">
+              <h2 className="cursor-pointer text-slate-600 line-clamp-1 dark:text-navy-100">
                 Chat App fragment.
               </h2>
             </div>
-            <div class="mt-1 flex items-end justify-between">
-              <div class="flex flex-wrap items-center font-inter text-xs">
-                <div class="badge space-x-2.5 px-1 text-error">
-                  <div class="h-2 w-2 rounded-full bg-current"></div>
+            <div className="mt-1 flex items-end justify-between">
+              <div className="flex flex-wrap items-center font-inter text-xs">
+                <div className="badge space-x-2.5 px-1 text-error">
+                  <div className="h-2 w-2 rounded-full bg-current"></div>
                   <span>High</span>
                 </div>
               </div>
             </div>
           </div>
-          <div class="border-b border-slate-150 py-3 dark:border-navy-500">
-            <div class="flex items-center space-x-2 sm:space-x-3">
-              <label class="flex">
+          <div className="border-b border-slate-150 py-3 dark:border-navy-500">
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              <label className="flex">
                 <input
                   checked
                   type="checkbox"
-                  class="form-checkbox is-outline h-5 w-5 rounded-full border-slate-400/70 before:bg-primary checked:border-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:before:bg-accent dark:checked:border-accent dark:hover:border-accent dark:focus:border-accent"
+                  className="form-checkbox is-outline h-5 w-5 rounded-full border-slate-400/70 before:bg-primary checked:border-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:before:bg-accent dark:checked:border-accent dark:hover:border-accent dark:focus:border-accent"
                 />
               </label>
-              <h2 class="cursor-pointer text-slate-600 line-clamp-1 dark:text-navy-100">
+              <h2 className="cursor-pointer text-slate-600 line-clamp-1 dark:text-navy-100">
                 Unit Testing
               </h2>
             </div>
-            <div class="mt-1 flex items-end justify-between">
-              <div class="flex flex-wrap items-center font-inter text-xs">
-                <div class="badge space-x-2.5 px-1 text-info">
-                  <div class="h-2 w-2 rounded-full bg-current"></div>
+            <div className="mt-1 flex items-end justify-between">
+              <div className="flex flex-wrap items-center font-inter text-xs">
+                <div className="badge space-x-2.5 px-1 text-info">
+                  <div className="h-2 w-2 rounded-full bg-current"></div>
                   <span>Update</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="border-b border-slate-150 py-3 dark:border-navy-500">
-            <div class="flex items-center space-x-2 sm:space-x-3">
-              <label class="flex">
+          <div className="border-b border-slate-150 py-3 dark:border-navy-500">
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              <label className="flex">
                 <input
                   type="checkbox"
-                  class="form-checkbox is-outline h-5 w-5 rounded-full border-slate-400/70 before:bg-primary checked:border-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:before:bg-accent dark:checked:border-accent dark:hover:border-accent dark:focus:border-accent"
+                  className="form-checkbox is-outline h-5 w-5 rounded-full border-slate-400/70 before:bg-primary checked:border-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:before:bg-accent dark:checked:border-accent dark:hover:border-accent dark:focus:border-accent"
                 />
               </label>
-              <h2 class="cursor-pointer text-slate-600 line-clamp-1 dark:text-navy-100">
+              <h2 className="cursor-pointer text-slate-600 line-clamp-1 dark:text-navy-100">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Aliquid minus numquam vero.
               </h2>
             </div>
-            <div class="mt-1 flex items-end justify-between">
-              <div class="flex flex-wrap items-center font-inter text-xs">
-                <div class="badge space-x-2.5 px-1 text-error">
-                  <div class="h-2 w-2 rounded-full bg-current"></div>
+            <div className="mt-1 flex items-end justify-between">
+              <div className="flex flex-wrap items-center font-inter text-xs">
+                <div className="badge space-x-2.5 px-1 text-error">
+                  <div className="h-2 w-2 rounded-full bg-current"></div>
                   <span>High</span>
                 </div>
               </div>

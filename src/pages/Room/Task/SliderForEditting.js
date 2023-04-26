@@ -156,7 +156,7 @@ export default function SliderForEditting({
                             value={selectedDifficulty}
                             onChange={handleDifficultyChange}
                             placeholder="Select difficulty of the task"
-                            //autocomplete="off"
+                            //autoComplete="off"
                           >
                             <option value="3">Low</option>
                             <option value="2">Medium</option>
@@ -172,7 +172,7 @@ export default function SliderForEditting({
                             value={selectedDifficulty}
                             onChange={handleDifficultyChange}
                             placeholder="Select difficulty of the task"
-                            //autocomplete="off"
+                            //autoComplete="off"
                           >
                             <option value=""></option>
                           </select>

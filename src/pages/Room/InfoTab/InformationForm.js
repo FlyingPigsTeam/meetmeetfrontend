@@ -347,7 +347,7 @@ const InformationForm = ({ Title, ...props }) => {
               <select
                 ref={selectCustom}
                 className="mt-1.5 w-full"
-                autocomplete="off"
+                autoComplete="off"
                 multiple
                 id="categories"
                 name="categories"
