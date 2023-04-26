@@ -14,7 +14,7 @@ import AuthContext from "../../../context/AuthContext";
 import Avatar200x200 from "../../../assets/images/200x200.png";
 
 const Members = () => {
-  let idroom =useParams().idroom;
+  const {idroom} =useParams();
   const navigate = useNavigate();
   let authTokens = useContext(AuthContext).authTokens;
   let [users_Data, setUser_Data] = useState([]);
@@ -32,7 +32,7 @@ const Members = () => {
   };
   useEffect(() => {
     req();
-  }, []);
+  }, [idroom]);
 
   const ConvertRole = (member) => {
     const result =

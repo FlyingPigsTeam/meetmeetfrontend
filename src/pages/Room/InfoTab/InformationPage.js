@@ -6,7 +6,7 @@ import Avatar200x200 from "../../../assets/images/200x200.png";
 import { useParams, useNavigate } from "react-router-dom";
 
 export default function TestInf() {
-  let idroom = useParams().idroom;
+  const {idroom} = useParams();
   const navigate = useNavigate();
   let authTokens = useContext(AuthContext).authTokens;
 
@@ -29,7 +29,7 @@ export default function TestInf() {
   };
   useEffect(() => {
     req();
-  }, []);
+  }, [idroom]);
   const refreshLink = async () => {
     const { data } = await axios
       .put(`http://127.0.0.1:8000/api/my-rooms/${idroom}?link=${link}`, null, {
