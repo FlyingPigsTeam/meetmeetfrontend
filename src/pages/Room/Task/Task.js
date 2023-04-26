@@ -208,11 +208,13 @@ const Task = () => {
             >
               <div>
                 <div className="flex space-x-2">
-                  <p className="text-xl font-medium text-slate-900 dark:text-navy-50">
-                    My Day
+                  <p className="text-2xl font-semibold text-slate-900 dark:text-navy-50">
+                    Tasks
                   </p>
                 </div>
-                <p className="mt-1 text-xs">Sunday, Sep. 14</p>
+                {tasks.length==0 ? 
+                <p className="mt-1 text-sm">Start Writting Your Tasks</p>
+                : ""}
               </div>
               <div className="flex items-center space-x-2"></div>
             </div>
