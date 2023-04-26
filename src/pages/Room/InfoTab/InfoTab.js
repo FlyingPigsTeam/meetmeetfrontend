@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import Header from "../../../components/Header";
@@ -17,8 +17,7 @@ import Members from "./Members";
 import Avatar200x200 from "../../../assets/images/200x200.png";
 
 const InfoTab = () => {
-  const params = useParams();
-  console.log(params);
+  const { idroom } = useParams();
   return (
     <>
       <PageWrapper>

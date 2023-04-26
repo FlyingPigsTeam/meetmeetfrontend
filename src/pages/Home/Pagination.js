@@ -19,13 +19,13 @@ const Pagination = ({current,total ,setPage}) => {
   return (
 
     <div
-      class="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5"
+      className="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5"
     >
-      <div class="flex items-center space-x-2 text-xs+">
+      <div className="flex items-center space-x-2 text-xs+">
         {/* <span>Show</span>
-        <label class="block">
+        <label className="block">
           <select
-            class="form-select rounded-full border border-slate-300 bg-white px-2 py-1 pr-6 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
+            className="form-select rounded-full border border-slate-300 bg-white px-2 py-1 pr-6 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
           >
             <option>10</option>
             <option>30</option>
@@ -35,56 +35,56 @@ const Pagination = ({current,total ,setPage}) => {
         <span>entries</span> */}
       </div>
 
-      <ol class="pagination">
-        {hasPrev() && <li class="rounded-l-lg bg-slate-150 dark:bg-navy-500">
+      <ol className="pagination">
+        {hasPrev() && <li className="rounded-l-lg bg-slate-150 dark:bg-navy-500">
           <a
             onClick={goToPreviousPage}
-            class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-4 w-4"
+              className="h-4 w-4"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              stroke-width="2"
+              strokeWidth="2"
             >
               <path
-                stroke-linecap="round"
+                strokeLinecap="round"
                 strokeLinejoin="round"
                 d="M15 19l-7-7 7-7"
               />
             </svg>
           </a>
         </li>}
-        {getFirstBoundary().map(boundary => <li class="bg-slate-150 dark:bg-navy-500">
+        {getFirstBoundary().map(boundary => <li className="bg-slate-150 dark:bg-navy-500">
       <a
         onClick={() =>{ setPage(boundary);
           setCurrentP(boundary);
         }}
-        class="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+        className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
       >{boundary}</a
       >
     </li>)}
         {isPrevTruncated && <SimpleButton >...</SimpleButton>}
         {pages.map(page => {
           return page === currentPage ? (
-            <li class="bg-slate-150 dark:bg-navy-500">
+            <li className="bg-slate-150 dark:bg-navy-500">
       <a
         onClick={() =>{ setPage(page);
           setCurrentP(page);
         }}
-        class="flex h-8 min-w-[2rem] items-center justify-center rounded-lg bg-primary px-3 leading-tight text-white transition-colors hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+        className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg bg-primary px-3 leading-tight text-white transition-colors hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
       >{page}</a
       >
     </li>
           ) : (
-            <li class="bg-slate-150 dark:bg-navy-500">
+            <li className="bg-slate-150 dark:bg-navy-500">
       <a
         onClick={() =>{ setPage(page);
           setCurrentP(page);
         }}
-        class="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+        className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
       >{page}</a
       >
     </li>
@@ -92,12 +92,12 @@ const Pagination = ({current,total ,setPage}) => {
         })}
 
         {isNextTruncated && <SimpleButton >...</SimpleButton>}
-        {getLastBoundary().map(boundary => <li class="bg-slate-150 dark:bg-navy-500">
+        {getLastBoundary().map(boundary => <li className="bg-slate-150 dark:bg-navy-500">
       <a
         onClick={() =>{ setPage(boundary);
           setCurrentP(boundary);
         }}
-        class="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+        className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
       >{boundary}</a
       >
     </li>)}
@@ -105,22 +105,22 @@ const Pagination = ({current,total ,setPage}) => {
 
 
 
-        {hasNext() && <li class="rounded-r-lg bg-slate-150 dark:bg-navy-500">
+        {hasNext() && <li className="rounded-r-lg bg-slate-150 dark:bg-navy-500">
           <a
             onClick={goToNextPage}
-            class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-4 w-4"
+              className="h-4 w-4"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
               <path
-                stroke-linecap="round"
+                strokeLinecap="round"
                 strokeLinejoin="round"
-                stroke-width="2"
+                strokeWidth="2"
                 d="M9 5l7 7-7 7"
               />
             </svg>
@@ -128,7 +128,7 @@ const Pagination = ({current,total ,setPage}) => {
         </li>}
       </ol>
 
-      <div class="text-xs+">1 - 10 of 10 entries</div>
+      <div className="text-xs+">1 - 10 of 10 entries</div>
     </div>
 
   );
@@ -137,10 +137,10 @@ const Pagination = ({current,total ,setPage}) => {
 
 const SimpleButton = ({ children }) => {
   return (
-    <li class="bg-slate-150 dark:bg-navy-500">
+    <li className="bg-slate-150 dark:bg-navy-500">
       <a
       
-        class="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+        className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
       >{children}</a
       >
     </li>
