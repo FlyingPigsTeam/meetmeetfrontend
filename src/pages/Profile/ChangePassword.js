@@ -77,7 +77,7 @@ const ChangePassword = ({ onUpdate }) => {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <div className="card dark:bg-navy-800 rounded-lg shadow-md p-6">
             <div className="flex items-center justify-between mb-4"></div>
     <div className="max-w-md mx-auto mt-4">
       <h1 className="text-xl font-bold mb-2">Change Password</h1>
@@ -87,7 +87,7 @@ const ChangePassword = ({ onUpdate }) => {
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <Form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <Form className=" shadow-md rounded px-8 pt-6 pb-8 mb-4">
             {error && (
               <div className="text-red-500 mb-4">{error}</div>
             )}
@@ -106,8 +106,8 @@ const ChangePassword = ({ onUpdate }) => {
                 name="currentPassword"
                 id="currentPassword"
                 autoComplete="current-password"
-                placeholder="Enter your current password"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Enter current password"
+                className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
               />
               <ErrorMessage
                 name="currentPassword"
@@ -128,8 +128,8 @@ const ChangePassword = ({ onUpdate }) => {
                 name="newPassword"
                 id="newPassword"
                 autoComplete="new-password"
-                placeholder="Enter your new password"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Enter new password"
+                className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
               />
               <ErrorMessage
                 name="newPassword"
@@ -150,8 +150,8 @@ const ChangePassword = ({ onUpdate }) => {
                 name="confirmPassword"
                 id="confirmPassword"
                 autoComplete="new-password"
-                placeholder="Confirm your new password"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Confirm new password"
+                className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
               />
               <ErrorMessage
                 name="confirmPassword"
