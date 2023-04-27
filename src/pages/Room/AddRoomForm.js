@@ -467,7 +467,7 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
                   name="room_type"
                   id="room_type"
                 />
-                <span>Private</span>
+                <span>Public</span>
                 {formik.touched.room_type && formik.errors.room_type && (
                   <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
                     {formik.errors.room_type}

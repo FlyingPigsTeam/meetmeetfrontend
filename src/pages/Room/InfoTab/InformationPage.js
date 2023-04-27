@@ -147,7 +147,7 @@ export default function TestInf() {
                           />
                         </svg>
 
-                        <span>Private</span>
+                        <span>Public</span>
                       </>
                     ) : (
                       <>
@@ -169,7 +169,7 @@ export default function TestInf() {
                       </>
                     )}
                   </div>
-                  {roomData.is_premium && (
+                  {roomData.is_premium == 1 && (
                     <div className="badge space-x-2 bg-secondary text-white">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
