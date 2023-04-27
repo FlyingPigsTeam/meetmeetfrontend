@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import swal from "sweetalert";
-
+import AppLogo from "../../assets/images/app-logo.svg"
 import classNames from "../../utils/classNames";
 
 const ResetPassword = () => {
@@ -65,13 +65,16 @@ const ResetPassword = () => {
   };
 
   return (
-    <div id="root" className="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
+    <div
+      id="root"
+      className="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900"
+    >
       <main className="grid w-full grow grid-cols-1 place-items-center">
         <div className="w-full max-w-[26rem] p-4 sm:px-5">
           <div className="text-center">
             <img
-              className="mx-auto h-16 w-16"
-              src="images/app-logo.svg"
+              className=" m-auto h-16 w-16 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
+              src={AppLogo}
               alt="logo"
             />
             <div className="mt-4">

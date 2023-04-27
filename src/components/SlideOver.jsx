@@ -201,11 +201,11 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                                       key={index}
                                       className=" grid grid-cols-5 align-middle p-2 items-center hover:rounded-lg hover:bg-slate-500 hover:text-slate-200 text-slate-800 dark:hover:bg-navy-200 dark:hover:text-navy-800 dark:text-navy-50 cursor-pointer duration-200 "
                                     >
-                                      <img
-                                        src={item.picture_path}
-                                        alt=""
-                                        className=" border-2 border-slate-500 dark:border-navy-100 hover:border-2 hover:border-slate-200 dark:hover:border-navy-800 w-14 h-14 rounded-full"
-                                      />
+                                      <div class="avatar h-8 w-8">
+                                        <div class="is-initial rounded-full bg-slate-200 text-xs+ uppercase text-slate-800 ring ring-slate-800 dark:bg-navy-600 dark:ring-navy-50 dark:text-navy-50">
+                                          <i class="fa fa-user"></i>
+                                        </div>
+                                      </div>
                                       <div className=" col-start-2 col-end-6">
                                         <div className=" text-lg font-bold">
                                           {item.username}

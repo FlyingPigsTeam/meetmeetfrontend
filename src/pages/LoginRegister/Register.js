@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
-
 import AuthContext from "../../context/AuthContext.js";
 import classNames from "../../utils/classNames";
+import AppLogo from "../../assets/images/app-logo.svg"
+
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 // const onSubmit = async (values, actions) => {
@@ -67,9 +68,9 @@ export const Register = () => {
       <main className="grid w-full grow grid-cols-1 place-items-center">
         <div className="w-full max-w-[26rem] p-4 sm:px-5">
           <div className="text-center">
-            <img
-              className="mx-auto h-16 w-16"
-              src="images/app-logo.svg"
+          <img
+              className=" m-auto h-16 w-16 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
+              src={AppLogo}
               alt="logo"
             />
             <div className="mt-4">

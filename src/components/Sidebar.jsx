@@ -2,10 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../context/AuthContext";
-
 import AddRoom from "../pages/Room/AddRoom";
 import classNames from "../utils/classNames";
-
 import Avatar200x200 from "../assets/images/200x200.png";
 import AppLogo from "../assets/images/app-logo.svg";
 
@@ -511,6 +509,31 @@ Sidebar.Primary.Bottom.Settings = function SidebarSettings() {
     </a>
   );
 };
+Sidebar.Primary.Bottom.LogOut = function SidebarLogOut() {
+  let { logoutUser } = useContext(AuthContext);
+  return (
+    <a
+      onClick={logoutUser}
+      className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-7 w-7"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+        ></path>
+      </svg>
+    </a>
+  );
+};
+
 Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
   const navigate = useNavigate();
   return (
