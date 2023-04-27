@@ -1,190 +1,226 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import AuthContext from '../../context/AuthContext';
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import AuthContext from "../../context/AuthContext";
+import MainSection from "../../components/MainSection";
+import Sidebar from "../../components/Sidebar";
+import Header from "../../components/Header";
+import PageWrapper from "../../components/PageWrapper";
+import DarkModeToggle from "../../components/DarkModeToggle";
 
 const ChangePassword = ({ onUpdate }) => {
-  
   const initialValues = {
-    currentPassword: '',
-    newPassword: '',
-    confirmPassword: ''
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
   };
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const { authTokens, user } = useContext(AuthContext);
   const [submitted, setSubmitted] = useState(false);
 
   const validationSchema = Yup.object({
-    currentPassword: Yup.string().required('Required'),
+    currentPassword: Yup.string().required("Required"),
     newPassword: Yup.string()
-      .required('Required')
-      .min(8, 'Must be at least 8 characters'),
+      .required("Required")
+      .min(8, "Must be at least 8 characters"),
     confirmPassword: Yup.string()
-      .required('Required')
-      .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
+      .required("Required")
+      .oneOf([Yup.ref("newPassword"), null], "Passwords must match"),
   });
   const handleUpdate = async (updatedUser) => {
-    let response="";
+    let response = "";
     try {
-      response = await fetch('http://127.0.0.1:8000/api/profile', {
-        method: 'PUT',
+      response = await fetch("http://127.0.0.1:8000/api/profile", {
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${authTokens.access}`,
         },
         body: JSON.stringify(updatedUser),
       });
-      if ( parseInt(response.status) >= 400 && parseInt(response.status) < 500) {
+      if (parseInt(response.status) >= 400 && parseInt(response.status) < 500) {
         setError("Bad request. Please check your input and try again.");
-      
       }
-      
-      
     } catch (error) {
-    //   console.error(error);
-    //   if ( parseInt(error.response.status) >= 400 && parseInt(error.response.status) < 500) {
-    //     setError("Bad request. Please check your input and try again.");
-    //   } else {
-    //     setError("An error occurred. Please try again.");
-    //   }
-    //   setIsSubmitting(false);
+      //   console.error(error);
+      //   if ( parseInt(error.response.status) >= 400 && parseInt(error.response.status) < 500) {
+      //     setError("Bad request. Please check your input and try again.");
+      //   } else {
+      //     setError("An error occurred. Please try again.");
+      //   }
+      //   setIsSubmitting(false);
     }
   };
-
 
   async function handleSubmit(values) {
     setError(null);
     try {
       setIsSubmitting(true);
-      const user = { "current_password": values.currentPassword, "new_password": values.newPassword };
-      const response=await handleUpdate(user);
-      
+      const user = {
+        current_password: values.currentPassword,
+        new_password: values.newPassword,
+      };
+      const response = await handleUpdate(user);
+
       setIsSubmitting(false);
       console.log(response);
       setSubmitted(true);
-      
     } catch (error) {
       console.error(error);
-      if ( parseInt(error.response.status) >= 400 && parseInt(error.response.status) < 500) {
+      if (
+        parseInt(error.response.status) >= 400 &&
+        parseInt(error.response.status) < 500
+      ) {
         setError("Bad request. Please check your input and try again.");
       } else {
         setError("An error occurred. Please try again.");
       }
       setIsSubmitting(false);
     }
-
   }
 
   return (
+    <>
+    <PageWrapper>
+      <Header>
+        <Header.Items>
+          {/* <Header.SidebarToggle /> */}
+          <Header.Right>
+            <DarkModeToggle />
+          </Header.Right>
+        </Header.Items>
+      </Header>
+      <Sidebar>
+        <Sidebar.Primary>
+          <Sidebar.Primary.Logo />
+          <Sidebar.Primary.Middle>
+            <Sidebar.Primary.Middle.Home />
+            {/* <Sidebar.Primary.Middle.LaterThings/> */}
+            <Sidebar.Secondary.Expanded.Body.Middle.Divider />
+            <Sidebar.Primary.Middle.Rooms>
+              {/* <Sidebar.Primary.Middle.Rooms.Item /> */}
+              <Sidebar.Primary.Middle.Rooms.LoadItems />
+              <Sidebar.Primary.Middle.Rooms.AddRoom />
+
+              {/* <Sidebar.Primary.Middle.Rooms.AllItem/> */}
+            </Sidebar.Primary.Middle.Rooms>
+          </Sidebar.Primary.Middle>
+          <Sidebar.Primary.Bottom>
+            <Sidebar.Primary.Bottom.LogOut />
+            <Sidebar.Primary.Bottom.Profile />
+          </Sidebar.Primary.Bottom>
+        </Sidebar.Primary>
+      </Sidebar>
+      <MainSection>
     <div className="card dark:bg-navy-800 rounded-lg shadow-md p-6">
-            <div className="flex items-center justify-between mb-4"></div>
-    <div className="max-w-md mx-auto mt-4">
-      <h1 className="text-xl font-bold mb-2">Change Password</h1>
-      <button
-                    className="absolute top-0 right-0 p-4 text-white bg-blue-500 rounded-full hover:bg-blue-600 mr-2"
-                  onClick={()=>navigate("/profile")}
-                  >
-                    Back
-                  </button>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ isSubmitting }) => (
-          <Form className=" shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            {error && (
-              <div className="text-red-500 mb-4">{error}</div>
-            )}
-            {submitted && error===null ? (
-              <div className="text-green-500 mb-4">Password updated successfully!</div>
-            ) : null}
-            <div className="mb-4">
-              <label
-                htmlFor="currentPassword"
-                className="block text-gray-700 font-bold mb-2"
-              >
-                Current Password
-              </label>
-              <Field
-                type="password"
-                name="currentPassword"
-                id="currentPassword"
-                autoComplete="current-password"
-                placeholder="Enter current password"
-                className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-              />
-              <ErrorMessage
-                name="currentPassword"
-                component="div"
-                className="text-red-500 text-sm mt-1"
-              />
-            </div>
-  
-            <div className="mb-4">
-              <label
-                htmlFor="newPassword"
-                className="block text-gray-700 font-bold mb-2"
-              >
-                New Password
-              </label>
-              <Field
-                type="password"
-                name="newPassword"
-                id="newPassword"
-                autoComplete="new-password"
-                placeholder="Enter new password"
-                className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-              />
-              <ErrorMessage
-                name="newPassword"
-                component="div"
-                className="text-red-500 text-sm mt-1"
-              />
-            </div>
-  
-            <div className="mb-4">
-              <label
-                htmlFor="confirmPassword"
-                className="block text-gray-700 font-bold mb-2"
-              >
-                Confirm Password
-              </label>
-              <Field
-                type="password"
-                name="confirmPassword"
-                id="confirmPassword"
-                autoComplete="new-password"
-                placeholder="Confirm new password"
-                className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-              />
-              <ErrorMessage
-                name="confirmPassword"
-                component="div"
-                className="text-red-500 text-sm mt-1"
-              />
-            </div>
-  
-            <div className="flex items-center justify-between">
-            
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                {isSubmitting ? "Updating..." : "Update Password"}
-              </button>
-            </div>
-          </Form>
-        )}
-      </Formik>
+      <div className="flex items-center justify-between mb-4"></div>
+      <div className="max-w-md mx-auto mt-4">
+        <h1 className="text-xl font-bold mb-2">Change Password</h1>
+        <button
+          className="absolute top-0 right-0 p-4 text-white bg-blue-500 rounded-full hover:bg-blue-600 mr-2"
+          onClick={() => navigate("/profile")}
+        >
+          Back
+        </button>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting }) => (
+            <Form className=" shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              {error && <div className="text-red-500 mb-4">{error}</div>}
+              {submitted && error === null ? (
+                <div className="text-green-500 mb-4">
+                  Password updated successfully!
+                </div>
+              ) : null}
+              <div className="mb-4">
+                <label
+                  htmlFor="currentPassword"
+                  className="block text-gray-700 font-bold mb-2"
+                >
+                  Current Password
+                </label>
+                <Field
+                  type="password"
+                  name="currentPassword"
+                  id="currentPassword"
+                  autoComplete="current-password"
+                  placeholder="Enter current password"
+                  className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                />
+                <ErrorMessage
+                  name="currentPassword"
+                  component="div"
+                  className="text-red-500 text-sm mt-1"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label
+                  htmlFor="newPassword"
+                  className="block text-gray-700 font-bold mb-2"
+                >
+                  New Password
+                </label>
+                <Field
+                  type="password"
+                  name="newPassword"
+                  id="newPassword"
+                  autoComplete="new-password"
+                  placeholder="Enter new password"
+                  className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                />
+                <ErrorMessage
+                  name="newPassword"
+                  component="div"
+                  className="text-red-500 text-sm mt-1"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label
+                  htmlFor="confirmPassword"
+                  className="block text-gray-700 font-bold mb-2"
+                >
+                  Confirm Password
+                </label>
+                <Field
+                  type="password"
+                  name="confirmPassword"
+                  id="confirmPassword"
+                  autoComplete="new-password"
+                  placeholder="Confirm new password"
+                  className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                />
+                <ErrorMessage
+                  name="confirmPassword"
+                  component="div"
+                  className="text-red-500 text-sm mt-1"
+                />
+              </div>
+
+              <div className="flex items-center justify-between">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  {isSubmitting ? "Updating..." : "Update Password"}
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </div>
     </div>
-    </div>
-    
+    </MainSection>
+      </PageWrapper>
+    </>
   );
-            }
+};
 export default ChangePassword;
-  
