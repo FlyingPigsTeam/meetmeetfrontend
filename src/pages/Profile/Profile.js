@@ -130,12 +130,12 @@ function Profile() {
             <div>
               {showChangePassword ? (
                 <div className="">
-                  <button
+                  {/* <button
                     className="absolute top-0 right-0 p-4 text-white bg-blue-500 rounded-full hover:bg-blue-600 mr-2"
                     onClick={handleBackToProfile}
                   >
                     Back
-                  </button>
+                  </button> */}
                   <ChangePassword onUpdate={handleUpdate} />
                 </div>
               ) : (
@@ -145,14 +145,14 @@ function Profile() {
                     <div className="mt-5 border-t border-slate-200 dark:border-navy-500">
                     <div className="flex justify-center space-x-2">
                       <button
-                        className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 mr-2"
+                        className=" absolute px-4 py-2 text-white top-0 right-0 bg-blue-500 rounded hover:bg-blue-600 mr-2"
                         onClick={()=>navigate("/change-password")}
                       >
                         Change Password
                       </button>
                       {isEditing ? (
                         <button
-                          className="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
+                          className="absolute top-0 right-40 px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
                           onClick={() => setIsEditing(false)}
                         >
                           Cancel
@@ -179,12 +179,7 @@ function Profile() {
                     />
                   ) : (
                     <div>
-                    <button
-                    className="absolute top-0 right-0 p-4 text-white bg-blue-500 rounded-full hover:bg-blue-600 mr-2"
-                    onClick={()=>{setIsEditing(false)}}
-                  >
-                    Back
-                  </button>
+                    
                         <ProfileCard handleEdit={handleEditClick} user={data} />
                         </div>
                     
