@@ -42,7 +42,8 @@ import {
   UserIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { ChevronLeftIcon } from '@heroicons/react/20/solid'
+import { ChevronLeftIcon } from '@heroicons/react/20/solid';
+import ChangePassword from './ChangePassword';
 // import { MdAccountCircle } from 'react-icons/md';
 
 
@@ -56,6 +57,13 @@ export default function Setting({ user, onUpdate, onCancel }) {
   const [email, setEmail] = useState(user.email);
   const [image, setImage] = useState('');
   const navigate=useNavigate();
+  const [showChangePassword,setShowChangePassword] = useState(false);
+  const changeshowtotrue = ()=>{
+    setShowChangePassword(true);
+  };
+  const changeshowtofalse = ()=>{
+    setShowChangePassword(false);
+  };
   // const [editing, setEditing] = useState(false);
   // const handleEdit = () => {
   //     setEditing(true);
@@ -96,6 +104,12 @@ export default function Setting({ user, onUpdate, onCancel }) {
 
   return (
     <>
+    <button
+      className=" absolute px-4 py-2 text-white top-0 right-0 bg-blue-500 rounded hover:bg-blue-600 mr-2"
+      onClick={()=>changeshowtotrue()}
+    >
+      Change Password
+    </button>
 
       <div className="flex h-full">
 
@@ -272,6 +286,11 @@ export default function Setting({ user, onUpdate, onCancel }) {
                           </div>
                         </div>
                       </div>
+                      <div>
+                        
+                        {showChangePassword && <ChangePassword />}
+                      </div>
+  
                       <div className="flex justify-end pt-8">
                       
                         <button

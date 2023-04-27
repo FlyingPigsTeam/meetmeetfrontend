@@ -84,37 +84,7 @@ const ChangePassword = ({ onUpdate }) => {
 
   return (
     <>
-    <PageWrapper>
-      <Header>
-        <Header.Items>
-          {/* <Header.SidebarToggle /> */}
-          <Header.Right>
-            <DarkModeToggle />
-          </Header.Right>
-        </Header.Items>
-      </Header>
-      <Sidebar>
-        <Sidebar.Primary>
-          <Sidebar.Primary.Logo />
-          <Sidebar.Primary.Middle>
-            <Sidebar.Primary.Middle.Home />
-            {/* <Sidebar.Primary.Middle.LaterThings/> */}
-            <Sidebar.Secondary.Expanded.Body.Middle.Divider />
-            <Sidebar.Primary.Middle.Rooms>
-              {/* <Sidebar.Primary.Middle.Rooms.Item /> */}
-              <Sidebar.Primary.Middle.Rooms.LoadItems />
-              <Sidebar.Primary.Middle.Rooms.AddRoom />
-
-              {/* <Sidebar.Primary.Middle.Rooms.AllItem/> */}
-            </Sidebar.Primary.Middle.Rooms>
-          </Sidebar.Primary.Middle>
-          <Sidebar.Primary.Bottom>
-            <Sidebar.Primary.Bottom.LogOut />
-            <Sidebar.Primary.Bottom.Profile />
-          </Sidebar.Primary.Bottom>
-        </Sidebar.Primary>
-      </Sidebar>
-      <MainSection>
+    
     <div className="card dark:bg-navy-800 rounded-lg shadow-md p-6">
       <div className="flex items-center justify-between mb-4"></div>
       <div className="max-w-md mx-auto mt-4">
@@ -218,8 +188,7 @@ const ChangePassword = ({ onUpdate }) => {
         </Formik>
       </div>
     </div>
-    </MainSection>
-      </PageWrapper>
+    
     </>
   );
 };

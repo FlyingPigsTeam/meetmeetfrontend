@@ -144,12 +144,12 @@ function Profile() {
                     
                     <div className="mt-5 border-t border-slate-200 dark:border-navy-500">
                     <div className="flex justify-center space-x-2">
-                      <button
+                      {/* <button
                         className=" absolute px-4 py-2 text-white top-0 right-0 bg-blue-500 rounded hover:bg-blue-600 mr-2"
                         onClick={()=>navigate("/change-password")}
                       >
                         Change Password
-                      </button>
+                      </button> */}
                       {isEditing ? (
                         <button
                           className="absolute top-0 right-40 px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
