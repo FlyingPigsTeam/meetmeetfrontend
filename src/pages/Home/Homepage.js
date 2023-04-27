@@ -97,6 +97,7 @@ const Homepage = () => {
   };
   // console.log(`data is ${status.results}`);
   let cards = status ? status.results : {};
+  console.log(status.count);
   return (
     <>
       <PageWrapper>
@@ -124,16 +125,13 @@ const Homepage = () => {
               </Sidebar.Primary.Middle.Rooms>
             </Sidebar.Primary.Middle>
             <Sidebar.Primary.Bottom>
-              <Sidebar.Primary.Bottom.Settings />
+              <Sidebar.Primary.Bottom.LogOut />
               <Sidebar.Primary.Bottom.Profile />
             </Sidebar.Primary.Bottom>
           </Sidebar.Primary>
         </Sidebar>
         <MainSection>
-
-          <div
-            className=" text-left pb-10 pl-10"
-          >
+          <div className=" text-left pb-10 pl-10">
             <div className="text-5xl font-bold text-myGrey mb-8 mt-5">
               Events
             </div>
@@ -142,25 +140,26 @@ const Homepage = () => {
               setparamsFilter={handleFilterChange}
             />
 
+            {status.count ? (
               <div
                 className="grid grid-cols-2 gap-6"
                 style={{ width: "75.6vw", marginTop: "5vh" }}
               >
-                {status ? (
-                  cards.map((item, index) => (
-                    <Card key={index} info={information} data={item} />
-                  ))
-                ) : (
-                  <Card info={information} />
-                )}
+                {cards.map((item, index) => (
+                  <Card key={index} info={information} data={item} />
+                ))}
               </div>
-            </div>
-            <Pagination
-              current={currentPage}
-              total={totalPages}
-              setPage={(page) => setCurrentPage(page)}
-            />
-
+            ) : (
+              <div className="dark:text-navy-50 text-slate-900 pt-20 text-2xl font-semibold" style={{paddingLeft:"35vw"}}>
+                No Room Found
+              </div>
+            )}
+          </div>
+          <Pagination
+            current={currentPage}
+            total={totalPages}
+            setPage={(page) => setCurrentPage(page)}
+          />
         </MainSection>
       </PageWrapper>
     </>

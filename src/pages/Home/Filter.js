@@ -327,7 +327,7 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
             <li>
               <button
                 onClick={() => setSort("The Earliest")}
-                className="text-myGrey focus:text-myTeal2  hover:underline hover:text-myTeal1 cursor-pointer"
+                className="text-slate-500 dark:text-navy-200 focus:text-slate-900 dark:focus:text-navy-50  hover:underline hover:text-slate-700 dark:hover:text-navy-100 cursor-pointer"
               >
                 The Earliest
               </button>
@@ -335,7 +335,7 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
             <li>
               <button
                 onClick={() => setSort("The Latest")}
-                className="text-myGrey focus:text-myTeal2  dark:text-white hover:underline hover:text-myTeal1 cursor-pointer"
+                className="text-slate-500 focus:text-slate-900 dark:focus:text-navy-50  dark:text-navy-200 hover:underline hover:text-slate-700 dark:hover:text-navy-100 cursor-pointer"
               >
                 The Latest
               </button>
@@ -343,7 +343,7 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
             <li>
               <button
                 onClick={() => setSort("The Longest")}
-                className="text-myGrey focus:text-myTeal2  hover:underline hover:text-myTeal1 cursor-pointer"
+                className="text-slate-500 dark:text-navy-200 focus:text-slate-900 dark:focus:text-navy-50  hover:underline hover:text-slate-700 dark:hover:text-navy-100 cursor-pointer"
               >
                 The Longest
               </button>
@@ -351,7 +351,7 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
             <li>
               <button
                 onClick={() => setSort("The Shortest")}
-                className="text-myGrey focus:text-myTeal2  hover:underline hover:text-myTeal1 cursor-pointer"
+                className="text-slate-500 dark:text-navy-200 focus:text-slate-900 dark:focus:text-navy-50  hover:underline hover:text-slate-700 dark:hover:text-navy-100 cursor-pointer"
               >
                 The Shortest
               </button>
@@ -359,7 +359,7 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
             <li>
               <button
                 onClick={() => setSort("More Capacity")}
-                className="text-myGrey focus:text-myTeal2  hover:underline hover:text-myTeal1 cursor-pointer"
+                className="text-slate-500 dark:text-navy-200 focus:text-slate-900 dark:focus:text-navy-50  hover:underline hover:text-slate-700 dark:hover:text-navy-100 cursor-pointer"
               >
                 More Capacity
               </button>
@@ -367,7 +367,7 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
             <li>
               <button
                 onClick={() => setSort("Less Capacity")}
-                className="text-myGrey focus:text-myTeal2 hover:underline hover:text-myTeal1 cursor-pointer"
+                className="text-slate-500 dark:text-navy-200 focus:text-slate-900 dark:focus:text-navy-50 hover:underline hover:text-slate-700 dark:hover:text-navy-100 cursor-pointer"
               >
                 Less Capacity
               </button>

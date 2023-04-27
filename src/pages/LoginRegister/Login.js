@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
-
 import AuthContext from "../../context/AuthContext";
 import classNames from "../../utils/classNames";
+import AppLogo from "../../assets/images/app-logo.svg";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -31,13 +31,21 @@ const Login = () => {
   });
 
   return (
-    <div id="root" className="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
+    <div
+      id="root"
+      className="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900"
+    >
       <main className="grid w-full grow grid-cols-1 place-items-center">
         <div className="w-full max-w-[26rem] p-4 sm:px-5">
           <div className="text-center">
+            {/* <div class="avatar h-16 w-16">
+              <div class="is-initial rounded-full bg-slate-200 text-4xl uppercase text-white dark:bg-navy-500">
+                <i class="fa fa-user"></i>
+              </div>
+            </div> */}
             <img
-              className="mx-auto h-16 w-16"
-              src="images/app-logo.svg"
+              className=" m-auto h-16 w-16 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
+              src={AppLogo}
               alt="logo"
             />
             <div className="mt-4">
