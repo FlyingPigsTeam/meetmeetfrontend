@@ -128,7 +128,8 @@ const Pagination = ({current,total ,setPage}) => {
         </li>}
       </ol>
 
-      <div className="text-xs+">1 - 10 of 10 entries</div>
+      <div className="text-xs+"> </div>
+    {/*        <div className="text-xs+">1 - 10 of 10 entries</div>*/}
     </div>
 
   );

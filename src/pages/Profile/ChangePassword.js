@@ -85,23 +85,18 @@ const ChangePassword = (props) => {
   return (
     <>
     
-    <div className="card dark:bg-navy-800 rounded-lg shadow-md p-6">
+    <div className="card mt-3 dark:bg-navy-800 rounded-lg shadow-md p-6">
       <div className="flex items-center justify-between mb-4"></div>
       <div className=" mt-4">
         <h1 className="text-xl font-bold mb-2">Change Password</h1>
-        <button
-            className="absolute top-0 right-0 px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
-            onClick={() => props.setfalse(false)}
-          >
-            Cancel
-          </button>
+
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
           {({ isSubmitting }) => (
-            <Form className="  rounded px-8 pt-6 pb-8 mb-4">
+            <Form className="  rounded pt-6 pb-8 mb-4">
               {error && <div className="text-red-500 mb-4">{error}</div>}
               {submitted && error === null ? (
                 <div className="text-green-500 mb-4">
@@ -111,7 +106,7 @@ const ChangePassword = (props) => {
               <div className="mb-4">
                 <label
                   htmlFor="currentPassword"
-                  className="block text-gray-700 font-bold mb-2"
+                  className="block  font-bold mb-2"
                 >
                   Current Password
                 </label>
@@ -133,7 +128,7 @@ const ChangePassword = (props) => {
               <div className="mb-4">
                 <label
                   htmlFor="newPassword"
-                  className="block text-gray-700 font-bold mb-2"
+                  className="block  font-bold mb-2"
                 >
                   New Password
                 </label>
@@ -155,7 +150,7 @@ const ChangePassword = (props) => {
               <div className="mb-4">
                 <label
                   htmlFor="confirmPassword"
-                  className="block text-gray-700 font-bold mb-2"
+                  className="block  font-bold mb-2"
                 >
                   Confirm Password
                 </label>
@@ -181,6 +176,12 @@ const ChangePassword = (props) => {
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
                   {isSubmitting ? "Updating..." : "Update Password"}
+                </button>
+                <button
+                    className=" px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
+                    onClick={() => props.setfalse(false)}
+                >
+                  Cancel
                 </button>
               </div>
             </Form>
