@@ -32,7 +32,7 @@ const Members = () => {
   };
   useEffect(() => {
     req();
-  }, [idroom]);
+  }, [idroom,]);
 
   const ConvertRole = (member) => {
     const result =
@@ -64,12 +64,12 @@ const Members = () => {
           />
         </>
       ),
-      action: (event) => {
-        const requestId = event.currentTarget.id.split("-")[1];
+      action: (requestId) => {
+        console.log("YAROO",requestId )
         const acceptUser = async () => {
           const { data } = await axios
             .put(
-              `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests_id=${requestId}`,
+              `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?request_id=${requestId}`,
               { is_member: true, request_status: 2 },
               {
                 headers: {
@@ -101,7 +101,7 @@ const Members = () => {
         const deleteUser = async () => {
           const { data } = await axios
             .delete(
-              `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests_id=${requestId}`,
+              `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?request_id=${requestId}`,
               {
                 headers: {
                   "Content-Type": "application/json",
@@ -133,7 +133,7 @@ const Members = () => {
         const deleteUser = async () => {
           const { data } = await axios
             .delete(
-              `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests_id=${requestId}`,
+              `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?request_id=${requestId}`,
               {
                 headers: {
                   "Content-Type": "application/json",
@@ -414,8 +414,7 @@ const Members = () => {
                                       (action, index) => (
                                         <Menu.Item id={`action-item-${index}`}>
                                           <button
-                                            onClick={action.action}
-                                            id={`request-${user.id}`}
+                                            onClick={() => actionsDetails[action].action(user.id)}
                                             className="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                                           >
                                             <svg

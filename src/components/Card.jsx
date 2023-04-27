@@ -67,7 +67,7 @@ const Card = (props) => {
         <div className="flex items-center justify-between p-6">
           <div className="flex-1 truncate">
             <div className="flex items-center space-x-3">
-              <h3 className="text-3xl font-bold text-slate-700 dark:text-navy-100 basis-11/12" onClick={()=>navigate("/room/"+id)}>
+              <h3 className="text-3xl font-bold text-slate-700 dark:text-navy-100 basis-11/12" >
                 {mydata.title}
               </h3>
               <div className="grid grid-cols-2 text-2xl text-slate-700 dark:text-navy-100">
