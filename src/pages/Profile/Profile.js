@@ -10,8 +10,10 @@ import Sidebar from "../../components/Sidebar";
 import MainSection from "../../components/MainSection";
 import PageWrapper from "../../components/PageWrapper";
 import DarkModeToggle from "../../components/DarkModeToggle";
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
+  const navigate=useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
@@ -143,7 +145,7 @@ function Profile() {
                     <div>
                       <button
                         className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 mr-2"
-                        onClick={handleShowChangePassword}
+                        onClick={()=>navigate("/change-password")}
                       >
                         Change Password
                       </button>

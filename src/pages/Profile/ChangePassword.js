@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import AuthContext from '../../context/AuthContext';
@@ -10,6 +11,7 @@ const ChangePassword = ({ onUpdate }) => {
     newPassword: '',
     confirmPassword: ''
   };
+  const navigate=useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const { authTokens, user } = useContext(AuthContext);
@@ -81,6 +83,12 @@ const ChangePassword = ({ onUpdate }) => {
             <div className="flex items-center justify-between mb-4"></div>
     <div className="max-w-md mx-auto mt-4">
       <h1 className="text-xl font-bold mb-2">Change Password</h1>
+      <button
+                    className="absolute top-0 right-0 p-4 text-white bg-blue-500 rounded-full hover:bg-blue-600 mr-2"
+                  onClick={()=>navigate("/profile")}
+                  >
+                    Back
+                  </button>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -161,6 +169,7 @@ const ChangePassword = ({ onUpdate }) => {
             </div>
   
             <div className="flex items-center justify-between">
+            
               <button
                 type="submit"
                 disabled={isSubmitting}
