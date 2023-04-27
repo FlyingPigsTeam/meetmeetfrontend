@@ -134,7 +134,7 @@ const Members = () => {
           console.log("memberKick", data);
         };
         deleteUser();
-        // navigate(0);
+        navigate(0);
       },
     },
 
