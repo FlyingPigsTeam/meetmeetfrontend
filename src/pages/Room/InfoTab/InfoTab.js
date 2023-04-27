@@ -88,7 +88,7 @@ const InfoTab = () => {
         </Sidebar>
         <MainSection>
 
-          {/* <TestInf /> */}
+
           <div className="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
             <div className="col-span-12 lg:col-span-6">
               {/* <VerticalNav />
