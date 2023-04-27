@@ -286,10 +286,7 @@ export default function Setting({ user, onUpdate, onCancel }) {
                           </div>
                         </div>
                       </div>
-                      <div>
-                        
-                        {showChangePassword && <ChangePassword />}
-                      </div>
+                     
   
                       <div className="flex justify-end pt-8">
                       
@@ -301,7 +298,10 @@ export default function Setting({ user, onUpdate, onCancel }) {
                         </button>
                       </div>
                     </form>
-                    
+                    <div>
+                        
+                        {showChangePassword && <ChangePassword setfalse={setShowChangePassword} />}
+                      </div>
                   </div>
                 </div>
               </div>
