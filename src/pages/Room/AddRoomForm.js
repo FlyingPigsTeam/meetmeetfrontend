@@ -142,7 +142,7 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
       // TODO : SPINNER COMPONENT
       // TODO : ERROR HANDLING : Cards + Catch Server swal
       // TODO : TOASTIFY : Room Added successfully
-      // navigate("/");
+      navigate(0);
     },
   });
 
