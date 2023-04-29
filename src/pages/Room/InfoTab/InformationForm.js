@@ -8,6 +8,13 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import AuthContext from "../../../context/AuthContext";
 import Avatar200x200 from "../../../assets/images/200x200.png";
+import Header from "../../../components/Header";
+import Sidebar from "../../../components/Sidebar";
+
+import DarkModeToggle from "../../../components/DarkModeToggle";
+import PageWrapper from "../../../components/PageWrapper";
+import MainSection from "../../../components/MainSection";
+
 
 const InformationForm = ({ Title, ...props }) => {
   let idroom = useParams().idroom;
@@ -56,10 +63,7 @@ const InformationForm = ({ Title, ...props }) => {
     link: "link",
   };
 
-  const handleSubmit = () => {
-    const selectedValues = selectCustom.current.value;
-    console.log(selectedValues);
-  };
+
   const fp = useRef(null);
   const [showPassword, setShowPassword] = useState(false);
   const [dateRange, setDateRange] = useState([]);
@@ -124,7 +128,7 @@ const InformationForm = ({ Title, ...props }) => {
         ),
     }),
     onSubmit: async (values) => {
-      if (Title === "Edit") {
+
         const { data } = await axios
           .put(
             `http://127.0.0.1:8000/api/my-rooms/${idroom}`,
@@ -150,36 +154,10 @@ const InformationForm = ({ Title, ...props }) => {
             }
           )
           .then((response) => response);
-      } else {
-        const { data } = await axios
-          .post(
-            `http://127.0.0.1:8000/api/rooms`,
-            {
-              title: values.title,
-              description: values.description,
-              room_type: values.room_type ? 1 : 0,
-              is_premium: values.is_premium ? 1 : 0,
-              open_status: values.open_status ? 1 : 0,
-              password: values.password,
-              maximum_member_count: values.maximum_member_count,
-              categories: values.categories?.map((item) => {
-                return { name: item };
-              }),
-              start_date: values.dateRange[0].toISOString(),
-              end_date: values.dateRange[1].toISOString(),
-              main_picture_path: "__",
-              link: "link",
-            },
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + authTokens.access,
-              },
-            }
-          )
-          .then((response) => response);
-        navigate(Title === "Add" ? "/" : `/room/${idroom}/info`);
-      }
+
+        navigate(`/room/${idroom}/info`);
+      console.log("CLICKEC",data);
+
     },
   });
 
@@ -231,7 +209,74 @@ const InformationForm = ({ Title, ...props }) => {
   }, []);
 
   return (
-    <>
+      <>
+        <PageWrapper>
+          <Header>
+            <Header.Items>
+              <Header.SidebarToggle />
+              <Header.Right>
+                <DarkModeToggle />
+              </Header.Right>
+            </Header.Items>
+          </Header>
+          <Sidebar>
+            <Sidebar.Primary>
+              <Sidebar.Primary.Logo />
+              <Sidebar.Primary.Middle>
+                <Sidebar.Primary.Middle.Home />
+                {/* <Sidebar.Primary.Middle.LaterThings/> */}
+                <Sidebar.Secondary.Expanded.Body.Middle.Divider />
+                <Sidebar.Primary.Middle.Rooms>
+                  <Sidebar.Primary.Middle.Rooms.LoadItems />
+                  <Sidebar.Primary.Middle.Rooms.AddRoom />
+
+                  {/* <Sidebar.Primary.Middle.Rooms.AllItem/> */}
+                </Sidebar.Primary.Middle.Rooms>
+              </Sidebar.Primary.Middle>
+              <Sidebar.Primary.Bottom>
+                <Sidebar.Primary.Bottom.LogOut />
+                <Sidebar.Primary.Bottom.Profile />
+              </Sidebar.Primary.Bottom>
+            </Sidebar.Primary>
+            <Sidebar.Secondary>
+              <Sidebar.Secondary.Expanded>
+                <Sidebar.Secondary.Expanded.Header>
+                  <Sidebar.Secondary.Expanded.Header.Title>
+                    <Sidebar.Secondary.Expanded.Header.Title.Icon />
+                    <Sidebar.Secondary.Expanded.Header.Title.Text>
+                      Tabs
+                    </Sidebar.Secondary.Expanded.Header.Title.Text>
+                  </Sidebar.Secondary.Expanded.Header.Title>
+                  <Sidebar.Secondary.Expanded.Header.MinimizeButton />
+                </Sidebar.Secondary.Expanded.Header>
+                <Sidebar.Secondary.Expanded.Body>
+                  <Sidebar.Secondary.Expanded.Body.Tabs>
+                    <Sidebar.Secondary.Expanded.Body.Tabs.Chat />
+                    <Sidebar.Secondary.Expanded.Body.Tabs.Todo />
+                    <Sidebar.Secondary.Expanded.Body.Tabs.InfoTab />
+                    {/* <Sidebar.Secondary.Expanded.Body.Tabs.AllItems /> */}
+                  </Sidebar.Secondary.Expanded.Body.Tabs>
+                  {/* <Sidebar.Secondary.Expanded.Body.Middle.TopButton />
+              <Sidebar.Secondary.Expanded.Body.Middle.Items>
+                <Sidebar.Secondary.Expanded.Body.Middle.Items.AllItem />
+              </Sidebar.Secondary.Expanded.Body.Middle.Items>
+              <Sidebar.Secondary.Expanded.Body.Middle.Divider />
+              <Sidebar.Secondary.Expanded.Body.Middle.SectionHeader />
+              <Sidebar.Secondary.Expanded.Body.Middle.Items>
+                <Sidebar.Secondary.Expanded.Body.Middle.Items.AllLabelItems />
+              </Sidebar.Secondary.Expanded.Body.Middle.Items> */}
+                </Sidebar.Secondary.Expanded.Body>
+              </Sidebar.Secondary.Expanded>
+              <Sidebar.Secondary.Minimized>
+                <Sidebar.Secondary.Minimized.Header />
+                {/* <Sidebar.Secondary.Minimized.Body>
+              <Sidebar.Secondary.Minimized.Body.Middle />
+              <Sidebar.Secondary.Minimized.Body.MoreActions />
+            </Sidebar.Secondary.Minimized.Body> */}
+              </Sidebar.Secondary.Minimized>
+            </Sidebar.Secondary>
+          </Sidebar>
+          <MainSection>
       <div className="flex flex-col items-center space-y-4 border-b border-slate-200 p-4 dark:border-navy-500 sm:flex-row sm:justify-between sm:space-y-0 sm:px-5">
         <h2 className="text-lg font-medium tracking-wide text-slate-700 dark:text-navy-100">
           {Title + " Room"}
@@ -409,7 +454,7 @@ const InformationForm = ({ Title, ...props }) => {
                         className="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                         placeholder="Choose date..."
                         type="text"
-                        onChange={() => console.log(fp)}
+
                       />
                     );
                   }}
@@ -468,7 +513,7 @@ const InformationForm = ({ Title, ...props }) => {
                   name="room_type"
                   id="room_type"
                 />
-                <span>Private</span>
+                <span>Public</span>
                 {formik.touched.room_type && formik.errors.room_type && (
                   <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
                     {formik.errors.room_type}
@@ -570,18 +615,20 @@ const InformationForm = ({ Title, ...props }) => {
             </button> */}
             <a href="http://localhost:3000/">
               <button
-                onClick={() => navigate(`/room/${idroom}/info`)}
+
                 id="submit"
                 type="submit"
                 disabled={formik.isSubmitting}
                 className="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
               >
-                {Title === "Add" ? "Add Room" : "Save"}
+                {"Save"}
               </button>
             </a>
           </div>
         </div>
       </form>
+          </MainSection>
+        </PageWrapper>
     </>
   );
 };
