@@ -8,7 +8,7 @@ import React, {
 import { Menu, Transition } from "@headlessui/react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-
+import AutoComplete from "../../../components/AutoComplete";
 import AuthContext from "../../../context/AuthContext";
 
 import Avatar200x200 from "../../../assets/images/200x200.png";
@@ -319,6 +319,7 @@ const Members = () => {
           </div>
         </div> */}
         <div className="card mt-3">
+          <AutoComplete></AutoComplete>
           <div
             className="is-scrollbar-hidden min-w-full overflow-x-auto"
             // x-data="pages.tables.initExample1"
