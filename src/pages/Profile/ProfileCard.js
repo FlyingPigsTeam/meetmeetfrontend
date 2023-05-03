@@ -51,7 +51,7 @@ return (
             View and edit your personal details.
           </p>
         </div> */}
-        <div className="mt-5 border-t border-slate-200 dark:border-navy-500">
+        <div className="mt-5  dark:border-navy-500">
           <dl className="divide-y divide-slate-200 dark:divide-navy-500">
             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
               <dt className="text-sm font-medium ">FirstName</dt>
@@ -125,9 +125,9 @@ return (
             </div>
           </dl>
         </div>
-        <div className="px-4 py-3 sm:px-6">
+        <div className="px-4 py-2 sm:px-6">
           <button
-            className="absolute top-0 right-40 inline-flex items-center px-4 py-2 border border-transparent rounded-md -sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className=" inline-flex items-center px-4 py-2 border border-transparent rounded-md -sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             onClick={handleEdit}
           >
             Edit Profile

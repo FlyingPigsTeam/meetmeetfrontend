@@ -57,7 +57,7 @@ export default function Setting({ user, onUpdate, onCancel }) {
   const [email, setEmail] = useState(user.email);
   const [image, setImage] = useState('');
   const navigate=useNavigate();
-  const [showChangePassword,setShowChangePassword] = useState(false);
+  const [showChangePassword,setShowChangePassword] = useState(true);
   const changeshowtotrue = ()=>{
     setShowChangePassword(true);
   };
@@ -104,12 +104,7 @@ export default function Setting({ user, onUpdate, onCancel }) {
 
   return (
     <>
-    <button
-      className=" absolute px-4 py-2 text-white top-0 right-0 bg-blue-500 rounded hover:bg-blue-600 mr-2"
-      onClick={()=>changeshowtotrue()}
-    >
-      Change Password
-    </button>
+    
 
       <div className="flex h-full">
 
@@ -172,7 +167,7 @@ export default function Setting({ user, onUpdate, onCancel }) {
                                 {/* <span className="text-sm text-blue-gray-500 mt-1">(max size: 5MB)</span> */}
                               </div>
                               <div className="ml-3 flex">
-                                <div className="relative flex cursor-pointer items-center rounded-md border border-red-500 bg-blue-600 py-2 px-3 shadow-sm text-white focus-within:outline-none focus-within:ring-2 focus-within:ring-red-500 focus-within:ring-offset-2 focus-within:ring-offset-red-50 hover:bg-red-600">
+                                <div className="relative flex cursor-pointer items-center rounded-md border border-red-500 bg-red-500 py-2 px-3 shadow-sm text-white focus-within:outline-none focus-within:ring-2 focus-within:ring-red-500 focus-within:ring-offset-2 focus-within:ring-offset-red-50 hover:bg-red-600">
                                   <label
                                     htmlFor="remove-photo"
                                     className="pointer-events-none relative text-sm font-medium"
@@ -286,22 +281,32 @@ export default function Setting({ user, onUpdate, onCancel }) {
                           </div>
                         </div>
                       </div>
-                     
-  
-                      <div className="flex justify-end pt-8">
+                    
+                    
+                      <div className="flex justify-end pt-8    ">
                       
+                        
+                        
                         <button
                           type="submit"
-                          className="ml-3 inline-flex justify-center rounded-md border border-transparent text-white bg-indigo-600 hover:bg-indigo-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                          className="mx-1 ml-3 inline-flex justify-center rounded-md border border-transparent text-white bg-indigo-600 hover:bg-indigo-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                         >
                           Save
                         </button>
                       </div>
+                      <div style={{ borderTop: '1px solid white' }}></div>
                     </form>
-                    <div>
+                    {/* <button
+                          className="absolute bottom-18 left-70 mx-2 flex items-center justify-between p px-4 py-2 text-white bg-indigo-600 rounded hover:bg-indigo-700 mr-2"
+                          onClick={()=>changeshowtotrue()}
+                        >
+                          Change Password
+                    </button> */}
+                    <div >
                         
-                        {showChangePassword && <ChangePassword setfalse={setShowChangePassword} />}
+                        { <ChangePassword setfalse={setShowChangePassword} />}
                       </div>
+                      <div style={{ borderTop: '1px solid white' }}></div>
                   </div>
                 </div>
               </div>

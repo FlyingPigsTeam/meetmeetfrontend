@@ -16,7 +16,7 @@ function Profile() {
   const navigate=useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(true);
   const { authTokens, user } = useContext(AuthContext);
   const [newPassword, setNewPassword] = useState("");
   const [showChangePassword, setShowChangePassword] = useState(false);
@@ -152,12 +152,12 @@ function Profile() {
                       </button> */}
                       {isEditing ? (
                         <button
-                          className="absolute top-0 right-40 px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
+                          className="absolute top-0 left-0 px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
                           onClick={() => setIsEditing(false)}
                         >
-                          Cancel
+                          Back
                         </button>
-                        
+                        // <div></div>
                       ) : (
                         // <button
                         //   className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600"
@@ -168,7 +168,7 @@ function Profile() {
                         <div></div>
                       )}
                     </div>
-                    <h2 className="text-2xl font-bold">Profile</h2>
+                    {/* <h1 className="text-2xl font-bold">Profile</h1> */}
                   </div>
                   </div>
                   {isEditing ? (
