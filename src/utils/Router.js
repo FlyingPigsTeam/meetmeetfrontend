@@ -23,6 +23,7 @@ import Setting from "../pages/Profile/Setting";
 import ChangePassword from "../pages/Profile/ChangePassword";
 import Task from "../pages/Room/Task/Task";
 import Chat from "../pages/Chat/Chat";
+import Chat_test from "../pages/Chat/Chat_test";
 
 const Router = () => {
   return (
@@ -61,6 +62,7 @@ const Router = () => {
           />
           <Route path="/panel" element={<PanelMain />} />
           <Route path="/panel2" element={<Paneltest />} />
+          <Route path="/chat" element={<Chat_test />} />
 
           {/* <Routes>
               <Route path="/" element={<Homepage />} />
