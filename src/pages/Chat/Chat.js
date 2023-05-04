@@ -1,11 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { w3cwebsocket } from "websocket";
 import PageWrapper from "../../components/PageWrapper";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import MainSection from "../../components/MainSection";
+import { useParams } from "react-router-dom";
 
 const Chat = () => {
+  const params = useParams();
+  const roomId = params.idroom;
+  const client = new w3cwebsocket(`ws://localhost:8080/${roomId}`);
+
+  const [message, setmessage] = useState([]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // console.log(event.target.msg.value);
+    // console.log(event.target.id.value);
+    client.send(
+      JSON.stringify({
+        username: "sobhankazemi",
+        user_id: parseInt(event.target.id.value),
+        message: event.target.msg.value,
+      })
+    );
+  };
+
+  useEffect(() => {
+    client.onopen = () => {
+      console.log("WebSocket Client Connected");
+    };
+    client.onmessage = (message) => {
+      const dataFromServer = JSON.parse(message.data);
+      setmessage((e) => [...e, dataFromServer]);
+      console.log("got reply! ", dataFromServer);
+    };
+    client.onclose = () => {
+      console.log("WebSocket Client disConnected");
+    };
+  }, [client.onmessage, client.onopen, client.onclose]);
+
+  console.log(message);
   return (
     <>
       <PageWrapper>
@@ -74,7 +110,17 @@ const Chat = () => {
             </Sidebar.Secondary.Minimized>
           </Sidebar.Secondary>
         </Sidebar>
-        <MainSection></MainSection>
+        <MainSection>
+          <div>
+            <form onSubmit={handleSubmit}>
+              <input type="text" id="msg" name="msg" placeholder="Enter msg" />
+              <input type="text" id="id" name="id" placeholder="Enter id" />
+              <button type="submit" value="submit">
+                Submit
+              </button>
+            </form>
+          </div>
+        </MainSection>
       </PageWrapper>
     </>
   );
