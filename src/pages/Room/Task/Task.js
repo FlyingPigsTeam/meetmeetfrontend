@@ -230,8 +230,8 @@ const Task = () => {
           })"
             >
               {tasks.map((item, index) => (
-                <div className="grid sm:grid-cols-5 items-center border-b border-slate-200 py-3 dark:border-navy-500">
-                  <div className=" col-start-1 xl:col-end-5 sm:col-end-4">
+                <div className="grid sm:grid-cols-5 xl:flex items-center border-b border-slate-200 py-3 dark:border-navy-500">
+                  <div className=" col-start-1 xl:basis-3/4 sm:col-end-4">
                     <div className="flex items-center space-x-2 sm:space-x-3">
                       {item.done == 1 ? (
                         <label className="flex">
@@ -291,7 +291,7 @@ const Task = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="xl:col-start-5 sm:col-start-4 sm:col-end-6 mt-2 sm:mt-0">
+                  <div className="xl:basis-1/4 sm:col-start-4 sm:col-end-6 mt-2 sm:mt-0">
                     <button
                       onClick={() => {
                         setslideoverEdit(true);
