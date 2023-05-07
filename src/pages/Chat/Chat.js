@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { w3cwebsocket } from "websocket";
 import PageWrapper from "../../components/PageWrapper";
 import Header from "../../components/Header";
@@ -7,14 +7,16 @@ import DarkModeToggle from "../../components/DarkModeToggle";
 import MainSection from "../../components/MainSection";
 import { useParams } from "react-router-dom";
 import Avatar200x200 from "../../assets/images/200x200.png";
+import AuthContext from "../../context/AuthContext";
 
 const Chat = () => {
   const params = useParams();
   const roomId = params.idroom;
   const client = new w3cwebsocket(`ws://localhost:8080/${roomId}`);
-
+  const { user } = useContext(AuthContext);
   const [message, setmessage] = useState([]);
   const [payam, setpayam] = useState("");
+  const messageEndRef = useRef(null);
   const handleSubmit = (event) => {
     event.preventDefault();
     // console.log(event.target.msg.value);
@@ -23,7 +25,7 @@ const Chat = () => {
       client.send(
         JSON.stringify({
           username: "sobhankazemi",
-          user_id: 1,
+          user_id: user.user_id,
           message: payam,
         })
       );
@@ -44,30 +46,12 @@ const Chat = () => {
       console.log("WebSocket Client disConnected");
     };
   }, [client.onmessage, client.onopen, client.onclose]);
+  useEffect(() => {
+    messageEndRef.current?.scrollIntoView({ block: "end" });
+  }, [message]);
 
-  const fake_data = [
-    {
-      username: "sobhankazemi",
-      user_id: 1,
-      message: "Hello to every one in this chat",
-    },
-    {
-      username: "matin2001",
-      user_id: 2,
-      message: "Hello to every one in this chat\nthis is the second message",
-    },
-    {
-      username: "sobhankazemi",
-      user_id: 1,
-      message: "How are you?",
-    },
-    {
-      username: "mohammadHossein",
-      user_id: 3,
-      message: "Hi, Guys",
-    },
-  ];
   console.log(message);
+  console.log(user);
   return (
     <>
       <PageWrapper>
@@ -148,9 +132,9 @@ const Chat = () => {
                   <p>Yesterday</p>
                   <div className="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div> */}
                 </div>
-                {message.map((item) => (
-                  <div>
-                    {item.username != "matin2001" ? (
+                {message.map((item, index) => (
+                  <div key={index}>
+                    {item.username != "sobhakazemi" ? (
                       <div className="flex items-start space-x-2.5 sm:space-x-5">
                         <div className="avatar">
                           <img
@@ -161,14 +145,14 @@ const Chat = () => {
                         </div>
                         <div className="flex flex-col items-start space-y-3.5">
                           <div className="mr-4 max-w-lg sm:mr-10">
-                            <div className=" text-left text-md">
+                            <div className=" text-left text-md  text-slate-600 dark:text-navy-200">
                               {item.username}:
                             </div>
-                            <div className="rounded-2xl text-left rounded-tl-none bg-white p-2 text-slate-700 shadow-sm dark:bg-navy-700 dark:text-navy-100">
+                            <div className="rounded-2xl text-left rounded-tl-none bg-slate-200 p-2 text-slate-900 shadow-sm dark:bg-navy-700 dark:text-navy-50">
                               {item.message}
                             </div>
                             <p className="mt-1 ml-auto text-right text-xs text-slate-400 dark:text-navy-300">
-                              {item.time}
+                              {item.time.split(" ")[1]}
                             </p>
                           </div>
                         </div>
@@ -177,19 +161,11 @@ const Chat = () => {
                       <div className="flex items-start justify-end space-x-2.5 sm:space-x-5">
                         <div className="flex flex-col items-end space-y-3.5">
                           <div className="ml-4 max-w-lg sm:ml-10">
-                            <div className=" text-left text-md">
-                              {item.username}:
-                            </div>
                             <div className="rounded-2xl text-left rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white">
                               {item.message}
                             </div>
-                          </div>
-                          <div className="ml-4 max-w-lg sm:ml-10">
-                            {/* <div className="rounded-2xl rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white">
-                        And that’s why a 15th century
-                      </div> */}
-                            <p className="mt-1 ml-auto text-left text-xs text-slate-400 dark:text-navy-300">
-                              {item.time}
+                            <p className="mt-1 ml-4 max-w-lg sm:ml-10 text-left text-xs text-slate-400 dark:text-navy-300">
+                              {item.time.split(" ")[1]}
                             </p>
                           </div>
                         </div>
@@ -205,6 +181,7 @@ const Chat = () => {
                   </div>
                 ))}
               </div>
+              <div ref={messageEndRef} />
             </div>
             <div
               style={{ width: "89%" }}

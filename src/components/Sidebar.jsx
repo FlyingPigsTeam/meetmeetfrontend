@@ -888,7 +888,7 @@ Sidebar.Secondary.Expanded.Body.Tabs.Chat = function ChatDokma({
   ...restProps
 }) {
   const { idroom } = useParams();
-  console.log(idroom);
+  //console.log(idroom);
   return (
     <Link
       to={`/room/${idroom}/chat`}
@@ -918,7 +918,7 @@ Sidebar.Secondary.Expanded.Body.Tabs.Todo = function TodoDokma({
   ...restProps
 }) {
   const { idroom } = useParams();
-  console.log(idroom);
+  //console.log(idroom);
   return (
     <Link
       to={`/room/${idroom}/task`}
@@ -954,7 +954,7 @@ Sidebar.Secondary.Expanded.Body.Tabs.InfoTab = function InfoDokma({
   ...restProps
 }) {
   const { idroom } = useParams();
-  console.log(idroom);
+  //console.log(idroom);
   return (
     <Link
       to={`/room/${idroom}/info`}
