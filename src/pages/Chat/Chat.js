@@ -24,7 +24,7 @@ const Chat = () => {
     if (payam != "") {
       client.send(
         JSON.stringify({
-          username: "sobhankazemi",
+          username: user.username,
           user_id: user.user_id,
           message: payam,
         })
@@ -134,7 +134,7 @@ const Chat = () => {
                 </div>
                 {message.map((item, index) => (
                   <div key={index}>
-                    {item.username != "sobhakazemi" ? (
+                    {item.username != user.username ? (
                       <div className="flex items-start space-x-2.5 sm:space-x-5">
                         <div className="avatar">
                           <img
