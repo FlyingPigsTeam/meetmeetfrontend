@@ -17,13 +17,14 @@ import InformationForm from "../pages/Room/InfoTab/InformationForm";
 import InformationPage from "../pages/Room/InfoTab/InformationPage";
 import PanelMain from "../pages/Home/PanelMain";
 import Paneltest from "../pages/Home/Paneltest";
-import EditProfile from "../pages/Profile/Setting"
+import EditProfile from "../pages/Profile/Setting";
 import Profile from "../pages/Profile/Profile";
 import Setting from "../pages/Profile/Setting";
 import ChangePassword from "../pages/Profile/ChangePassword";
 import Task from "../pages/Room/Task/Task";
 import Chat from "../pages/Chat/Chat";
 import Chat_test from "../pages/Chat/Chat_test";
+import JoinRoom from "../pages/Room/InfoTab/joinRoom";
 
 const Router = () => {
   return (
@@ -55,6 +56,7 @@ const Router = () => {
           />
           <Route path="/room/:idroom/task" element={<Task />} />
           <Route path="/room/:idroom/chat" element={<Chat />} />
+          <Route path="/joinRoom/:randomId" element={<JoinRoom />} />
           <Route path="/profile" element={<Profile />} />
           <Route
             path="/room/:idroom/info/edit"
