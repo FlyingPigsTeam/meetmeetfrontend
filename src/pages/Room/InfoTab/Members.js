@@ -319,7 +319,8 @@ const Members = () => {
           </div>
         </div> */}
         <div className="card mt-3">
-          <AutoComplete></AutoComplete>
+        
+
           <div
             className="is-scrollbar-hidden min-w-full overflow-x-auto"
             // x-data="pages.tables.initExample1"
@@ -475,7 +476,9 @@ const Members = () => {
                 })}
               </tbody>
             </table>
+            
           </div>
+          
 
           {/* <div className="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5">
             <div className="flex items-center space-x-2 text-xs+">
@@ -578,6 +581,7 @@ const Members = () => {
             <div className="text-xs+">1 - 10 of 10 entries</div>
           </div> */}
         </div>
+        <div className="card mt-3 p-4"><AutoComplete /></div>
       </div>
     </>
   );
