@@ -24,14 +24,16 @@ function JoinRoom() {
       .then((response) => response)
       .catch((err) => {
         // Handle error
+        console.log(err);
         let error = err.response.data.fail;
+        let idRoomError = err.response.data.id;
         if (error === "wrong link") {
           swal("Error!", "Room with this link does not exist ", "error");
           Navigate("/");
         } else if (error === "already joined") {
           swal("Error!", "Your are already join the group", "error");
           //Navigate("/room/:idroom/info");
-          Navigate("/");
+          Navigate(`/room/${idRoomError}/info`);
         }
       });
     console.log("roomData :", data);
