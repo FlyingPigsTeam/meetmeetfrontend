@@ -229,10 +229,12 @@ const InformationForm = ({Title, ...props}) => {
     const onSelectImage = (e) => {
         const selectedImage = e.target.files[0];
         if (selectedImage) {
+
             setImage(selectedImage);
 
             const reader = new FileReader();
             reader.onload = () => {
+
                 setPreviewUrl(reader.result);
                 // formik.setFieldValue("main_picture_path", previewUrl);
             };
@@ -332,8 +334,9 @@ const InformationForm = ({Title, ...props}) => {
                                 <div className="avatar mt-1.5 h-20 w-20">
                                     <img className="mask is-squircle "
                                          src={
-                                             roomData.main_picture_path === "" || roomData.main_picture_path === "__" ? Avatar200x200 :
-                                                 previewUrl === '' ? roomData.main_picture_path : previewUrl
+                                             roomData.main_picture_path != "" &&
+                                             roomData.main_picture_path != "__" ? roomData.main_picture_path :
+                                             previewUrl != '' ? previewUrl : Avatar200x200
                                          }
                                          alt="avatar"/>
                                     <div
