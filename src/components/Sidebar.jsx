@@ -371,13 +371,13 @@ Sidebar.Primary.Middle.Rooms.Item = function PrimaryRoomsItems({
         <>
             <div
                 // @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/200x200.png',name:'Konnor Guzman'})"
-                className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
+                className="flex cursor-pointer items-center justify-center py-2.5 "
             >
                 <button
                     onClick={() => navigate(`/room/${item.id}/info`)}
                     className="avatar h-10 w-10"
                 >
-                    <img className="rounded-full"
+                    <img className="rounded-full  hover:border-primary hover:border-2  hover:shadow-soft  dark:hover:shadow-primary-focus"
                          src={item.main_picture_path === "" || item.main_picture_path === "__" ? Avatar200x200 : item.main_picture_path}
                          alt="avatar"/>
                 </button>
