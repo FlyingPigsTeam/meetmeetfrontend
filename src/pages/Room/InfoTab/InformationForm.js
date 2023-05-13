@@ -154,19 +154,22 @@ const InformationForm = ({Title, ...props}) => {
                     }
                 )
                 .then((response) => response);
-            const resPic = await axios.putForm(`http://127.0.0.1:8000/api/upload?id=${idroom}&where=room`,
-                {'image': image},
-                {
-                    headers: {
-                        "Content-Type": 'multipart/form-data',
-                        Authorization: "Bearer " + authTokens.access,
+            if (image) {
+                const resPic = await axios.putForm(`http://127.0.0.1:8000/api/upload?id=${idroom}&where=room`,
+                    {'image': image},
+                    {
+                        headers: {
+                            "Content-Type": 'multipart/form-data',
+                            Authorization: "Bearer " + authTokens.access,
+                        }
                     }
-                }
-            ).then((response) => {
-                console.log(JSON.stringify(response.data));
-            }).catch((error) => {
-                console.log(error);
-            });
+                ).then((response) => {
+                    console.log(JSON.stringify(response.data));
+                }).catch((error) => {
+                    console.log(error);
+                });
+            }
+
 
             navigate(`/room/${idroom}/info`);
             console.log("CLICKEC", data);
