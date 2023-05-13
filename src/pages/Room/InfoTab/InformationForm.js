@@ -334,9 +334,10 @@ const InformationForm = ({Title, ...props}) => {
                                 <div className="avatar mt-1.5 h-20 w-20">
                                     <img className="mask is-squircle "
                                          src={
-                                             roomData.main_picture_path != "" &&
-                                             roomData.main_picture_path != "__" ? roomData.main_picture_path :
-                                             previewUrl != '' ? previewUrl : Avatar200x200
+                                             previewUrl != '' ? previewUrl :
+                                                 roomData.main_picture_path != "" &&
+                                                 roomData.main_picture_path != "__" ? roomData.main_picture_path :
+                                                     Avatar200x200
                                          }
                                          alt="avatar"/>
                                     <div
