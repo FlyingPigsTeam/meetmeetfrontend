@@ -42,7 +42,8 @@ import {
   UserIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { ChevronLeftIcon } from '@heroicons/react/20/solid'
+import { ChevronLeftIcon } from '@heroicons/react/20/solid';
+import ChangePassword from './ChangePassword';
 // import { MdAccountCircle } from 'react-icons/md';
 
 
@@ -56,6 +57,13 @@ export default function Setting({ user, onUpdate, onCancel }) {
   const [email, setEmail] = useState(user.email);
   const [image, setImage] = useState('');
   const navigate=useNavigate();
+  const [showChangePassword,setShowChangePassword] = useState(true);
+  const changeshowtotrue = ()=>{
+    setShowChangePassword(true);
+  };
+  const changeshowtofalse = ()=>{
+    setShowChangePassword(false);
+  };
   // const [editing, setEditing] = useState(false);
   // const handleEdit = () => {
   //     setEditing(true);
@@ -96,6 +104,7 @@ export default function Setting({ user, onUpdate, onCancel }) {
 
   return (
     <>
+    
 
       <div className="flex h-full">
 
@@ -158,7 +167,7 @@ export default function Setting({ user, onUpdate, onCancel }) {
                                 {/* <span className="text-sm text-blue-gray-500 mt-1">(max size: 5MB)</span> */}
                               </div>
                               <div className="ml-3 flex">
-                                <div className="relative flex cursor-pointer items-center rounded-md border border-red-500 bg-blue-600 py-2 px-3 shadow-sm text-white focus-within:outline-none focus-within:ring-2 focus-within:ring-red-500 focus-within:ring-offset-2 focus-within:ring-offset-red-50 hover:bg-red-600">
+                                <div className="relative flex cursor-pointer items-center rounded-md border border-red-500 bg-red-500 py-2 px-3 shadow-sm text-white focus-within:outline-none focus-within:ring-2 focus-within:ring-red-500 focus-within:ring-offset-2 focus-within:ring-offset-red-50 hover:bg-red-600">
                                   <label
                                     htmlFor="remove-photo"
                                     className="pointer-events-none relative text-sm font-medium"
@@ -272,32 +281,32 @@ export default function Setting({ user, onUpdate, onCancel }) {
                           </div>
                         </div>
                       </div>
-                      <div className="flex justify-end pt-8">
-                      <button onClick={()=>navigate("/profile")} className="badge space-x-2 bg-error text-white">
-                <span>Cancle</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                  />
-                </svg>
-              </button>
+                    
+                    
+                      <div className="flex justify-end pt-8    ">
+                      
+                        
+                        
                         <button
                           type="submit"
-                          className="ml-3 inline-flex justify-center rounded-md border border-transparent text-white bg-indigo-600 hover:bg-indigo-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                          className="mx-1 ml-3 inline-flex justify-center rounded-md border border-transparent text-white bg-indigo-600 hover:bg-indigo-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                         >
                           Save
                         </button>
                       </div>
+                      <div style={{ borderTop: '1px solid white' }}></div>
                     </form>
+                    {/* <button
+                          className="absolute bottom-18 left-70 mx-2 flex items-center justify-between p px-4 py-2 text-white bg-indigo-600 rounded hover:bg-indigo-700 mr-2"
+                          onClick={()=>changeshowtotrue()}
+                        >
+                          Change Password
+                    </button> */}
+                    <div >
+                        
+                        { <ChangePassword setfalse={setShowChangePassword} />}
+                      </div>
+                      <div style={{ borderTop: '1px solid white' }}></div>
                   </div>
                 </div>
               </div>

@@ -9,7 +9,7 @@ import Header from "../../components/Header";
 import PageWrapper from "../../components/PageWrapper";
 import DarkModeToggle from "../../components/DarkModeToggle";
 
-const ChangePassword = ({ onUpdate }) => {
+const ChangePassword = (props) => {
   const initialValues = {
     currentPassword: "",
     newPassword: "",
@@ -84,54 +84,19 @@ const ChangePassword = ({ onUpdate }) => {
 
   return (
     <>
-    <PageWrapper>
-      <Header>
-        <Header.Items>
-          {/* <Header.SidebarToggle /> */}
-          <Header.Right>
-            <DarkModeToggle />
-          </Header.Right>
-        </Header.Items>
-      </Header>
-      <Sidebar>
-        <Sidebar.Primary>
-          <Sidebar.Primary.Logo />
-          <Sidebar.Primary.Middle>
-            <Sidebar.Primary.Middle.Home />
-            {/* <Sidebar.Primary.Middle.LaterThings/> */}
-            <Sidebar.Secondary.Expanded.Body.Middle.Divider />
-            <Sidebar.Primary.Middle.Rooms>
-              {/* <Sidebar.Primary.Middle.Rooms.Item /> */}
-              <Sidebar.Primary.Middle.Rooms.LoadItems />
-              <Sidebar.Primary.Middle.Rooms.AddRoom />
-
-              {/* <Sidebar.Primary.Middle.Rooms.AllItem/> */}
-            </Sidebar.Primary.Middle.Rooms>
-          </Sidebar.Primary.Middle>
-          <Sidebar.Primary.Bottom>
-            <Sidebar.Primary.Bottom.LogOut />
-            <Sidebar.Primary.Bottom.Profile />
-          </Sidebar.Primary.Bottom>
-        </Sidebar.Primary>
-      </Sidebar>
-      <MainSection>
-    <div className="card dark:bg-navy-800 rounded-lg shadow-md p-6">
+    
+    <div className="card mt-3 dark:bg-navy-800 rounded-lg shadow-md p-6">
       <div className="flex items-center justify-between mb-4"></div>
-      <div className="max-w-md mx-auto mt-4">
+      <div className=" mt-4">
         <h1 className="text-xl font-bold mb-2">Change Password</h1>
-        <button
-          className="absolute top-0 right-0 p-4 text-white bg-blue-500 rounded-full hover:bg-blue-600 mr-2"
-          onClick={() => navigate("/profile")}
-        >
-          Back
-        </button>
+
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
           {({ isSubmitting }) => (
-            <Form className=" shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <Form className="  rounded pt-6 pb-8 mb-4">
               {error && <div className="text-red-500 mb-4">{error}</div>}
               {submitted && error === null ? (
                 <div className="text-green-500 mb-4">
@@ -141,7 +106,7 @@ const ChangePassword = ({ onUpdate }) => {
               <div className="mb-4">
                 <label
                   htmlFor="currentPassword"
-                  className="block text-gray-700 font-bold mb-2"
+                  className="block  font-bold mb-2"
                 >
                   Current Password
                 </label>
@@ -163,7 +128,7 @@ const ChangePassword = ({ onUpdate }) => {
               <div className="mb-4">
                 <label
                   htmlFor="newPassword"
-                  className="block text-gray-700 font-bold mb-2"
+                  className="block  font-bold mb-2"
                 >
                   New Password
                 </label>
@@ -185,7 +150,7 @@ const ChangePassword = ({ onUpdate }) => {
               <div className="mb-4">
                 <label
                   htmlFor="confirmPassword"
-                  className="block text-gray-700 font-bold mb-2"
+                  className="block  font-bold mb-2"
                 >
                   Confirm Password
                 </label>
@@ -204,22 +169,27 @@ const ChangePassword = ({ onUpdate }) => {
                 />
               </div>
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-end">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  className="mx-1 ml-3 inline-flex justify-center rounded-md border border-transparent text-white bg-indigo-600 hover:bg-indigo-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                   {isSubmitting ? "Updating..." : "Update Password"}
                 </button>
+                {/* <button
+                    className=" px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
+                    onClick={() => props.setfalse(false)}
+                >
+                  Close
+                </button> */}
               </div>
             </Form>
           )}
         </Formik>
       </div>
     </div>
-    </MainSection>
-      </PageWrapper>
+    
     </>
   );
 };

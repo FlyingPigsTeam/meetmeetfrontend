@@ -8,7 +8,7 @@ import React, {
 import { Menu, Transition } from "@headlessui/react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-
+import AutoComplete from "../../../components/AutoComplete";
 import AuthContext from "../../../context/AuthContext";
 
 import Avatar200x200 from "../../../assets/images/200x200.png";
@@ -18,6 +18,7 @@ const Members = () => {
   const navigate = useNavigate();
   let authTokens = useContext(AuthContext).authTokens;
   let [users_Data, setUser_Data] = useState([]);
+  let [roomData, setRoomData] = useState({});
   const req = async () => {
     const { data } = await axios
       .get(`http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?show_members=1`, {
@@ -30,9 +31,28 @@ const Members = () => {
     console.log("memberFetch", data);
     setUser_Data(data);
   };
+  const thisroom = async () => {
+    const { data } = await axios
+        .get(`http://127.0.0.1:8000/api/my-rooms/${idroom}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + authTokens.access,
+          },
+        })
+        .then((response) => response);
+    console.log("roomDataFetch", data);
+    setRoomData(data);
+
+  };
   useEffect(() => {
     req();
-  }, [idroom,]);
+    thisroom();
+  }, [idroom]);
+
+  useEffect(() => {
+    req();
+  }, [idroom]);
+
 
   const ConvertRole = (member) => {
     const result =
@@ -65,7 +85,8 @@ const Members = () => {
         </>
       ),
       action: (requestId) => {
-        console.log("YAROO",requestId )
+        console.log("YAROO",`http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?request_id=${requestId}` ,
+            )
         const acceptUser = async () => {
           const { data } = await axios
             .put(
@@ -82,7 +103,7 @@ const Members = () => {
           console.log("memberAccept", data);
         };
         acceptUser();
-        req();
+        navigate(0);
       },
     },
     Kick: {
@@ -96,8 +117,8 @@ const Members = () => {
           />
         </>
       ),
-      action: (event) => {
-        const requestId = event.currentTarget.id.split("-")[1];
+      action: (requestId) => {
+
         const deleteUser = async () => {
           const { data } = await axios
             .delete(
@@ -113,7 +134,7 @@ const Members = () => {
           console.log("memberKick", data);
         };
         deleteUser();
-        req();
+        navigate(0);
       },
     },
 
@@ -128,8 +149,8 @@ const Members = () => {
           />
         </>
       ),
-      action: (event) => {
-        const requestId = event.currentTarget.id.split("-")[1];
+      action: (requestId) => {
+
         const deleteUser = async () => {
           const { data } = await axios
             .delete(
@@ -145,7 +166,7 @@ const Members = () => {
           console.log("memberReject", data);
         };
         deleteUser();
-        req();
+        navigate(0);
       },
     },
   };
@@ -298,6 +319,8 @@ const Members = () => {
           </div>
         </div> */}
         <div className="card mt-3">
+        
+
           <div
             className="is-scrollbar-hidden min-w-full overflow-x-auto"
             // x-data="pages.tables.initExample1"
@@ -326,9 +349,10 @@ const Members = () => {
                   {/* <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Status
                   </th> */}
-                  <th className="whitespace-nowrap rounded-tr-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  {roomData.is_admin && <th
+                      className="whitespace-nowrap rounded-tr-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Action
-                  </th>
+                  </th>}
                 </tr>
               </thead>
               <tbody>
@@ -374,83 +398,87 @@ const Members = () => {
                           />
                         </label>
                       </td> */}
-                      <td className="whitespace-nowrap px-4 py-3 sm:px-5">
+                      {roomData.is_admin && <td className="whitespace-nowrap px-4 py-3 sm:px-5">
                         <Menu
-                          as="div"
-                          className="relative inline-block text-left"
+                            as="div"
+                            className="relative inline-block text-left"
                         >
                           <div>
-                            <Menu.Button className="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                            <Menu.Button
+                                className="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                               <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                strokeWidth="2"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="h-5 w-5"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
                               >
                                 <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
                                 />
                               </svg>
                             </Menu.Button>
                           </div>
                           {ConvertRole(user) !== "Owner" && (
-                            <Transition
-                              as={Fragment}
-                              enter="transition ease-out duration-100"
-                              enterFrom="transform opacity-0 scale-95"
-                              enterTo="transform opacity-100 scale-100"
-                              leave="transition ease-in duration-75"
-                              leaveFrom="transform opacity-100 scale-100"
-                              leaveTo="transform opacity-0 scale-95"
-                            >
-                              {
-                                <Menu.Items className="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
-                                  <div>
-                                    {roleDetails[ConvertRole(user)].Actions.map(
-                                      (action, index) => (
-                                        <Menu.Item id={`action-item-${index}`}>
-                                          <button
-                                            onClick={() => actionsDetails[action].action(user.id)}
-                                            className="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                          >
-                                            <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              className="mt-px h-4.5 w-4.5"
-                                              fill="none"
-                                              viewBox="0 0 24 24"
-                                              stroke="currentColor"
-                                              strokeWidth="1.5"
-                                            >
-                                              {actionsDetails[action].iconPath}
-                                            </svg>
-                                            <span>
+                              <Transition
+                                  as={Fragment}
+                                  enter="transition ease-out duration-100"
+                                  enterFrom="transform opacity-0 scale-95"
+                                  enterTo="transform opacity-100 scale-100"
+                                  leave="transition ease-in duration-75"
+                                  leaveFrom="transform opacity-100 scale-100"
+                                  leaveTo="transform opacity-0 scale-95"
+                              >
+                                {
+                                  <Menu.Items
+                                      className="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
+                                    <div>
+                                      {roleDetails[ConvertRole(user)].Actions.map(
+                                          (action, index) => (
+                                              <Menu.Item id={`action-item-${index}`}>
+                                                <button
+                                                    onClick={() => actionsDetails[action].action(user.id)}
+                                                    className="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                                                >
+                                                  <svg
+                                                      xmlns="http://www.w3.org/2000/svg"
+                                                      className="mt-px h-4.5 w-4.5"
+                                                      fill="none"
+                                                      viewBox="0 0 24 24"
+                                                      stroke="currentColor"
+                                                      strokeWidth="1.5"
+                                                  >
+                                                    {actionsDetails[action].iconPath}
+                                                  </svg>
+                                                  <span>
                                               {" "}
-                                              {
-                                                actionsDetails[action]
-                                                  .actionName
-                                              }
+                                                    {
+                                                      actionsDetails[action]
+                                                          .actionName
+                                                    }
                                             </span>
-                                          </button>
-                                        </Menu.Item>
-                                      )
-                                    )}
-                                  </div>
-                                </Menu.Items>
-                              }
-                            </Transition>
+                                                </button>
+                                              </Menu.Item>
+                                          )
+                                      )}
+                                    </div>
+                                  </Menu.Items>
+                                }
+                              </Transition>
                           )}
                         </Menu>
-                      </td>
+                      </td>}
                     </tr>
                   );
                 })}
               </tbody>
             </table>
+            
           </div>
+          
 
           {/* <div className="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5">
             <div className="flex items-center space-x-2 text-xs+">
@@ -553,6 +581,7 @@ const Members = () => {
             <div className="text-xs+">1 - 10 of 10 entries</div>
           </div> */}
         </div>
+        <div className="card mt-3 p-4"><AutoComplete /></div>
       </div>
     </>
   );
