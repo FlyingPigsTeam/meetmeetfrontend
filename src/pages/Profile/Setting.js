@@ -23,7 +23,7 @@
   }
   ```
 */
-import { Fragment, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Dialog, Transition } from '@headlessui/react'
 import {
@@ -44,6 +44,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronLeftIcon } from '@heroicons/react/20/solid';
 import ChangePassword from './ChangePassword';
+import Avatar200x200 from "../../assets/images/200x200.png";
 // import { MdAccountCircle } from 'react-icons/md';
 
 
@@ -55,7 +56,7 @@ export default function Setting({ user, onUpdate, onCancel }) {
   const [userName, setUserName] = useState(user.username);
   const [bio, setBio] = useState(user.bio);
   const [email, setEmail] = useState(user.email);
-  const [image, setImage] = useState('');
+
   const navigate=useNavigate();
   const [showChangePassword,setShowChangePassword] = useState(true);
   const changeshowtotrue = ()=>{
@@ -88,20 +89,31 @@ export default function Setting({ user, onUpdate, onCancel }) {
         "username": userName,
         "bio": bio
       };
-      await onUpdate(user);
+      await onUpdate(user,image);
     } catch (error) {
       console.error(error);
     }
   }
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    const formData = new FormData();
-    formData.append('image', file);
-    // call your API to upload the file and get the URL of the uploaded image
-    // then update the state with the URL
-    setImage(URL.createObjectURL(file));
-  }
 
+
+
+  const [image, setImage] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState('');
+  const onSelectImage = (e) => {
+    const selectedImage = e.target.files[0];
+    if (selectedImage) {
+
+      setImage(selectedImage);
+
+      const reader = new FileReader();
+      reader.onload = () => {
+
+        setPreviewUrl(reader.result);
+        // formik.setFieldValue("main_picture_path", previewUrl);
+      };
+      reader.readAsDataURL(selectedImage);
+    }
+  };
   return (
     <>
     
@@ -134,56 +146,31 @@ export default function Setting({ user, onUpdate, onCancel }) {
                         </div>
 
                         <div className="sm:col-span-6">
-                          <label htmlFor="photo" className="block text-sm font-medium text-blue-gray-900">
-                            Photo
-                          </label>
-                          <div className="mt-1 flex items-center">
-                            {image ? (
-                              <img
-                                className="inline-block h-12 w-12 rounded-full"
-                                src={image}
-                                alt=""
-                              />
-                            ) : (
-                              <div className="inline-block h-12 w-12 rounded-full bg-gradient-to-tr from-purple-400 to-pink-500 flex items-center justify-center">
-                                <span className="text-white text-2xl font-bold">+</span>
-                              </div>
-                            )}
-                            <div className="ml-4 flex">
-                              <div className="flex flex-col">
-                                <div className="relative flex cursor-pointer items-center rounded-md border border-blue-gray-300 text-white bg-indigo-600 hover:bg-indigo-700 py-2 px-3 shadow-sm focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 focus-within:ring-offset-blue-gray-50 hover:bg-blue-gray-50">
-                                  <label htmlFor="user-photo" className="pointer-events-none relative  text-sm font-medium text-blue-gray-900">
-                                    <span>Change</span>
-                                    <span className="sr-only"> user photo</span>
-                                  </label>
-                                  <input
-                                    id="user-photo"
-                                    name="user-photo"
-                                    type="file"
-                                    className="absolute inset-0 h-full w-full cursor-pointer rounded-md border-gray-300 opacity-0"
-                                    onChange={handleImageUpload}
-                                  />
-                                </div>
-                                {/* <span className="text-sm text-blue-gray-500 mt-1">(max size: 5MB)</span> */}
-                              </div>
-                              <div className="ml-3 flex">
-                                <div className="relative flex cursor-pointer items-center rounded-md border border-red-500 bg-red-500 py-2 px-3 shadow-sm text-white focus-within:outline-none focus-within:ring-2 focus-within:ring-red-500 focus-within:ring-offset-2 focus-within:ring-offset-red-50 hover:bg-red-600">
-                                  <label
-                                    htmlFor="remove-photo"
-                                    className="pointer-events-none relative text-sm font-medium"
-                                  >
-                                    <span>Remove</span>
-                                    <span className="sr-only"> user photo</span>
-                                  </label>
-                                  <input
-                                    id="remove-photo"
-                                    name="remove-photo"
-                                    type="button"
-                                    className="absolute inset-0 h-full w-full cursor-pointer rounded-md border-gray-300 opacity-0"
-                                  // onClick={handleRemoveImage}
-                                  />
-                                </div>
-                              </div>
+                          <div className="avatar mt-1.5 h-20 w-20">
+                            <img className="mask is-squircle "
+                                 src={
+                                   previewUrl != '' ? previewUrl :
+                                       user.picture_path != "" &&
+                                       user.picture_path != "__" ? user.picture_path :
+                                           Avatar200x200
+                                 }
+                                 alt="avatar"/>
+                            <div
+                                className="absolute bottom-0 right-0 flex items-center justify-center rounded-full bg-white dark:bg-navy-700">
+
+                              <label htmlFor={"edit-avatar-btn"}
+                                     className="btn h-6 w-6 rounded-full border border-slate-200 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:border-navy-500 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                                <input type="file" id="edit-avatar-btn" onChange={onSelectImage} hidden/>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-3.5 w-3.5"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                  <path
+                                      d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
+                                </svg>
+                              </label>
                             </div>
                           </div>
                         </div>

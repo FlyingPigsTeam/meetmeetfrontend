@@ -11,6 +11,7 @@ import MainSection from "../../components/MainSection";
 import PageWrapper from "../../components/PageWrapper";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 function Profile() {
   const navigate=useNavigate();
@@ -30,6 +31,7 @@ function Profile() {
       });
       const data = await response.json();
       setData(data);
+      console.log(data)
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -40,7 +42,7 @@ function Profile() {
     fetchData();
   }, []);
 
-  const handleUpdate = async (updatedUser) => {
+  const handleUpdate = async (updatedUser,image) => {
     try {
       const response = await fetch("http://127.0.0.1:8000/api/profile", {
         method: "PUT",
@@ -55,6 +57,23 @@ function Profile() {
       setIsEditing(false);
     } catch (error) {
       console.error(error);
+    }
+
+    if (image)
+    {
+      const resPic = await axios.putForm(`http://127.0.0.1:8000/api/upload?id=1&where=profile`,
+          {'image': image},
+          {
+            headers: {
+              "Content-Type": 'multipart/form-data',
+              Authorization: "Bearer " + authTokens.access,
+            }
+          }
+      ).then((response) => {
+        console.log(JSON.stringify(response.data));
+      }).catch((error) => {
+        console.log(error);
+      });
     }
   };
 
@@ -141,7 +160,7 @@ function Profile() {
               ) : (
                 <div className=" rounded-lg  p-6">
                   <div className="flex items-center justify-center space-x-2 mb-4">
-                    
+
                     <div className="mt-5 border-t border-slate-200 dark:border-navy-500">
                     <div className="flex justify-center space-x-2">
                       {/* <button
@@ -179,16 +198,16 @@ function Profile() {
                     />
                   ) : (
                     <div>
-                    
+
                         <ProfileCard handleEdit={handleEditClick} user={data} />
                         </div>
-                    
+
                   )}
                 </div>
               )}
             </div>
           </div>
-          
+
         </MainSection>
       </PageWrapper>
     </>
