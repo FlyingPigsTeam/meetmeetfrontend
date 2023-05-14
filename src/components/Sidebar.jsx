@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useState} from "react";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../context/AuthContext";
 import AddRoom from "../pages/Room/AddRoom";
@@ -12,11 +12,11 @@ import AppLogo from "../assets/images/app-logo.svg";
 // TODO : HOME BUTTON SHAPE CHANGES ON OVERFLOW ROOMS
 // TODO : ROOMS HOVER HAVE PROBLEM
 // TODO : ACTIVE NOTIF ON ROOMS
-export default function Sidebar({classes, children, ...restProps}) {
+export default function Sidebar({ classes, children, ...restProps }) {
     return <div className="sidebar print:hidden">{children}</div>;
 }
 
-Sidebar.Primary = function PrimarySidebar({classes, children, ...restProps}) {
+Sidebar.Primary = function PrimarySidebar({ classes, children, ...restProps }) {
     return (
         <div className={classNames("main-sidebar")}>
             <div
@@ -40,10 +40,10 @@ Sidebar.Primary.Logo = function SidebarLogo() {
     );
 };
 Sidebar.Primary.Middle = function SidebarMiddlebar({
-                                                       classes,
-                                                       children,
-                                                       ...restProps
-                                                   }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <>
             <div className="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6">
@@ -53,15 +53,15 @@ Sidebar.Primary.Middle = function SidebarMiddlebar({
     );
 };
 Sidebar.Primary.Middle.Home = function PrimarySidebar({
-                                                          classes,
-                                                          children,
-                                                          ...restProps
-                                                      }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <Link
             to={"/"}
             className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-            // x-tooltip.placement.right="'Dashboards'"
+        // x-tooltip.placement.right="'Dashboards'"
         >
             <svg
                 className="h-7 w-7"
@@ -91,17 +91,17 @@ Sidebar.Primary.Middle.Home = function PrimarySidebar({
     );
 };
 Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
-                                                                            classes,
-                                                                            children,
-                                                                            ...restProps
-                                                                        }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <>
             {/* <!-- Dashobards --> */}
             <a
                 href="#"
                 className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                // x-tooltip.placement.right="'Dashboards'"
+            // x-tooltip.placement.right="'Dashboards'"
             >
                 <svg
                     className="h-7 w-7"
@@ -133,7 +133,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
             <a
                 href="apps-list.html"
                 className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
-                // x-tooltip.placement.right="'Applications'"
+            // x-tooltip.placement.right="'Applications'"
             >
                 <svg
                     className="h-7 w-7"
@@ -156,8 +156,8 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
                         stroke="currentColor"
                         strokeLinecap="round"
                     />
-                    <rect x="4" y="8" width="16" height="3" rx="1" fill="currentColor"/>
-                    <path d="M12 11V15" stroke="currentColor" strokeLinecap="round"/>
+                    <rect x="4" y="8" width="16" height="3" rx="1" fill="currentColor" />
+                    <path d="M12 11V15" stroke="currentColor" strokeLinecap="round" />
                 </svg>
             </a>
 
@@ -165,7 +165,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
             <a
                 href="pages-card-user-1.html"
                 className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                // x-tooltip.placement.right="'Pages & Layouts'"
+            // x-tooltip.placement.right="'Pages & Layouts'"
             >
                 <svg
                     className="h-7 w-7"
@@ -199,7 +199,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
             <a
                 href="form-input-text.html"
                 className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                // x-tooltip.placement.right="'Forms'"
+            // x-tooltip.placement.right="'Forms'"
             >
                 <svg
                     className="h-7 w-7"
@@ -228,7 +228,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
             <a
                 href="components-accordion.html"
                 className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                // x-tooltip.placement.right="'Components'"
+            // x-tooltip.placement.right="'Components'"
             >
                 <svg
                     className="h-7 w-7"
@@ -257,7 +257,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
             <a
                 href="elements-avatar.html"
                 className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                // x-tooltip.placement.right="'Elements'"
+            // x-tooltip.placement.right="'Elements'"
             >
                 <svg
                     className="h-7 w-7"
@@ -324,21 +324,21 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
     );
 };
 Sidebar.Primary.Middle.Rooms = function PrimaryRoomsSections({
-                                                                 classes,
-                                                                 children,
-                                                                 ...restProps
-                                                             }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return <div className="flex flex-col">{children}</div>;
 };
 Sidebar.Primary.Middle.Rooms.LoadItems = function LoaderRoomsItems({
-                                                                       classes,
-                                                                       children,
-                                                                       ...restProps
-                                                                   }) {
+    classes,
+    children,
+    ...restProps
+}) {
     let authTokens = useContext(AuthContext).authTokens;
     const [myrooms, setMyRooms] = useState([]);
     const req = async () => {
-        const {data} = await axios
+        const { data } = await axios
             .get(`http://127.0.0.1:8000/api/my-rooms`, {
                 headers: {
                     "Content-Type": "application/json",
@@ -355,17 +355,17 @@ Sidebar.Primary.Middle.Rooms.LoadItems = function LoaderRoomsItems({
     return (
         <>
             {myrooms?.map((item) => (
-                <Sidebar.Primary.Middle.Rooms.Item item={item}/>
+                <Sidebar.Primary.Middle.Rooms.Item item={item} />
             ))}
         </>
     );
 };
 Sidebar.Primary.Middle.Rooms.Item = function PrimaryRoomsItems({
-                                                                   classes,
-                                                                   item,
-                                                                   children,
-                                                                   ...restProps
-                                                               }) {
+    classes,
+    item,
+    children,
+    ...restProps
+}) {
     const navigate = useNavigate();
     return (
         <>
@@ -380,28 +380,28 @@ Sidebar.Primary.Middle.Rooms.Item = function PrimaryRoomsItems({
                     <img
                         className="rounded-full  hover:border-primary hover:border-2  hover:shadow-soft  dark:hover:shadow-primary-focus"
                         src={item.main_picture_path === "" || item.main_picture_path === "__" ? Avatar200x200 : item.main_picture_path}
-                        alt="avatar"/>
+                        alt="avatar" />
                 </button>
             </div>
         </>
     );
 };
 Sidebar.Primary.Middle.Rooms.AddRoom = function AddRoomButton({
-                                                                  classes,
-                                                                  children,
-                                                                  ...restProps
-                                                              }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <>
-            <AddRoom/>
+            <AddRoom />
         </>
     );
 };
 Sidebar.Primary.Middle.Rooms.AllItem = function PrimaryRoomsAllitems({
-                                                                         classes,
-                                                                         children,
-                                                                         ...restProps
-                                                                     }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <>
             {" "}
@@ -410,7 +410,7 @@ Sidebar.Primary.Middle.Rooms.AllItem = function PrimaryRoomsAllitems({
                 className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
             >
                 <div className="avatar h-10 w-10">
-                    <img className="rounded-full" src={Avatar200x200} alt="avatar"/>
+                    <img className="rounded-full" src={Avatar200x200} alt="avatar" />
                     <div
                         className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
                 </div>
@@ -420,7 +420,7 @@ Sidebar.Primary.Middle.Rooms.AllItem = function PrimaryRoomsAllitems({
                 className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
             >
                 <div className="avatar h-10 w-10">
-                    <img className="rounded-full" src={Avatar200x200} alt="avatar"/>
+                    <img className="rounded-full" src={Avatar200x200} alt="avatar" />
                     <div
                         className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
                 </div>
@@ -430,7 +430,7 @@ Sidebar.Primary.Middle.Rooms.AllItem = function PrimaryRoomsAllitems({
                 className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
             >
                 <div className="avatar h-10 w-10">
-                    <img className="rounded-full" src={Avatar200x200} alt="avatar"/>
+                    <img className="rounded-full" src={Avatar200x200} alt="avatar" />
                     <div
                         className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
                 </div>
@@ -440,7 +440,7 @@ Sidebar.Primary.Middle.Rooms.AllItem = function PrimaryRoomsAllitems({
                 className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
             >
                 <div className="avatar h-10 w-10">
-                    <img className="rounded-full" src={Avatar200x200} alt="avatar"/>
+                    <img className="rounded-full" src={Avatar200x200} alt="avatar" />
                     <div
                         className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
                 </div>
@@ -450,7 +450,7 @@ Sidebar.Primary.Middle.Rooms.AllItem = function PrimaryRoomsAllitems({
                 className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
             >
                 <div className="avatar h-10 w-10">
-                    <img className="rounded-full" src={Avatar200x200} alt="avatar"/>
+                    <img className="rounded-full" src={Avatar200x200} alt="avatar" />
                     <div
                         className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
                 </div>
@@ -460,7 +460,7 @@ Sidebar.Primary.Middle.Rooms.AllItem = function PrimaryRoomsAllitems({
                 className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
             >
                 <div className="avatar h-10 w-10">
-                    <img className="rounded-full" src={Avatar200x200} alt="avatar"/>
+                    <img className="rounded-full" src={Avatar200x200} alt="avatar" />
                 </div>
             </div>
             <div
@@ -468,7 +468,7 @@ Sidebar.Primary.Middle.Rooms.AllItem = function PrimaryRoomsAllitems({
                 className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
             >
                 <div className="avatar h-10 w-10">
-                    <img className="rounded-full" src={Avatar200x200} alt="avatar"/>
+                    <img className="rounded-full" src={Avatar200x200} alt="avatar" />
 
                     <div
                         className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-primary dark:border-navy-700 dark:bg-accent">
@@ -482,7 +482,7 @@ Sidebar.Primary.Middle.Rooms.AllItem = function PrimaryRoomsAllitems({
                 className="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600"
             >
                 <div className="avatar h-10 w-10">
-                    <img className="rounded-full" src={Avatar200x200} alt="avatar"/>
+                    <img className="rounded-full" src={Avatar200x200} alt="avatar" />
                     <div
                         className="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
                 </div>
@@ -491,7 +491,7 @@ Sidebar.Primary.Middle.Rooms.AllItem = function PrimaryRoomsAllitems({
     );
 };
 
-Sidebar.Primary.Bottom = function SidebarBottomSection({children}) {
+Sidebar.Primary.Bottom = function SidebarBottomSection({ children }) {
     return (
         <div className="flex flex-col items-center space-y-3 py-3">{children}</div>
     );
@@ -522,7 +522,7 @@ Sidebar.Primary.Bottom.Settings = function SidebarSettings() {
     );
 };
 Sidebar.Primary.Bottom.LogOut = function SidebarLogOut() {
-    let {logoutUser} = useContext(AuthContext);
+    let { logoutUser } = useContext(AuthContext);
     return (
         <a
             onClick={logoutUser}
@@ -550,7 +550,26 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
     const navigate = useNavigate();
     let authTokens = useContext(AuthContext).authTokens;
 
+    const [data, setData] = useState({});
 
+    const fetchData = async () => {
+        try {
+            const response = await fetch("http://127.0.0.1:8000/api/profile", {
+                headers: {
+                    Authorization: `Bearer ${authTokens.access}`,
+                },
+            });
+            const data = await response.json();
+            setData(data);
+            console.log("man",data)
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    useEffect(() => {
+        fetchData();
+    }, []);
     return (
         <>
             <div
@@ -565,10 +584,11 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                     onClick={() => navigate("/profile")}
                 >
 
-                        <img className="rounded-full"
-                             src={Avatar200x200}
-                             alt="avatar"
-                        />
+                    <img className="rounded-full"
+                        src={data.picture_path && data.picture_path!="" && data.picture_path!="__" ? data.picture_path :Avatar200x200}
+
+                        alt="avatar"
+                    />
 
                     <span
                         className="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
@@ -790,10 +810,10 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
     );
 };
 
-Sidebar.Secondary = function ({classes, children, ...restProps}) {
+Sidebar.Secondary = function ({ classes, children, ...restProps }) {
     return <>{children}</>;
 };
-Sidebar.Secondary.Expanded = function ({classes, children, ...restProps}) {
+Sidebar.Secondary.Expanded = function ({ classes, children, ...restProps }) {
     return (
         <div className="sidebar-panel">
             <div className="flex h-full grow flex-col bg-white pl-[var(--main-sidebar-width)] dark:bg-navy-750">
@@ -803,10 +823,10 @@ Sidebar.Secondary.Expanded = function ({classes, children, ...restProps}) {
     );
 };
 Sidebar.Secondary.Expanded.Header = function ({
-                                                  classes,
-                                                  children,
-                                                  ...restProps
-                                              }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <div className="flex h-18 w-full items-center justify-between pl-4 pr-1">
             {children}
@@ -814,17 +834,17 @@ Sidebar.Secondary.Expanded.Header = function ({
     );
 };
 Sidebar.Secondary.Expanded.Header.Title = function ({
-                                                        classes,
-                                                        children,
-                                                        ...restProps
-                                                    }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return <div className="flex items-center">{children}</div>;
 };
 Sidebar.Secondary.Expanded.Header.Title.Text = function ({
-                                                             classes,
-                                                             children,
-                                                             ...restProps
-                                                         }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <p className="text-lg font-medium tracking-wider text-slate-800 dark:text-navy-100">
             {children}
@@ -860,10 +880,10 @@ Sidebar.Secondary.Expanded.Header.Title.Icon = function () {
     );
 };
 Sidebar.Secondary.Expanded.Header.MinimizeButton = function Minimizebutton({
-                                                                               classes,
-                                                                               children,
-                                                                               ...restProps
-                                                                           }) {
+    classes,
+    children,
+    ...restProps
+}) {
     const [isSidebarExpanded, setSidebarExpanded] = useState(false);
     !document.body.classList.contains("is-sidebar-open")
         ? document.body.classList.add("is-sidebar-open")
@@ -893,29 +913,29 @@ Sidebar.Secondary.Expanded.Header.MinimizeButton = function Minimizebutton({
     );
 };
 Sidebar.Secondary.Expanded.Body = function ({
-                                                classes,
-                                                children,
-                                                ...restProps
-                                            }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <div className="flex h-[calc(100%-4.5rem)] grow flex-col">{children}</div>
     );
 };
 Sidebar.Secondary.Expanded.Body.Tabs = function ({
-                                                     classes,
-                                                     children,
-                                                     ...restProps
-                                                 }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <div className="flex shrink-0 justify-between px-1.5 py-1">{children}</div>
     );
 };
 Sidebar.Secondary.Expanded.Body.Tabs.Chat = function ChatDokma({
-                                                                   classes,
-                                                                   children,
-                                                                   ...restProps
-                                                               }) {
-    const {idroom} = useParams();
+    classes,
+    children,
+    ...restProps
+}) {
+    const { idroom } = useParams();
     //console.log(idroom);
     return (
         <Link
@@ -941,11 +961,11 @@ Sidebar.Secondary.Expanded.Body.Tabs.Chat = function ChatDokma({
     );
 };
 Sidebar.Secondary.Expanded.Body.Tabs.Todo = function TodoDokma({
-                                                                   classes,
-                                                                   children,
-                                                                   ...restProps
-                                                               }) {
-    const {idroom} = useParams();
+    classes,
+    children,
+    ...restProps
+}) {
+    const { idroom } = useParams();
     //console.log(idroom);
     return (
         <Link
@@ -977,11 +997,11 @@ Sidebar.Secondary.Expanded.Body.Tabs.Todo = function TodoDokma({
     );
 };
 Sidebar.Secondary.Expanded.Body.Tabs.InfoTab = function InfoDokma({
-                                                                      classes,
-                                                                      children,
-                                                                      ...restProps
-                                                                  }) {
-    const {idroom} = useParams();
+    classes,
+    children,
+    ...restProps
+}) {
+    const { idroom } = useParams();
     //console.log(idroom);
     return (
         <Link
@@ -1007,10 +1027,10 @@ Sidebar.Secondary.Expanded.Body.Tabs.InfoTab = function InfoDokma({
     );
 };
 Sidebar.Secondary.Expanded.Body.Tabs.AllItems = function ({
-                                                              classes,
-                                                              children,
-                                                              ...restProps
-                                                          }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <>
             <a
@@ -1117,19 +1137,19 @@ Sidebar.Secondary.Expanded.Body.Tabs.AllItems = function ({
     );
 };
 Sidebar.Secondary.Expanded.Body.Middle = function ({
-                                                       classes,
-                                                       children,
-                                                       ...restProps
-                                                   }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <div className="is-scrollbar-hidden grow overflow-y-auto">{children}</div>
     );
 };
 Sidebar.Secondary.Expanded.Body.Middle.TopButton = function ({
-                                                                 classes,
-                                                                 children,
-                                                                 ...restProps
-                                                             }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <div className="mt-2 px-4">
             <button
@@ -1154,10 +1174,10 @@ Sidebar.Secondary.Expanded.Body.Middle.TopButton = function ({
     );
 };
 Sidebar.Secondary.Expanded.Body.Middle.Items = function ({
-                                                             classes,
-                                                             children,
-                                                             ...restProps
-                                                         }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <ul className="mt-5 space-y-1.5 px-2 font-inter text-xs+ font-medium">
             {children}
@@ -1165,17 +1185,17 @@ Sidebar.Secondary.Expanded.Body.Middle.Items = function ({
     );
 };
 Sidebar.Secondary.Expanded.Body.Middle.Items.Item = function ({
-                                                                  classes,
-                                                                  children,
-                                                                  ...restProps
-                                                              }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return <li>{children}</li>;
 };
 Sidebar.Secondary.Expanded.Body.Middle.Items.AllItem = function ({
-                                                                     classes,
-                                                                     children,
-                                                                     ...restProps
-                                                                 }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <>
             <li>
@@ -1292,17 +1312,17 @@ Sidebar.Secondary.Expanded.Body.Middle.Items.AllItem = function ({
     );
 };
 Sidebar.Secondary.Expanded.Body.Middle.Divider = function ({
-                                                               classes,
-                                                               children,
-                                                               ...restProps
-                                                           }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return <div className="my-4 mx-4 h-px bg-slate-200 dark:bg-navy-500"></div>;
 };
 Sidebar.Secondary.Expanded.Body.Middle.SectionHeader = function ({
-                                                                     classes,
-                                                                     children,
-                                                                     ...restProps
-                                                                 }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <>
             <div className="flex items-center justify-between px-4">
@@ -1355,7 +1375,7 @@ Sidebar.Secondary.Expanded.Body.Middle.SectionHeader = function ({
                         <div
                             x-ref="popperRoot"
                             className="popper-root"
-                            // :className="isShowPopper && 'show'"
+                        // :className="isShowPopper && 'show'"
                         >
                             <div
                                 className="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
@@ -1405,10 +1425,10 @@ Sidebar.Secondary.Expanded.Body.Middle.SectionHeader = function ({
     );
 };
 Sidebar.Secondary.Expanded.Body.Middle.Items.AllLabelItems = function ({
-                                                                           classes,
-                                                                           children,
-                                                                           ...restProps
-                                                                       }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <>
             <li>
@@ -1522,7 +1542,7 @@ Sidebar.Secondary.Expanded.Body.Middle.Items.AllLabelItems = function ({
         </>
     );
 };
-Sidebar.Secondary.Minimized = function ({classes, children, ...restProps}) {
+Sidebar.Secondary.Minimized = function ({ classes, children, ...restProps }) {
     return (
         <div className="sidebar-panel-min">
             <div className="flex h-full flex-col items-center bg-white dark:bg-navy-750">
@@ -1532,10 +1552,10 @@ Sidebar.Secondary.Minimized = function ({classes, children, ...restProps}) {
     );
 };
 Sidebar.Secondary.Minimized.Header = function ({
-                                                   classes,
-                                                   children,
-                                                   ...restProps
-                                               }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <div className="flex h-18 shrink-0 items-center justify-center">
             <div className="avatar flex h-10 w-10 rounded-full bg-info/10 text-info">
@@ -1567,20 +1587,20 @@ Sidebar.Secondary.Minimized.Header = function ({
 };
 
 Sidebar.Secondary.Minimized.Body = function ({
-                                                 classes,
-                                                 children,
-                                                 ...restProps
-                                             }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <div className="flex h-[calc(100%-4.5rem)] grow flex-col">{children}</div>
     );
 };
 
 Sidebar.Secondary.Minimized.Body.Middle = function ({
-                                                        classes,
-                                                        children,
-                                                        ...restProps
-                                                    }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <div className="is-scrollbar-hidden flex grow flex-col overflow-y-auto">
             <ul className="mt-4 space-y-1">
@@ -1801,10 +1821,10 @@ Sidebar.Secondary.Minimized.Body.Middle = function ({
     );
 };
 Sidebar.Secondary.Minimized.Body.MoreActions = function ({
-                                                             classes,
-                                                             children,
-                                                             ...restProps
-                                                         }) {
+    classes,
+    children,
+    ...restProps
+}) {
     return (
         <div className="py-3">
             <div
@@ -1837,7 +1857,7 @@ Sidebar.Secondary.Minimized.Body.MoreActions = function ({
                     <div
                         x-ref="popperRoot"
                         className="popper-root"
-                        // :className="isShowPopper && 'show'"
+                    // :className="isShowPopper && 'show'"
                     >
                         <div
                             className="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">

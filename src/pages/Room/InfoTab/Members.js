@@ -369,7 +369,7 @@ const Members = () => {
                         <div className="avatar flex h-10 w-10">
                           <img
                             className="mask is-squircle"
-                            src={Avatar200x200}
+                            src={user.member.picture_path && user.member.picture_path!="" && user.member.picture_path!="__" ? user.member.picture_path :Avatar200x200}
                             alt="avatar"
                           />
                         </div>
