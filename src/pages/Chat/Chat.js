@@ -132,68 +132,70 @@ const Chat = () => {
                   <p>Yesterday</p>
                   <div className="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div> */}
                 </div>
-                {message.map((item, index) => (
-                  <div key={index}>
-                    {item.username != user.username ? (
-                      <div className="flex items-start space-x-2.5 sm:space-x-5">
-                        <div className="avatar">
-                          <img
-                            className="rounded-full"
-                            src={Avatar200x200}
-                            alt="avatar"
-                          />
-                        </div>
-                        <div className="flex flex-col items-start space-y-3.5">
-                          <div className="mr-4 max-w-lg sm:mr-10">
-                            <div className=" text-left text-md  text-slate-600 dark:text-navy-200">
-                              {item.username}:
+                {message.length != 0
+                  ? message.map((item, index) => (
+                      <div key={index}>
+                        {item.username != user.username ? (
+                          <div className="flex items-start space-x-2.5 sm:space-x-5">
+                            <div className="avatar">
+                              <img
+                                className="rounded-full"
+                                src={Avatar200x200}
+                                alt="avatar"
+                              />
                             </div>
-                            <div className="rounded-2xl text-left rounded-tl-none bg-slate-200 p-2 text-slate-900 shadow-sm dark:bg-navy-700 dark:text-navy-50">
-                              {item.message}
+                            <div className="flex flex-col items-start space-y-3.5">
+                              <div className="mr-4 max-w-lg sm:mr-10">
+                                <div className=" text-left text-md  text-slate-600 dark:text-navy-200">
+                                  {item.username}:
+                                </div>
+                                <div className="rounded-2xl text-left rounded-tl-none bg-slate-200 p-2 text-slate-900 shadow-sm dark:bg-navy-700 dark:text-navy-50">
+                                  {item.message}
+                                </div>
+                                <p className="mt-1 ml-auto text-right text-xs text-slate-400 dark:text-navy-300">
+                                  {item.time.split(" ")[1]}
+                                </p>
+                              </div>
                             </div>
-                            <p className="mt-1 ml-auto text-right text-xs text-slate-400 dark:text-navy-300">
-                              {item.time.split(" ")[1]}
-                            </p>
                           </div>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="flex items-start justify-end space-x-2.5 sm:space-x-5">
-                        <div className="flex flex-col items-end space-y-3.5">
-                          <div className="ml-4 max-w-lg sm:ml-10">
-                            <div className="rounded-2xl text-left rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white">
-                              {item.message}
+                        ) : (
+                          <div className="flex items-start justify-end space-x-2.5 sm:space-x-5">
+                            <div className="flex flex-col items-end space-y-3.5">
+                              <div className="ml-4 max-w-lg sm:ml-10">
+                                <div className="rounded-2xl text-left rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white">
+                                  {item.message}
+                                </div>
+                                <p className="mt-1 ml-4 max-w-lg sm:ml-10 text-left text-xs text-slate-400 dark:text-navy-300">
+                                  {item.time.split(" ")[1]}
+                                </p>
+                              </div>
                             </div>
-                            <p className="mt-1 ml-4 max-w-lg sm:ml-10 text-left text-xs text-slate-400 dark:text-navy-300">
-                              {item.time.split(" ")[1]}
-                            </p>
+                            <div className="avatar">
+                              <img
+                                className="rounded-full"
+                                src={Avatar200x200}
+                                alt="avatar"
+                              />
+                            </div>
                           </div>
-                        </div>
-                        <div className="avatar">
-                          <img
-                            className="rounded-full"
-                            src={Avatar200x200}
-                            alt="avatar"
-                          />
-                        </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                ))}
+                    ))
+                  : <div>Start Chatting Here</div>}
               </div>
               <div ref={messageEndRef} />
             </div>
             <div
               style={{ width: "89%" }}
-              className="chat-footer fixed bottom-0  h-12 border-slate-150 bg-white transition-[padding,width] duration-[.25s] dark:border-navy-600 dark:bg-navy-800"
+              className="chat-footer fixed bottom-0 bg-slate-200  h-12 border-slate-150 transition-[padding,width] duration-[.25s] dark:border-navy-600 dark:bg-navy-800"
             >
               <form
                 onSubmit={handleSubmit}
-                className="flex items-center justify-between"
+                className="flex items-center justify-between "
               >
                 <input
                   value={payam}
-                  className="form-input h-12 border-none bg-transparent placeholder:text-slate-400/70 focus:border-navy-50 outline-none "
+                  className="form-input h-12 border-none bg-slate-200 dark:bg-navy-800 placeholder:text-slate-400/70 focus:border-navy-50 outline-none "
                   placeholder="Write the message"
                   style={{ width: "95%" }}
                   onChange={(e) => setpayam(e.target.value)}
