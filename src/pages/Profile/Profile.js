@@ -193,7 +193,7 @@ function Profile() {
                   {isEditing ? (
                     <Setting
                       user={data}
-                      onUpdate={handleUpdate}
+
                       onCancel={() => setIsEditing(false)}
                     />
                   ) : (

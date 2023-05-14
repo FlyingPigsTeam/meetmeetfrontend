@@ -29,7 +29,7 @@ export default function InformationPage() {
     };
     useEffect(() => {
         req();
-    }, [idroom,roomData]);
+    }, [idroom]);
     const refreshLink = async () => {
         const {data} = await axios
             .put(`http://127.0.0.1:8000/api/my-rooms/${idroom}?link=${link}`, null, {

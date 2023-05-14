@@ -377,9 +377,10 @@ Sidebar.Primary.Middle.Rooms.Item = function PrimaryRoomsItems({
                     onClick={() => navigate(`/room/${item.id}/info`)}
                     className="avatar h-10 w-10"
                 >
-                    <img className="rounded-full  hover:border-primary hover:border-2  hover:shadow-soft  dark:hover:shadow-primary-focus"
-                         src={item.main_picture_path === "" || item.main_picture_path === "__" ? Avatar200x200 : item.main_picture_path}
-                         alt="avatar"/>
+                    <img
+                        className="rounded-full  hover:border-primary hover:border-2  hover:shadow-soft  dark:hover:shadow-primary-focus"
+                        src={item.main_picture_path === "" || item.main_picture_path === "__" ? Avatar200x200 : item.main_picture_path}
+                        alt="avatar"/>
                 </button>
             </div>
         </>
@@ -547,6 +548,9 @@ Sidebar.Primary.Bottom.LogOut = function SidebarLogOut() {
 
 Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
     const navigate = useNavigate();
+    let authTokens = useContext(AuthContext).authTokens;
+
+
     return (
         <>
             <div
@@ -560,7 +564,12 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                     className="avatar h-12 w-12"
                     onClick={() => navigate("/profile")}
                 >
-                    <img className="rounded-full" src={Avatar200x200} alt="avatar"/>
+
+                        <img className="rounded-full"
+                             src={Avatar200x200}
+                             alt="avatar"
+                        />
+
                     <span
                         className="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
                 </button>
