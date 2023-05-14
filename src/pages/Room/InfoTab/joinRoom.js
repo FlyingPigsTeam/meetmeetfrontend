@@ -239,7 +239,7 @@ function JoinRoom() {
                 <div className="flex justify-center space-x-5 pt-8">
                   <button
                     onClick={() => navigate(`/`)}
-                    className="badge space-x-2 bg-error text-white"
+                    className="badge space-x-2 bg-error text-white hover:opacity-75"
                   >
                     <span>Cancle</span>
                     <svg
@@ -259,7 +259,7 @@ function JoinRoom() {
                   </button>
                   <button
                     onClick={joinRoom}
-                    className="badge space-x-5 bg-success text-slate-50 text-slate-800 "
+                    className="badge space-x-5 bg-success text-slate-50 text-slate-800 hover:opacity-75 "
                   >
                     <span>Join</span>
                     <svg
