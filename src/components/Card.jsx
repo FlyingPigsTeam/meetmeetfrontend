@@ -15,7 +15,7 @@ const Card = (props) => {
   const data = props.info;
   const mydata = props.data ? props.data : {};
   const categories = mydata.categories ? mydata.categories : {};
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [slideover, setslideover] = useState(false);
   const id = mydata ? mydata.id : "";
   //onsole.log(id);
@@ -40,24 +40,25 @@ const Card = (props) => {
       },
     }).then((response) => response);
     setJoinRequest(data);
+    console.log(data);
   };
   useEffect(() => {
     if (joinRequest && joinRequest.status == 406) {
       Swal.fire({
-        position: 'center',
-        icon: 'error',
+        position: "center",
+        icon: "error",
         title: "User already joined",
         showConfirmButton: false,
-        timer: 2000
-      })
+        timer: 2000,
+      });
     } else if (joinRequest && joinRequest.status == 202) {
       Swal.fire({
-        position: 'center',
-        icon: 'success',
+        position: "center",
+        icon: "success",
         title: "Request Sent",
         showConfirmButton: false,
-        timer: 2000
-      })
+        timer: 2000,
+      });
     }
   }, [joinRequest]);
 
@@ -67,7 +68,7 @@ const Card = (props) => {
         <div className="flex items-center justify-between p-6">
           <div className="flex-1 truncate">
             <div className="flex items-center space-x-3">
-              <h3 className="text-3xl font-bold text-slate-700 dark:text-navy-100 basis-11/12" >
+              <h3 className="text-3xl font-bold text-slate-700 dark:text-navy-100 basis-11/12">
                 {mydata.title}
               </h3>
               <div className="grid grid-cols-2 text-2xl text-slate-700 dark:text-navy-100">
@@ -90,8 +91,14 @@ const Card = (props) => {
               </span>
             ))}
             <p className="mt-4 truncate text-md text-slate-700 dark:text-navy-100">
-              from <span className="text-slate-700 dark:text-navy-100">{startDate}</span> to{" "}
-              <span className="text-slate-700 dark:text-navy-100">{endDate}</span>
+              from{" "}
+              <span className="text-slate-700 dark:text-navy-100">
+                {startDate}
+              </span>{" "}
+              to{" "}
+              <span className="text-slate-700 dark:text-navy-100">
+                {endDate}
+              </span>
             </p>
           </div>
         </div>
