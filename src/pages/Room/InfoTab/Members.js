@@ -581,7 +581,7 @@ const Members = () => {
             <div className="text-xs+">1 - 10 of 10 entries</div>
           </div> */}
         </div>
-        <div className="card mt-3 p-4"><AutoComplete /></div>
+        <div className="card mt-3 p-4"><AutoComplete members={users_Data}/></div>
       </div>
     </>
   );
