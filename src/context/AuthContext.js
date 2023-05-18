@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
       setAuthTokens(data);
       setUser(jwt_decode(data.access));
       localStorage.setItem("authTokens", JSON.stringify(data));
-      Navigate("/");
+      Navigate(-1);
     } else {
       console.log(data.error);
       if (data.error === "Invalid credentials") {
@@ -149,7 +149,7 @@ export const AuthProvider = ({ children }) => {
   };
   useEffect(() => {
     if (loading) {
-      updateToken()
+      updateToken();
     }
     const interval = setInterval(() => {
       if (authTokens) {

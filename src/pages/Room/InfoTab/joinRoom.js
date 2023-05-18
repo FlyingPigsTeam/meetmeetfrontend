@@ -10,6 +10,12 @@ function JoinRoom() {
   const { randomId } = useParams();
   const navigate = useNavigate();
   let authTokens = useContext(AuthContext).authTokens;
+  // const my cats = [
+  //   { name: "cinema", id: 1 },
+  //   { name: "sport", id: 2 },
+  //   { name: "relogion", id: 3 },
+  //   { name: "fishing", id: 4 },
+  // ];
 
   let [roomData, setRoomData] = useState({});
 
@@ -184,13 +190,13 @@ function JoinRoom() {
                   </dd>
                 </div>
 
-                <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 ">
-                  <dt className="text-sm  font-medium ">Categories</dt>
+                <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-3 ">
+                  <dt className="text-sm font-medium sm:py-2">Categories</dt>
                   <dd className="mt-1 flex  text-sm  sm:col-span-2 sm:mt-0">
                     {roomData?.categories && (
-                      <span className="flex-grow space-x-2 space-y-2">
+                      <span className="flex-grow ">
                         {roomData.categories.map((item) => (
-                          <div className="flex">
+                          <div className="badge">
                             <p className="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                               {item.name}
                             </p>
