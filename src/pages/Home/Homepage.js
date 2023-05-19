@@ -135,10 +135,10 @@ const Homepage = () => {
             <div className="text-5xl font-bold text-myGrey mb-8 mt-5">
               Events
             </div>
-            {/* <Filters
+            <Filters
               paramsFilter={paramsFilter}
               setparamsFilter={handleFilterChange}
-            /> */}
+            />
 
             {status.count ? (
               <div
