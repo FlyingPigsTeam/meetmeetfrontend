@@ -85,12 +85,13 @@ const Task = () => {
 
   const [checkStatus, setcheckStatus] = useState();
   const [checking, setchecking] = useState();
-  const reqForChecking = async (taskID) => {
+  const reqForChecking = async (taskID, status) => {
+    console.log(status);
     const { data } = await axios
       .put(
         `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?task_id=${taskID}`,
         JSON.stringify({
-          done: 1,
+          done: status == "off" ? 1 : 0,
         }),
         {
           headers: {
@@ -102,19 +103,40 @@ const Task = () => {
       .then((response) => response);
     setchecking(data);
   };
-  // console.log(checkStatus);
-  // console.log(checking);
+  const reqForUnChecking = async (taskID) => {
+    const { data } = await axios
+      .put(
+        `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?task_id=${taskID}`,
+        JSON.stringify({
+          done: 0,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + authTokens.access,
+          },
+        }
+      )
+      .then((response) => response);
+    setchecking(data);
+  };
+  console.log(checkStatus);
+  //console.log(checking);
 
-  useEffect(() => {
-    if (checkStatus && checkStatus[0] == "on") {
-      reqForChecking(checkStatus[1]);
-      setcheckStatus([]);
-    }
-  }, [checkStatus]);
+  // useEffect(() => {
+  //   if (checkStatus && checkStatus[0] == "on") {
+  //     reqForChecking(checkStatus[1]);
+  //     setcheckStatus([]);
+  //   }
+  //   if (checkStatus && checkStatus[0] == "off") {
+  //     reqForUnChecking(checkStatus[1]);
+  //     setcheckStatus([]);
+  //   }
+  // }, [checkStatus]);
   useEffect(() => {
     reqForGettingAll();
   }, [authTokens, deleteStatus, addChanges, editChanges, checking]);
-
+  console.log(tasks);
   return (
     <>
       <PageWrapper>
@@ -212,9 +234,11 @@ const Task = () => {
                     Tasks
                   </p>
                 </div>
-                {tasks.length==0 ? 
-                <p className="mt-1 text-sm">Start Writting Your Tasks</p>
-                : ""}
+                {tasks.length == 0 ? (
+                  <p className="mt-1 text-sm">Start Writting Your Tasks</p>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="flex items-center space-x-2"></div>
             </div>
@@ -233,25 +257,19 @@ const Task = () => {
                 <div className="grid sm:grid-cols-5 items-center border-b border-slate-200 py-3 dark:border-navy-500">
                   <div className=" col-start-1 xl:col-end-5 sm:col-end-4">
                     <div className="flex items-center space-x-2 sm:space-x-3">
-                      {item.done == 1 ? (
-                        <label className="flex">
-                          <input
-                            checked
-                            type="checkbox"
-                            className="form-checkbox is-outline h-5 w-5 rounded-full border-slate-400/70 before:bg-white checked:border-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:before:bg-white dark:checked:border-accent dark:hover:border-accent dark:focus:border-accent"
-                          />
-                        </label>
-                      ) : (
-                        <label className="flex">
-                          <input
-                            onChange={(e) =>
-                              setcheckStatus([e.target.value, item.id])
-                            }
-                            type="checkbox"
-                            className="form-checkbox is-outline h-5 w-5 rounded-full border-slate-400/70 before:bg-white checked:border-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:before:bg-white dark:checked:border-accent dark:hover:border-accent dark:focus:border-accent"
-                          />
-                        </label>
-                      )}
+                      <label className="flex">
+                        <input
+                          onChange={(e) => {
+                            reqForChecking(item.id, e.target.value);
+                            // window.location.reload()
+                          }}
+                          value={item.done == 1 ? "on" : "off"}
+                          checked={item.done == 1? "checked" : ""}
+                          type="checkbox"
+                          className="form-checkbox is-outline text-green-600 h-5 w-5 rounded-full border-slate-400/70 before:bg-white checked:border-green-600 hover:border-green-600 focus:border-green-600 dark:border-navy-400 dark:before:bg-white dark:checked:border-green-600 dark:hover:border-green-600 dark:focus:border-green-600"
+                        />
+                      </label>
+
                       <h2 className="text-lg font-bold text-slate-600 line-clamp-1 dark:text-navy-100">
                         {item.title}
                       </h2>
@@ -339,7 +357,7 @@ const Task = () => {
                 </div>
               ))}
 
-                {/*           
+              {/*           
           <div className="border-b border-slate-150 py-3 dark:border-navy-500">
             <div className="flex items-center space-x-2 sm:space-x-3">
               <label className="flex">

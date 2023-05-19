@@ -124,7 +124,9 @@ export default function SliderForAdding({
                           />
                         </label>
                         <label className="block">
-                          <span className=" dark:text-navy-50">Task Description</span>
+                          <span className=" dark:text-navy-50">
+                            Task Description
+                          </span>
                           <textarea
                             onChange={(e) => setdescription(e.target.value)}
                             className="form-input mt-1.5 h-24 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
@@ -149,7 +151,9 @@ export default function SliderForAdding({
                           </select>
                         </label>
                         <label className="block z-40">
-                          <span className=" dark:text-navy-50">Assigned To:</span>
+                          <span className=" dark:text-navy-50">
+                            Assigned To:
+                          </span>
                           <select
                             //x-init="$el._x_tom = new Tom($el)"
                             className="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
@@ -165,7 +169,10 @@ export default function SliderForAdding({
                       </div>
                       <div className="flex items-center justify-between mt-20 xl:mt-52 py-3 px-4">
                         <button
-                          onClick={reqForAdding}
+                          onClick={() => {
+                            reqForAdding();
+                            setslideover(false);
+                          }}
                           className="z-20 grid h-10 w-full items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm bg-primary text-slate-100 hover:opacity-80 dark:text-navy-50 duration-300"
                         >
                           Add
