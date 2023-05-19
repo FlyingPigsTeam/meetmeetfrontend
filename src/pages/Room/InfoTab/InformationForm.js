@@ -5,6 +5,7 @@ import Flatpickr from "react-flatpickr";
 import Tom from "tom-select";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
 
 import AuthContext from "../../../context/AuthContext";
 import Avatar200x200 from "../../../assets/images/200x200.png";
@@ -17,10 +18,10 @@ import MainSection from "../../../components/MainSection";
 
 
 const InformationForm = ({ Title, ...props }) => {
+    const {} =useQuery('categories', () => { return axios.get("/api/category") })
     let idroom = useParams().idroom;
     const navigate = useNavigate();
-    let authTokens = useContext(AuthContext).authTokens;
-    let [roomData, setRoomData] = useState({});
+    const [roomData, setRoomData] = useState({});
 
     const req = async () => {
         const { data } = await axios
