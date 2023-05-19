@@ -5,6 +5,8 @@ import React, {
   useRef,
   useState,
 } from "react";
+import ReactPaginate from 'react-paginate';
+
 import { Menu, Transition } from "@headlessui/react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
@@ -14,7 +16,7 @@ import AuthContext from "../../../context/AuthContext";
 import Avatar200x200 from "../../../assets/images/200x200.png";
 
 const Members = () => {
-  const {idroom} =useParams();
+  const { idroom } = useParams();
   const navigate = useNavigate();
   let authTokens = useContext(AuthContext).authTokens;
   let [users_Data, setUser_Data] = useState([]);
@@ -33,13 +35,13 @@ const Members = () => {
   };
   const thisroom = async () => {
     const { data } = await axios
-        .get(`http://127.0.0.1:8000/api/my-rooms/${idroom}`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + authTokens.access,
-          },
-        })
-        .then((response) => response);
+      .get(`http://127.0.0.1:8000/api/my-rooms/${idroom}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + authTokens.access,
+        },
+      })
+      .then((response) => response);
     console.log("roomDataFetch", data);
     setRoomData(data);
 
@@ -57,16 +59,16 @@ const Members = () => {
   const ConvertRole = (member) => {
     const result =
       member.is_owner === true &&
-      member.is_member === true &&
-      member.request_status === 3
+        member.is_member === true &&
+        member.request_status === 3
         ? "Owner"
         : member.is_member === true && member.is_owner === false
-        ? "Member"
-        : member.request_status === 0 &&
-          member.is_member === false &&
-          member.is_owner === false
-        ? "Pending"
-        : "WTF USER ROLE";
+          ? "Member"
+          : member.request_status === 0 &&
+            member.is_member === false &&
+            member.is_owner === false
+            ? "Pending"
+            : "WTF USER ROLE";
     if (result === "WTF USER ROLE") {
       console.log("🚀Members.js:131 ~ ConvertRole", result);
     }
@@ -85,8 +87,8 @@ const Members = () => {
         </>
       ),
       action: (requestId) => {
-        console.log("YAROO",`http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?request_id=${requestId}` ,
-            )
+        console.log("YAROO", `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?request_id=${requestId}`,
+        )
         const acceptUser = async () => {
           const { data } = await axios
             .put(
@@ -208,7 +210,7 @@ const Members = () => {
   return (
     <>
       <div>
-        {/* <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between">
           <h2 className="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
             Users Table
           </h2>
@@ -317,13 +319,13 @@ const Members = () => {
               </div>
             </div>
           </div>
-        </div> */}
+        </div>
         <div className="card mt-3">
-        
+
 
           <div
             className="is-scrollbar-hidden min-w-full overflow-x-auto"
-            // x-data="pages.tables.initExample1"
+          // x-data="pages.tables.initExample1"
           >
             <table className="is-hoverable w-full text-left">
               <thead>
@@ -350,7 +352,7 @@ const Members = () => {
                     Status
                   </th> */}
                   {roomData.is_admin && <th
-                      className="whitespace-nowrap rounded-tr-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                    className="whitespace-nowrap rounded-tr-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Action
                   </th>}
                 </tr>
@@ -369,7 +371,7 @@ const Members = () => {
                         <div className="avatar flex h-10 w-10">
                           <img
                             className="mask is-squircle"
-                            src={user.member.picture_path && user.member.picture_path!="" && user.member.picture_path!="__" ? user.member.picture_path :Avatar200x200}
+                            src={user.member.picture_path && user.member.picture_path != "" && user.member.picture_path != "__" ? user.member.picture_path : Avatar200x200}
                             alt="avatar"
                           />
                         </div>
@@ -400,74 +402,74 @@ const Members = () => {
                       </td> */}
                       {roomData.is_admin && <td className="whitespace-nowrap px-4 py-3 sm:px-5">
                         <Menu
-                            as="div"
-                            className="relative inline-block text-left"
+                          as="div"
+                          className="relative inline-block text-left"
                         >
                           <div>
                             <Menu.Button
-                                className="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                              className="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                               <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-5 w-5"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                  stroke="currentColor"
-                                  strokeWidth="2"
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-5 w-5"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth="2"
                               >
                                 <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
                                 />
                               </svg>
                             </Menu.Button>
                           </div>
                           {ConvertRole(user) !== "Owner" && (
-                              <Transition
-                                  as={Fragment}
-                                  enter="transition ease-out duration-100"
-                                  enterFrom="transform opacity-0 scale-95"
-                                  enterTo="transform opacity-100 scale-100"
-                                  leave="transition ease-in duration-75"
-                                  leaveFrom="transform opacity-100 scale-100"
-                                  leaveTo="transform opacity-0 scale-95"
-                              >
-                                {
-                                  <Menu.Items
-                                      className="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
-                                    <div>
-                                      {roleDetails[ConvertRole(user)].Actions.map(
-                                          (action, index) => (
-                                              <Menu.Item id={`action-item-${index}`}>
-                                                <button
-                                                    onClick={() => actionsDetails[action].action(user.id)}
-                                                    className="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                                >
-                                                  <svg
-                                                      xmlns="http://www.w3.org/2000/svg"
-                                                      className="mt-px h-4.5 w-4.5"
-                                                      fill="none"
-                                                      viewBox="0 0 24 24"
-                                                      stroke="currentColor"
-                                                      strokeWidth="1.5"
-                                                  >
-                                                    {actionsDetails[action].iconPath}
-                                                  </svg>
-                                                  <span>
+                            <Transition
+                              as={Fragment}
+                              enter="transition ease-out duration-100"
+                              enterFrom="transform opacity-0 scale-95"
+                              enterTo="transform opacity-100 scale-100"
+                              leave="transition ease-in duration-75"
+                              leaveFrom="transform opacity-100 scale-100"
+                              leaveTo="transform opacity-0 scale-95"
+                            >
+                              {
+                                <Menu.Items
+                                  className="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
+                                  <div>
+                                    {roleDetails[ConvertRole(user)].Actions.map(
+                                      (action, index) => (
+                                        <Menu.Item id={`action-item-${index}`}>
+                                          <button
+                                            onClick={() => actionsDetails[action].action(user.id)}
+                                            className="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                                          >
+                                            <svg
+                                              xmlns="http://www.w3.org/2000/svg"
+                                              className="mt-px h-4.5 w-4.5"
+                                              fill="none"
+                                              viewBox="0 0 24 24"
+                                              stroke="currentColor"
+                                              strokeWidth="1.5"
+                                            >
+                                              {actionsDetails[action].iconPath}
+                                            </svg>
+                                            <span>
                                               {" "}
-                                                    {
-                                                      actionsDetails[action]
-                                                          .actionName
-                                                    }
+                                              {
+                                                actionsDetails[action]
+                                                  .actionName
+                                              }
                                             </span>
-                                                </button>
-                                              </Menu.Item>
-                                          )
-                                      )}
-                                    </div>
-                                  </Menu.Items>
-                                }
-                              </Transition>
+                                          </button>
+                                        </Menu.Item>
+                                      )
+                                    )}
+                                  </div>
+                                </Menu.Items>
+                              }
+                            </Transition>
                           )}
                         </Menu>
                       </td>}
@@ -476,11 +478,11 @@ const Members = () => {
                 })}
               </tbody>
             </table>
-            
-          </div>
-          
 
-          {/* <div className="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5">
+          </div>
+
+
+          <div className="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5">
             <div className="flex items-center space-x-2 text-xs+">
               <span>Show</span>
               <label className="block">
@@ -579,7 +581,7 @@ const Members = () => {
             </ol>
 
             <div className="text-xs+">1 - 10 of 10 entries</div>
-          </div> */}
+          </div>
         </div>
         <div className="card mt-3 p-4"><AutoComplete /></div>
       </div>
@@ -611,3 +613,52 @@ className="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide t
 <span> Delete item</span>
 </a> */
 }
+
+
+
+const Pagination = () => {
+  const handlePageChange = (selected) => {
+    // Handle page change logic here
+  };
+
+  return (
+    <ReactPaginate
+      pageCount={5} // Set the total number of pages
+      onPageChange={handlePageChange}
+      containerClassName="pagination"
+      pageClassName="bg-slate-150 dark:bg-navy-500"
+      activeClassName="bg-primary"
+      previousClassName="rounded-l-lg bg-slate-150 dark:bg-navy-500"
+      previousLinkClassName="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+      nextClassName="rounded-r-lg bg-slate-150 dark:bg-navy-500"
+      nextLinkClassName="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+      breakClassName="bg-slate-150 dark:bg-navy-500"
+      breakLinkClassName="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+      pageLinkClassName="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+      previousLabel={
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-4 w-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      }
+      nextLabel={
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-4 w-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      }
+    />
+  );
+};

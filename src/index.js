@@ -3,7 +3,9 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import axios from "axios";
+import AuthAPI from "axios";
+import { QueryClient, QueryClientProvider, } from "react-query";
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 // axios.defaults.baseURL = "http://127.0.0.1:8000/";
 // axios.defaults.baseURL = "";
@@ -23,11 +25,14 @@ import axios from "axios";
 // const instance = axios.create({baseURL:''});
 // instance.defaults.headers.common['Authorization'] = 'Auth Token';
 // export default instance;
-
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <QueryClientProvider client={queryClient}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+    <ReactQueryDevtools initialIsOpen={false} position="bottom-right"/>
+  </QueryClientProvider>
 );
