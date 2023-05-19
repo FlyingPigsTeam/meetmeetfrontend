@@ -23,12 +23,7 @@ const Members = () => {
   let [roomData, setRoomData] = useState({});
   const req = async () => {
     const { data } = await axios
-      .get(`http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?show_members=1`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      })
+      .get(`/api/my-rooms/${idroom}/requests?show_members=1`)
       .then((response) => response);
     console.log("memberFetch", data);
     setUser_Data(data);

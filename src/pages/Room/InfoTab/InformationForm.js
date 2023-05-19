@@ -1,10 +1,10 @@
-import React, {useRef, useState, useEffect, useContext} from "react";
-import {useFormik} from "formik";
+import React, { useRef, useState, useEffect, useContext } from "react";
+import { useFormik } from "formik";
 import * as yup from "yup";
 import Flatpickr from "react-flatpickr";
 import Tom from "tom-select";
 import axios from "axios";
-import {useParams, useNavigate} from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import AuthContext from "../../../context/AuthContext";
 import Avatar200x200 from "../../../assets/images/200x200.png";
@@ -16,20 +16,15 @@ import PageWrapper from "../../../components/PageWrapper";
 import MainSection from "../../../components/MainSection";
 
 
-const InformationForm = ({Title, ...props}) => {
+const InformationForm = ({ Title, ...props }) => {
     let idroom = useParams().idroom;
     const navigate = useNavigate();
     let authTokens = useContext(AuthContext).authTokens;
     let [roomData, setRoomData] = useState({});
 
     const req = async () => {
-        const {data} = await axios
-            .get(`http://127.0.0.1:8000/api/my-rooms/${idroom}`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: "Bearer " + authTokens.access,
-                },
-            })
+        const { data } = await axios
+            .get(`/api/my-rooms/${idroom}`)
             .then((response) => response);
         console.log("FromDataFetch", data);
         setRoomData(data);
@@ -38,8 +33,8 @@ const InformationForm = ({Title, ...props}) => {
         req();
     }, []);
     const categories = [
-        {value: "cinema", label: "cinema"},
-        {value: "sport", label: "sport"},
+        { value: "cinema", label: "cinema" },
+        { value: "sport", label: "sport" },
     ];
     const sampleJson = {
         title: "soltaniali208040gmail.com",
@@ -129,9 +124,9 @@ const InformationForm = ({Title, ...props}) => {
         }),
         onSubmit: async (values) => {
 
-            const {data} = await axios
+            const { data } = await axios
                 .put(
-                    `http://127.0.0.1:8000/api/my-rooms/${idroom}`,
+                    `/api/my-rooms/${idroom}`,
                     {
                         title: values.title,
                         description: values.description,
@@ -141,28 +136,16 @@ const InformationForm = ({Title, ...props}) => {
                         password: values.password,
                         maximum_member_count: values.maximum_member_count,
                         categories: values.categories?.map((item) => {
-                            return {name: item};
+                            return { name: item };
                         }),
                         start_date: values.dateRange[0].toISOString(),
                         end_date: values.dateRange[1].toISOString(),
                     },
-                    {
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: "Bearer " + authTokens.access,
-                        },
-                    }
                 )
                 .then((response) => response);
             if (image) {
-                const resPic = await axios.putForm(`http://127.0.0.1:8000/api/upload?id=${idroom}&where=room`,
-                    {'image': image},
-                    {
-                        headers: {
-                            "Content-Type": 'multipart/form-data',
-                            Authorization: "Bearer " + authTokens.access,
-                        }
-                    }
+                const resPic = await axios.putForm(`/api/upload?id=${idroom}&where=room`,
+                    { 'image': image },
                 ).then((response) => {
                     console.log(JSON.stringify(response.data));
                 }).catch((error) => {
@@ -178,45 +161,45 @@ const InformationForm = ({Title, ...props}) => {
     });
 
     useEffect(() => {
-        if (Title === "Edit") {
-            if (!formikInitialized) {
-                setFormikInitialized(true);
-                return;
-            }
-            formik.setValues({
-                title: roomData.title || "",
-                description: roomData.description || "",
-                room_type: Boolean(roomData.room_type),
-                is_premium: Boolean(roomData.is_premium),
-                open_status: Boolean(roomData.open_status),
-                password: roomData.password || "",
-                maximum_member_count: roomData.maximum_member_count || 0,
-                categories: roomData.categories?.map((item) => item.name) || undefined,
-                dateRange: dateRange,
-                main_picture_path: roomData.main_picture_path || "__",
-                link: "link",
-            });
+
+        if (!formikInitialized) {
+            setFormikInitialized(true);
+            return;
         }
+        formik.setValues({
+            title: roomData.title || "",
+            description: roomData.description || "",
+            room_type: Boolean(roomData.room_type),
+            is_premium: Boolean(roomData.is_premium),
+            open_status: Boolean(roomData.open_status),
+            password: roomData.password || "",
+            maximum_member_count: roomData.maximum_member_count || 0,
+            categories: roomData.categories?.map((item) => item.name) || undefined,
+            dateRange: dateRange,
+            main_picture_path: roomData.main_picture_path || "__",
+            link: "link",
+        });
+
     }, [roomData]);
     const selectCustom = useRef(null);
     useEffect(() => {
         const selectOptions = new Tom(selectCustom.current, {
-                valueField: "value",
-                labelField: "label",
-                options: categories,
-                items: [],
-                placeholder: "Select some Categories",
+            valueField: "value",
+            labelField: "label",
+            options: categories,
+            items: [],
+            placeholder: "Select some Categories",
 
-                hidePlaceholder: true,
-                onBlur: () => {
-                    formik.setFieldTouched("categories", true);
-                    formik.validateForm();
-                },
-                onChange: (value) => {
-                    formik.setFieldValue("categories", value);
-                    formik.validateForm();
-                },
-            }
+            hidePlaceholder: true,
+            onBlur: () => {
+                formik.setFieldTouched("categories", true);
+                formik.validateForm();
+            },
+            onChange: (value) => {
+                formik.setFieldValue("categories", value);
+                formik.validateForm();
+            },
+        }
         );
 
         return () => {
@@ -247,47 +230,47 @@ const InformationForm = ({Title, ...props}) => {
             <PageWrapper>
                 <Header>
                     <Header.Items>
-                        <Header.SidebarToggle/>
+                        <Header.SidebarToggle />
                         <Header.Right>
-                            <DarkModeToggle/>
+                            <DarkModeToggle />
                         </Header.Right>
                     </Header.Items>
                 </Header>
                 <Sidebar>
                     <Sidebar.Primary>
-                        <Sidebar.Primary.Logo/>
+                        <Sidebar.Primary.Logo />
                         <Sidebar.Primary.Middle>
-                            <Sidebar.Primary.Middle.Home/>
+                            <Sidebar.Primary.Middle.Home />
                             {/* <Sidebar.Primary.Middle.LaterThings/> */}
-                            <Sidebar.Secondary.Expanded.Body.Middle.Divider/>
+                            <Sidebar.Secondary.Expanded.Body.Middle.Divider />
                             <Sidebar.Primary.Middle.Rooms>
-                                <Sidebar.Primary.Middle.Rooms.LoadItems/>
-                                <Sidebar.Primary.Middle.Rooms.AddRoom/>
+                                <Sidebar.Primary.Middle.Rooms.LoadItems />
+                                <Sidebar.Primary.Middle.Rooms.AddRoom />
 
                                 {/* <Sidebar.Primary.Middle.Rooms.AllItem/> */}
                             </Sidebar.Primary.Middle.Rooms>
                         </Sidebar.Primary.Middle>
                         <Sidebar.Primary.Bottom>
-                            <Sidebar.Primary.Bottom.LogOut/>
-                            <Sidebar.Primary.Bottom.Profile/>
+                            <Sidebar.Primary.Bottom.LogOut />
+                            <Sidebar.Primary.Bottom.Profile />
                         </Sidebar.Primary.Bottom>
                     </Sidebar.Primary>
                     <Sidebar.Secondary>
                         <Sidebar.Secondary.Expanded>
                             <Sidebar.Secondary.Expanded.Header>
                                 <Sidebar.Secondary.Expanded.Header.Title>
-                                    <Sidebar.Secondary.Expanded.Header.Title.Icon/>
+                                    <Sidebar.Secondary.Expanded.Header.Title.Icon />
                                     <Sidebar.Secondary.Expanded.Header.Title.Text>
                                         Tabs
                                     </Sidebar.Secondary.Expanded.Header.Title.Text>
                                 </Sidebar.Secondary.Expanded.Header.Title>
-                                <Sidebar.Secondary.Expanded.Header.MinimizeButton/>
+                                <Sidebar.Secondary.Expanded.Header.MinimizeButton />
                             </Sidebar.Secondary.Expanded.Header>
                             <Sidebar.Secondary.Expanded.Body>
                                 <Sidebar.Secondary.Expanded.Body.Tabs>
-                                    <Sidebar.Secondary.Expanded.Body.Tabs.Chat/>
-                                    <Sidebar.Secondary.Expanded.Body.Tabs.Todo/>
-                                    <Sidebar.Secondary.Expanded.Body.Tabs.InfoTab/>
+                                    <Sidebar.Secondary.Expanded.Body.Tabs.Chat />
+                                    <Sidebar.Secondary.Expanded.Body.Tabs.Todo />
+                                    <Sidebar.Secondary.Expanded.Body.Tabs.InfoTab />
                                     {/* <Sidebar.Secondary.Expanded.Body.Tabs.AllItems /> */}
                                 </Sidebar.Secondary.Expanded.Body.Tabs>
                                 {/* <Sidebar.Secondary.Expanded.Body.Middle.TopButton />
@@ -302,7 +285,7 @@ const InformationForm = ({Title, ...props}) => {
                             </Sidebar.Secondary.Expanded.Body>
                         </Sidebar.Secondary.Expanded>
                         <Sidebar.Secondary.Minimized>
-                            <Sidebar.Secondary.Minimized.Header/>
+                            <Sidebar.Secondary.Minimized.Header />
                             {/* <Sidebar.Secondary.Minimized.Body>
               <Sidebar.Secondary.Minimized.Body.Middle />
               <Sidebar.Secondary.Minimized.Body.MoreActions />
@@ -328,24 +311,24 @@ const InformationForm = ({Title, ...props}) => {
                     <form onSubmit={formik.handleSubmit}>
                         <div className="p-4 sm:p-5">
                             <div className="flex flex-col">
-            <span className="text-base text-left font-medium text-slate-600 dark:text-navy-100">
-              Avatar
-            </span>
+                                <span className="text-base text-left font-medium text-slate-600 dark:text-navy-100">
+                                    Avatar
+                                </span>
                                 <div className="avatar mt-1.5 h-20 w-20">
                                     <img className="mask is-squircle "
-                                         src={
-                                             previewUrl != '' ? previewUrl :
-                                                 roomData.main_picture_path != "" &&
-                                                 roomData.main_picture_path != "__" ? roomData.main_picture_path :
-                                                     Avatar200x200
-                                         }
-                                         alt="avatar"/>
+                                        src={
+                                            previewUrl != '' ? previewUrl :
+                                                roomData.main_picture_path != "" &&
+                                                    roomData.main_picture_path != "__" ? roomData.main_picture_path :
+                                                    Avatar200x200
+                                        }
+                                        alt="avatar" />
                                     <div
                                         className="absolute bottom-0 right-0 flex items-center justify-center rounded-full bg-white dark:bg-navy-700">
 
                                         <label htmlFor={"edit-avatar-btn"}
-                                               className="btn h-6 w-6 rounded-full border border-slate-200 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:border-navy-500 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
-                                            <input type="file" id="edit-avatar-btn" onChange={onSelectImage} hidden/>
+                                            className="btn h-6 w-6 rounded-full border border-slate-200 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:border-navy-500 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                                            <input type="file" id="edit-avatar-btn" onChange={onSelectImage} hidden />
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 className="h-3.5 w-3.5"
@@ -353,7 +336,7 @@ const InformationForm = ({Title, ...props}) => {
                                                 fill="currentColor"
                                             >
                                                 <path
-                                                    d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
+                                                    d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                                             </svg>
                                         </label>
                                     </div>
@@ -364,76 +347,76 @@ const InformationForm = ({Title, ...props}) => {
                                 <label className="block text-left">
                                     <span>Title</span>
                                     <span className="relative mt-1.5 flex">
-                <input
-                    className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                    placeholder="Enter Title"
-                    type="text"
-                    value={formik.values.title}
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    name="title"
-                    id="title"
-                />
-                <span
-                    className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
-                  <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                  >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"
-                    />
-                  </svg>
-                </span>
-              </span>
+                                        <input
+                                            className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                            placeholder="Enter Title"
+                                            type="text"
+                                            value={formik.values.title}
+                                            onBlur={formik.handleBlur}
+                                            onChange={formik.handleChange}
+                                            name="title"
+                                            id="title"
+                                        />
+                                        <span
+                                            className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                strokeWidth={1.5}
+                                                stroke="currentColor"
+                                                className="w-6 h-6"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"
+                                                />
+                                            </svg>
+                                        </span>
+                                    </span>
                                     {formik.touched.title && formik.errors.title && (
                                         <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
-                  {formik.errors.title}
-                </span>
+                                            {formik.errors.title}
+                                        </span>
                                     )}
                                 </label>
                                 {/* Check BOXES */}
                                 <label className="block text-left">
                                     <span>Password</span>
                                     <span className="relative mt-1.5 flex">
-                <input
-                    className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                    placeholder="Enter Password"
-                    type="password"
-                    value={formik.values.password}
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    name="password"
-                    id="password"
-                />
-                <span
-                    className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
-                  <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                  >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
-                    />
-                  </svg>
-                </span>
-              </span>
+                                        <input
+                                            className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                            placeholder="Enter Password"
+                                            type="password"
+                                            value={formik.values.password}
+                                            onBlur={formik.handleBlur}
+                                            onChange={formik.handleChange}
+                                            name="password"
+                                            id="password"
+                                        />
+                                        <span
+                                            className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                strokeWidth={1.5}
+                                                stroke="currentColor"
+                                                className="w-6 h-6"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                                                />
+                                            </svg>
+                                        </span>
+                                    </span>
                                     {formik.touched.password && formik.errors.password && (
                                         <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
-                  {formik.errors.password}
-                </span>
+                                            {formik.errors.password}
+                                        </span>
                                     )}
                                 </label>
                                 <label className="block text-left">
@@ -454,8 +437,8 @@ const InformationForm = ({Title, ...props}) => {
                                     </select>
                                     {formik.touched.categories && formik.errors.categories && (
                                         <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
-                  {formik.errors.categories}
-                </span>
+                                            {formik.errors.categories}
+                                        </span>
                                     )}
                                 </label>
                                 <label className="block text-left">
@@ -476,80 +459,80 @@ const InformationForm = ({Title, ...props}) => {
                                     {formik.touched.maximum_member_count &&
                                         formik.errors.maximum_member_count && (
                                             <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
-                    {formik.errors.maximum_member_count}
-                  </span>
+                                                {formik.errors.maximum_member_count}
+                                            </span>
                                         )}
                                 </label>
                                 <label className="block text-left">
                                     <span>Start Date & End Date</span>
                                     <span className="relative mt-1.5 flex">
-                <Flatpickr
-                    ref={fp}
-                    options={{
-                        mode: "range",
-                        enableTime: true,
-                        dateFormat: "Y-m-d H:i",
-                        onChange: (selectedDates) => {
-                            formik.setFieldValue("dateRange", selectedDates);
-                            setDateRange(selectedDates);
-                        },
-                        // defaultDate: ["2016-10-10", "2016-10-20"],
-                    }}
-                    render={({defaultValue, value, ...props}, ref) => {
-                        return (
-                            <input
-                                defaultValue={defaultValue}
-                                ref={ref}
-                                className="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="Choose date..."
-                                type="text"
+                                        <Flatpickr
+                                            ref={fp}
+                                            options={{
+                                                mode: "range",
+                                                enableTime: true,
+                                                dateFormat: "Y-m-d H:i",
+                                                onChange: (selectedDates) => {
+                                                    formik.setFieldValue("dateRange", selectedDates);
+                                                    setDateRange(selectedDates);
+                                                },
+                                                // defaultDate: ["2016-10-10", "2016-10-20"],
+                                            }}
+                                            render={({ defaultValue, value, ...props }, ref) => {
+                                                return (
+                                                    <input
+                                                        defaultValue={defaultValue}
+                                                        ref={ref}
+                                                        className="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                                        placeholder="Choose date..."
+                                                        type="text"
 
-                            />
-                        );
-                    }}
-                />
-                <span
-                    className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
-                  <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                  >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"
-                    />
-                  </svg>
-                </span>
-              </span>
+                                                    />
+                                                );
+                                            }}
+                                        />
+                                        <span
+                                            className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                strokeWidth={1.5}
+                                                stroke="currentColor"
+                                                className="w-6 h-6"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"
+                                                />
+                                            </svg>
+                                        </span>
+                                    </span>
                                     {formik.touched.dateRange && formik.errors.dateRange && (
                                         <span className="text-tiny+ text-left text-error mt-1 ">
-                  {formik.errors.dateRange}
-                </span>
+                                            {formik.errors.dateRange}
+                                        </span>
                                     )}
                                 </label>
                                 <label className="block text-left">
                                     <span>Description</span>
                                     <span className="relative mt-1.5 flex">
-                <textarea
-                    rows="2"
-                    placeholder=" Enter Text"
-                    className="form-textarea resize-none w-full rounded-lg border border-slate-300 bg-transparent p-2.5 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                    value={formik.values.description}
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    name="description"
-                    id="description"
-                ></textarea>
-              </span>
+                                        <textarea
+                                            rows="2"
+                                            placeholder=" Enter Text"
+                                            className="form-textarea resize-none w-full rounded-lg border border-slate-300 bg-transparent p-2.5 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                            value={formik.values.description}
+                                            onBlur={formik.handleBlur}
+                                            onChange={formik.handleChange}
+                                            name="description"
+                                            id="description"
+                                        ></textarea>
+                                    </span>
                                     {formik.touched.description && formik.errors.description && (
                                         <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
-                  {formik.errors.description}
-                </span>
+                                            {formik.errors.description}
+                                        </span>
                                     )}
                                 </label>
                                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 py-7 px-2">
@@ -566,8 +549,8 @@ const InformationForm = ({Title, ...props}) => {
                                         <span>Public</span>
                                         {formik.touched.room_type && formik.errors.room_type && (
                                             <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
-                    {formik.errors.room_type}
-                  </span>
+                                                {formik.errors.room_type}
+                                            </span>
                                         )}
                                     </label>{" "}
                                     <label className="inline-flex items-center space-x-2">
@@ -583,8 +566,8 @@ const InformationForm = ({Title, ...props}) => {
                                         <span>Open</span>
                                         {formik.touched.open_status && formik.errors.open_status && (
                                             <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
-                    {formik.errors.open_status}
-                  </span>
+                                                {formik.errors.open_status}
+                                            </span>
                                         )}
                                     </label>
                                     <label className="inline-flex items-center space-x-2">
@@ -600,8 +583,8 @@ const InformationForm = ({Title, ...props}) => {
                                         <span>Premium</span>
                                         {formik.touched.is_premium && formik.errors.is_premium && (
                                             <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
-                    {formik.errors.is_premium}
-                  </span>
+                                                {formik.errors.is_premium}
+                                            </span>
                                         )}
                                     </label>
                                     {/* RadioBox */}
