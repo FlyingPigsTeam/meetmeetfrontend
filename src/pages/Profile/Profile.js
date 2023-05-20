@@ -61,14 +61,8 @@ function Profile() {
 
     if (image)
     {
-      const resPic = await axios.putForm(`http://127.0.0.1:8000/api/upload?id=1&where=profile`,
-          {'image': image},
-          {
-            headers: {
-              "Content-Type": 'multipart/form-data',
-              Authorization: "Bearer " + authTokens.access,
-            }
-          }
+      const resPic = await axios.putForm(`/api/upload?id=1&where=profile`,
+          {'image': image}
       ).then((response) => {
         console.log(JSON.stringify(response.data));
       }).catch((error) => {

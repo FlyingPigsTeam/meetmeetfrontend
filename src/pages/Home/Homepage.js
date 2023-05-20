@@ -61,13 +61,7 @@ const Homepage = () => {
   const [status, setstatus] = useState("");
   const req = async () => {
     const { data } = await axios.get(
-      `http://127.0.0.1:8000/api/rooms?${url}&page=${currentPage}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      }
+      `/api/rooms?${url}&page=${currentPage}`
     );
     // .then((response) => response);
     setstatus(data);

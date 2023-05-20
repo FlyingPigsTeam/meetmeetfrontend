@@ -15,12 +15,7 @@ function JoinRoom() {
 
   const linkRequest = async () => {
     const { data } = await axios
-      .get(`http://127.0.0.1:8000/api/rooms/${randomId}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      })
+      .get(`/api/rooms/${randomId}`)
       .then((response) => response)
       .catch((err) => {
         // Handle error
@@ -43,15 +38,8 @@ function JoinRoom() {
     linkRequest();
   }, [randomId]);
   const joinRoom = async () => {
-    const data = await axios(
-      `http://127.0.0.1:8000/api/my-rooms/${roomData.id}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      }
+    const data = await axios.post(
+      `/api/my-rooms/${roomData.id}`, null
     ).then((response) => response);
     if (data.status === 202) {
       swal("Success!", "Request sent!", "success");

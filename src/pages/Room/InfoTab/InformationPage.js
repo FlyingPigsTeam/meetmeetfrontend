@@ -1,5 +1,6 @@
 import React, {useState, useContext, useEffect} from "react";
 import axios from "axios";
+import BASEURL from '../../../data/BASEURL'
 
 import AuthContext from "../../../context/AuthContext";
 import Avatar200x200 from "../../../assets/images/200x200.png";
@@ -16,12 +17,7 @@ export default function InformationPage() {
 
     const req = async () => {
         const {data} = await axios
-            .get(`http://127.0.0.1:8000/api/my-rooms/${idroom}`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: "Bearer " + authTokens.access,
-                },
-            })
+            .get(`/api/my-rooms/${idroom}`)
             .then((response) => response);
         console.log("roomDataFetch", data);
         setRoomData(data);
@@ -32,30 +28,21 @@ export default function InformationPage() {
     }, [idroom]);
     const refreshLink = async () => {
         const {data} = await axios
-            .put(`http://127.0.0.1:8000/api/my-rooms/${idroom}?link=${link}`, null, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: "Bearer " + authTokens.access,
-                },
-            })
+            .put(`/api/my-rooms/${idroom}?link=${link}`, null)
             .then((response) => response);
         setLink(data.success);
     };
     const deleteRoom = async () => {
         const {data} = await axios
-            .delete(`http://127.0.0.1:8000/api/my-rooms/${idroom}`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: "Bearer " + authTokens.access,
-                },
-            })
+            .delete(`/api/my-rooms/${idroom}`)
             .then();
         navigate("/");
     };
 
     function copyToClipboard() {
-        navigator.clipboard.writeText("http://localhost:3000/joinroom/" + link);
+        navigator.clipboard.writeText(BASEURL+"/joinroom/" + link);
         alert("Text copied to clipboard");
+        //TODO : CONVERT TO SWAL
     }
 
     return (

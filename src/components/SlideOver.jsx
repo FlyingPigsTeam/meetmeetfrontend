@@ -12,12 +12,7 @@ const SlideOver = ({ slideover, setslideover, id }) => {
   const [status, setstatus] = useState("none");
   const req = async () => {
     const { data } = await axios
-      .get(`http://127.0.0.1:8000/api/my-rooms/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      })
+      .get(`/api/my-rooms/${id}`)
       .then((response) => response);
     setstatus(data);
   };

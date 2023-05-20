@@ -339,12 +339,7 @@ Sidebar.Primary.Middle.Rooms.LoadItems = function LoaderRoomsItems({
     const [myrooms, setMyRooms] = useState([]);
     const req = async () => {
         const { data } = await axios
-            .get(`http://127.0.0.1:8000/api/my-rooms`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: "Bearer " + authTokens.access,
-                },
-            })
+            .get(`/api/my-rooms`)
             .then((response) => response);
         console.log("roomDataFetch", data);
         setMyRooms(data);

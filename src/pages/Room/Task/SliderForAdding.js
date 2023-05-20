@@ -24,20 +24,14 @@ export default function SliderForAdding({
   const reqForAdding = async () => {
     const { data } = await axios
       .post(
-        `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks`,
-        JSON.stringify({
+        `/api/my-rooms/${roomId}/tasks`,
+        {
           title: title,
           priority: selectedDifficulty,
           description: description,
           done: 0,
           user: 2,
           room: roomId,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + authTokens.access,
-          },
         }
       )
       .then((response) => response);
