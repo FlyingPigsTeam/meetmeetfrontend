@@ -95,8 +95,8 @@ const Subscribtion = () => {
                     </Sidebar.Primary>
                 </Sidebar>
                 <MainSection>
-                    <div className="mx-auto max-w-7xl  py-24 px-4 sm:px-6 lg:px-8">
-                        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl sm:leading-none lg:text-6xl">
+                    <div className="mx-auto max-w-7xl  py-24 px-4 sm:px-6 lg:px-8 card dark:bg-navy-800">
+                        <h2 className="text-3xl font-bold tracking-tight  sm:text-5xl sm:leading-none lg:text-6xl">
                             Pricing plans for teams of all sizes
                         </h2>
                         <p className="mt-6 max-w-2xl text-xl text-gray-500">
@@ -112,24 +112,24 @@ const Subscribtion = () => {
                                     className="relative flex flex-col rounded-2xl border border-gray-200  p-8 shadow-sm"
                                 >
                                     <div className="flex-1">
-                                        <h3 className="text-xl font-semibold text-gray-900">{tier.title}</h3>
+                                        <h3 className="text-xl font-semibold ">{tier.title}</h3>
                                         {tier.mostPopular ? (
                                             <p className="absolute top-0 -translate-y-1/2 transform rounded-full bg-primary py-1.5 px-4 text-sm font-semibold text-white">
                                                 Most popular
                                             </p>
                                         ) : null}
-                                        <p className="mt-4 flex items-baseline text-gray-900">
+                                        <p className="mt-4 flex items-baseline ">
                                             <span className="text-5xl font-bold tracking-tight">${tier.price}</span>
                                             <span className="ml-1 text-xl font-semibold">{tier.frequency}</span>
                                         </p>
-                                        <p className="mt-6 text-gray-500">{tier.description}</p>
+                                        <p className="mt-6 ">{tier.description}</p>
 
                                         {/* Feature list */}
                                         <ul role="list" className="mt-6 space-y-6">
                                             {tier.features.map((feature) => (
                                                 <li key={feature} className="flex">
                                                     <CheckIcon className="h-6 w-6 flex-shrink-0 text-indigo-500" aria-hidden="true" />
-                                                    <span className="ml-3 text-gray-500">{feature}</span>
+                                                    <span className="ml-3 ">{feature}</span>
                                                 </li>
                                             ))}
                                         </ul>
