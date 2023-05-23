@@ -1,7 +1,7 @@
 import React from 'react'
 import { usePopper } from "react-popper";
-const PopOverProvider = React.createContext(null);
-const PopOverContext = ({
+const PopOverContext = React.createContext(null);
+const PopOverProvider = ({
     children,
     popperConfig
 }) => {
@@ -20,14 +20,9 @@ const PopOverContext = ({
         styles, attributes
     };
     return (
-        <PopOverProvider.Provider value={{
-            referenceElement, setReferenceElement,
-            popperElement, setPopperElement,
-            arrowElement, setArrowElement,
-            styles, attributes
-        }}>
+        <PopOverContext.Provider value={contextValue}>
             {children}
-        </PopOverProvider.Provider>
+        </PopOverContext.Provider>
     );
 }
 export default PopOverContext;
