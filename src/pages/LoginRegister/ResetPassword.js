@@ -5,6 +5,7 @@ import * as yup from "yup";
 import swal from "sweetalert";
 import AppLogo from "../../assets/images/app-logo.svg"
 import classNames from "../../utils/classNames";
+import { BASEURL } from "../../data/BASEURL";
 
 const ResetPassword = () => {
   const formik = useFormik({
@@ -40,7 +41,7 @@ const ResetPassword = () => {
     // e.preventDefault();
     //console.log("form submitted")
     const response = await fetch(
-      "http://127.0.0.1:8000/auth/reset-password/?" +
+      BASEURL + "/auth/reset-password/?" +
         new URLSearchParams({
           token: token1,
         }),

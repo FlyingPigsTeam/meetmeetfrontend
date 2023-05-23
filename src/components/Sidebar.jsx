@@ -549,12 +549,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch("http://127.0.0.1:8000/api/profile", {
-                headers: {
-                    Authorization: `Bearer ${authTokens.access}`,
-                },
-            });
-            const data = await response.json();
+            const {data} = await axios.get("/api/profile");
             setData(data);
             console.log("man",data)
 

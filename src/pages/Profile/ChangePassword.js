@@ -8,6 +8,7 @@ import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import PageWrapper from "../../components/PageWrapper";
 import DarkModeToggle from "../../components/DarkModeToggle";
+import { BASEURL } from "../../data/BASEURL";
 
 const ChangePassword = (props) => {
   const initialValues = {
@@ -33,7 +34,7 @@ const ChangePassword = (props) => {
   const handleUpdate = async (updatedUser) => {
     let response = "";
     try {
-      response = await fetch("http://127.0.0.1:8000/api/profile", {
+      response = await fetch(BASEURL +"/api/profile", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

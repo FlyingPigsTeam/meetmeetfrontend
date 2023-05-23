@@ -77,15 +77,9 @@ const Task = () => {
   const reqForChecking = async (taskID) => {
     const { data } = await axios
       .put(
-        `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?task_id=${taskID}`,
-        JSON.stringify({
-          done: 1,
-        }),
+        `/api/my-rooms/${roomId}/tasks?task_id=${taskID}`,
         {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + authTokens.access,
-          },
+          done: 1,
         }
       )
       .then((response) => response);

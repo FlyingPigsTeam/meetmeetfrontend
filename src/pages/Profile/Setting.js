@@ -118,15 +118,8 @@ export default function Setting({ user, onCancel }) {
         };
         try {
 
-            const response = await fetch("http://127.0.0.1:8000/api/profile", {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${authTokens.access}`,
-                },
-                body: JSON.stringify(user),
-            });
-            const data = await response.json();
+            const { data } = await axios.put("/api/profile", user).then((response) => response);
+
 
 
         } catch (error) {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
+import { BASEURL } from "../../data/BASEURL";
 
 const Home = () => {
   let [notes, setNotes] = useState([]);
@@ -11,7 +12,7 @@ const Home = () => {
   }, []); 
 
   let getNotes = async () => {
-    let response = await fetch("http://127.0.0.1:8000/auth/home/", {
+    let response = await fetch(BASEURL + "/auth/home/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
