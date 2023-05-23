@@ -1,6 +1,6 @@
 import React, {useState, useContext, useEffect} from "react";
 import axios from "axios";
-import BASEURL from '../../../data/BASEURL'
+import {BASEURL} from '../../../data/BASEURL'
 
 import AuthContext from "../../../context/AuthContext";
 import Avatar200x200 from "../../../assets/images/200x200.png";
