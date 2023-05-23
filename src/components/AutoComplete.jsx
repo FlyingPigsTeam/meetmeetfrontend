@@ -8,7 +8,7 @@ import Avatar200x200 from "../assets/images/200x200.png";
 const AutoComplete = ({ members }) => {
     const { idroom } = useParams();
     console.log(idroom);
-    // console.log(members);
+    console.log(members);
     const { authTokens } = useContext(AuthContext);
 
     const [selectedMembers, setSelectedMembers] = useState([]);
@@ -46,27 +46,27 @@ const AutoComplete = ({ members }) => {
 
         const selectOptions = new Tom("#user_autocomplete", {
             // labelField: "first_name",
+            maxItems: 10,
+            plugins: ['remove_button'],
             valueField: "username",
             searchField: "username",
             // options: items,
             // items: [],
             placeholder: "Select some members",
-            // onBlur: () => { },
             onChange: (value) => {
                 setSelectedMembers(value.split(','));
             },
             load: function (query, callback) {
-
-                var url = `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?show_members=1&username=` + encodeURIComponent(query);
+                const url = `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?show_members=1&username=${encodeURIComponent(
+                    query
+                )}`;
                 fetch(url, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${authTokens.access}`,
                     },
-                    // body: JSON.stringify(member),
                 })
-
                     .then(async (response) => {
                         const data = await response.json();
                         console.log(data);
@@ -76,8 +76,8 @@ const AutoComplete = ({ members }) => {
                         callback(filteredData);
                     })
 
-
             },
+
             render: {
                 option: function (item, escape) {
                     return `<div class="flex space-x-3">
