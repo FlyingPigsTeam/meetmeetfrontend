@@ -3,13 +3,13 @@ import { useState } from "react";
 import { usePopper } from "react-popper";
 
 import { PopOverContext, PopOverProvider } from "../context/PopOverContext";
-import  classNames  from "../utils/classNames";
+import classNames from "../utils/classNames";
 
-export default function PopOver({ children, popperConfigs }) {
+export default function PopOver({ children, popperConfigs, Show }) {
 
     return (
         <>
-            <PopOverProvider popperConfig={buildOptions(popperConfigs)}>
+            <PopOverProvider Show={Show} popperConfig={buildOptions(popperConfigs)}>
                 {children}
                 {/* <div
                     ref={setReferenceElement}
@@ -26,41 +26,54 @@ export default function PopOver({ children, popperConfigs }) {
     );
 }
 
-PopOver.Button = function PPButton({Click}) {
+PopOver.Button = function PPButton({ children, Click }) {
     const {
         referenceElement, setReferenceElement,
         popperElement, setPopperElement,
         arrowElement, setArrowElement,
         styles, attributes
     } = useContext(PopOverContext);
-    console.log("BUtton",styles.arrow)
     return (
         <>
-            <button
-                type='button'
-                className="btn mt-[20%] bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
-                ref={setReferenceElement}
-                onClick={Click}
-            >
-                Basic Popover
-            </button>
+            {/* <PopOverContext.Consumer >
+                {children}
+                {({ active, selected }) => (
+                    <li
+                        className={`${active ? 'bg-blue-500 text-white' : 'bg-white text-black'
+                            }`}
+                    >
+                        {selected && <CheckIcon />}
+                        {person.name}
+                    </li>
+                )} */}
+                <button
+                    type='button'
+                    className="btn mt-[20%] bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+                    ref={setReferenceElement}
+                    onClick={Click}
+                >
+                    Basic Popover
+                </button>
 
+            {/* </PopOverContext.Consumer> */}
         </>
     );
 };
 
-PopOver.Popper = function PPopper({ children }) {
+PopOver.Popper = function PPopper({ children}) {
     const {
+        Show,
         referenceElement, setReferenceElement,
         popperElement, setPopperElement,
         arrowElement, setArrowElement,
         styles, attributes
     } = useContext(PopOverContext);
-    console.log("PPopper",styles.arrow)
+    console.log("PPopper", styles.arrow)
+    
     return (
         <>
             <div
-                className={classNames("popper-root show")}
+                className={classNames("popper-root", Show && "show")}
                 ref={setPopperElement}
                 style={styles.popper}
                 {...attributes.popper}
@@ -138,7 +151,7 @@ PopOver.Popper.Arrow = function PArrow() {
                 style={styles.arrow}
                 {...attributes.arrow}
                 data-popper-arrow
-                
+
             >
 
                 <svg

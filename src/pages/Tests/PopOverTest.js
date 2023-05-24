@@ -9,30 +9,32 @@ const PopOverTest = () => {
         modifiers: [{ name: 'arrow', options: { element: arrowElement } }],
     });
     const [show, setShow] = useState(true);
-
-    const toggle = () => setShow(cur => !cur);
+    console.log(show);
+    const toggle = () => { setShow(cur => !cur); console.log(show); };
     return (
         <div>
 
 
-            <PopOver popperConfigs={
-                {
-                    offset: 12,
-                    placement: 'right-start',
-                    modifiers: [
-                        { name: 'flip', options: { fallbackPlacements: ['bottom', 'top'] } },
-                        { name: 'preventOverflow', options: { padding: 10 } }
-                    ]
-                }
-            }>
+            <PopOver
+                Show={show}
+                popperConfigs={
+                    {
+                        offset: 12,
+                        placement: 'right-start',
+                        modifiers: [
+                            { name: 'flip', options: { fallbackPlacements: ['bottom', 'top'] } },
+                            { name: 'preventOverflow', options: { padding: 10 } }
+                        ]
+                    }
+                }>
                 <PopOver.Button Click={toggle} />
-                {show &&
-                    <PopOver.Popper >
-                        <PopOver.Popper.Body >
-                            <PopOver.Popper.Body.Default />
-                        </PopOver.Popper.Body >
-                        <PopOver.Popper.Arrow />
-                    </PopOver.Popper>}
+
+                <PopOver.Popper   >
+                    <PopOver.Popper.Body >
+                        <PopOver.Popper.Body.Default />
+                    </PopOver.Popper.Body >
+                    <PopOver.Popper.Arrow />
+                </PopOver.Popper>
             </PopOver>
             {/* <div>
                 <button type="button" ref={setReferenceElement} onClick={toggle}>
