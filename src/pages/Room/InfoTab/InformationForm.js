@@ -18,11 +18,15 @@ import MainSection from "../../../components/MainSection";
 
 
 const InformationForm = ({ Title, ...props }) => {
-    const {} =useQuery('categories', () => { return axios.get("/api/category") })
     let idroom = useParams().idroom;
     const navigate = useNavigate();
     const [roomData, setRoomData] = useState({});
 
+    const { } = useQuery('categories', () => { return axios.get("/api/category") })
+    useQuery(["room", idroom], () => {
+        return axios
+            .get(`/api/my-rooms/${idroom}`)
+    })
     const req = async () => {
         const { data } = await axios
             .get(`/api/my-rooms/${idroom}`)

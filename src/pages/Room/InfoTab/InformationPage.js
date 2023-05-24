@@ -1,6 +1,7 @@
 import React, {useState, useContext, useEffect} from "react";
 import axios from "axios";
 import {BASEURL} from '../../../data/BASEURL'
+import { useQuery } from "react-query";
 
 import AuthContext from "../../../context/AuthContext";
 import Avatar200x200 from "../../../assets/images/200x200.png";
@@ -13,19 +14,22 @@ export default function InformationPage() {
 
     const [seePassword, setSeePassword] = useState(false);
     const [link, setLink] = useState("This is the text I want to copy");
-    let [roomData, setRoomData] = useState({});
-
-    const req = async () => {
-        const {data} = await axios
+    // let [roomData.data, setroomData.data] = useState({});
+    const {isLoading, data:roomData } = useQuery(["room", idroom], () => {
+        return axios
             .get(`/api/my-rooms/${idroom}`)
-            .then((response) => response);
-        console.log("roomDataFetch", data);
-        setRoomData(data);
-        setLink(data.link);
-    };
-    useEffect(() => {
-        req();
-    }, [idroom]);
+    })
+    // const req = async () => {
+    //     const {data} = await axios
+    //         .get(`/api/my-rooms/${idroom}`)
+    //         .then((response) => response);
+    //     console.log("roomData.dataFetch", data);
+    //     setroomData.data(data);
+    //     setLink(data.link);
+    // };
+    // useEffect(() => {
+    //     req();
+    // }, [idroom]);
     const refreshLink = async () => {
         const {data} = await axios
             .put(`/api/my-rooms/${idroom}?link=${link}`, null)
@@ -44,7 +48,9 @@ export default function InformationPage() {
         alert("Text copied to clipboard");
         //TODO : CONVERT TO SWAL
     }
-
+    if(isLoading){
+        return <p>LOADING ...</p>
+    }
     return (
         <>
             <div className="text-left">
@@ -53,7 +59,7 @@ export default function InformationPage() {
                     <h2 className="text-lg font-medium tracking-wide text-slate-700 dark:text-navy-100">
                         Room Information
                     </h2>
-                    {roomData.is_admin && (
+                    {roomData.data.is_admin && (
                         <div className="flex justify-center space-x-2">
                             <button onClick={deleteRoom} className="badge space-x-2 bg-error text-white">
                                 <span>Delete</span>
@@ -96,7 +102,7 @@ export default function InformationPage() {
                 <div className="flex flex-col my-2">
                     <div className="avatar mt-1.5 h-20 w-20">
                         <img className="mask is-squircle"
-                             src={roomData.main_picture_path === "" || roomData.main_picture_path === "__" ? Avatar200x200 : roomData.main_picture_path}
+                             src={roomData.data.main_picture_path === "" || roomData.data.main_picture_path === "__" ? Avatar200x200 : roomData.data.main_picture_path}
                              alt="avatar"/>
                     </div>
                 </div>
@@ -106,7 +112,7 @@ export default function InformationPage() {
                         <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
                             <dt className="text-sm font-medium ">Title</dt>
                             <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
-                                <span className="flex-grow">{roomData.title}</span>
+                                <span className="flex-grow">{roomData.data.title}</span>
                                 {/* <span className="ml-4 flex-shrink-0">
                   <button
                     type="button"
@@ -122,7 +128,7 @@ export default function InformationPage() {
                             <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow space-x-2 space-y-2">
                   <div className="badge space-x-2 bg-primary text-white dark:bg-accent">
-                    {!roomData.room_type ? (
+                    {!roomData.data.room_type ? (
                         <>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +167,7 @@ export default function InformationPage() {
                         </>
                     )}
                   </div>
-                    {roomData.is_premium == 1 && (
+                    {roomData.data.is_premium == 1 && (
                         <div className="badge space-x-2 bg-secondary text-white">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -182,7 +188,7 @@ export default function InformationPage() {
                         </div>
                     )}
                     <div className="badge space-x-2 bg-info text-white">
-                    {roomData.open_status ? (
+                    {roomData.data.open_status ? (
                         <>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -233,7 +239,7 @@ export default function InformationPage() {
                         className="form-input w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary disabled:pointer-events-none disabled:select-none disabled:border-none disabled:bg-zinc-100 dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent dark:disabled:bg-navy-600"
                         placeholder="Password"
                         type={seePassword ? "text" : "password"}
-                        value={roomData.password}
+                        value={roomData.data.password}
                         disabled="true"
                     />
                     <div
@@ -266,9 +272,9 @@ export default function InformationPage() {
                         <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
                             <dt className="text-sm font-medium ">Categories</dt>
                             <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
-                                {roomData?.categories && (
+                                {roomData.data?.categories && (
                                     <span className="flex-grow space-x-2 space-y-2">
-                    {roomData.categories.map((item) => (
+                    {roomData.data.categories.map((item) => (
                         <div className="flex">
                             <a
                                 href="#"
@@ -294,7 +300,7 @@ export default function InformationPage() {
                             <dt className="text-sm font-medium ">Max members</dt>
                             <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow">
-                  {roomData.maximum_member_count}
+                  {roomData.data.maximum_member_count}
                 </span>
                                 {/* <span className="ml-4 flex-shrink-0">
                   <button
@@ -310,7 +316,7 @@ export default function InformationPage() {
                             <dt className="text-sm font-medium ">Start Date & End Date</dt>
                             <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow">
-                  {new Date(roomData.start_date).toLocaleDateString("en-US", {
+                  {new Date(roomData.data.start_date).toLocaleDateString("en-US", {
                           year: "numeric",
                           month: "numeric",
                           day: "numeric",
@@ -320,7 +326,7 @@ export default function InformationPage() {
                           timeZoneName: "short",
                       }) +
                       " till " +
-                      new Date(roomData.end_date).toLocaleDateString("en-US", {
+                      new Date(roomData.data.end_date).toLocaleDateString("en-US", {
                           year: "numeric",
                           month: "numeric",
                           day: "numeric",
@@ -343,7 +349,7 @@ export default function InformationPage() {
                         <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
                             <dt className="text-sm font-medium ">Description</dt>
                             <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
-                                <span className="flex-grow">{roomData.description}</span>
+                                <span className="flex-grow">{roomData.data.description}</span>
                                 {/* <span className="ml-4 flex-shrink-0">
                   <button
                     type="button"
@@ -390,7 +396,7 @@ export default function InformationPage() {
                         </svg>
                       </button>
 
-                        {roomData.is_admin && (
+                        {roomData.data.is_admin && (
                             <>
                                 <button
                                     onClick={refreshLink}
