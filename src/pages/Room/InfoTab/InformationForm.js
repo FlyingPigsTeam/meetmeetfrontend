@@ -22,16 +22,16 @@ const InformationForm = ({ Title, ...props }) => {
     const navigate = useNavigate();
 
 
-    const { isLoading: isLoadingCategories } = useQuery('categories', () => { return axios.get("/api/category") })
+    const { isLoading: isLoadingCategories, data: categories } = useQuery('categories', () => { return axios.get("/api/category") })
     const { isLoading, data: roomData } = useQuery(["room", idroom], () => {
         return axios
             .get(`/api/my-rooms/${idroom}`)
     })
 
-    const categories = [
-        { value: "cinema", label: "cinema" },
-        { value: "sport", label: "sport" },
-    ];
+    // const categories = [
+    //     { value: "cinema", label: "cinema" },
+    //     { value: "sport", label: "sport" },
+    // ];
     const sampleJson = {
         title: "soltaniali208040gmail.com",
         description: "this is a test !11",
@@ -141,7 +141,7 @@ const InformationForm = ({ Title, ...props }) => {
                 const resPic = await axios.putForm(`/api/upload?id=${idroom}&where=room`,
                     { 'image': image },
                 ).then((response) => {
-                    console.log(JSON.stringify(response.data));
+                    console.log(JSON.stringify(response?.data));
                 }).catch((error) => {
                     console.log(error);
                 });
@@ -158,45 +158,52 @@ const InformationForm = ({ Title, ...props }) => {
 
 
         formik.setValues({
-            title: roomData.data.title || "",
-            description: roomData.data.description || "",
-            room_type: roomData.data.room_type ? true : false,
-            is_premium: roomData.data.is_premium ? true : false,
-            open_status: roomData.data.open_status ? true : false,
-            password: roomData.data.password || "",
-            maximum_member_count: roomData.data.maximum_member_count || 0,
-            categories: roomData.data.categories?.map((item) => item.name) || undefined,
-            dateRange: [new Date(roomData.data.start_date),new Date(roomData.data.end_date)],
-            main_picture_path: roomData.data.main_picture_path || "__",
+            title: roomData?.data.title || "",
+            description: roomData?.data.description || "",
+            room_type: roomData?.data.room_type ? true : false,
+            is_premium: roomData?.data.is_premium ? true : false,
+            open_status: roomData?.data.open_status ? true : false,
+            password: roomData?.data.password || "",
+            maximum_member_count: roomData?.data.maximum_member_count || 0,
+            categories: roomData?.data.categories.map((item) => item.name) || [],
+            dateRange: [new Date(roomData?.data.start_date), new Date(roomData?.data.end_date)],
+            main_picture_path: roomData?.data.main_picture_path || "__",
             link: "link",
         });
 
     }, [roomData]);
     const selectCustom = useRef(null);
-    // useEffect(() => {
-    //     const selectOptions = new Tom(selectCustom.current, {
-    //         valueField: "value",
-    //         labelField: "label",
-    //         options: categories,
-    //         items: [],
-    //         placeholder: "Select some Categories",
+    // console.log("cats",categories?.data)
+    // console.log("mycat",roomData?.data?.categories)
+    // console.log("selcat",formik.categories)
+    useEffect(() => {
+        let selectOptions = null;
+        if (!isLoading && !isLoadingCategories) {
 
-    //         hidePlaceholder: true,
-    //         onBlur: () => {
-    //             formik.setFieldTouched("categories", true);
-    //             formik.validateForm();
-    //         },
-    //         onChange: (value) => {
-    //             formik.setFieldValue("categories", value);
-    //             formik.validateForm();
-    //         },
-    //     }
-    //     );
+            selectOptions = new Tom(selectCustom.current, {
+                valueField: "name",
+                labelField: "name",
+                searchField: "name",
+                options: categories?.data,
+                items: roomData?.data.categories.map(item => item.name),
+                placeholder: "Select some Categories",
+                hidePlaceholder: true,
+                onBlur: () => {
+                    formik.setFieldTouched("categories", true);
+                    formik.validateForm();
+                },
+                onChange: (value) => {
+                    formik.setFieldValue("categories", value.split(","));
+                    formik.validateForm();
+                },
+            }
+            );
 
-    //     return () => {
-    //         selectOptions.destroy();
-    //     };
-    // }, [isLoading]);
+            return () => {
+                selectOptions.destroy();
+            };
+        }
+    }, [isLoading, isLoadingCategories]);
 
     const [image, setImage] = useState(null);
     const [previewUrl, setPreviewUrl] = useState('');
@@ -311,8 +318,8 @@ const InformationForm = ({ Title, ...props }) => {
                                     <img className="mask is-squircle "
                                         src={
                                             previewUrl != '' ? previewUrl :
-                                                roomData.data.main_picture_path != "" &&
-                                                    roomData.data.main_picture_path != "__" ? roomData.data.main_picture_path :
+                                                roomData?.data.main_picture_path != "" &&
+                                                    roomData?.data.main_picture_path != "__" ? roomData?.data.main_picture_path :
                                                     Avatar200x200
                                         }
                                         alt="avatar" />
@@ -414,20 +421,16 @@ const InformationForm = ({ Title, ...props }) => {
                                 </label>
                                 <label className="block text-left">
                                     <span>Select Categories</span>
-                                    <select
+                                    <input
                                         ref={selectCustom}
                                         className="mt-1.5 w-full"
                                         autoComplete="off"
                                         multiple
                                         id="categories"
                                         name="categories"
-                                    >
-                                        {categories.map((item) => (
-                                            <option value={item.value} selected={item.selected}>
-                                                {item.label}
-                                            </option>
-                                        ))}
-                                    </select>
+
+                                    />
+
                                     {formik.touched.categories && formik.errors.categories && (
                                         <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
                                             {formik.errors.categories}
@@ -469,7 +472,7 @@ const InformationForm = ({ Title, ...props }) => {
                                                     formik.setFieldValue("dateRange", selectedDates);
                                                 },
                                                 // defaultDate: ["2016-10-10", "2016-10-20"],
-                                                defaultDate: [roomData.data.start_date,roomData.data.end_date],
+                                                defaultDate: [roomData?.data.start_date, roomData?.data.end_date],
 
                                             }}
                                             render={({ defaultValue, value, ...props }, ref) => {
