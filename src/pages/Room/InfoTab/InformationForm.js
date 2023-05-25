@@ -20,23 +20,14 @@ import MainSection from "../../../components/MainSection";
 const InformationForm = ({ Title, ...props }) => {
     let idroom = useParams().idroom;
     const navigate = useNavigate();
-    const [roomData, setRoomData] = useState({});
 
-    const { } = useQuery('categories', () => { return axios.get("/api/category") })
-    useQuery(["room", idroom], () => {
+
+    const { isLoading: isLoadingCategories } = useQuery('categories', () => { return axios.get("/api/category") })
+    const { isLoading, data: roomData } = useQuery(["room", idroom], () => {
         return axios
             .get(`/api/my-rooms/${idroom}`)
     })
-    const req = async () => {
-        const { data } = await axios
-            .get(`/api/my-rooms/${idroom}`)
-            .then((response) => response);
-        console.log("FromDataFetch", data);
-        setRoomData(data);
-    };
-    useEffect(() => {
-        req();
-    }, []);
+
     const categories = [
         { value: "cinema", label: "cinema" },
         { value: "sport", label: "sport" },
@@ -65,8 +56,6 @@ const InformationForm = ({ Title, ...props }) => {
 
 
     const fp = useRef(null);
-    const [showPassword, setShowPassword] = useState(false);
-    const [dateRange, setDateRange] = useState([]);
     const [formikInitialized, setFormikInitialized] = useState(false);
     const formik = useFormik({
         initialValues: {
@@ -78,7 +67,7 @@ const InformationForm = ({ Title, ...props }) => {
             password: "",
             maximum_member_count: 0,
             categories: [],
-            dateRange: dateRange,
+            dateRange: [],
             // start_date: "",
             // end_date: "",
             main_picture_path: "__",
@@ -167,50 +156,47 @@ const InformationForm = ({ Title, ...props }) => {
 
     useEffect(() => {
 
-        if (!formikInitialized) {
-            setFormikInitialized(true);
-            return;
-        }
+
         formik.setValues({
-            title: roomData.title || "",
-            description: roomData.description || "",
-            room_type: Boolean(roomData.room_type),
-            is_premium: Boolean(roomData.is_premium),
-            open_status: Boolean(roomData.open_status),
-            password: roomData.password || "",
-            maximum_member_count: roomData.maximum_member_count || 0,
-            categories: roomData.categories?.map((item) => item.name) || undefined,
-            dateRange: dateRange,
-            main_picture_path: roomData.main_picture_path || "__",
+            title: roomData.data.title || "",
+            description: roomData.data.description || "",
+            room_type: roomData.data.room_type ? true : false,
+            is_premium: roomData.data.is_premium ? true : false,
+            open_status: roomData.data.open_status ? true : false,
+            password: roomData.data.password || "",
+            maximum_member_count: roomData.data.maximum_member_count || 0,
+            categories: roomData.data.categories?.map((item) => item.name) || undefined,
+            dateRange: [new Date(roomData.data.start_date),new Date(roomData.data.end_date)],
+            main_picture_path: roomData.data.main_picture_path || "__",
             link: "link",
         });
 
     }, [roomData]);
     const selectCustom = useRef(null);
-    useEffect(() => {
-        const selectOptions = new Tom(selectCustom.current, {
-            valueField: "value",
-            labelField: "label",
-            options: categories,
-            items: [],
-            placeholder: "Select some Categories",
+    // useEffect(() => {
+    //     const selectOptions = new Tom(selectCustom.current, {
+    //         valueField: "value",
+    //         labelField: "label",
+    //         options: categories,
+    //         items: [],
+    //         placeholder: "Select some Categories",
 
-            hidePlaceholder: true,
-            onBlur: () => {
-                formik.setFieldTouched("categories", true);
-                formik.validateForm();
-            },
-            onChange: (value) => {
-                formik.setFieldValue("categories", value);
-                formik.validateForm();
-            },
-        }
-        );
+    //         hidePlaceholder: true,
+    //         onBlur: () => {
+    //             formik.setFieldTouched("categories", true);
+    //             formik.validateForm();
+    //         },
+    //         onChange: (value) => {
+    //             formik.setFieldValue("categories", value);
+    //             formik.validateForm();
+    //         },
+    //     }
+    //     );
 
-        return () => {
-            selectOptions.destroy();
-        };
-    }, []);
+    //     return () => {
+    //         selectOptions.destroy();
+    //     };
+    // }, [isLoading]);
 
     const [image, setImage] = useState(null);
     const [previewUrl, setPreviewUrl] = useState('');
@@ -229,7 +215,9 @@ const InformationForm = ({ Title, ...props }) => {
             reader.readAsDataURL(selectedImage);
         }
     };
-
+    if (isLoading || isLoadingCategories) {
+        return (<p>Loading ...</p>)
+    }
     return (
         <>
             <PageWrapper>
@@ -323,8 +311,8 @@ const InformationForm = ({ Title, ...props }) => {
                                     <img className="mask is-squircle "
                                         src={
                                             previewUrl != '' ? previewUrl :
-                                                roomData.main_picture_path != "" &&
-                                                    roomData.main_picture_path != "__" ? roomData.main_picture_path :
+                                                roomData.data.main_picture_path != "" &&
+                                                    roomData.data.main_picture_path != "__" ? roomData.data.main_picture_path :
                                                     Avatar200x200
                                         }
                                         alt="avatar" />
@@ -479,9 +467,10 @@ const InformationForm = ({ Title, ...props }) => {
                                                 dateFormat: "Y-m-d H:i",
                                                 onChange: (selectedDates) => {
                                                     formik.setFieldValue("dateRange", selectedDates);
-                                                    setDateRange(selectedDates);
                                                 },
                                                 // defaultDate: ["2016-10-10", "2016-10-20"],
+                                                defaultDate: [roomData.data.start_date,roomData.data.end_date],
+
                                             }}
                                             render={({ defaultValue, value, ...props }, ref) => {
                                                 return (
@@ -491,7 +480,7 @@ const InformationForm = ({ Title, ...props }) => {
                                                         className="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                                         placeholder="Choose date..."
                                                         type="text"
-
+                                                        {...props}
                                                     />
                                                 );
                                             }}
@@ -546,8 +535,10 @@ const InformationForm = ({ Title, ...props }) => {
                                             className="form-switch h-5 w-10 rounded-lg bg-slate-300 before:rounded-md before:bg-slate-50 checked:bg-primary checked:!bg-none checked:before:bg-white dark:bg-navy-900 dark:before:bg-navy-300 dark:checked:bg-accent dark:checked:before:bg-white"
                                             type="checkbox"
                                             value={formik.values.room_type}
+                                            checked={formik.values.room_type}
                                             onBlur={formik.handleBlur}
-                                            onChange={formik.handleChange}
+                                            // onChange={formik.handleChange}
+                                            onChange={e => formik.setFieldValue('room_type', e.target.checked ? true : false)}
                                             name="room_type"
                                             id="room_type"
                                         />
@@ -563,8 +554,10 @@ const InformationForm = ({ Title, ...props }) => {
                                             className="form-switch h-5 w-10 rounded-lg bg-slate-300 before:rounded-md before:bg-slate-50 checked:!bg-info checked:!bg-none checked:before:bg-white dark:bg-navy-900 dark:before:bg-navy-300 dark:checked:before:bg-white"
                                             type="checkbox"
                                             value={formik.values.open_status}
+                                            checked={formik.values.open_status}
                                             onBlur={formik.handleBlur}
-                                            onChange={formik.handleChange}
+                                            // onChange={formik.handleChange}
+                                            onChange={e => formik.setFieldValue('open_status', e.target.checked ? true : false)}
                                             name="open_status"
                                             id="open_status"
                                         />
@@ -579,9 +572,11 @@ const InformationForm = ({ Title, ...props }) => {
                                         <input
                                             className="form-switch h-5 w-10 rounded-lg bg-slate-300 before:rounded-md before:bg-slate-50 checked:bg-secondary checked:!bg-none checked:before:bg-white dark:bg-navy-900 dark:before:bg-navy-300 dark:checked:bg-secondary-light dark:checked:before:bg-white"
                                             type="checkbox"
+                                            checked={formik.values.is_premium}
                                             value={formik.values.is_premium}
                                             onBlur={formik.handleBlur}
-                                            onChange={formik.handleChange}
+                                            // onChange={formik.handleChange}
+                                            onChange={e => formik.setFieldValue('is_premium', e.target.checked ? true : false)}
                                             name="is_premium"
                                             id="is_premium"
                                         />

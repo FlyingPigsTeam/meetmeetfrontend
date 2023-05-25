@@ -2,10 +2,12 @@ import React, {useState, useContext, useEffect} from "react";
 import axios from "axios";
 import {BASEURL} from '../../../data/BASEURL'
 import { useQuery } from "react-query";
+import Moment from "react-moment";
 
 import AuthContext from "../../../context/AuthContext";
 import Avatar200x200 from "../../../assets/images/200x200.png";
 import {useParams, useNavigate} from "react-router-dom";
+
 
 export default function InformationPage() {
     const {idroom} = useParams();
@@ -316,6 +318,7 @@ export default function InformationPage() {
                             <dt className="text-sm font-medium ">Start Date & End Date</dt>
                             <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow">
+                    <Moment>{roomData.data.start_date}</Moment><br/>
                   {new Date(roomData.data.start_date).toLocaleDateString("en-US", {
                           year: "numeric",
                           month: "numeric",
