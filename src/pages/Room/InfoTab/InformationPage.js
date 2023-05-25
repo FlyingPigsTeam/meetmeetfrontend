@@ -147,7 +147,7 @@ export default function InformationPage() {
                                 />
                             </svg>
 
-                            <span>Public</span>
+                            <span>Private</span>
                         </>
                     ) : (
                         <>

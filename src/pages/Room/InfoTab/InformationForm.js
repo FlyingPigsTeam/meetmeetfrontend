@@ -117,6 +117,21 @@ const InformationForm = ({ Title, ...props }) => {
                 ),
         }),
         onSubmit: async (values) => {
+            const sendData = {
+                title: values.title,
+                description: values.description,
+                room_type: values.room_type ? 1 : 0,
+                is_premium: values.is_premium ? 1 : 0,
+                open_status: values.open_status ? 1 : 0,
+                password: values.password,
+                maximum_member_count: values.maximum_member_count,
+                categories: values.categories?.map((item) => {
+                    return { name: item };
+                }),
+                start_date: values.dateRange[0].toISOString(),
+                end_date: values.dateRange[1].toISOString(),
+            };
+            console.log("EDITEDROOMJSON",sendData);
 
             const { data } = await axios
                 .put(
@@ -658,7 +673,7 @@ const InformationForm = ({ Title, ...props }) => {
                                         disabled={formik.isSubmitting}
                                         className="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
                                     >
-                                        {"Save"}
+                                        Save
                                     </button>
                                 </a>
                             </div>
