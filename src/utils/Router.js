@@ -25,6 +25,7 @@ import Task from "../pages/Room/Task/Task";
 import Chat from "../pages/Chat/Chat";
 import Chat_test from "../pages/Chat/Chat_test";
 import JoinRoom from "../pages/Room/InfoTab/joinRoom";
+import LandingPage from "../pages/Landing/LandingPage";
 
 const Router = () => {
   return (
@@ -32,6 +33,7 @@ const Router = () => {
       <AuthProvider>
         {/* <Header /> */}
         <Routes>
+          <Route path="/landing" element={<LandingPage/>} />
           <Route element={<PrivateRoute />}>
             {/* <Route element={<Home />} path="/" /> */}
             <Route path="/" element={<Homepage />} />
