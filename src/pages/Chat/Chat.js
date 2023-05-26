@@ -224,7 +224,7 @@ const Chat = () => {
               </div>
               <div ref={messageEndRef} />
             </div>
-            <div
+            {/* <div
               style={{ width: "89%" }}
               className="chat-footer fixed bottom-0 bg-slate-200  h-12 border-slate-150 transition-[padding,width] duration-[.25s] dark:border-navy-600 dark:bg-navy-800"
             >
@@ -263,39 +263,40 @@ const Chat = () => {
                   </svg>
                 </button>
               </form>
-              {/* <form
+            </div> */}
+            <div className="chat-footer fixed bottom-0 -ml-6 flex h-12 w-full shrink-0 items-center justify-between border-t border-slate-150 bg-white px-[calc(var(--margin-x)-.25rem)] transition-[padding,width] duration-[.25s] dark:border-navy-600 dark:bg-navy-800">
+              <form
                 onSubmit={handleSubmit}
-                className="flex items-center justify-between "
+                className="-ml-1.5 flex flex-1 space-x-2"
               >
                 <input
-                  value={payam}
-                  className="form-input h-12 border-none bg-slate-200 dark:bg-navy-800 placeholder:text-slate-400/70 focus:border-navy-50 outline-none "
+                  style={{ width: "80vw" }}
+                  type="text"
+                  id="msg"
+                  autoComplete="off"
+                  className="form-input h-9 border-none w-full bg-transparent placeholder:text-slate-400/70"
                   placeholder="Write the message"
-                  style={{ width: "95%" }}
-                  onChange={(e) => setpayam(e.target.value)}
                 />
-                <button
-                  type="submit"
-                  value="submit"
-                  style={{ marginRight: "2vw" }}
-                  className="btn h-9 w-9 shrink-0 rounded-full p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5.5 w-5.5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="m9.813 5.146 9.027 3.99c4.05 1.79 4.05 4.718 0 6.508l-9.027 3.99c-6.074 2.686-8.553.485-5.515-4.876l.917-1.613c.232-.41.232-1.09 0-1.5l-.917-1.623C1.26 4.66 3.749 2.46 9.813 5.146ZM6.094 12.389h7.341"
-                    />
-                  </svg>
-                </button>
-              </form> */}
+
+                <div className="-mr-1.5 flex">
+                  <button className="btn h-9 w-9 shrink-0 rounded-full p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5.5 w-5.5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m9.813 5.146 9.027 3.99c4.05 1.79 4.05 4.718 0 6.508l-9.027 3.99c-6.074 2.686-8.553.485-5.515-4.876l.917-1.613c.232-.41.232-1.09 0-1.5l-.917-1.623C1.26 4.66 3.749 2.46 9.813 5.146ZM6.094 12.389h7.341"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </form>
             </div>
 
             {/* <div className="chat-footer fixed bottom-0 flex h-12  items-center justify-between border-slate-150 bg-white transition-[padding,width] duration-[.25s] dark:border-navy-600 dark:bg-navy-800">
