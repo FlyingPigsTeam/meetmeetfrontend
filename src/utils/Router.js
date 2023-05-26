@@ -25,6 +25,7 @@ import Task from "../pages/Room/Task/Task";
 import Chat from "../pages/Chat/Chat";
 import Chat_test from "../pages/Chat/Chat_test";
 import JoinRoom from "../pages/Room/InfoTab/joinRoom";
+import Search from "../pages/Room/Task/Search";
 
 const Router = () => {
   return (
@@ -65,6 +66,7 @@ const Router = () => {
           <Route path="/panel" element={<PanelMain />} />
           <Route path="/panel2" element={<Paneltest />} />
           <Route path="/chat" element={<Chat_test />} />
+          <Route path="/search" element={<Search />} />
 
           {/* <Routes>
               <Route path="/" element={<Homepage />} />
