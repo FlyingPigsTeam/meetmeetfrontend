@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { w3cwebsocket } from "websocket";
 import PageWrapper from "../../components/PageWrapper";
 import Header from "../../components/Header";
@@ -10,12 +10,17 @@ import Avatar200x200 from "../../assets/images/200x200.png";
 import AuthContext from "../../context/AuthContext";
 import { data } from "browserslist";
 import { async } from "q";
+import axios from "axios";
 
 const Chat = () => {
   const params = useParams();
   const roomId = params.idroom;
-  const client = new w3cwebsocket(`ws://localhost:8080/${roomId}`);
   const { user } = useContext(AuthContext);
+  // const [client, setclient] = useState(new w3cwebsocket(`ws://localhost:8080/${roomId}`));
+  const client = useMemo(
+    () => new w3cwebsocket(`ws://166.0.162.72/chat/${roomId}`),
+    []
+  );
   const [message, setmessage] = useState([]);
   const [payam, setpayam] = useState("");
   const messageEndRef = useRef(null);
@@ -36,16 +41,34 @@ const Chat = () => {
     //setpayam("");
     event.target[0].value = "";
   };
-  function insertSpaceEvery70Words(words) {
-    const wordsWithSpace = [];
-    for (let i = 0; i < words.length; i++) {
-      wordsWithSpace.push(words[i]);
-      if ((i + 1) % 20 === 0) {
-        wordsWithSpace.push(" ");
+  // function insertSpaceEvery70Words(words) {
+  //   const wordsWithSpace = [];
+  //   for (let i = 0; i < words.length; i++) {
+  //     wordsWithSpace.push(words[i]);
+  //     if ((i + 1) % 20 === 0) {
+  //       wordsWithSpace.push(" ");
+  //     }
+  //   }
+  //   return wordsWithSpace.join("");
+  // }
+
+  const [history, setHistory] = useState([]);
+  const reqForGettingAll = async () => {
+    const { data } = await fetch(
+      `http://166.0.162.72/history/api/history/${roomId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
-    }
-    return wordsWithSpace.join("");
-  }
+    ).then((response) => response);
+    setHistory(data);
+  };
+  console.log(history);
+  useEffect(() => {
+    reqForGettingAll();
+  }, []);
 
   useEffect(() => {
     client.onopen = () => {

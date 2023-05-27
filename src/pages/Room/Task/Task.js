@@ -130,7 +130,7 @@ const Task = () => {
     } else {
       // part for getting api
       const { data } = await axios
-        .get(`http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?show_all=1`, {
+        .get(`http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?task_name=${search}`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + authTokens.access,
