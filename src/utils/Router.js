@@ -4,6 +4,7 @@ import React from "react";
 import { AuthProvider } from "../context/AuthContext";
 import Homepage from "../pages/Home/Homepage";
 import PrivateRoute from "../utils/PrivateRoute";
+import AxiosGlobalConfig from "../api/AxiosGlobalConfig";
 
 // import Home from "../pages/Home/Home";
 // import Header from "../components/Header";
@@ -31,6 +32,7 @@ const Router = () => {
   return (
     <div>
       <AuthProvider>
+        <AxiosGlobalConfig/>
         {/* <Header /> */}
         <Routes>
           <Route element={<PrivateRoute />}>

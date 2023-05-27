@@ -37,12 +37,7 @@ const Task = () => {
   const [tasks, settasks] = useState([]);
   const reqForGettingAll = async () => {
     const { data } = await axios
-      .get(`http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?show_all=1`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      })
+      .get(`/api/my-rooms/${roomId}/tasks?show_all=1`)
       .then((response) => response);
     settasks(data);
   };
@@ -51,13 +46,7 @@ const Task = () => {
   const reqForDeleting = async (taskId) => {
     const { data } = await axios
       .delete(
-        `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?task_id=${taskId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + authTokens.access,
-          },
-        }
+        `/api/my-rooms/${roomId}/tasks?task_id=${taskId}`
       )
       .then((response) => response);
     setdeleteStatus(data);
@@ -106,15 +95,9 @@ const Task = () => {
   const reqForUnChecking = async (taskID) => {
     const { data } = await axios
       .put(
-        `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?task_id=${taskID}`,
-        JSON.stringify({
-          done: 0,
-        }),
+        `/api/my-rooms/${roomId}/tasks?task_id=${taskID}`,
         {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + authTokens.access,
-          },
+          done: 0,
         }
       )
       .then((response) => response);
