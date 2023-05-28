@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import '../../assets/scss/tailwind.scss'
 
 const LandingPage = () => {
     return (
@@ -44,11 +45,11 @@ const LandingPage = () => {
                         {/* <!--Login button Start--> */}
                         <ul class="buy-button list-none mb-0">
                             <li class="inline mb-0">
-                                <a href="" class="btn btn-icon rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white"><i data-feather="settings" class="h-4 w-4"></i></a>
+                                <a href="" class="btnm btnm-icon rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white"><i data-feather="settings" class="h-4 w-4"></i></a>
                             </li>
 
                             <li class="inline pl-1 mb-0">
-                                <a href="https://1.envato.market/techwind" target="_blank" class="btn btn-icon rounded-full bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white"><i data-feather="shopping-cart" class="h-4 w-4"></i></a>
+                                <a href="https://1.envato.market/techwind" target="_blank" class="btnm btnm-icon rounded-full bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white"><i data-feather="shopping-cart" class="h-4 w-4"></i></a>
                             </li>
                         </ul>
                         {/* <!--Login button End--> */}
@@ -359,7 +360,7 @@ const LandingPage = () => {
                                     on designing and managing conversion centered Tailwind CSS v3.x html page.</p>
 
                                 <div class="mt-6">
-                                    <a href="" class="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md">Try For Free</a>
+                                    <a href="" class="btnm bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md">Try For Free</a>
 
                                     <p class="text-slate-400 text-sm mt-3">No credit card required. Free 14-days trial</p>
                                 </div>
@@ -530,7 +531,7 @@ const LandingPage = () => {
 
                         <div class="grid grid-cols-1 justify-center">
                             <div class="mt-6 text-center wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
-                                <a href="page-services.html" class="btn btn-link text-slate-400 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out">See More <i class="uil uil-arrow-right"></i></a>
+                                <a href="page-services.html" class="btnm btnm-link text-slate-400 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out">See More <i class="uil uil-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -560,7 +561,7 @@ const LandingPage = () => {
                                 </ul>
 
                                 <div class="mt-4">
-                                    <a href="page-aboutus.html" class="btn btn-link text-indigo-600 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out">Find Out More <i class="uil uil-angle-right-b align-middle"></i></a>
+                                    <a href="page-aboutus.html" class="btnm btnm-link text-indigo-600 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out">Find Out More <i class="uil uil-angle-right-b align-middle"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -584,7 +585,7 @@ const LandingPage = () => {
                                 </ul>
 
                                 <div class="mt-4">
-                                    <a href="page-aboutus.html" class="btn btn-link text-indigo-600 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out">Find Out More <i class="uil uil-angle-right-b align-middle"></i></a>
+                                    <a href="page-aboutus.html" class="btnm btnm-link text-indigo-600 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out">Find Out More <i class="uil uil-angle-right-b align-middle"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -800,7 +801,7 @@ const LandingPage = () => {
                                     <p class="text-slate-400 max-w-xl mx-auto">Start working with Tailwind CSS that can provide everything you need to generate awareness, drive traffic, connect.</p>
 
                                     <div class="mt-6">
-                                        <a href="page-pricing.html" class="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md mr-2 mt-2"><i class="uil uil-master-card"></i> Subscribe Now</a>
+                                        <a href="page-pricing.html" class="btnm bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md mr-2 mt-2"><i class="uil uil-master-card"></i> Subscribe Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -825,7 +826,7 @@ const LandingPage = () => {
                                                     <li class="mb-1 flex"><i class="uil uil-check-circle text-indigo-600 text-xl mr-2"></i> Free Appointments</li>
                                                     <li class="mb-1 flex"><i class="uil uil-check-circle text-indigo-600 text-xl mr-2"></i> Enhanced Security</li>
                                                 </ul>
-                                                <a href="" class="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md mt-5">Get Started</a>
+                                                <a href="" class="btnm bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md mt-5">Get Started</a>
                                             </div>
                                         </div>
 
@@ -845,7 +846,7 @@ const LandingPage = () => {
                                                     <li class="mb-1 flex"><i class="uil uil-check-circle text-indigo-600 text-xl mr-2"></i> Free Appointments</li>
                                                     <li class="mb-1 flex"><i class="uil uil-check-circle text-indigo-600 text-xl mr-2"></i> Enhanced Security</li>
                                                 </ul>
-                                                <a href="" class="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md mt-5">Try it Now</a>
+                                                <a href="" class="btnm bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md mt-5">Try it Now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -879,7 +880,7 @@ const LandingPage = () => {
                                     <p class="text-slate-400 mt-3">The phrasal sequence of the is now so that many campaign and benefit</p>
 
                                     <div class="mt-4">
-                                        <a href="blog-detail.html" class="btn btn-link font-normal hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out">Read More <i class="uil uil-arrow-right"></i></a>
+                                        <a href="blog-detail.html" class="btnm btnm-link font-normal hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out">Read More <i class="uil uil-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -892,7 +893,7 @@ const LandingPage = () => {
                                     <p class="text-slate-400 mt-3">The phrasal sequence of the is now so that many campaign and benefit</p>
 
                                     <div class="mt-4">
-                                        <a href="blog-detail.html" class="btn btn-link font-normal hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out">Read More <i class="uil uil-arrow-right"></i></a>
+                                        <a href="blog-detail.html" class="btnm btnm-link font-normal hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out">Read More <i class="uil uil-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -905,7 +906,7 @@ const LandingPage = () => {
                                     <p class="text-slate-400 mt-3">The phrasal sequence of the is now so that many campaign and benefit</p>
 
                                     <div class="mt-4">
-                                        <a href="blog-detail.html" class="btn btn-link font-normal hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out">Read More <i class="uil uil-arrow-right"></i></a>
+                                        <a href="blog-detail.html" class="btnm btnm-link font-normal hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out">Read More <i class="uil uil-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -938,15 +939,15 @@ const LandingPage = () => {
                                             </a>
                                             <p class="mt-6 text-gray-300">Start working with Tailwind CSS that can provide everything you need to generate awareness, drive traffic, connect.</p>
                                             <ul class="list-none mt-6">
-                                                <li class="inline"><a href="https://1.envato.market/techwind" target="_blank" class="btn btn-icon btn-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-shopping-cart align-middle" title="Buy Now"></i></a></li>
-                                                <li class="inline"><a href="https://dribbble.com/shreethemes" target="_blank" class="btn btn-icon btn-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-dribbble align-middle" title="dribbble"></i></a></li>
-                                                <li class="inline"><a href="https://www.behance.net/shreethemes" target="_blank" class="btn btn-icon btn-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-behance" title="Behance"></i></a></li>
-                                                <li class="inline"><a href="http://linkedin.com/company/shreethemes" target="_blank" class="btn btn-icon btn-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-linkedin" title="Linkedin"></i></a></li>
-                                                <li class="inline"><a href="https://www.facebook.com/shreethemes" target="_blank" class="btn btn-icon btn-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-facebook-f align-middle" title="facebook"></i></a></li>
-                                                <li class="inline"><a href="https://www.instagram.com/shreethemes/" target="_blank" class="btn btn-icon btn-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-instagram align-middle" title="instagram"></i></a></li>
-                                                <li class="inline"><a href="https://twitter.com/shreethemes" target="_blank" class="btn btn-icon btn-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-twitter align-middle" title="twitter"></i></a></li>
-                                                <li class="inline"><a href="mailto:support@shreethemes.in" class="btn btn-icon btn-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-envelope align-middle" title="email"></i></a></li>
-                                                <li class="inline"><a href="https://forms.gle/QkTueCikDGqJnbky9" target="_blank" class="btn btn-icon btn-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-file align-middle" title="customization"></i></a></li>
+                                                <li class="inline"><a href="https://1.envato.market/techwind" target="_blank" class="btnm btnm-icon btnm-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-shopping-cart align-middle" title="Buy Now"></i></a></li>
+                                                <li class="inline"><a href="https://dribbble.com/shreethemes" target="_blank" class="btnm btnm-icon btnm-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-dribbble align-middle" title="dribbble"></i></a></li>
+                                                <li class="inline"><a href="https://www.behance.net/shreethemes" target="_blank" class="btnm btnm-icon btnm-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-behance" title="Behance"></i></a></li>
+                                                <li class="inline"><a href="http://linkedin.com/company/shreethemes" target="_blank" class="btnm btnm-icon btnm-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-linkedin" title="Linkedin"></i></a></li>
+                                                <li class="inline"><a href="https://www.facebook.com/shreethemes" target="_blank" class="btnm btnm-icon btnm-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-facebook-f align-middle" title="facebook"></i></a></li>
+                                                <li class="inline"><a href="https://www.instagram.com/shreethemes/" target="_blank" class="btnm btnm-icon btnm-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-instagram align-middle" title="instagram"></i></a></li>
+                                                <li class="inline"><a href="https://twitter.com/shreethemes" target="_blank" class="btnm btnm-icon btnm-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-twitter align-middle" title="twitter"></i></a></li>
+                                                <li class="inline"><a href="mailto:support@shreethemes.in" class="btnm btnm-icon btnm-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-envelope align-middle" title="email"></i></a></li>
+                                                <li class="inline"><a href="https://forms.gle/QkTueCikDGqJnbky9" target="_blank" class="btnm btnm-icon btnm-sm border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i class="uil uil-file align-middle" title="customization"></i></a></li>
                                             </ul>
                                             {/* <!--end icon--> */}
                                         </div>
@@ -991,7 +992,7 @@ const LandingPage = () => {
                                                         </div>
                                                     </div>
 
-                                                    <button type="submit" id="submitsubscribe" name="send" class="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md">Subscribe</button>
+                                                    <button type="submit" id="submitsubscribe" name="send" class="btnm bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md">Subscribe</button>
                                                 </div>
                                             </form>
                                         </div>

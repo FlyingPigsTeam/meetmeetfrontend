@@ -46,10 +46,31 @@ module.exports = {
   ],
   darkMode: "class",
   theme: {
+    screens: {
+      xs: "540px",
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '12px',
+        sm: '1rem',
+        lg: '45px',
+        xl: '5rem',
+        '2xl': '13rem',
+      },
+
+    },
     extend: {
       fontFamily: {
         sans: ["Poppins", ...defaultTheme.fontFamily.sans],
         inter: ["Inter", ...defaultTheme.fontFamily.sans],
+        'nunito': ['"Nunito", sans-serif'],
+
       },
       fontSize: {
         tiny: ["0.625rem", "0.8125rem"],
@@ -57,7 +78,12 @@ module.exports = {
         "xs+": ["0.8125rem", "1.125rem"],
         "sm+": ["0.9375rem", "1.375rem"],
       },
-      colors: { ...customColors },
+      colors: {
+        'dark': '#3c4858',
+        'black': '#161c2d',
+        'dark-footer': '#192132',
+        ...customColors
+      },
       opacity: {
         15: ".15",
       },
@@ -65,10 +91,29 @@ module.exports = {
         4.5: "1.125rem",
         5.5: "1.375rem",
         18: "4.5rem",
+        0.75: '0.1875rem',
+        3.25: '0.8125rem'
       },
+
+      maxWidth: ({
+        theme,
+        breakpoints
+      }) => ({
+        '1200': '71.25rem',
+        '992': '60rem',
+        '768': '45rem',
+      }),
       boxShadow: {
         soft: "0 3px 10px 0 rgb(48 46 56 / 6%)",
         "soft-dark": "0 3px 10px 0 rgb(25 33 50 / 30%)",
+        sm: '0 2px 4px 0 rgb(60 72 88 / 0.15)',
+        DEFAULT: '0 0 3px rgb(60 72 88 / 0.15)',
+        md: '0 5px 13px rgb(60 72 88 / 0.20)',
+        lg: '0 10px 25px -3px rgb(60 72 88 / 0.15)',
+        xl: '0 20px 25px -5px rgb(60 72 88 / 0.1), 0 8px 10px -6px rgb(60 72 88 / 0.1)',
+        '2xl': '0 25px 50px -12px rgb(60 72 88 / 0.25)',
+        inner: 'inset 0 2px 4px 0 rgb(60 72 88 / 0.05)',
+        testi: '2px 2px 2px -1px rgb(60 72 88 / 0.15)',
       },
       zIndex: {
         1: "1",
@@ -76,6 +121,7 @@ module.exports = {
         3: "3",
         4: "4",
         5: "5",
+        999: "999",
       },
       keyframes: {
         "fade-out": {
