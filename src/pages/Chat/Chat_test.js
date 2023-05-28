@@ -34,18 +34,27 @@ const Chat_test = () => {
   //     console.log("WebSocket Client disConnected");
   //   };
   // }, [client.onmessage, client.onopen, client.onclose]);
-
+  //https://meet-meet.ir/history/api/history/4
   const [history, setHistory] = useState([]);
+  const [history2, setHistory2] = useState([]);
   const reqForGettingAll = async () => {
     const { data } = await axios
-      .get(`http://166.0.162.72/history/api/history/4`)
+      .get(`https://meet-meet.ir/history/api/history/5`)
       .then((response) => response);
     setHistory(data);
   };
+  const reqForGettingAll2 = async () => {
+    const { data } = await axios
+      .get(`https://meet-meet.ir/backend/api/category`)
+      .then((response) => response);
+    setHistory2(data);
+  };
   useEffect(() => {
     reqForGettingAll();
+    reqForGettingAll2();
   }, []);
   console.log(history);
+  console.log(history2);
   return (
     <div>
       <form>
