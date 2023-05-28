@@ -45,9 +45,7 @@ const Task = () => {
   const [deleteStatus, setdeleteStatus] = useState([]);
   const reqForDeleting = async (taskId) => {
     const { data } = await axios
-      .delete(
-        `/api/my-rooms/${roomId}/tasks?task_id=${taskId}`
-      )
+      .delete(`/api/my-rooms/${roomId}/tasks?task_id=${taskId}`)
       .then((response) => response);
     setdeleteStatus(data);
   };
@@ -77,29 +75,17 @@ const Task = () => {
   const reqForChecking = async (taskID, status) => {
     console.log(status);
     const { data } = await axios
-      .put(
-        `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?task_id=${taskID}`,
-        JSON.stringify({
-          done: status == "off" ? 1 : 0,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + authTokens.access,
-          },
-        }
-      )
+      .put(`/api/my-rooms/${roomId}/tasks?task_id=${taskID}`, {
+        done: status == "off" ? 1 : 0,
+      })
       .then((response) => response);
     setchecking(data);
   };
   const reqForUnChecking = async (taskID) => {
     const { data } = await axios
-      .put(
-        `/api/my-rooms/${roomId}/tasks?task_id=${taskID}`,
-        {
-          done: 0,
-        }
-      )
+      .put(`/api/my-rooms/${roomId}/tasks?task_id=${taskID}`, {
+        done: 0,
+      })
       .then((response) => response);
     setchecking(data);
   };
@@ -113,12 +99,7 @@ const Task = () => {
     } else {
       // part for getting api
       const { data } = await axios
-        .get(`http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?task_name=${search}`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + authTokens.access,
-          },
-        })
+        .get(`/api/my-rooms/${roomId}/tasks?task_name=${search}`)
         .then((response) => response);
       settasks(data);
       setshowSearch(false);

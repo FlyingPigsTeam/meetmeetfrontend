@@ -54,15 +54,9 @@ const Chat = () => {
 
   const [history, setHistory] = useState([]);
   const reqForGettingAll = async () => {
-    const { data } = await fetch(
-      `http://166.0.162.72/history/api/history/${roomId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    ).then((response) => response);
+    const { data } = await axios
+      .get(`/history/api/history/${roomId}`)
+      .then((response) => response);
     setHistory(data);
   };
   console.log(history);

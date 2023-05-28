@@ -27,12 +27,13 @@ import Chat from "../pages/Chat/Chat";
 import Chat_test from "../pages/Chat/Chat_test";
 import JoinRoom from "../pages/Room/InfoTab/joinRoom";
 import Search from "../pages/Room/Task/Search";
+import InfiniteQuery from "../pages/Chat/InfiniteQuery";
 
 const Router = () => {
   return (
     <div>
       <AuthProvider>
-        <AxiosGlobalConfig/>
+        <AxiosGlobalConfig />
         {/* <Header /> */}
         <Routes>
           <Route element={<PrivateRoute />}>
@@ -69,6 +70,7 @@ const Router = () => {
           <Route path="/panel2" element={<Paneltest />} />
           <Route path="/chat" element={<Chat_test />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/reactquery" element={<InfiniteQuery />} />
 
           {/* <Routes>
               <Route path="/" element={<Homepage />} />
