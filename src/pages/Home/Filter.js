@@ -199,13 +199,13 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
   return (
     <div>
       <div className="">
-        <div class="flex items-center justify-end">
+        <div class="flex flex-row-reverse xl:mr-14 md:mr-6 lg:mr-24">
           {toggle && (
             <form onSubmit={handleSubmit}>
               <div class="flex items-center gap-2">
                 <label class="block">
                   <input
-                    className="rounded-md mb-7 py-2 text-sm block w-full  placeholder-slate-700 focus:ring-slate-600 focus:border-slate-600 bg-slate-300 dark:bg-navy-500 dark:placeholder-navy-100 dark:focus:ring-navy-100 dark:focus:border-navy-100 cursor-pointer"
+                    className="rounded-md mb-7 py-2 text-sm block xl:w-40  lg:w-full md:w-full w-60 placeholder-slate-700 focus:ring-slate-600 focus:border-slate-600 bg-slate-300 dark:bg-navy-500 dark:placeholder-navy-100 dark:focus:ring-navy-100 dark:focus:border-navy-100 cursor-pointer"
                     placeholder="Search here..."
                     type="text"
                     value={search}
@@ -312,7 +312,7 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
                 </div>
                 <div class="flex xl:mx-8">
                   <label className="inline text-1xl mt-2 font-medium text-slate-700 dark:text-navy-100">
-                    category:
+                    Category:
                   </label>
                   <div className="flow-root">
                     <Popover.Group className="mb-4 flex items-center divide-x divide-slate-700 text-slate-700 ">
@@ -321,10 +321,10 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
                           key={section.name}
                           className="relative inline-block ml-2 text-left"
                         >
-                          <Popover.Button className="group border-slate-600 border rounded-md py-1 px-7 mb-3   font-bold inline-flex justify-center text-1xl font-lg text-slate-700 focus:ring-slate-600 focus:border-2 bg-slate-300 dark:bg-navy-500 dark:text-navy-100 dark:focus:ring-navy-100 dark:focus:border-navy-100 cursor-pointer">
-                            <span>{"No Matter"}</span>
+                          <Popover.Button className="group border-slate-600 border rounded-md py-2 px-3 mb-3   font-bold inline-flex justify-center text-1xl font-lg text-slate-700 focus:ring-slate-600 focus:border-2 bg-slate-300 dark:bg-navy-500 dark:text-navy-100 dark:focus:ring-navy-100 dark:focus:border-navy-100 cursor-pointer">
+                            <span className="text-md ml-1">{"No Matter"}</span>
                             <ChevronDownIcon
-                              className="h-7  w-8 flex-shrink-0 text-slate-300 group-hover:text-slate-600"
+                              className="h-6  w-6 ml-9  flex-shrink-0 text-slate-300 group-hover:text-slate-600"
                               aria-hidden="true"
                             />
                           </Popover.Button>
@@ -338,7 +338,7 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
                             leaveFrom="transform opacity-100 scale-100"
                             leaveTo="transform opacity-0 scale-95"
                           >
-                            <Popover.Panel className="absolute dark:bg-navy-500 bg-slate-200 top-9 mt-0.5 px-7 z-10   origin-top-right rounded-md  p-4 shadow-2xl  focus:outline-none">
+                            <Popover.Panel className="absolute dark:bg-navy-500 bg-slate-200 top-9 mt-2 px-7 z-10   origin-top-right rounded-md  p-4 shadow-2xl  focus:outline-none">
                               <form className="space-y-2">
                                 {section.options.map((option, optionIdx) => (
                                   <div
