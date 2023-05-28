@@ -11,6 +11,7 @@ import AuthContext from "../../context/AuthContext";
 import Avatar200x200 from "../../assets/images/200x200.png";
 
 const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
+    const max_member_options = [10, 25, 40, 50];
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const authTokens = useContext(AuthContext).authTokens;
@@ -106,7 +107,7 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
                 .required("Required"),
             maximum_member_count: yup
                 .number("It's not a number")
-                .oneOf([25, 40, 50], "Please select a valid number from the list")
+                .oneOf(max_member_options, "Please select a valid number from the list")
                 .required("Required"),
             categories: yup
                 .array()
@@ -398,10 +399,8 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
                                 id="maximum_member_count"
                                 className="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
                             >
-                                <option>Corporate event</option>
-                                <option>25</option>
-                                <option>40</option>
-                                <option>50</option>
+                                <option >Corporate event</option>
+                                {max_member_options.map((item)=><option>{item}</option>)}
                             </select>
                             {formik.touched.maximum_member_count &&
                                 formik.errors.maximum_member_count && (
