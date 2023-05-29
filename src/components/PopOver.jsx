@@ -10,7 +10,11 @@ export default function PopOver({ children, popperConfigs, Show }) {
     return (
         <>
             <PopOverProvider Show={Show} popperConfig={buildOptions(popperConfigs)}>
-                {children}
+
+
+
+                    {children}
+
                 {/* <div
                     ref={setReferenceElement}
                     className="flex"
@@ -46,21 +50,24 @@ PopOver.Button = function PPButton({ children, Click }) {
                         {person.name}
                     </li>
                 )} */}
-                <button
-                    type='button'
-                    className="btn mt-[20%] bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
-                    ref={setReferenceElement}
-                    onClick={Click}
-                >
-                    Basic Popover
-                </button>
+                {
+                    
+                }
+            <button
+                type='button'
+                className="btn mt-[20%] bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+                ref={setReferenceElement}
+                onClick={Click}
+            >
+                Basic Popover
+            </button>
 
             {/* </PopOverContext.Consumer> */}
         </>
     );
 };
 
-PopOver.Popper = function PPopper({ children}) {
+PopOver.Popper = function PPopper({ children }) {
     const {
         Show,
         referenceElement, setReferenceElement,
@@ -69,7 +76,7 @@ PopOver.Popper = function PPopper({ children}) {
         styles, attributes
     } = useContext(PopOverContext);
     console.log("PPopper", styles.arrow)
-    
+
     return (
         <>
             <div
