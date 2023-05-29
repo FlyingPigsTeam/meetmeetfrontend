@@ -44,7 +44,6 @@ const Members = () => {
       .then((response) => response);
     console.log("roomDataFetch", data);
     setRoomData(data);
-
   };
   useEffect(() => {
     req();

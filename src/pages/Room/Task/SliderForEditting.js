@@ -5,6 +5,8 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import AuthContext from "../../../context/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import AutoComplete from "../../../components/AutoCompleteTask";
+
 
 export default function SliderForEditting({
   slideover,
@@ -126,7 +128,7 @@ export default function SliderForEditting({
                           aria-hidden="true"
                         />
                       </div>
-                      <div className="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto p-4">
+                      <div className=" flex grow flex-col space-y-4 overflow-y-auto p-4">
                         <label className="block">
                           <span className=" dark:text-navy-50">Task Title</span>
                           <input
@@ -163,9 +165,9 @@ export default function SliderForEditting({
                             <option value="1">Hard</option>
                           </select>
                         </label>
-                        <label className="block z-40">
+                        {/* <label className="block z-40"> */}
                           <span className=" dark:text-navy-50">Assigned To:</span>
-                          <select
+                          {/* <select
                             //x-init="$el._x_tom = new Tom($el)"
                             className="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
                             //multiple
@@ -175,8 +177,9 @@ export default function SliderForEditting({
                             //autoComplete="off"
                           >
                             <option value=""></option>
-                          </select>
-                        </label>
+                          </select> */}
+                          <div className="card mt-3 p-4"><AutoComplete setmember={setSelectedDifficulty}/></div>
+                        {/* </label> */}
                       </div>
                       <div className="flex items-center justify-between mt-20 xl:mt-52 py-3 px-4">
                         <button
