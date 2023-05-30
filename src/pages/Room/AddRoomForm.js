@@ -1,10 +1,10 @@
 import {useFormik} from "formik";
 import {useNavigate} from "react-router-dom";
 import * as yup from "yup";
-import axios from "axios";
 import Flatpickr from "react-flatpickr";
 import React, {useRef, useState, useEffect, useContext} from "react";
 import Tom from "tom-select";
+import axios from '../../api/axios'
 
 import AuthContext from "../../context/AuthContext";
 
@@ -128,7 +128,7 @@ const AddRoomFrom = ({setModalOpen, ...restProps}) => {
                 // TODO: CREATE API PROXY + ACCELRATORS
                 const {data} = await axios
                     .post(
-                        `http://127.0.0.1:8000/api/rooms`,
+                        `/api/rooms`,
                         {
                             title: values.title,
                             description: values.description,
@@ -145,12 +145,6 @@ const AddRoomFrom = ({setModalOpen, ...restProps}) => {
                             main_picture_path: "__",
                             link: "link",
                         },
-                        {
-                            headers: {
-                                "Content-Type": "application/json",
-                                Authorization: "Bearer " + authTokens.access,
-                            },
-                        }
                     )
                     .then((response) => response);
                 console.log(data);

@@ -287,7 +287,7 @@ const Task = () => {
                         )}
                       </div>
                       <div className="mt-2">
-                        <Skeleton />
+                        <Skeleton members={item.user}/>
                       </div>
                     </div>
                   </div>
