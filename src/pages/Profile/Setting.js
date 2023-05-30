@@ -23,9 +23,9 @@
   }
   ```
 */
-import React, {Fragment, useContext, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import {Dialog, Transition} from '@headlessui/react'
+import React, { Fragment, useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Dialog, Transition } from '@headlessui/react'
 import {
     BanknotesIcon,
     Bars3Icon,
@@ -42,17 +42,18 @@ import {
     UserIcon,
     XMarkIcon,
 } from '@heroicons/react/24/outline'
-import {ChevronLeftIcon} from '@heroicons/react/20/solid';
+import { ChevronLeftIcon } from '@heroicons/react/20/solid';
 import ChangePassword from './ChangePassword';
 import Avatar200x200 from "../../assets/images/200x200.png";
 import axios from "axios";
 import AuthContext from "../../context/AuthContext";
-import {Form} from "formik";
+import { Form } from "formik";
 // import { MdAccountCircle } from 'react-icons/md';
 
 
-export default function Setting({user, onCancel}) {
-    const {authTokens} = useContext(AuthContext);
+export default function Setting({ user, onCancel }) {
+    console.log(user);
+    const { authTokens } = useContext(AuthContext);
     const [firstName, setFName] = useState(user.first_name);
     const [lastName, setLName] = useState(user.last_name);
     const [userName, setUserName] = useState(user.username);
@@ -67,6 +68,22 @@ export default function Setting({user, onCancel}) {
     const changeshowtofalse = () => {
         setShowChangePassword(false);
     };
+    // const fetchData = async () => {
+    //     try {
+    //         const response = await fetch("http://127.0.0.1:8000/api/profile", {
+    //             headers: {
+    //                 Authorization: `Bearer ${authTokens.access}`,
+    //             },
+    //         });
+    //         const data = await response.json();
+    //         setData(data);
+    //         console.log(data)
+    //         setIsLoading(false);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // };
+
     // const [editing, setEditing] = useState(false);
     // const handleEdit = () => {
     //     setEditing(true);
@@ -135,7 +152,7 @@ export default function Setting({user, onCancel}) {
 
         if (image2) {
             const formData = new FormData();
-            formData.append("image",image2);
+            formData.append("image", image2);
 
             console.log("image=true")
             const resPic = await axios.putForm(`http://127.0.0.1:8000/api/upload?id=1&where=profile`,
@@ -177,7 +194,7 @@ export default function Setting({user, onCancel}) {
                                         <h1 className="text-3xl font-bold tracking-tight text-blue-gray-900">Account</h1>
 
                                         <form className="divide-y-blue-gray-200 mt-6 space-y-8 divide-y"
-                                              onSubmit={handleUpdate}>
+                                            onSubmit={handleUpdate}>
                                             <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-6 sm:gap-x-6">
                                                 <div className="sm:col-span-6">
                                                     <h2 className="text-xl font-medium text-blue-gray-900">Profile</h2>
@@ -190,20 +207,20 @@ export default function Setting({user, onCancel}) {
                                                 <div className="sm:col-span-6">
                                                     <div className="avatar mt-1.5 h-20 w-20">
                                                         <img className="mask is-squircle "
-                                                             src={
-                                                                 previewUrl != '' ? previewUrl :
-                                                                     user.picture_path != "" &&
-                                                                     user.picture_path != "__" ? user.picture_path :
-                                                                         Avatar200x200
-                                                             }
-                                                             alt="avatar"/>
+                                                            src={
+                                                                previewUrl != '' ? previewUrl :
+                                                                    user.picture_path != "" &&
+                                                                        user.picture_path != "__" ? user.picture_path :
+                                                                        Avatar200x200
+                                                            }
+                                                            alt="avatar" />
                                                         <div
                                                             className="absolute bottom-0 right-0 flex items-center justify-center rounded-full bg-white dark:bg-navy-700">
 
                                                             <label htmlFor={"edit-avatar-btn"}
-                                                                   className="btn h-6 w-6 rounded-full border border-slate-200 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:border-navy-500 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                                                                className="btn h-6 w-6 rounded-full border border-slate-200 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:border-navy-500 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                                                                 <input type="file" id="edit-avatar-btn"
-                                                                       onChange={onSelectImage} hidden/>
+                                                                    onChange={onSelectImage} hidden />
                                                                 <svg
                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                     className="h-3.5 w-3.5"
@@ -211,7 +228,7 @@ export default function Setting({user, onCancel}) {
                                                                     fill="currentColor"
                                                                 >
                                                                     <path
-                                                                        d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
+                                                                        d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                                                                 </svg>
                                                             </label>
                                                         </div>
@@ -271,7 +288,7 @@ export default function Setting({user, onCancel}) {
                                                 </div>
                                                 <div className="sm:col-span-3">
                                                     <label htmlFor="email-address"
-                                                           className="block text-sm font-medium text-blue-gray-900">
+                                                        className="block text-sm font-medium text-blue-gray-900">
                                                         Email address
                                                     </label>
                                                     <input
@@ -296,20 +313,20 @@ export default function Setting({user, onCancel}) {
                                                 </div>
                                                 <div className="sm:col-span-6">
                                                     <label htmlFor="description"
-                                                           className="block text-sm  font-medium text-blue-gray-900">
+                                                        className="block text-sm  font-medium text-blue-gray-900">
                                                         Description
                                                     </label>
                                                     <div className="mt-1">
-                            <textarea
-                                value={bio}
-                                id="description"
-                                name="description"
-                                rows={4}
-                                className="form-textarea resize-none w-full rounded-lg border border-slate-300 bg-transparent p-2.5 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                defaultValue={''}
-                                onChange={(event) => setBio(event.target.value)}
-                                required
-                            />
+                                                        <textarea
+                                                            value={bio}
+                                                            id="description"
+                                                            name="description"
+                                                            rows={4}
+                                                            className="form-textarea resize-none w-full rounded-lg border border-slate-300 bg-transparent p-2.5 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                                            defaultValue={''}
+                                                            onChange={(event) => setBio(event.target.value)}
+                                                            required
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>
@@ -325,7 +342,7 @@ export default function Setting({user, onCancel}) {
                                                     Save
                                                 </button>
                                             </div>
-                                            <div style={{borderTop: '1px solid white'}}></div>
+                                            <div style={{ borderTop: '1px solid white' }}></div>
                                         </form>
                                         {/* <button
                           className="absolute bottom-18 left-70 mx-2 flex items-center justify-between p px-4 py-2 text-white bg-indigo-600 rounded hover:bg-indigo-700 mr-2"
@@ -335,9 +352,9 @@ export default function Setting({user, onCancel}) {
                     </button> */}
                                         <div>
 
-                                            {<ChangePassword setfalse={setShowChangePassword}/>}
+                                            {<ChangePassword setfalse={setShowChangePassword} />}
                                         </div>
-                                        <div style={{borderTop: '1px solid white'}}></div>
+                                        <div style={{ borderTop: '1px solid white' }}></div>
                                     </div>
                                 </div>
                             </div>
