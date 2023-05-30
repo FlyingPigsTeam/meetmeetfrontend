@@ -720,7 +720,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                                                         Your messages and tasks
                                                     </div>
                                                 </div>
-                                            </a>
+                                            </a>*/}
                                             <a
                                                 href="#"
                                                 class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
@@ -792,7 +792,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                                                         Your activity and events
                                                     </div>
                                                 </div>
-                                            </a> */}
+                                            </a> 
                                             {/* <a
                                                 href="http://localhost:3000/profileEdit"
                                                 class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"

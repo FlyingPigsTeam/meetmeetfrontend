@@ -332,9 +332,7 @@ export default function Setting({ user, onCancel }) {
                                             </div>
 
 
-                                            <div className="flex justify-end pt-8    ">
-
-
+                                            <div className="flex justify-end pt-8">
                                                 <button
                                                     type="submit"
                                                     className="mx-1 ml-3 inline-flex justify-center rounded-md border border-transparent text-white bg-indigo-600 hover:bg-indigo-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
@@ -345,16 +343,15 @@ export default function Setting({ user, onCancel }) {
                                             <div style={{ borderTop: '1px solid white' }}></div>
                                         </form>
                                         {/* <button
-                          className="absolute bottom-18 left-70 mx-2 flex items-center justify-between p px-4 py-2 text-white bg-indigo-600 rounded hover:bg-indigo-700 mr-2"
-                          onClick={()=>changeshowtotrue()}
+                        className="absolute bottom-18 left-70 mx-2 flex items-center justify-between p px-4 py-2 text-white bg-indigo-600 rounded hover:bg-indigo-700 mr-2"
+                        onClick={()=>changeshowtotrue()}
                         >
-                          Change Password
+                        Change Password
                     </button> */}
                                         <div>
 
                                             {<ChangePassword setfalse={setShowChangePassword} />}
                                         </div>
-                                        <div style={{ borderTop: '1px solid white' }}></div>
                                     </div>
                                 </div>
                             </div>
