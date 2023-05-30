@@ -199,13 +199,13 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
   return (
     <div>
       <div className="">
-        <div class="flex flex-row-reverse xl:mr-14 md:mr-6 lg:mr-24">
+        <div class="flex flex-row-reverse xl:mr-14 md:mr-6 lg:mr-24 -mr-10">
           {toggle && (
             <form onSubmit={handleSubmit}>
               <div class="flex items-center gap-2">
                 <label class="block">
                   <input
-                    className="rounded-md mb-7 py-2 text-sm block xl:w-40  lg:w-full md:w-full w-60 placeholder-slate-700 focus:ring-slate-600 focus:border-slate-600 bg-slate-300 dark:bg-navy-500 dark:placeholder-navy-100 dark:focus:ring-navy-100 dark:focus:border-navy-100 cursor-pointer"
+                    className="rounded-md mb-7 py-2 text-sm block w-full placeholder-slate-700 focus:ring-slate-600 focus:border-slate-600 bg-slate-300 dark:bg-navy-500 dark:placeholder-navy-100 dark:focus:ring-navy-100 dark:focus:border-navy-100 cursor-pointer"
                     placeholder="Search here..."
                     type="text"
                     value={search}
@@ -324,7 +324,7 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
                           <Popover.Button className="group border-slate-600 border rounded-md py-2 px-3 mb-3   font-bold inline-flex justify-center text-1xl font-lg text-slate-700 focus:ring-slate-600 focus:border-2 bg-slate-300 dark:bg-navy-500 dark:text-navy-100 dark:focus:ring-navy-100 dark:focus:border-navy-100 cursor-pointer">
                             <span className="text-md ml-1">{"No Matter"}</span>
                             <ChevronDownIcon
-                              className="h-6  w-6 ml-9  flex-shrink-0 text-slate-300 group-hover:text-slate-600"
+                              className="h-5  w-6 ml-9  flex-shrink-0 text-slate-600 group-hover:text-slate-900"
                               aria-hidden="true"
                             />
                           </Popover.Button>

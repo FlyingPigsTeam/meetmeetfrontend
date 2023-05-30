@@ -11,6 +11,7 @@
 @import "./components/popper.css";
 @import "./components/pagination.css";
 @import "./components/skeleton.css";
+@import "./components/timeline.css";
 /* 
 /* 
 @import "./components/tooltip.css";
@@ -20,7 +21,6 @@
 @import "./components/quill.css";
 @import "./components/notification.css";
 @import "./components/steps.css";
-@import "./components/timeline.css";
 @import "./components/swiper.css";
 @import "./components/apexcharts.css";
 @import "./components/tableGrid.css"; 
