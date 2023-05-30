@@ -76,7 +76,7 @@ const SlideOver = ({ slideover, setslideover, id }) => {
     { priority: 1, title: "mamad" },
     { priority: 3, title: "amin" },
   ];
-  console.log(tasks);
+  //console.log(tasks);
   const members = status ? status.room_members : {};
   const member_count = members ? members.length : 0;
   const member_maximum_count = status

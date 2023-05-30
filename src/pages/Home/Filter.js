@@ -189,11 +189,19 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
+      // setTimeout(() => {
+      //   //console.log("sdknvbjskdnvk");
+      //   setSearchFinal(search);
+      // }, 3000);
       setSearchFinal(search);
     }
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+    // setTimeout(() => {
+    //   //console.log("sdknvbjskdnvk");
+    //   setSearchFinal(search);
+    // }, 3000);
     setSearchFinal(search);
   };
   return (
@@ -338,7 +346,7 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
                             leaveFrom="transform opacity-100 scale-100"
                             leaveTo="transform opacity-0 scale-95"
                           >
-                            <Popover.Panel className="absolute dark:bg-navy-500 bg-slate-200 top-9 mt-2 px-7 z-10   origin-top-right rounded-md  p-4 shadow-2xl  focus:outline-none">
+                            <Popover.Panel className="absolute dark:bg-navy-500 bg-slate-200 top-9 mt-1 px-7 z-10   origin-top-right rounded-md  p-4 shadow-2xl  focus:outline-none">
                               <form className="space-y-2">
                                 {section.options.map((option, optionIdx) => (
                                   <div
