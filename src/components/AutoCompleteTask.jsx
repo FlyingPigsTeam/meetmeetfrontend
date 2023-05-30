@@ -47,17 +47,15 @@ const AutoComplete = ({ setmember }) => {
             // labelField: "first_name",
             maxItems: 10,
             plugins: ['remove_button'],
-            valueField: "username",
+            valueField: "id",
             searchField: "username",
             labelField: "username",
             // options: items,
             // items: [],
             placeholder: "Select some members",
             onChange: (value) => {
-                const selectedUsernames = value.split(',');
-                const selectedIds = selectedUsernames.map((username) => dictionary[username]);
-                setSelectedMembers(selectedUsernames);
-                setmember(selectedIds);
+                setSelectedMembers(value.split(','));
+                setmember(value.split(','));
             },
 
             load: function (query, callback) {
@@ -74,10 +72,12 @@ const AutoComplete = ({ setmember }) => {
                     .then(async (response) => {
                         const data = await response.json();
                         console.log(data);
-
-                        data.forEach((item) => {
-                            dictionary[item.username] = item.id;
-                        });
+                        // console.log(data);
+                        console.log(data[0].id);
+                        // data.forEach((item) => {
+                            
+                        //     dictionary[item.username] = item.order;
+                        // });
 
                         // const filteredData = data.filter((item) => {
                         //     return !members.some((member) => member.member.username === item.username);
