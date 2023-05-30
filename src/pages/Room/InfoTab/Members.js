@@ -22,10 +22,12 @@ const Members = () => {
   let authTokens = useContext(AuthContext).authTokens;
   let [users_Data, setUser_Data] = useState([]);
   let [roomData, setRoomData] = useState({});
+  const entriesOptions=[1,2,3,4,5,10,15]
+  
   const [totalpage, setTotalpage] = useState(1);
-
   const [page, setPage] = useState(1);
   const [entries, setEntries] = useState(1)
+  console.log("entries", entries)
   const req = async () => {
     const { data } = await axios
       .get(`http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?show_members=1&page=${page}&entries=${entries}`, {
@@ -40,12 +42,13 @@ const Members = () => {
 
     let count = data.count;
     let number = 1;
-    if (count % entries == 0) {
+    if (count % entries === 0) {
       number = count / entries;
     } else {
       number = (count - (count % entries)) / entries + 1;
     }
     setTotalpage(number);
+    console.log("totalpage", totalpage);
   };
   const thisroom = async () => {
     const { data } = await axios
@@ -64,11 +67,11 @@ const Members = () => {
   useEffect(() => {
     req();
     thisroom();
-  }, [idroom, page, entries]);
+  }, []);
 
   useEffect(() => {
     req();
-  }, [idroom]);
+  }, [idroom, page, entries]);
 
 
   const ConvertRole = (member) => {
@@ -373,7 +376,7 @@ const Members = () => {
                 </tr>
               </thead>
               <tbody>
-                {users_Data?.map((user, idx) => {
+                {users_Data?.results?.map((user, idx) => {
                   return (
                     <tr
                       key={`user-item-${idx}`}
@@ -501,10 +504,15 @@ const Members = () => {
             <div className="flex items-center space-x-2 text-xs+">
               <span>Show</span>
               <label className="block">
-                <select className="form-select rounded-full border border-slate-300 bg-white px-2 py-1 pr-6 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
-                  <option>10</option>
-                  <option>30</option>
-                  <option>50</option>
+                <select
+                  onChange={(e) => {
+                    setPage(1);
+                    setEntries(e.target.value);}}
+                  className="form-select text-xs+ rounded-full border border-slate-300 bg-white px-2 py-1 pr-6 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
+                >
+                  {entriesOptions.map((option, index) => (<option>{option}</option>))}
+
+                  
                 </select>
               </label>
               <span>entries</span>
@@ -595,12 +603,14 @@ const Members = () => {
               </li>
             </ol> */}
             <Pagination
-              total={3}
+              total={totalpage}
               current={page}
               setPage={setPage}
             />
 
-            <div className="text-xs+">1 - 10 of 10 entries</div>
+            {/* <div className="text-xs+">1 - 10 of 10 entries</div> */}
+            <div className="text-xs+">{`${page*entries-entries+1} - ${Math.min(page*entries, users_Data.count)} of ${users_Data.count} entries`}</div>
+
           </div>
         </div>
         <div className="card mt-3 p-4"><AutoComplete /></div>
