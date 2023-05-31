@@ -5,14 +5,17 @@ import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import MainSection from "../../components/MainSection";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Avatar200x200 from "../../assets/images/200x200.png";
 import AuthContext from "../../context/AuthContext";
 import { data } from "browserslist";
 import { async } from "q";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const Chat = () => {
+  const sidebarExp = useSelector((state) => state.SidebarExpanded);
+  console.log("opensidebsar: ", sidebarExp);
   const params = useParams();
   const roomId = params.idroom;
   const { user } = useContext(AuthContext);
@@ -100,6 +103,15 @@ const Chat = () => {
         <Header>
           <Header.Items>
             <Header.SidebarToggle />
+            <div
+              className={
+                sidebarExp == false
+                  ? " xl:-ml-[75vw] text-2xl font-bold font-serif"
+                  : " xl:-ml-[65vw] text-2xl font-bold font-serif"
+              }
+            >
+              {localStorage.getItem("RoomTitle")}
+            </div>
             <Header.Right>
               <DarkModeToggle />
             </Header.Right>
@@ -281,7 +293,13 @@ const Chat = () => {
                 </button>
               </form>
             </div> */}
-            <div className="chat-footer fixed bottom-0 -ml-6 flex h-12 w-full shrink-0 items-center justify-between border-t border-slate-150 bg-white px-[calc(var(--margin-x)-.25rem)] transition-[padding,width] duration-[.25s] dark:border-navy-600 dark:bg-navy-800">
+            <div
+              className={
+                sidebarExp == false
+                  ? "chat-footer fixed bottom-0 -ml-6 flex h-12 w-full shrink-0 items-center justify-between border-t border-slate-150 bg-white px-[calc(var(--margin-x)-.25rem)] transition-[padding,width] duration-[.25s] dark:border-navy-600 dark:bg-navy-800"
+                  : "chat-footer fixed bottom-0 -ml-12 flex h-12 w-full shrink-0 items-center justify-between border-t border-slate-150 bg-white px-[calc(var(--margin-x)-.25rem)] transition-[padding,width] duration-[.25s] dark:border-navy-600 dark:bg-navy-800"
+              }
+            >
               <form
                 onSubmit={handleSubmit}
                 className="-ml-1.5 flex flex-1 space-x-2"
@@ -291,7 +309,11 @@ const Chat = () => {
                   type="text"
                   id="msg"
                   autoComplete="off"
-                  className="form-input h-9 border-none w-full bg-transparent placeholder:text-slate-400/70"
+                  className={
+                    sidebarExp == false
+                      ? "form-input h-9 border-none lg:!w-[83vw] bg-transparent placeholder:text-slate-400/70"
+                      : "form-input h-9 border-none lg:!w-[74vw] bg-transparent placeholder:text-slate-400/70"
+                  }
                   placeholder="Write the message"
                 />
 

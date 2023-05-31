@@ -3,6 +3,11 @@ import classNames from "../utils/classNames";
 
 import Avatar200x200 from "../assets/images/200x200.png";
 import AppLogo from "../assets/images/app-logo.svg";
+import { components } from "react-select";
+import { render } from "@testing-library/react";
+import Chat from "../pages/Chat/Chat";
+import { ClosingSidebar, OpeningSidebar } from "../Redux/Action";
+import { useDispatch } from "react-redux";
 
 export default function Header({ classes, children, ...restProps }) {
   return (
@@ -17,7 +22,7 @@ export default function Header({ classes, children, ...restProps }) {
       </div>
     </nav>
   );
-};
+}
 Header.Items = function HeaderItem({ classes, children, ...restProps }) {
   return (
     <div
@@ -32,10 +37,13 @@ Header.Items = function HeaderItem({ classes, children, ...restProps }) {
   );
 };
 Header.SidebarToggle = function HeaderSidebarToggle() {
-  const [isSidebarExpanded, setSidebarExpanded] = useState(false);
+  const [isSidebarExpanded, setSidebarExpanded] = useState(
+    localStorage.getItem("sidebar") == "true" ? true : false
+  );
   !document.body.classList.contains("is-sidebar-open")
     ? document.body.classList.add("is-sidebar-open")
     : document.body.classList.remove("is-sidebar-open");
+  const dispatch = useDispatch();
   return (
     <div className={classNames("h-7 w-7")}>
       <button
@@ -43,7 +51,18 @@ Header.SidebarToggle = function HeaderSidebarToggle() {
           "menu-toggle ml-0.5 flex h-7 w-7 flex-col justify-center space-y-1.5 text-primary outline-none focus:outline-none dark:text-accent-light/80"
         )}
         onClick={() => {
+          //console.log(isSidebarExpanded);
           setSidebarExpanded((curr) => !curr);
+          setTimeout(() => {
+            if (isSidebarExpanded) {
+              dispatch(OpeningSidebar());
+              localStorage.setItem("sidebar", "false");
+            } else {
+              localStorage.setItem("sidebar", "true");
+              dispatch(ClosingSidebar());
+            }
+          }, 0);
+          //dispatch(OpeningSidebar());
         }}
         // TODO : ="isSidebarExpanded && 'active'"
       >

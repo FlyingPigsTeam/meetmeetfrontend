@@ -60,9 +60,7 @@ const Homepage = () => {
 
   const [status, setstatus] = useState("");
   const req = async () => {
-    const { data } = await axios.get(
-      `/api/rooms?${url}&page=${currentPage}`
-    );
+    const { data } = await axios.get(`/api/rooms?${url}&page=${currentPage}`);
     // .then((response) => response);
     setstatus(data);
     // console.log(`http://127.0.0.1:8000/api/rooms?${url}&page=${currentPage}`);
@@ -144,7 +142,10 @@ const Homepage = () => {
                 ))}
               </div>
             ) : (
-              <div className="dark:text-navy-50 text-slate-900 pt-20 text-2xl font-semibold" style={{paddingLeft:"35vw"}}>
+              <div
+                className="dark:text-navy-50 text-slate-900 pt-20 text-2xl font-semibold"
+                style={{ paddingLeft: "35vw" }}
+              >
                 No Room Found
               </div>
             )}

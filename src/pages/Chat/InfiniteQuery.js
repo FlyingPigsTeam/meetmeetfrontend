@@ -1,27 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useInfiniteQuery, useQuery } from "react-query";
 
 const InfiniteQuery = () => {
-  const GetHistory = async (page) => {
+  const [AllPages, setAllPages] = useState([]);
+  const fetchRepositories = async (page) => {
     const response = await fetch(
-      `https://api.github.com/search/repositories?q=topic:reactjs&per_page=30&page=${page}`
+      `http://166.0.162.72/history/api/history/4?page=${page}`
     );
     return response.json();
   };
-  //const { data } = useQuery("repositories", GetHistory);
-  //console.log(data);
   const { data, hasNextPage, fetchNextPage } = useInfiniteQuery(
     "repositories",
-    ({ pageParam = 1 }) => GetHistory(pageParam),
+    ({ pageParam = 1 }) => fetchRepositories(pageParam),
     {
       getNextPageParam: (lastPage, allPages) => {
-        const maxPages = lastPage.total_count / 30;
+        console.log("LastPages:", lastPage);
+        console.log("AllPages:", allPages);
+        const maxPages = 2;
         const nextPage = allPages.length + 1;
         return nextPage <= maxPages ? nextPage : undefined;
       },
     }
   );
+  console.log(data.pages[1]);
 
   useEffect(() => {
     let fetching = false;
@@ -41,21 +43,26 @@ const InfiniteQuery = () => {
       document.removeEventListener("scroll", onScroll);
     };
   }, []);
-
-  console.log(data);
+  // console.log(data.pages[0].items);
   return (
     <div>
-      <div>InfiniteQuery</div>
-      {data
-        ? data.items.map((item) => (
-            <li key={item.id}>
-              <p>
-                <b>{item.name}</b>
-              </p>
-              <p>{item.description}</p>
-            </li>
-          ))
-        : ""}
+      <h1>Infinite Scroll</h1>
+      <ul>
+        {data
+          ? data.pages.map((e) =>
+              e.map((repo, index) => (
+                <li key={repo.index}>
+                  <p>
+                    <p>{repo.username}</p>
+                    <p>{repo.user_id}</p>
+                  </p>
+                  <p>{repo.message}</p>
+                  <br />
+                </li>
+              ))
+            )
+          : ""}
+      </ul>
     </div>
   );
 };
