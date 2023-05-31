@@ -156,4 +156,4 @@ const Subscribtion = () => {
     )
 }
 
-export default Subscribtion
+export default Subscribtion;

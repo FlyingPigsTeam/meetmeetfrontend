@@ -25,7 +25,9 @@ import Task from "../pages/Room/Task/Task";
 import Chat from "../pages/Chat/Chat";
 import Chat_test from "../pages/Chat/Chat_test";
 import JoinRoom from "../pages/Room/InfoTab/joinRoom";
-import PopOverTest from "../pages/Tests/PopOverTest";import Subscribtion from "../pages/Subscribtion/Subscribtion";
+import PopOverTest from "../pages/Tests/PopOverTest";
+import Subscribtion from "../pages/Subscribtion/Subscribtion";
+
 const Router = () => {
   return (
     <div>
@@ -58,6 +60,7 @@ const Router = () => {
           <Route path="/room/:idroom/chat" element={<Chat />} />
           <Route path="/joinRoom/:randomId" element={<JoinRoom />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/subscribtion" element={<Subscribtion />} />
           <Route
             path="/room/:idroom/info/edit"
             element={<InformationForm Title="Edit" />}

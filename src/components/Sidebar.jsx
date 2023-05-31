@@ -726,8 +726,8 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                                                     </div>
                                                 </div>
                                             </a>*/}
-                                            <a
-                                                href="#"
+                                            <Link
+                                                to={"/subscribtion"}
                                                 class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                                             >
                                                 <div
@@ -761,7 +761,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                                                         Your team activity
                                                     </div>
                                                 </div>
-                                            </a>
+                                            </Link>
                                             {/* <a
                                                 href="#"
                                                 class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
