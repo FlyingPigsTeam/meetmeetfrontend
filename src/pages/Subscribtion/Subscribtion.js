@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Route, Link, Routes } from "react-router-dom";
+// import { Route, Link, Routes } from "react-router-dom";
 
 import "../../index.css";
-import AuthContext from "../../context/AuthContext";
+// import AuthContext from "../../context/AuthContext";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import MainSection from "../../components/MainSection";
 import PageWrapper from "../../components/PageWrapper";
 import DarkModeToggle from "../../components/DarkModeToggle";
-import { useNavigate } from 'react-router-dom';
-import axios from "axios";
+// import { useNavigate } from 'react-router-dom';
+// import axios from "axios";
 import { CheckIcon } from '@heroicons/react/24/outline';
 
 const pricing = {
@@ -64,38 +64,38 @@ function classNames(...classes) {
 const Subscribtion = () => {
     return (
         <>
-            <PageWrapper>
-                <Header>
-                    <Header.Items>
-                        {/* <Header.SidebarToggle /> */}
-                        <Header.Right>
-                            <DarkModeToggle />
-                        </Header.Right>
-                    </Header.Items>
-                </Header>
-                <Sidebar>
-                    <Sidebar.Primary>
-                        <Sidebar.Primary.Logo />
-                        <Sidebar.Primary.Middle>
-                            <Sidebar.Primary.Middle.Home />
-                            {/* <Sidebar.Primary.Middle.LaterThings/> */}
-                            <Sidebar.Secondary.Expanded.Body.Middle.Divider />
-                            <Sidebar.Primary.Middle.Rooms>
-                                {/* <Sidebar.Primary.Middle.Rooms.Item /> */}
-                                <Sidebar.Primary.Middle.Rooms.LoadItems />
-                                <Sidebar.Primary.Middle.Rooms.AddRoom />
+        <PageWrapper>
+        <Header>
+          <Header.Items>
+            {/* <Header.SidebarToggle /> */}
+            <Header.Right>
+              <DarkModeToggle />
+            </Header.Right>
+          </Header.Items>
+        </Header>
+        <Sidebar>
+          <Sidebar.Primary>
+            <Sidebar.Primary.Logo />
+            <Sidebar.Primary.Middle>
+              <Sidebar.Primary.Middle.Home />
+              {/* <Sidebar.Primary.Middle.LaterThings/> */}
+              <Sidebar.Secondary.Expanded.Body.Middle.Divider />
+              <Sidebar.Primary.Middle.Rooms>
+                {/* <Sidebar.Primary.Middle.Rooms.Item /> */}
+                <Sidebar.Primary.Middle.Rooms.LoadItems />
+                <Sidebar.Primary.Middle.Rooms.AddRoom />
 
-                                {/* <Sidebar.Primary.Middle.Rooms.AllItem/> */}
-                            </Sidebar.Primary.Middle.Rooms>
-                        </Sidebar.Primary.Middle>
-                        <Sidebar.Primary.Bottom>
-                            <Sidebar.Primary.Bottom.LogOut />
-                            <Sidebar.Primary.Bottom.Profile />
-                        </Sidebar.Primary.Bottom>
-                    </Sidebar.Primary>
-                </Sidebar>
-                <MainSection>
-                    <div className="mx-auto max-w-7xl  py-24 px-4 sm:px-6 lg:px-8 card dark:bg-navy-800">
+                {/* <Sidebar.Primary.Middle.Rooms.AllItem/> */}
+              </Sidebar.Primary.Middle.Rooms>
+            </Sidebar.Primary.Middle>
+            <Sidebar.Primary.Bottom>
+              {/* <Sidebar.Primary.Bottom.LogOut /> */}
+              <Sidebar.Primary.Bottom.Profile />
+            </Sidebar.Primary.Bottom>
+          </Sidebar.Primary>
+        </Sidebar>
+        <MainSection>
+        <div className="mx-auto max-w-7xl  py-24 px-4 sm:px-6 lg:px-8 card dark:bg-navy-800">
                         <h2 className="text-3xl font-bold tracking-tight  sm:text-5xl sm:leading-none lg:text-6xl">
                             Pricing plans for teams of all sizes
                         </h2>
@@ -150,8 +150,8 @@ const Subscribtion = () => {
                             ))}
                         </div>
                     </div>
-                </MainSection>
-            </PageWrapper>
+                    </MainSection>
+                    </PageWrapper>
         </>
     )
 }
