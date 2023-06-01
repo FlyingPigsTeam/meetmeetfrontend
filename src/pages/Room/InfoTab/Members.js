@@ -30,12 +30,7 @@ const Members = () => {
   console.log("entries", entries)
   const req = async () => {
     const { data } = await axios
-      .get(`http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?show_members=1&page=${page}&entries=${entries}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      })
+      .get(`/api/my-rooms/${idroom}/requests?show_members=1&page=${page}&entries=${entries}`)
       .then((response) => response);
     console.log("memberFetch", data);
     setUser_Data(data);
@@ -52,12 +47,7 @@ const Members = () => {
   };
   const thisroom = async () => {
     const { data } = await axios
-      .get(`http://127.0.0.1:8000/api/my-rooms/${idroom}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      })
+      .get(`/api/my-rooms/${idroom}`)
       .then((response) => response);
     console.log("roomDataFetch", data);
     setRoomData(data);
@@ -105,19 +95,11 @@ const Members = () => {
         </>
       ),
       action: (requestId) => {
-        console.log("YAROO", `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?request_id=${requestId}`,
-        )
         const acceptUser = async () => {
           const { data } = await axios
             .put(
-              `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?request_id=${requestId}`,
+              `/api/my-rooms/${idroom}/requests?request_id=${requestId}`,
               { is_member: true, request_status: 2 },
-              {
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: "Bearer " + authTokens.access,
-                },
-              }
             )
             .then((response) => response);
           console.log("memberAccept", data);
@@ -142,13 +124,7 @@ const Members = () => {
         const deleteUser = async () => {
           const { data } = await axios
             .delete(
-              `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?request_id=${requestId}`,
-              {
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: "Bearer " + authTokens.access,
-                },
-              }
+              `/api/my-rooms/${idroom}/requests?request_id=${requestId}`
             )
             .then((response) => response);
           console.log("memberKick", data);
@@ -174,13 +150,7 @@ const Members = () => {
         const deleteUser = async () => {
           const { data } = await axios
             .delete(
-              `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?request_id=${requestId}`,
-              {
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: "Bearer " + authTokens.access,
-                },
-              }
+              `/api/my-rooms/${idroom}/requests?request_id=${requestId}`
             )
             .then((response) => response);
           console.log("memberReject", data);

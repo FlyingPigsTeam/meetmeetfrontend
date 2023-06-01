@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import Tom from "tom-select";
 import AuthContext from "../context/AuthContext";
+import { BASEURL } from "../data/BASEURL";
 
 const AutoComplete = ({ members }) => {
     console.log(members);
@@ -14,7 +15,7 @@ const AutoComplete = ({ members }) => {
     const handlePostData = async () => {
         try {
             const newMembers = selectedMembers.map(({ id, ...rest }) => rest);
-            const response = await fetch("http://127.0.0.1:8000/api/profile", {
+            const response = await fetch(BASEURL + "/api/profile", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
