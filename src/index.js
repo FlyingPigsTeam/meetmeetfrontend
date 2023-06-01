@@ -6,11 +6,8 @@ import { Provider } from "react-redux";
 import Store from "./Redux/Store";
 import React from "react";
 import ReactDOM from "react-dom/client";
-
 import 'animate.css';
-
 import App from "./App";
-
 import "./index.css";
 
 // axios.defaults.baseURL = "http://127.0.0.1:8000/";
@@ -41,7 +38,7 @@ root.render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
-      {/* <ReactQueryDevtools initialIsOpen={false} position="bottom-right" /> */}
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>
   </Provider>
 );
