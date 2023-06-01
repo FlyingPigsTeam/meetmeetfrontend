@@ -4,6 +4,7 @@ import React from "react";
 import { AuthProvider } from "../context/AuthContext";
 import Homepage from "../pages/Home/Homepage";
 import PrivateRoute from "../utils/PrivateRoute";
+import AxiosGlobalConfig from "../api/AxiosGlobalConfig";
 
 // import Home from "../pages/Home/Home";
 // import Header from "../components/Header";
@@ -25,13 +26,16 @@ import Task from "../pages/Room/Task/Task";
 import Chat from "../pages/Chat/Chat";
 import Chat_test from "../pages/Chat/Chat_test";
 import JoinRoom from "../pages/Room/InfoTab/joinRoom";
+import LandingPage from "../pages/Landing/LandingPage";
 
 const Router = () => {
   return (
     <div>
       <AuthProvider>
+        <AxiosGlobalConfig/>
         {/* <Header /> */}
         <Routes>
+          <Route path="/landing" element={<LandingPage/>} />
           <Route element={<PrivateRoute />}>
             {/* <Route element={<Home />} path="/" /> */}
             <Route path="/" element={<Homepage />} />

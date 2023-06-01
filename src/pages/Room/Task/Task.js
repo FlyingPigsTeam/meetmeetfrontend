@@ -37,12 +37,7 @@ const Task = () => {
   const [tasks, settasks] = useState([]);
   const reqForGettingAll = async () => {
     const { data } = await axios
-      .get(`http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?show_all=1`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      })
+      .get(`/api/my-rooms/${roomId}/tasks?show_all=1`)
       .then((response) => response);
     settasks(data);
   };
@@ -51,13 +46,7 @@ const Task = () => {
   const reqForDeleting = async (taskId) => {
     const { data } = await axios
       .delete(
-        `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?task_id=${taskId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + authTokens.access,
-          },
-        }
+        `/api/my-rooms/${roomId}/tasks?task_id=${taskId}`
       )
       .then((response) => response);
     setdeleteStatus(data);
@@ -88,15 +77,9 @@ const Task = () => {
   const reqForChecking = async (taskID) => {
     const { data } = await axios
       .put(
-        `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?task_id=${taskID}`,
-        JSON.stringify({
-          done: 1,
-        }),
+        `/api/my-rooms/${roomId}/tasks?task_id=${taskID}`,
         {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + authTokens.access,
-          },
+          done: 1,
         }
       )
       .then((response) => response);
@@ -212,9 +195,9 @@ const Task = () => {
                     Tasks
                   </p>
                 </div>
-                {tasks.length==0 ? 
-                <p className="mt-1 text-sm">Start Writting Your Tasks</p>
-                : ""}
+                {tasks.length == 0 ?
+                  <p className="mt-1 text-sm">Start Writting Your Tasks</p>
+                  : ""}
               </div>
               <div className="flex items-center space-x-2"></div>
             </div>
@@ -287,7 +270,7 @@ const Task = () => {
                         )}
                       </div>
                       <div className="mt-2">
-                        <Skeleton />
+                        <Skeleton members={item.user}/>
                       </div>
                     </div>
                   </div>
@@ -339,7 +322,7 @@ const Task = () => {
                 </div>
               ))}
 
-                {/*           
+              {/*           
           <div className="border-b border-slate-150 py-3 dark:border-navy-500">
             <div className="flex items-center space-x-2 sm:space-x-3">
               <label className="flex">

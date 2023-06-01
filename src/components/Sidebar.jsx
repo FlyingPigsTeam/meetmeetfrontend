@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../context/AuthContext";
 import AddRoom from "../pages/Room/AddRoom";
@@ -13,6 +13,11 @@ import AppLogo from "../assets/images/app-logo.svg";
 // TODO : ROOMS HOVER HAVE PROBLEM
 // TODO : ACTIVE NOTIF ON ROOMS
 export default function Sidebar({ classes, children, ...restProps }) {
+    const location = useLocation()
+    useEffect(() => {
+        document.body.classList.contains("is-sidebar-open") && document.body.classList.remove("is-sidebar-open")
+    }, [location])
+
     return <div className="sidebar print:hidden">{children}</div>;
 }
 
@@ -339,12 +344,7 @@ Sidebar.Primary.Middle.Rooms.LoadItems = function LoaderRoomsItems({
     const [myrooms, setMyRooms] = useState([]);
     const req = async () => {
         const { data } = await axios
-            .get(`http://127.0.0.1:8000/api/my-rooms`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: "Bearer " + authTokens.access,
-                },
-            })
+            .get(`/api/my-rooms`)
             .then((response) => response);
         console.log("roomDataFetch", data);
         setMyRooms(data);
@@ -554,12 +554,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch("http://127.0.0.1:8000/api/profile", {
-                headers: {
-                    Authorization: `Bearer ${authTokens.access}`,
-                },
-            });
-            const data = await response.json();
+            const {data} = await axios.get("/api/profile");
             setData(data);
             console.log("man",data)
 

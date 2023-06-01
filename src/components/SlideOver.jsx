@@ -5,6 +5,7 @@ import { PlusCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import AuthContext from "../context/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { BASEURL } from "../data/BASEURL";
 
 const SlideOver = ({ slideover, setslideover, id }) => {
   let authTokens = useContext(AuthContext).authTokens;
@@ -12,12 +13,7 @@ const SlideOver = ({ slideover, setslideover, id }) => {
   const [status, setstatus] = useState("none");
   const req = async () => {
     const { data } = await axios
-      .get(`http://127.0.0.1:8000/api/my-rooms/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      })
+      .get(`/api/my-rooms/${id}`)
       .then((response) => response);
     setstatus(data);
   };
@@ -27,7 +23,7 @@ const SlideOver = ({ slideover, setslideover, id }) => {
 
   const [joinRequest, setJoinRequest] = useState({});
   const JoinReq = async () => {
-    const data = await fetch(`http://127.0.0.1:8000/api/my-rooms/${id}`, {
+    const data = await fetch(BASEURL + `/api/my-rooms/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -5,6 +5,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import AuthContext from "../../../context/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import AutoComplete from "../../../components/AutoCompleteTask";
 
 export default function SliderForEditting({
   slideover,
@@ -13,6 +14,7 @@ export default function SliderForEditting({
   taskId,
   seteditChanges,
 }) {
+  const [listUser, setUser] = useState([]);
   const [title, settitle] = useState();
   const [description, setdescription] = useState();
   const [selectedDifficulty, setSelectedDifficulty] = useState();
@@ -23,18 +25,13 @@ export default function SliderForEditting({
   const reqForGettingTask = async () => {
     const { data } = await axios
       .get(
-        `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?task_id=${taskId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + authTokens.access,
-          },
-        }
+        `/api/my-rooms/${roomId}/tasks?task_id=${taskId}`
       )
       .then((response) => response);
     settitle(data.title);
     setdescription(data.description);
     setSelectedDifficulty(data.priority);
+    console.log('member',data.user);
   };
   useEffect(() => {
     reqForGettingTask();
@@ -44,19 +41,13 @@ export default function SliderForEditting({
   const reqForEditing = async () => {
     const { data } = await axios
       .put(
-        `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?task_id=${taskId}`,
-        JSON.stringify({
+        `/api/my-rooms/${roomId}/tasks?task_id=${taskId}`,
+        {
           title: title,
           priority: selectedDifficulty,
           description: description,
-          user: 2,
+          user: listUser,
           room: roomId,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + authTokens.access,
-          },
         }
       )
       .then((response) => response);
@@ -156,7 +147,7 @@ export default function SliderForEditting({
                             value={selectedDifficulty}
                             onChange={handleDifficultyChange}
                             placeholder="Select difficulty of the task"
-                            //autoComplete="off"
+                          //autoComplete="off"
                           >
                             <option value="3">Low</option>
                             <option value="2">Medium</option>
@@ -165,17 +156,18 @@ export default function SliderForEditting({
                         </label>
                         <label className="block z-40">
                           <span className=" dark:text-navy-50">Assigned To:</span>
-                          <select
+                          <div className="card mt-3 p-4"><AutoComplete setmember={setUser}/></div>
+                          {/* <select
                             //x-init="$el._x_tom = new Tom($el)"
                             className="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
                             //multiple
                             value={selectedDifficulty}
                             onChange={handleDifficultyChange}
                             placeholder="Select difficulty of the task"
-                            //autoComplete="off"
+                          //autoComplete="off"
                           >
                             <option value=""></option>
-                          </select>
+                          </select> */}
                         </label>
                       </div>
                       <div className="flex items-center justify-between mt-20 xl:mt-52 py-3 px-4">

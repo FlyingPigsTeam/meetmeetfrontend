@@ -2,6 +2,8 @@ import { createContext, useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import axios from "axios";
+import { BASEURL } from "../data/BASEURL";
 
 const AuthContext = createContext(null);
 
@@ -25,7 +27,7 @@ export const AuthProvider = ({ children }) => {
   const loginUser = async (values) => {
     // e.preventDefault();
     //console.log("form submitted")
-    const response = await fetch("http://127.0.0.1:8000/auth/login/", {
+    const response = await fetch(BASEURL +"/auth/login/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +60,7 @@ export const AuthProvider = ({ children }) => {
     // e.preventDefault();
     //console.log("form submitted")
     const response = await fetch(
-      "http://127.0.0.1:8000/auth/forget-password/",
+      BASEURL + "/auth/forget-password/",
       {
         method: "POST",
         headers: {
@@ -82,7 +84,7 @@ export const AuthProvider = ({ children }) => {
   const registerUser = async (values) => {
     //e.preventDefault();
     //console.log("form submitted")
-    const reg_response = await fetch("http://127.0.0.1:8000/auth/register/", {
+    const reg_response = await fetch(BASEURL + "/auth/register/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -118,7 +120,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const updateToken = async () => {
-    const response = await fetch("http://127.0.0.1:8000/auth/token/refresh/", {
+    const response = await fetch(BASEURL + "/auth/token/refresh/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

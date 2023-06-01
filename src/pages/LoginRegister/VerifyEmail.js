@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { BASEURL } from "../../data/BASEURL";
 
 function VerifyEmail() {
   const Navigate = useNavigate();
@@ -15,7 +16,7 @@ function VerifyEmail() {
 
   let gettoken = async () => {
     let response = await fetch(
-      "http://127.0.0.1:8000/auth/email-verify/?" +
+      BASEURL + "/auth/email-verify/?" +
         new URLSearchParams({
           token: token1,
         }),

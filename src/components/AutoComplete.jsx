@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import Tom from "tom-select";
 import AuthContext from "../context/AuthContext";
 import Avatar200x200 from "../assets/images/200x200.png";
+import axios from "axios";
+import {BASEURL} from '../data/BASEURL'
 
 
 const AutoComplete = ({ members }) => {
@@ -12,7 +14,7 @@ const AutoComplete = ({ members }) => {
     const { authTokens } = useContext(AuthContext);
 
     const [selectedMembers, setSelectedMembers] = useState([]);
-    const navigate= useNavigate();
+    const navigate = useNavigate();
     const selectCustom = useRef(null);
 
     const handleSubmit = async () => {
@@ -20,24 +22,15 @@ const AutoComplete = ({ members }) => {
         try {
             for (let member of selectedMembers) {
                 console.log(member);
-                const response = await fetch(`http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?username=${member}`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${authTokens.access}`,
-                    },
-                    // body: JSON.stringify(member),
-                });
-                const data = await response.json();
-
+                const { data } = await axios.post(`/api/my-rooms/${idroom}/requests?username=${member}`).then((response) => response);
                 console.log(data);
-                
+
             }
             navigate(0);
         } catch (error) {
             console.error(error);
         }
-        
+
     };
 
 
@@ -57,7 +50,7 @@ const AutoComplete = ({ members }) => {
             },
             load: function (query, callback) {
 
-                var url = `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?show_members=1&username=`+encodeURIComponent(query);
+                var url = `${BASEURL}/api/my-rooms/${idroom}/requests?show_members=1&username=` + encodeURIComponent(query);
                 fetch(url, {
                     method: "GET",
                     headers: {
@@ -66,16 +59,16 @@ const AutoComplete = ({ members }) => {
                     },
                     // body: JSON.stringify(member),
                 })
-                    
+
                     .then(async response => {
                         const data = await response.json();
-                        console.log("response",data);
+                        console.log("response", data);
                         callback(data);
                     }).catch(() => {
                         callback();
                     });
-                    
-                    
+
+
             },
             render: {
                 option: function (item, escape) {

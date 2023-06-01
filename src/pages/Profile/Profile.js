@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 function Profile() {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
@@ -24,12 +24,7 @@ function Profile() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/profile", {
-        headers: {
-          Authorization: `Bearer ${authTokens.access}`,
-        },
-      });
-      const data = await response.json();
+      const { data } = await axios.get("/api/profile").then((response) => response);;
       setData(data);
       console.log(data)
       setIsLoading(false);
@@ -42,33 +37,19 @@ function Profile() {
     fetchData();
   }, []);
 
-  const handleUpdate = async (updatedUser,image) => {
+  const handleUpdate = async (updatedUser, image) => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/profile", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${authTokens.access}`,
-        },
-        body: JSON.stringify(updatedUser),
-      });
-      const data = await response.json();
+      const {data} = await axios.put("/api/profile", updatedUser).then((response) => response);;
+      
       setData(data);
       setIsEditing(false);
     } catch (error) {
       console.error(error);
     }
 
-    if (image)
-    {
-      const resPic = await axios.putForm(`http://127.0.0.1:8000/api/upload?id=1&where=profile`,
-          {'image': image},
-          {
-            headers: {
-              "Content-Type": 'multipart/form-data',
-              Authorization: "Bearer " + authTokens.access,
-            }
-          }
+    if (image) {
+      const resPic = await axios.putForm(`/api/upload?id=1&where=profile`,
+        { 'image': image }
       ).then((response) => {
         console.log(JSON.stringify(response.data));
       }).catch((error) => {
@@ -162,33 +143,33 @@ function Profile() {
                   <div className="flex items-center justify-center space-x-2 mb-4">
 
                     <div className="mt-5 border-t border-slate-200 dark:border-navy-500">
-                    <div className="flex justify-center space-x-2">
-                      {/* <button
+                      <div className="flex justify-center space-x-2">
+                        {/* <button
                         className=" absolute px-4 py-2 text-white top-0 right-0 bg-blue-500 rounded hover:bg-blue-600 mr-2"
                         onClick={()=>navigate("/change-password")}
                       >
                         Change Password
                       </button> */}
-                      {isEditing ? (
-                        <button
-                          className="absolute top-5 left-10 px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
-                          onClick={() => setIsEditing(false)}
-                        >
-                          Back
-                        </button>
-                        // <div></div>
-                      ) : (
-                        // <button
-                        //   className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600"
-                        //   onClick={handleEditClick}
-                        // >
-                        //   Edit
-                        // </button>
-                        <div></div>
-                      )}
+                        {isEditing ? (
+                          <button
+                            className="absolute top-5 left-10 px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
+                            onClick={() => setIsEditing(false)}
+                          >
+                            Back
+                          </button>
+                          // <div></div>
+                        ) : (
+                          // <button
+                          //   className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600"
+                          //   onClick={handleEditClick}
+                          // >
+                          //   Edit
+                          // </button>
+                          <div></div>
+                        )}
+                      </div>
+                      {/* <h1 className="text-2xl font-bold">Profile</h1> */}
                     </div>
-                    {/* <h1 className="text-2xl font-bold">Profile</h1> */}
-                  </div>
                   </div>
                   {isEditing ? (
                     <Setting
@@ -199,8 +180,8 @@ function Profile() {
                   ) : (
                     <div>
 
-                        <ProfileCard handleEdit={handleEditClick} user={data} />
-                        </div>
+                      <ProfileCard handleEdit={handleEditClick} user={data} />
+                    </div>
 
                   )}
                 </div>
