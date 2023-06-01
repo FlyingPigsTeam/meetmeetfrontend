@@ -12,6 +12,7 @@ import PopOverContext from "../context/PopOverContext";
 // TODO : HOVER COLORIZE
 // TODO : HOME BUTTON SHAPE CHANGES ON OVERFLOW ROOMS
 // TODO : ROOMS HOVER HAVE PROBLEM
+
 // TODO : ACTIVE NOTIF ON ROOMS
 export default function Sidebar({ classes, children, ...restProps }) {
     const location = useLocation()
@@ -753,7 +754,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                                                     <h2
                                                         class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
                                                     >
-                                                        Team
+                                                        Premium
                                                     </h2>
                                                     <div
                                                         class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
