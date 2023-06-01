@@ -10,17 +10,16 @@ const InfiniteQuery = () => {
     );
     return response.json();
   };
-  const [counter, setcounter] = useState(2);
-  const { data, fetchNextPage } = useInfiniteQuery(
+  const { data, hasNextPage, fetchNextPage } = useInfiniteQuery(
     "repositories",
-    ({ pageParam = 2 }) => fetchRepositories(pageParam),
+    ({ pageParam = 1 }) => fetchRepositories(pageParam),
     {
       getNextPageParam: (lastPage, allPages) => {
         console.log("LastPages:", lastPage);
         console.log("AllPages:", allPages);
         const maxPages = 2;
-        setcounter((e) => e - 1);
-        return counter > 0 ? counter : undefined;
+        const nextPage = allPages.length + 1;
+        return nextPage <= maxPages ? nextPage : undefined;
       },
     }
   );
@@ -48,7 +47,7 @@ const InfiniteQuery = () => {
 
       if (!fetching && scrollTop <= clientHeight / 2) {
         fetching = true;
-        if (counter > 0) await fetchNextPage();
+        if (hasNextPage) await fetchNextPage();
         fetching = false;
       }
     };
