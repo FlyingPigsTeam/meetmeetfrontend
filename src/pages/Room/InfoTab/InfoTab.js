@@ -12,7 +12,7 @@ import AddRoom from "../AddRoom";
 
 import InformationForm from "./InformationForm";
 import InformationPage from "./InformationPage";
-// import Members from "./Members";
+import Members from "./Members";
 
 import Avatar200x200 from "../../../assets/images/200x200.png";
 
@@ -96,7 +96,7 @@ const InfoTab = () => {
               <InformationPage />
             </div>
             <div className="col-span-12 lg:col-span-6">
-              {/* <Members /> */}
+              <Members />
               {/* <div className="card"> */}
               {/* <InformationForm Title="Add" /> */}
               {/* </div> */}
