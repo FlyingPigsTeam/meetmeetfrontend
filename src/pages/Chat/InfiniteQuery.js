@@ -46,7 +46,7 @@ const InfiniteQuery = () => {
       const { scrollHeight, scrollTop, clientHeight } =
         event.target.scrollingElement;
 
-      if (!fetching && scrollTop <= clientHeight / 2) {
+      if (!fetching && scrollTop < 10) {
         fetching = true;
         if (hasNextPage) await fetchNextPage();
         fetching = false;
@@ -73,7 +73,7 @@ const InfiniteQuery = () => {
       {data
         ? data.pages.map((e) =>
             e.map((repo, index) => (
-              <li key={repo.index}>
+              <li className=" ml-[50vw]" key={repo.index}>
                 <p>
                   <p>{repo.username}</p>
                   <p>{repo.user_id}</p>
@@ -86,7 +86,7 @@ const InfiniteQuery = () => {
         : ""}
       <ul>
         {fake.map((e, index) => (
-          <li key={index}>
+          <li className=" ml-[50vw]" key={index}>
             <p>{e}</p>
             <br />
             <br />

@@ -55,17 +55,17 @@ const Chat = () => {
   //   return wordsWithSpace.join("");
   // }
 
-  const [history, setHistory] = useState([]);
-  const reqForGettingAll = async () => {
-    const { data } = await axios
-      .get(`/history/api/history/${roomId}`)
-      .then((response) => response);
-    setHistory(data);
-  };
-  console.log(history);
-  useEffect(() => {
-    reqForGettingAll();
-  }, []);
+  // const [history, setHistory] = useState([]);
+  // const reqForGettingAll = async () => {
+  //   const { data } = await axios
+  //     .get(`/history/api/history/${roomId}`)
+  //     .then((response) => response);
+  //   setHistory(data);
+  // };
+  // console.log(history);
+  // useEffect(() => {
+  //   reqForGettingAll();
+  // }, []);
 
   useEffect(() => {
     client.onopen = () => {
@@ -111,8 +111,8 @@ const Chat = () => {
             <div
               className={
                 sidebarExp == false
-                  ? " xl:-ml-[75vw] text-2xl font-bold font-serif"
-                  : " xl:-ml-[65vw] text-2xl font-bold font-serif"
+                  ? " xl: text-2xl font-bold font-serif"
+                  : " xl: text-2xl font-bold font-serif"
               }
             >
               {localStorage.getItem("RoomTitle")}
@@ -191,6 +191,8 @@ const Chat = () => {
                   <p>Yesterday</p>
                   <div className="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div> */}
                 </div>
+
+                
                 {message.length != 0 ? (
                   message.map((item, index) => (
                     <div key={index}>

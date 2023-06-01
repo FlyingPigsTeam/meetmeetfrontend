@@ -46,7 +46,9 @@ export default function InformationPage() {
     alert("Text copied to clipboard");
     //TODO : CONVERT TO SWAL
   }
-  localStorage.setItem("RoomTitle", roomData.data.title);
+  if (roomData) {
+    localStorage.setItem("RoomTitle", roomData.data.title);
+  }
   if (isLoading) {
     return <p>LOADING ...</p>;
   }
