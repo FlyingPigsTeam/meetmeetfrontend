@@ -1,13 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import AuthAPI from "axios";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { Provider } from "react-redux";
 import Store from "./Redux/Store";
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+import 'animate.css';
+
+import App from "./App";
+
+import "./index.css";
 
 // axios.defaults.baseURL = "http://127.0.0.1:8000/";
 // axios.defaults.baseURL = "";

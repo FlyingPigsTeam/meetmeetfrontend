@@ -12,6 +12,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import AutoComplete from "../../../components/AutoComplete";
 import AuthContext from "../../../context/AuthContext";
+import Pagination from '../../Home/Pagination'
 
 import Avatar200x200 from "../../../assets/images/200x200.png";
 
@@ -21,12 +22,28 @@ const Members = () => {
   let authTokens = useContext(AuthContext).authTokens;
   let [users_Data, setUser_Data] = useState([]);
   let [roomData, setRoomData] = useState({});
+  const entriesOptions=[1,2,3,4,5,10,15]
+  
+  const [totalpage, setTotalpage] = useState(1);
+  const [page, setPage] = useState(1);
+  const [entries, setEntries] = useState(1)
+  console.log("entries", entries)
   const req = async () => {
     const { data } = await axios
-      .get(`/api/my-rooms/${idroom}/requests?show_members=1`)
+      .get(`/api/my-rooms/${idroom}/requests?show_members=1&page=${page}&entries=${entries}`)
       .then((response) => response);
     console.log("memberFetch", data);
     setUser_Data(data);
+
+    let count = data.count;
+    let number = 1;
+    if (count % entries === 0) {
+      number = count / entries;
+    } else {
+      number = (count - (count % entries)) / entries + 1;
+    }
+    setTotalpage(number);
+    console.log("totalpage", totalpage);
   };
   const thisroom = async () => {
     const { data } = await axios
@@ -35,15 +52,16 @@ const Members = () => {
     console.log("roomDataFetch", data);
     setRoomData(data);
 
+
   };
   useEffect(() => {
     req();
     thisroom();
-  }, [idroom]);
+  }, []);
 
   useEffect(() => {
     req();
-  }, [idroom]);
+  }, [idroom, page, entries]);
 
 
   const ConvertRole = (member) => {
@@ -328,7 +346,7 @@ const Members = () => {
                 </tr>
               </thead>
               <tbody>
-                {users_Data?.map((user, idx) => {
+                {users_Data?.results?.map((user, idx) => {
                   return (
                     <tr
                       key={`user-item-${idx}`}
@@ -456,16 +474,21 @@ const Members = () => {
             <div className="flex items-center space-x-2 text-xs+">
               <span>Show</span>
               <label className="block">
-                <select className="form-select rounded-full border border-slate-300 bg-white px-2 py-1 pr-6 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
-                  <option>10</option>
-                  <option>30</option>
-                  <option>50</option>
+                <select
+                  onChange={(e) => {
+                    setPage(1);
+                    setEntries(e.target.value);}}
+                  className="form-select text-xs+ rounded-full border border-slate-300 bg-white px-2 py-1 pr-6 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
+                >
+                  {entriesOptions.map((option, index) => (<option>{option}</option>))}
+
+                  
                 </select>
               </label>
               <span>entries</span>
             </div>
 
-            <ol className="pagination">
+            {/* <ol className="pagination">
               <li className="rounded-l-lg bg-slate-150 dark:bg-navy-500">
                 <a
                   href="#"
@@ -548,9 +571,16 @@ const Members = () => {
                   </svg>
                 </a>
               </li>
-            </ol>
+            </ol> */}
+            <Pagination
+              total={totalpage}
+              current={page}
+              setPage={setPage}
+            />
 
-            <div className="text-xs+">1 - 10 of 10 entries</div>
+            {/* <div className="text-xs+">1 - 10 of 10 entries</div> */}
+            <div className="text-xs+">{`${page*entries-entries+1} - ${Math.min(page*entries, users_Data.count)} of ${users_Data.count} entries`}</div>
+
           </div>
         </div>
         <div className="card mt-3 p-4"><AutoComplete /></div>
@@ -586,49 +616,49 @@ className="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide t
 
 
 
-const Pagination = () => {
-  const handlePageChange = (selected) => {
-    // Handle page change logic here
-  };
+// const Pagination = () => {
+//   const handlePageChange = (selected) => {
+//     // Handle page change logic here
+//   };
 
-  return (
-    <ReactPaginate
-      pageCount={5} // Set the total number of pages
-      onPageChange={handlePageChange}
-      containerClassName="pagination"
-      pageClassName="bg-slate-150 dark:bg-navy-500"
-      activeClassName="bg-primary"
-      previousClassName="rounded-l-lg bg-slate-150 dark:bg-navy-500"
-      previousLinkClassName="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
-      nextClassName="rounded-r-lg bg-slate-150 dark:bg-navy-500"
-      nextLinkClassName="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
-      breakClassName="bg-slate-150 dark:bg-navy-500"
-      breakLinkClassName="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
-      pageLinkClassName="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
-      previousLabel={
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-4 w-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth="2"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-        </svg>
-      }
-      nextLabel={
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-4 w-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth="2"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-        </svg>
-      }
-    />
-  );
-};
+//   return (
+//     <ReactPaginate
+//       pageCount={5} // Set the total number of pages
+//       onPageChange={handlePageChange}
+//       containerClassName="pagination"
+//       pageClassName="bg-slate-150 dark:bg-navy-500"
+//       activeClassName="bg-primary"
+//       previousClassName="rounded-l-lg bg-slate-150 dark:bg-navy-500"
+//       previousLinkClassName="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+//       nextClassName="rounded-r-lg bg-slate-150 dark:bg-navy-500"
+//       nextLinkClassName="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+//       breakClassName="bg-slate-150 dark:bg-navy-500"
+//       breakLinkClassName="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+//       pageLinkClassName="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+//       previousLabel={
+//         <svg
+//           xmlns="http://www.w3.org/2000/svg"
+//           className="h-4 w-4"
+//           fill="none"
+//           viewBox="0 0 24 24"
+//           stroke="currentColor"
+//           strokeWidth="2"
+//         >
+//           <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+//         </svg>
+//       }
+//       nextLabel={
+//         <svg
+//           xmlns="http://www.w3.org/2000/svg"
+//           className="h-4 w-4"
+//           fill="none"
+//           viewBox="0 0 24 24"
+//           stroke="currentColor"
+//           strokeWidth="2"
+//         >
+//           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+//         </svg>
+//       }
+//     />
+//   );
+// };

@@ -143,7 +143,7 @@ const VerticalNav = () => {
             >
               <i className="fa-solid fa-users"></i>
 
-              <span>Members</span>
+              {/* <span>Members</span> */}
             </a>
           </li>
         </ul>

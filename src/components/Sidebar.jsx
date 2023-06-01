@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../context/AuthContext";
 import AddRoom from "../pages/Room/AddRoom";
@@ -15,7 +15,12 @@ import { ClosingSidebar, OpeningSidebar } from "../Redux/Action";
 // TODO : ROOMS HOVER HAVE PROBLEM
 // TODO : ACTIVE NOTIF ON ROOMS
 export default function Sidebar({ classes, children, ...restProps }) {
-  return <div className="sidebar print:hidden">{children}</div>;
+    const location = useLocation()
+    useEffect(() => {
+        document.body.classList.contains("is-sidebar-open") && document.body.classList.remove("is-sidebar-open")
+    }, [location])
+
+    return <div className="sidebar print:hidden">{children}</div>;
 }
 
 Sidebar.Primary = function PrimarySidebar({ classes, children, ...restProps }) {
