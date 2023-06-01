@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
-import { useInfiniteQuery, useQuery } from "react-query";
+import { QueryClient, useInfiniteQuery, useQuery } from "react-query";
 
 const InfiniteQuery = () => {
   const fetchRepositories = async (page) => {
@@ -21,6 +21,7 @@ const InfiniteQuery = () => {
         const nextPage = allPages.length + 1;
         return nextPage <= maxPages ? nextPage : undefined;
       },
+      suspense: true,
     }
   );
   // const ininitequery = useInfiniteQuery(
