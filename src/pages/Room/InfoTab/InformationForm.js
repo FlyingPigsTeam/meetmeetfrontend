@@ -342,8 +342,14 @@ const InformationForm = ({ Title, ...props }) => {
                                         className="absolute bottom-0 right-0 flex items-center justify-center rounded-full bg-white dark:bg-navy-700">
 
                                         <label htmlFor={"edit-avatar-btn"}
-                                            className="btn h-6 w-6 rounded-full border border-slate-200 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:border-navy-500 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
-                                            <input type="file" id="edit-avatar-btn" onChange={onSelectImage} hidden />
+                                               className="btn h-6 w-6 rounded-full border border-slate-200 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:border-navy-500 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                                            <input
+                                                id="edit-avatar-btn"
+                                                type="file"
+                                                accept=".jpg, .jpeg, .png"
+                                                onChange={onSelectImage}
+                                                hidden
+                                            />
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 className="h-3.5 w-3.5"
