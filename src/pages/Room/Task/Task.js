@@ -153,7 +153,7 @@ const Task = () => {
               </Sidebar.Primary.Middle.Rooms>
             </Sidebar.Primary.Middle>
             <Sidebar.Primary.Bottom>
-              <Sidebar.Primary.Bottom.LogOut />
+              {/* <Sidebar.Primary.Bottom.LogOut /> */}
               <Sidebar.Primary.Bottom.Profile />
             </Sidebar.Primary.Bottom>
           </Sidebar.Primary>

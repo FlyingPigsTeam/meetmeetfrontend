@@ -12,7 +12,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import AutoComplete from "../../../components/AutoComplete";
 import AuthContext from "../../../context/AuthContext";
-import Pagination from '../../Home/Pagination'
+import PopOver from "../../../components/PopOver";import Pagination from '../../Home/Pagination'
 
 import Avatar200x200 from "../../../assets/images/200x200.png";
 
@@ -583,7 +583,7 @@ const Members = () => {
 
           </div>
         </div>
-        <div className="card mt-3 p-4"><AutoComplete /></div>
+        <div className="card mt-3 p-4"><AutoComplete members={users_Data}/></div>
       </div>
     </>
   );

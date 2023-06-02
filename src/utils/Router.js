@@ -29,6 +29,7 @@ import JoinRoom from "../pages/Room/InfoTab/joinRoom";
 import Search from "../pages/Room/Task/Search";
 import InfiniteQuery from "../pages/Chat/InfiniteQuery";
 import LandingPage from "../pages/Landing/LandingPage";
+import Subscribtion from "../pages/Subscribtion/Subscribtion";
 
 const Router = () => {
   return (
@@ -37,7 +38,7 @@ const Router = () => {
         <AxiosGlobalConfig />
         {/* <Header /> */}
         <Routes>
-          <Route path="/landing" element={<LandingPage/>} />
+          <Route path="/landing" element={<LandingPage />} />
           <Route element={<PrivateRoute />}>
             {/* <Route element={<Home />} path="/" /> */}
             <Route path="/" element={<Homepage />} />
@@ -53,7 +54,7 @@ const Router = () => {
           <Route path="/EditProfile" element={<EditProfile />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profileEdit" element={<Setting />} />
-
+          <Route path="/subscribtion" element={<Subscribtion />} />
           {/* <Route path="/room/info" element={<InfoTab />} /> */}
           <Route path="/room/:idroom/info" element={<InfoTab />} />
           <Route

@@ -10,7 +10,7 @@ import Sidebar from "../../components/Sidebar";
 import MainSection from "../../components/MainSection";
 import PageWrapper from "../../components/PageWrapper";
 import DarkModeToggle from "../../components/DarkModeToggle";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Profile() {
@@ -24,9 +24,11 @@ function Profile() {
 
   const fetchData = async () => {
     try {
-      const { data } = await axios.get("/api/profile").then((response) => response);;
+      const { data } = await axios
+        .get("/api/profile")
+        .then((response) => response);
       setData(data);
-      console.log(data)
+      console.log(data);
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -39,8 +41,10 @@ function Profile() {
 
   const handleUpdate = async (updatedUser, image) => {
     try {
-      const {data} = await axios.put("/api/profile", updatedUser).then((response) => response);;
-      
+      const { data } = await axios
+        .put("/api/profile", updatedUser)
+        .then((response) => response);
+
       setData(data);
       setIsEditing(false);
     } catch (error) {
@@ -48,13 +52,14 @@ function Profile() {
     }
 
     if (image) {
-      const resPic = await axios.putForm(`/api/upload?id=1&where=profile`,
-        { 'image': image }
-      ).then((response) => {
-        console.log(JSON.stringify(response.data));
-      }).catch((error) => {
-        console.log(error);
-      });
+      const resPic = await axios
+        .putForm(`/api/upload?id=1&where=profile`, { image: image })
+        .then((response) => {
+          console.log(JSON.stringify(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
@@ -117,16 +122,13 @@ function Profile() {
               </Sidebar.Primary.Middle.Rooms>
             </Sidebar.Primary.Middle>
             <Sidebar.Primary.Bottom>
-              <Sidebar.Primary.Bottom.LogOut />
+              {/* <Sidebar.Primary.Bottom.LogOut /> */}
               <Sidebar.Primary.Bottom.Profile />
             </Sidebar.Primary.Bottom>
           </Sidebar.Primary>
         </Sidebar>
         <MainSection>
-          <div
-            className=" w-full card dark:bg-navy-800"
-
-          >
+          <div className=" w-full card dark:bg-navy-800">
             <div>
               {showChangePassword ? (
                 <div className="">
@@ -141,7 +143,6 @@ function Profile() {
               ) : (
                 <div className=" rounded-lg  p-6">
                   <div className="flex items-center justify-center space-x-2 mb-4">
-
                     <div className="mt-5 border-t border-slate-200 dark:border-navy-500">
                       <div className="flex justify-center space-x-2">
                         {/* <button
@@ -155,10 +156,23 @@ function Profile() {
                             className="absolute top-5 left-10 px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
                             onClick={() => setIsEditing(false)}
                           >
-                            Back
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-6 w-6"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M15 19l-7-7 7-7"
+                              />
+                            </svg>
                           </button>
-                          // <div></div>
                         ) : (
+                          // <div></div>
                           // <button
                           //   className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600"
                           //   onClick={handleEditClick}
@@ -172,23 +186,16 @@ function Profile() {
                     </div>
                   </div>
                   {isEditing ? (
-                    <Setting
-                      user={data}
-
-                      onCancel={() => setIsEditing(false)}
-                    />
+                    <Setting user={data} onCancel={() => setIsEditing(false)} />
                   ) : (
                     <div>
-
                       <ProfileCard handleEdit={handleEditClick} user={data} />
                     </div>
-
                   )}
                 </div>
               )}
             </div>
           </div>
-
         </MainSection>
       </PageWrapper>
     </>
