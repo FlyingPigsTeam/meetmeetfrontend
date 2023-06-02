@@ -207,13 +207,15 @@ const Task = () => {
               roomId={roomId}
               setaddChanges={setaddChanges}
             />
-            <SliderForEditting
-              slideover={slideoverEdit}
-              setslideover={setslideoverEdit}
-              roomId={roomId}
-              taskId={taskId}
-              seteditChanges={seteditChanges}
-            />
+            {taskId && (
+              <SliderForEditting
+                slideover={slideoverEdit}
+                setslideover={setslideoverEdit}
+                roomId={roomId}
+                taskId={taskId}
+                seteditChanges={seteditChanges}
+              />
+            )}
             {tasks.length == 0 ? (
               <p className="mt-1 text-sm">Start Writting Your Tasks</p>
             ) : (
@@ -326,7 +328,7 @@ const Task = () => {
                         )}
                       </div>
                       <div className="mt-2">
-                        <Skeleton members={item.user}/>
+                        <Skeleton members={item.user} />
                       </div>
                     </div>
                   </div>
