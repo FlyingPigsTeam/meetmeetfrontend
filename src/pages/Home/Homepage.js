@@ -60,9 +60,7 @@ const Homepage = () => {
 
   const [status, setstatus] = useState("");
   const req = async () => {
-    const { data } = await axios.get(
-      `/api/rooms?${url}&page=${currentPage}`
-    );
+    const { data } = await axios.get(`/api/rooms?${url}&page=${currentPage}`);
     // .then((response) => response);
     setstatus(data);
     // console.log(`http://127.0.0.1:8000/api/rooms?${url}&page=${currentPage}`);
@@ -125,7 +123,7 @@ const Homepage = () => {
           </Sidebar.Primary>
         </Sidebar>
         <MainSection>
-          <div className=" text-left pb-10 pl-10">
+          <div className=" text-left pb-10">
             <div className="text-5xl font-bold text-myGrey mb-8 mt-5">
               Events
             </div>
@@ -136,15 +134,18 @@ const Homepage = () => {
 
             {status.count ? (
               <div
-                className="grid grid-cols-2 gap-6"
-                style={{ width: "75.6vw", marginTop: "5vh" }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-6 "
+                style={{ width: "78vw", marginTop: "5vh" }}
               >
                 {cards.map((item, index) => (
                   <Card key={index} info={information} data={item} />
                 ))}
               </div>
             ) : (
-              <div className="dark:text-navy-50 text-slate-900 pt-20 text-2xl font-semibold" style={{paddingLeft:"35vw"}}>
+              <div
+                className="dark:text-navy-50 text-slate-900 pt-20 text-2xl font-semibold"
+                style={{ paddingLeft: "35vw" }}
+              >
                 No Room Found
               </div>
             )}

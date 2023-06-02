@@ -26,13 +26,15 @@ import Task from "../pages/Room/Task/Task";
 import Chat from "../pages/Chat/Chat";
 import Chat_test from "../pages/Chat/Chat_test";
 import JoinRoom from "../pages/Room/InfoTab/joinRoom";
+import Search from "../pages/Room/Task/Search";
+import InfiniteQuery from "../pages/Chat/InfiniteQuery";
 import LandingPage from "../pages/Landing/LandingPage";
 
 const Router = () => {
   return (
     <div>
       <AuthProvider>
-        <AxiosGlobalConfig/>
+        <AxiosGlobalConfig />
         {/* <Header /> */}
         <Routes>
           <Route path="/landing" element={<LandingPage/>} />
@@ -69,6 +71,8 @@ const Router = () => {
           <Route path="/panel" element={<PanelMain />} />
           <Route path="/panel2" element={<Paneltest />} />
           <Route path="/chat" element={<Chat_test />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/reactquery" element={<InfiniteQuery />} />
 
           {/* <Routes>
               <Route path="/" element={<Homepage />} />
