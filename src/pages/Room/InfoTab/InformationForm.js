@@ -20,6 +20,7 @@ import MainSection from "../../../components/MainSection";
 const InformationForm = ({ Title, ...props }) => {
     let idroom = useParams().idroom;
     const navigate = useNavigate();
+    const max_member_options = [6, 10, 25, 40, 50];
 
 
     const { isLoading: isLoadingCategories, data: categories } = useQuery('categories', () => { return axios.get("/api/category") })
@@ -98,7 +99,7 @@ const InformationForm = ({ Title, ...props }) => {
                 .required("Required"),
             maximum_member_count: yup
                 .number("It's not a number")
-                .oneOf([25, 40, 50], "Please select a valid number from the list")
+                .oneOf(max_member_options, "Please select a valid number from the list")
                 .required("Required"),
             categories: yup
                 .array()
@@ -131,7 +132,7 @@ const InformationForm = ({ Title, ...props }) => {
                 start_date: values.dateRange[0].toISOString(),
                 end_date: values.dateRange[1].toISOString(),
             };
-            console.log("EDITEDROOMJSON",sendData);
+            console.log("EDITEDROOMJSON", sendData);
 
             const { data } = await axios
                 .put(
@@ -342,7 +343,7 @@ const InformationForm = ({ Title, ...props }) => {
                                         className="absolute bottom-0 right-0 flex items-center justify-center rounded-full bg-white dark:bg-navy-700">
 
                                         <label htmlFor={"edit-avatar-btn"}
-                                               className="btn h-6 w-6 rounded-full border border-slate-200 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:border-navy-500 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                                            className="btn h-6 w-6 rounded-full border border-slate-200 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:border-navy-500 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                                             <input
                                                 id="edit-avatar-btn"
                                                 type="file"
@@ -469,9 +470,7 @@ const InformationForm = ({ Title, ...props }) => {
                                         className="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
                                     >
                                         <option>Corporate event</option>
-                                        <option>25</option>
-                                        <option>40</option>
-                                        <option>50</option>
+                                        {max_member_options.map((item) => (<option>{item}</option>))}
                                     </select>
                                     {formik.touched.maximum_member_count &&
                                         formik.errors.maximum_member_count && (
