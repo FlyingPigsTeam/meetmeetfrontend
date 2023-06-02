@@ -101,8 +101,19 @@ const Task = () => {
       const { data } = await axios
         .get(`/api/my-rooms/${roomId}/tasks?task_name=${search}`)
         .then((response) => response);
-      settasks(data);
-      setshowSearch(false);
+      console.log(tasks);
+      if (data) {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "No Task Found",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        settasks(data);
+      }
+      // setshowSearch(false);
       setsearch("");
     }
   };

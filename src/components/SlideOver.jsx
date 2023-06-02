@@ -64,14 +64,14 @@ const SlideOver = ({ slideover, setslideover, id }) => {
   for (let i = 0; i < categories.length; i++) {
     category.push(categories[i].name);
   }
-  // const tasks = status.tasks ? status.tasks : [];
-  const tasks = [
-    { priority: 2, title: "salam" },
-    { priority: 3, title: "khubi" },
-    { priority: 1, title: "cheroti" },
-    { priority: 1, title: "mamad" },
-    { priority: 3, title: "amin" },
-  ];
+  const tasks = status.tasks ? status.tasks : [];
+  // const tasks = [
+  //   { priority: 2, title: "salam" },
+  //   { priority: 3, title: "khubi" },
+  //   { priority: 1, title: "cheroti" },
+  //   { priority: 1, title: "mamad" },
+  //   { priority: 3, title: "amin" },
+  // ];
   //console.log(tasks);
   const members = status ? status.room_members : {};
   const member_count = members ? members.length : 0;
@@ -236,53 +236,52 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                             Task Part:
                             <div className="border border-slate-50 rounded-md overflow-y-scroll h-40">
                               {tasks
-                                ? tasks.map((item, index) =>
-                                    index < 6 ? (
-                                      <ol className="timeline line-space mt-5 px-4 [--size:1.5rem]">
-                                        <li className="timeline-item">
-                                          <div className="timeline-item-point rounded-full border border-current bg-white text-primary dark:bg-navy-700">
-                                            <i className="fa-solid fa-check text-tiny"></i>
-                                          </div>
+                                ? tasks.map((item, index) => (
+                                    <ol className="timeline line-space mt-5 px-4 [--size:1.5rem]">
+                                      <li className="timeline-item">
+                                        <div className="timeline-item-point rounded-full border border-current bg-white text-primary dark:bg-navy-700">
+                                          <i className="fa-solid fa-check text-tiny"></i>
+                                        </div>
 
-                                          <div className="timeline-item-content flex-1 pl-4">
-                                            <div className="flex flex-col justify-between pb-2 sm:flex-col-1 sm:pb-0">
-                                              <p className="pb-2 font-medium text-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0">
-                                                {item.title}
-                                              </p>
-                                            </div>
-                                            <p className="py-1 text-sm">
-                                              {/* {item.priority} */}
-                                              {item.priority == 3 ? (
-                                                <div className="flex flex-wrap items-center font-inter text-xs">
-                                                  <div className="badge space-x-2.5 px-1 text-success">
-                                                    <div className="h-2 w-2 rounded-full bg-current"></div>
-                                                    <span className=" font-medium text-sm">
-                                                      Low
-                                                    </span>
-                                                  </div>
-                                                </div>
-                                              ) : item.priority == 2 ? (
-                                                <div className="flex flex-wrap items-center font-inter text-xs">
-                                                  <div className="badge space-x-2.5 px-1 text-warning">
-                                                    <div className="h-2 w-2 rounded-full bg-current"></div>
-                                                    <span className=" font-medium text-sm">
-                                                      Medium
-                                                    </span>
-                                                  </div>
-                                                </div>
-                                              ) : (
-                                                <div className="flex flex-wrap items-center font-inter text-xs">
-                                                  <div className="badge space-x-2.5 px-1 text-error">
-                                                    <div className="h-2 w-2 rounded-full bg-current"></div>
-                                                    <span className=" font-medium text-sm">
-                                                      Hard
-                                                    </span>
-                                                  </div>
-                                                </div>
-                                              )}
+                                        <div className="timeline-item-content flex-1 pl-4">
+                                          <div className="flex flex-col justify-between pb-2 sm:flex-col-1 sm:pb-0">
+                                            <p className="pb-2 font-medium text-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0">
+                                              {item.title}
                                             </p>
-                                            <div class="flex-grow h-px bg-slate-50"></div>
-                                            {/* <div>
+                                          </div>
+                                          <p className="py-1 text-sm">
+                                            {/* {item.priority} */}
+                                            {item.priority == 3 ? (
+                                              <div className="flex flex-wrap items-center font-inter text-xs">
+                                                <div className="badge space-x-2.5 px-1 text-success">
+                                                  <div className="h-2 w-2 rounded-full bg-current"></div>
+                                                  <span className=" font-medium text-sm">
+                                                    Low
+                                                  </span>
+                                                </div>
+                                              </div>
+                                            ) : item.priority == 2 ? (
+                                              <div className="flex flex-wrap items-center font-inter text-xs">
+                                                <div className="badge space-x-2.5 px-1 text-warning">
+                                                  <div className="h-2 w-2 rounded-full bg-current"></div>
+                                                  <span className=" font-medium text-sm">
+                                                    Medium
+                                                  </span>
+                                                </div>
+                                              </div>
+                                            ) : (
+                                              <div className="flex flex-wrap items-center font-inter text-xs">
+                                                <div className="badge space-x-2.5 px-1 text-error">
+                                                  <div className="h-2 w-2 rounded-full bg-current"></div>
+                                                  <span className=" font-medium text-sm">
+                                                    Hard
+                                                  </span>
+                                                </div>
+                                              </div>
+                                            )}
+                                          </p>
+                                          <div class="flex-grow h-px bg-slate-50"></div>
+                                          {/* <div>
                                     <p class="text-xs text-slate-400 dark:text-navy-50">
                                       Members:
                                     </p>
@@ -328,13 +327,10 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                                       </div>
                                     </div>
                                   </div> */}
-                                          </div>
-                                        </li>
-                                      </ol>
-                                    ) : (
-                                      ""
-                                    )
-                                  )
+                                        </div>
+                                      </li>
+                                    </ol>
+                                  ))
                                 : ""}
                             </div>
                           </div>
