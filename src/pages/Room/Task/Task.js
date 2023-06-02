@@ -178,13 +178,13 @@ const Task = () => {
               roomId={roomId}
               setaddChanges={setaddChanges}
             />
-            <SliderForEditting
+            {taskId && <SliderForEditting
               slideover={slideoverEdit}
               setslideover={setslideoverEdit}
               roomId={roomId}
               taskId={taskId}
               seteditChanges={seteditChanges}
-            />
+            />}
             <div
               x-show="!isSearchbarActive"
               className="flex items-center justify-between"
@@ -270,7 +270,7 @@ const Task = () => {
                         )}
                       </div>
                       <div className="mt-2">
-                        <Skeleton members={item.user}/>
+                        <Skeleton members={item.user} />
                       </div>
                     </div>
                   </div>
