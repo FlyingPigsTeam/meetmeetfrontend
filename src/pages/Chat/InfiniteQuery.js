@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { QueryClient, useInfiniteQuery, useQuery } from "react-query";
-import axios from "axios";
 
 const InfiniteQuery = () => {
   const fetchRepositories = async (page) => {
-    return axios.get(
+    const response = await fetch(
       `http://166.0.162.72/history/api/history/4?page=${page}`
-    )
+    );
+    return response.json();
   };
   const { data, hasNextPage, fetchNextPage } = useInfiniteQuery(
     "repositories",
@@ -72,17 +72,17 @@ const InfiniteQuery = () => {
       <h1>Infinite Scroll</h1>
       {data
         ? data.pages.map((e) =>
-          e.map((repo, index) => (
-            <li className=" ml-[50vw]" key={repo.index}>
-              <p>
-                <p>{repo.username}</p>
-                <p>{repo.user_id}</p>
-              </p>
-              <p>{repo.message}</p>
-              <br />
-            </li>
-          ))
-        )
+            e.map((repo, index) => (
+              <li className=" ml-[50vw]" key={repo.index}>
+                <p>
+                  <p>{repo.username}</p>
+                  <p>{repo.user_id}</p>
+                </p>
+                <p>{repo.message}</p>
+                <br />
+              </li>
+            ))
+          )
         : ""}
       <ul>
         {fake.map((e, index) => (

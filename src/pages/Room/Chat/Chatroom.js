@@ -12,6 +12,7 @@ const posts = [
     { id: 7, title: "post 7" },
     { id: 8, title: "post 8" },
 ]
+
 const fetchPosts = async (page) => {
     await new Promise(resolve => setTimeout(resolve, 3000))
     return posts.slice((page - 1) * 2, page * 2)
