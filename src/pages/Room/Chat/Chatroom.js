@@ -1,96 +1,111 @@
-import React from 'react'
-import { useInfiniteQuery } from 'react-query'
-import { useIntersection } from '@mantine/hooks'
+import React from 'react';
+import { useInfiniteQuery, useQuery } from 'react-query';
+import { useIntersection } from '@mantine/hooks';
+import axios from 'axios';
+import classNames from '../../../utils/classNames';
 
-const posts = [
-    { id: 1, title: "post 1" },
-    { id: 2, title: "post 2" },
-    { id: 3, title: "post 3" },
-    { id: 4, title: "post 4" },
-    { id: 5, title: "post 5" },
-    { id: 6, title: "post 6" },
-    { id: 7, title: "post 7" },
-    { id: 8, title: "post 8" },
-]
 
-const fetchPosts = async (page) => {
-    await new Promise(resolve => setTimeout(resolve, 3000))
-    return posts.slice((page - 1) * 2, page * 2)
-}
+const PAGE_SIZE = 10;
+
+const fetchChatCount = async () => {
+    const response = await axios.get('http://166.0.162.72/history/api/history/count/4');
+    return response.data;
+};
+
+const fetchChatHistory = async ({ pageParam = 1 }) => {
+    const response = await axios.get(`http://166.0.162.72/history/api/history/4?page=${pageParam}`);
+    return response.data;
+};
+
 const Chatroom = () => {
-    const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-        ['history'],
-        async ({ pageParam = 1 }) => {
-            const response = await fetchPosts(pageParam);
-            return response;
-        },
+    const {
+        data: countData,
+        isLoading: countLoading,
+        isError: countError,
+    } = useQuery('chatCount', fetchChatCount);
+
+    const totalPage = Math.ceil(countData?.count / PAGE_SIZE);
+
+    const {
+        data: historyData,
+        fetchNextPage,
+        hasNextPage,
+        isFetching,
+        isLoading: historyLoading,
+        isError: historyError,
+    } = useInfiniteQuery(
+        'chatHistory',
+        fetchChatHistory,
         {
-            getNextPageParam: (_, pages) => {
-                return pages.length + 1
+            enabled: !!countData,
+            getNextPageParam: (lastPage, pages) => {
+
+                return pages.length + 1 <= totalPage ? pages.length + 1 : undefined;
             },
-            initialData: {
-                pages: [posts.slice(0, 2)],
-                pageParams: [1]
-            }
         }
-    )
+    );
 
     const lastPostRef = React.useRef(null);
     const { ref, entry } = useIntersection({
         root: lastPostRef.current,
         threshold: 1,
-    })
+    });
+
     React.useEffect(() => {
-        if (entry?.isIntersecting) fetchNextPage()
+        if (entry?.isIntersecting && hasNextPage) {
+            fetchNextPage();
+        };
+    }, [entry, fetchNextPage, hasNextPage]);
 
-    }, [entry])
 
-    const _posts = data?.pages.flatMap((page) => page);
+    const chatMessages = historyData?.pages.flatMap((page) => page);
 
     return (
-        <div>posts:
-            {
-                // data?.pages.map((page, i) =>
-                //     <div key={i}>
+        <div>
+            {countLoading || historyLoading ? (
+                <div>Loading...</div>
+            ) : countError || historyError ? (
+                <div>Error occurred while fetching data.</div>
+            ) : (
+                <>
+                {console.log(chatMessages)}
+                    {chatMessages &&
+                        chatMessages.map((message, i) => {
+                            if (i === chatMessages.length - 1) {
+                                return (
+                                    <>
+                                        <div className="h-20" 
+                                        ref={ref} 
+                                        key={message.time}>
+                                            {i + " - " + message.time}
+                                        </div><br />
+                                    </>
+                                );
+                            }
 
-                //         {(
-                //             page.map(
-                //                 (post) => (<div key={post.id}> {post.title}</div>)
-                //             )
+                            return (
+                                <>
+                                    <div className="h-20 font-extrabold" key={message.time}>
+                                        {i + " - " + message.time}
+                                    </div>
+                                    <br />
+                                </>
+                            );
+                        })}
 
-                //         )}
-                //     </div>
-                // )
+                    <button onClick={fetchNextPage}
+                        className={classNames("btn min-w-[7rem] rounded-full font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+                            , (!hasNextPage || isFetching) && "bg-primary",
+                            !(!hasNextPage || isFetching) && "bg-error")}
+                        disabled={!hasNextPage || isFetching}
+                    >
+                        {isFetching ? 'Loading more...' + totalPage + ' ' + countData.count : 'Load More ' + totalPage + ' ' + countData.count}
+                    </button>
 
-            }
-            {
-                _posts.map((post, i) => {
-                    if (i === _posts.length - 1)
-                        return <div
-                            className='h-80'
-                            ref={ref}
-                            key={post.id}>
-                            {post.title}
-                        </div>
-
-                    return <div key={post.id}
-                        className='h-80'
-
-                    >{post.title}</div>
-                })
-            }
-            <button
-                onClick={() => fetchNextPage()}
-                disabled={isFetchingNextPage}
-            >{
-                    isFetchingNextPage ? 'Loading more' :
-                        (data?.pages.length ?? 0) < 3 ?
-                            'Load More' : 'Nothing more to load'
-                }
-
-            </button>
+                </>
+            )}
         </div>
-    )
-}
+    );
+};
 
-export default Chatroom
+export default Chatroom;
