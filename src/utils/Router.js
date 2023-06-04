@@ -30,6 +30,7 @@ import Search from "../pages/Room/Task/Search";
 import InfiniteQuery from "../pages/Chat/InfiniteQuery";
 import LandingPage from "../pages/Landing/LandingPage";
 import Subscribtion from "../pages/Subscribtion/Subscribtion";
+import Chatroom from "../pages/Room/Chat/Chatroom";
 
 const Router = () => {
   return (
@@ -73,6 +74,9 @@ const Router = () => {
           <Route path="/panel2" element={<Paneltest />} />
           <Route path="/chat" element={<Chat_test />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/room/:idroom/chatroom" element={<Chatroom />} />
+
+          
           <Route path="/reactquery" element={<InfiniteQuery />} />
 
           {/* <Routes>

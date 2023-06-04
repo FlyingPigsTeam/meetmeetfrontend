@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@makotot/paginated": "^1.0.1",
+    "@mantine/hooks": "^6.0.13",
     "@popperjs/core": "^2.11.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
