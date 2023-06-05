@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Tom from "tom-select";
 import AuthContext from "../context/AuthContext";
 import Avatar200x200 from "../assets/images/200x200.png";
+import { BASEURL } from "../data/BASEURL";
 
 
 const AutoComplete = ({ setmember }) => {
@@ -20,7 +21,7 @@ const AutoComplete = ({ setmember }) => {
         try {
             for (let member of selectedMembers) {
                 console.log(member);
-                const response = await fetch(`http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?username=${member}`, {
+                const response = await fetch(BASEURL+`/api/my-rooms/${idroom}/requests?username=${member}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -59,7 +60,7 @@ const AutoComplete = ({ setmember }) => {
             },
 
             load: function (query, callback) {
-                const url = `http://127.0.0.1:8000/api/my-rooms/${idroom}/requests?show_members=1&username=${encodeURIComponent(
+                const url = BASEURL+ `/api/my-rooms/${idroom}/requests?show_members=1&username=${encodeURIComponent(
                     query
                 )}`;
                 fetch(url, {

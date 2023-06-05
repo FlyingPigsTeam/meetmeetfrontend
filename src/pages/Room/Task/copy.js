@@ -6,6 +6,7 @@ import AuthContext from "../../../context/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
 import AutoComplete from "../../../components/AutoCompleteTask";
+import { BASEURL } from "../../../data/BASEURL";
 
 export default function SliderForAdding({
   slideover,
@@ -26,22 +27,15 @@ export default function SliderForAdding({
   const reqForAdding = async () => {
     const { data } = await axios
       .post(
-        `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks`,
-        JSON.stringify({
+        `/api/my-rooms/${roomId}/tasks`,
+        {
           title: title,
           priority: selectedDifficulty,
           description: description,
           done: 0,
           user: listUser,
           room: roomId,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + authTokens.access,
-          },
-        }
-      )
+        })
       .then((response) => response);
     setaddStatus(data);
     console.log("member", data.user);
@@ -152,9 +146,9 @@ export default function SliderForAdding({
                           </select>
                         </label>
                         {/* <label className="block z-40"> */}
-                          <span className=" dark:text-navy-50">Assigned To:</span>
-                          <div className="card mt-3 p-4"><AutoComplete setmember={setUser}/></div>
-                          {/* <select
+                        <span className=" dark:text-navy-50">Assigned To:</span>
+                        <div className="card mt-3 p-4"><AutoComplete setmember={setUser} /></div>
+                        {/* <select
                             //x-init="$el._x_tom = new Tom($el)"
                             className="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
                             //multiple
