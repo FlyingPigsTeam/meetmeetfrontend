@@ -13,6 +13,9 @@ import { async } from "q";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useInfiniteQuery } from "react-query";
+import classNames from "../../utils/classNames";
+import PopOver from "../../components/PopOver";
+import PopOverContext from "../../context/PopOverContext";
 
 const Chat = () => {
   const sidebarExp = useSelector((state) => state.SidebarExpanded);
@@ -67,7 +70,27 @@ const Chat = () => {
   // useEffect(() => {
   //   reqForGettingAll();
   // }, []);
+    const [activeMemberIndex, setActiveMemberIndex] = useState(null);
+    const [memberData, setMemberData] = useState({});
 
+    const [usernameM, setUsername] = useState("");
+    const fetchMember = async () => {
+      try {
+        const { member } = await axios.get(`users/?username=${usernameM}`).then((response) => response);
+        setMemberData(member);
+        console.log(member, 'member');
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    
+    const handleMemberClick = (index, username) => {
+      console.log('clicked');
+      setUsername(username);
+      setActiveMemberIndex(index === activeMemberIndex ? null : index);
+      fetchMember();
+    };
+    
   useEffect(() => {
     client.onopen = () => {
       console.log("WebSocket Client Connected");
@@ -387,13 +410,98 @@ const Chat = () => {
                                 </p>
                               </div>
                             </div>
-                            <div className="avatar">
-                              <img
-                                className="rounded-full"
-                                src={Avatar200x200}
-                                alt="avatar"
-                              />
+                            <PopOver
+                  show={index === activeMemberIndex}
+                  popperConfigs={{ placement: "right-end", offset: 12 }}
+                  key={index}
+                >
+                  <PopOverContext.Consumer>
+                    {({
+                      referenceElement,
+                      setReferenceElement,
+                      popperElement,
+                      setPopperElement,
+                      arrowElement,
+                      setArrowElement,
+                      styles,
+                      attributes,
+                    }) => (
+                      <>
+                        <div
+                          className={classNames("popper-root fixed", index === activeMemberIndex && "show")}
+                          ref={setPopperElement}
+                          style={styles.popper}
+                          {...attributes.popper}
+                        >
+                          {/* <div class="max-w-xs">
+                <div class="bg-white shadow-xl rounded-lg py-3">
+                    <div class="photo-wrapper p-2"></div> */}
+        
+                          <div className="popper-box w-64 rounded-lg border text-left border-slate-150 bg-white shadow-soft dark:border-navy-600 dark:bg-navy-700">
+                            <div className="items-left space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
+                              <div className="avatar h-14 w-14">
+                                <img
+                                  className="rounded-full"
+                                  src={
+                                    memberData.picture_path && memberData.picture_path !== "" && memberData.picture_path !== "__"
+                                      ? memberData.picture_path
+                                      : Avatar200x200
+                                  }
+                                  alt="avatar"
+                                />
+                              </div>
+                              <div className="p-2">
+                                <h3 className="text-center text-xl text-gray-900 font-medium leading-8">{memberData.userName}</h3>
+        
+                                <table className="text-xs my-3">
+                                  <tbody>
+                                    <tr>
+                                      <td className="px-2 py-2 text-gray-500 font-semibold">First name</td>
+                                      <td className="px-2 py-2">{memberData.first_name}</td>
+                                    </tr>
+                                    <tr>
+                                      <td className="px-2 py-2 text-gray-500 font-semibold">Last name</td>
+                                      <td className="px-2 py-2"> {memberData.last_name}</td>
+                                    </tr>
+        
+        
+                                    <tr>
+                                      <td className="px-2 py-2 text-gray-500 font-semibold">Description</td>
+                                      <td className="px-2 py-2">{memberData.bio}</td>
+                                    </tr>
+        
+                                  </tbody>
+                                </table>
+        
+                                {/* <div className="text-center my-3">
+                      <a className="text-xs text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium" href="#">View Profile</a>
+                    </div> */}
+                              </div>
                             </div>
+                          </div>
+        
+                        </div>
+                        <button
+                          onClick={() => handleMemberClick(index)}
+                          ref={setReferenceElement}
+                          className="avatar h-12 w-12 mt-[30%]"
+                        >
+                          {memberData.picture_path && memberData.picture_path !== "" && memberData.picture_path !== "__" ? (
+                            <img
+                              className="rounded-full ring ring-white dark:ring-navy-700"
+                              src={memberData.picture_path}
+                              alt="avatar"
+                            />
+                          ) : (
+                            <div className="is-initial rounded-full bg-info text-xs+ uppercase text-white ring ring-white dark:ring-navy-700">
+                              {memberData.first_name + memberData.last_name}
+                            </div>
+                          )}
+                        </button>
+                      </>
+                    )}
+                  </PopOverContext.Consumer>
+                            </PopOver>
                           </div>
                         )}
                       </div>
@@ -409,7 +517,7 @@ const Chat = () => {
               <form
                 onSubmit={handleSubmit}
                 id="form"
-                className="flex items-center justify-between "
+                className="flex memberDatas-center justify-between "
               >
                 <input
                   type="text"
