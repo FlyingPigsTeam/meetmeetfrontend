@@ -1,7 +1,292 @@
 import React from 'react';
 import '../../assets/scss/tailwind.scss'
+import WOW from 'wow.js';
+import { tns } from 'tiny-slider';
+import '../../assets/scss/components/tiny-slider.scss';
+import * as feather from 'feather-icons';
+
+
+
+import LogoDark from '../../assets/images/landing/images/logo-dark.png'
+import LogoLight from '../../assets/images/landing/images/logo-light.png'
+import Classic01 from '../../assets/images/landing/images/saas/classic01.png'
+import Classic02 from '../../assets/images/landing/images/saas/classic02.png'
+import Classic03 from '../../assets/images/landing/images/saas/classic03.png'
+
+import Client01 from '../../assets/images/landing/images/client/01.jpg'
+import Client02 from '../../assets/images/landing/images/client/02.jpg'
+import Client03 from '../../assets/images/landing/images/client/03.jpg'
+import Client04 from '../../assets/images/landing/images/client/04.jpg'
+import Client05 from '../../assets/images/landing/images/client/04.jpg'
+import Client06 from '../../assets/images/landing/images/client/04.jpg'
+import Home from '../../assets/images/landing/images/saas/home.png'
+
+import Blog01 from '../../assets/images/landing/images/blog/01.jpg'
+import Blog02 from '../../assets/images/landing/images/blog/02.jpg'
+import Blog03 from '../../assets/images/landing/images/blog/03.jpg'
+
+import AmericanEx from '../../assets/images/landing/images/payments/american-ex.png'
+import Discover from '../../assets/images/landing/images/payments/discover.png'
+import MasterCard from '../../assets/images/landing/images/payments/master-card.png'
+import PaypalPayment from '../../assets/images/landing/images/payments/paypal.png'
+import Visa from '../../assets/images/landing/images/payments/visa.png'
+
+import Amazon from '../../assets/images/landing/images/client/amazon.svg'
+import Google from '../../assets/images/landing/images/client/google.svg'
+import Lenovo from '../../assets/images/landing/images/client/lenovo.svg'
+import Shopify from '../../assets/images/landing/images/client/shopify.svg'
+import Paypal from '../../assets/images/landing/images/client/paypal.svg'
+import Spotify from '../../assets/images/landing/images/client/spotify.svg'
+
+
+
+
 
 const LandingPage = () => {
+    React.useEffect(() => {
+        const mywow = new WOW();
+        mywow.init();
+
+        if (document.getElementsByClassName('tiny-single-item').length > 0) {
+            var slider = tns({
+                container: '.tiny-single-item',
+                items: 1,
+                controls: false,
+                mouseDrag: true,
+                loop: true,
+                rewind: true,
+                autoplay: true,
+                autoplayButtonOutput: false,
+                autoplayTimeout: 3000,
+                navPosition: "bottom",
+                speed: 400,
+                gutter: 16,
+            });
+        };
+
+        if (document.getElementsByClassName('tiny-one-item').length > 0) {
+            var slider = tns({
+                container: '.tiny-one-item',
+                items: 1,
+                controls: true,
+                mouseDrag: true,
+                loop: true,
+                rewind: true,
+                autoplay: true,
+                autoplayButtonOutput: false,
+                autoplayTimeout: 3000,
+                navPosition: "bottom",
+                controlsText: ['<i class="mdi mdi-chevron-left "></i>', '<i class="mdi mdi-chevron-right"></i>'],
+                nav: false,
+                speed: 400,
+                gutter: 0,
+            });
+        };
+
+        if (document.getElementsByClassName('tiny-two-item').length > 0) {
+            var slider = tns({
+                container: '.tiny-two-item',
+                controls: true,
+                mouseDrag: true,
+                loop: true,
+                rewind: true,
+                autoplay: true,
+                autoplayButtonOutput: false,
+                autoplayTimeout: 3000,
+                navPosition: "bottom",
+                controlsText: ['<i class="mdi mdi-chevron-left "></i>', '<i class="mdi mdi-chevron-right"></i>'],
+                nav: false,
+                speed: 400,
+                gutter: 0,
+                responsive: {
+                    768: {
+                        items: 2
+                    },
+                },
+            });
+        };
+
+        if (document.getElementsByClassName('tiny-three-item').length > 0) {
+            var slider = tns({
+                container: '.tiny-three-item',
+                controls: false,
+                mouseDrag: true,
+                loop: true,
+                rewind: true,
+                autoplay: true,
+                autoplayButtonOutput: false,
+                autoplayTimeout: 3000,
+                navPosition: "bottom",
+                speed: 400,
+                gutter: 12,
+                responsive: {
+                    992: {
+                        items: 3
+                    },
+
+                    767: {
+                        items: 2
+                    },
+
+                    320: {
+                        items: 1
+                    },
+                },
+            });
+        };
+
+        if (document.getElementsByClassName('tiny-six-item').length > 0) {
+            var slider = tns({
+                container: '.tiny-six-item',
+                controls: true,
+                mouseDrag: true,
+                loop: true,
+                rewind: true,
+                autoplay: true,
+                autoplayButtonOutput: false,
+                autoplayTimeout: 3000,
+                navPosition: "bottom",
+                controlsText: ['<i class="mdi mdi-chevron-left "></i>', '<i class="mdi mdi-chevron-right"></i>'],
+                nav: false,
+                speed: 400,
+                gutter: 0,
+                responsive: {
+                    1025: {
+                        items: 6
+                    },
+
+                    992: {
+                        items: 4
+                    },
+
+                    767: {
+                        items: 3
+                    },
+
+                    320: {
+                        items: 1
+                    },
+                },
+            });
+        };
+
+        if (document.getElementsByClassName('tiny-twelve-item').length > 0) {
+            var slider = tns({
+                container: '.tiny-twelve-item',
+                controls: true,
+                mouseDrag: true,
+                loop: true,
+                rewind: true,
+                autoplay: true,
+                autoplayButtonOutput: false,
+                autoplayTimeout: 3000,
+                navPosition: "bottom",
+                controlsText: ['<i class="mdi mdi-chevron-left "></i>', '<i class="mdi mdi-chevron-right"></i>'],
+                nav: false,
+                speed: 400,
+                gutter: 0,
+                responsive: {
+                    1025: {
+                        items: 12
+                    },
+
+                    992: {
+                        items: 8
+                    },
+
+                    767: {
+                        items: 6
+                    },
+
+                    320: {
+                        items: 2
+                    },
+                },
+            });
+        };
+
+        if (document.getElementsByClassName('tiny-five-item').length > 0) {
+            var slider = tns({
+                container: '.tiny-five-item',
+                controls: true,
+                mouseDrag: true,
+                loop: true,
+                rewind: true,
+                autoplay: true,
+                autoplayButtonOutput: false,
+                autoplayTimeout: 3000,
+                navPosition: "bottom",
+                controlsText: ['<i class="mdi mdi-chevron-left "></i>', '<i class="mdi mdi-chevron-right"></i>'],
+                nav: false,
+                speed: 400,
+                gutter: 0,
+                responsive: {
+                    1025: {
+                        items: 5
+                    },
+
+                    992: {
+                        items: 4
+                    },
+
+                    767: {
+                        items: 3
+                    },
+
+                    425: {
+                        items: 1
+                    },
+                },
+            });
+        };
+
+        if (document.getElementsByClassName('tiny-home-slide-four').length > 0) {
+            var slider = tns({
+                container: '.tiny-home-slide-four',
+                controls: true,
+                mouseDrag: true,
+                loop: true,
+                rewind: true,
+                autoplay: true,
+                autoplayButtonOutput: false,
+                autoplayTimeout: 3000,
+                navPosition: "bottom",
+                controlsText: ['<i class="mdi mdi-chevron-left "></i>', '<i class="mdi mdi-chevron-right"></i>'],
+                nav: false,
+                speed: 400,
+                gutter: 0,
+                responsive: {
+                    1025: {
+                        items: 4
+                    },
+
+                    992: {
+                        items: 3
+                    },
+
+                    767: {
+                        items: 2
+                    },
+
+                    320: {
+                        items: 1
+                    },
+                },
+            });
+        };
+        feather.replace();
+
+
+    }, [])
+    function toggleMenu() {
+        document.getElementById('isToggle').classList.toggle('open');
+        var isOpen = document.getElementById('navigation')
+        if (isOpen.style.display === "block") {
+            isOpen.style.display = "none";
+        } else {
+            isOpen.style.display = "block";
+        }
+    };
     return (
         <>
             <div class="font-nunito text-base text-black dark:text-white dark:bg-slate-900">
@@ -23,15 +308,15 @@ const LandingPage = () => {
                     <div class="container">
                         {/* <!-- Logo container--> */}
                         <a class="logo pl-0" href="index.html">
-                            <img src="assets/images/logo-dark.png" class="inline-block dark:hidden" alt="" />
-                            <img src="assets/images/logo-light.png" class="hidden dark:inline-block" alt="" />
+                            <img src={LogoDark} class="inline-block dark:hidden" alt="" />
+                            <img src={LogoLight} class="hidden dark:inline-block" alt="" />
                         </a>
 
                         {/* <!-- End Logo container--> */}
                         <div class="menu-extras">
                             <div class="menu-item">
                                 {/* <!-- Mobile menu toggle--> */}
-                                <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
+                                <a class="navbar-toggle" id="isToggle" onClick={() => toggleMenu()}>
                                     <div class="lines">
                                         <span></span>
                                         <span></span>
@@ -366,7 +651,7 @@ const LandingPage = () => {
                                 </div>
                             </div>
                             <div class="home-dashboard mt-8 z-3 wow animate__animated animate__fadeIn">
-                                <img src="assets/images/saas/classic01.png" alt="" class="mover" />
+                                <img src={Classic01} alt="" class="mover" />
                             </div>
                         </div>
                         {/* <!--end grid--> */}
@@ -387,27 +672,27 @@ const LandingPage = () => {
                     <div class="container">
                         <div class="grid md:grid-cols-6 grid-cols-2 justify-center gap-[30px]">
                             <div class="mx-auto py-4 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
-                                <img src="assets/images/client/amazon.svg" class="h-6" alt="" />
+                                <img src={Amazon} class="h-6" alt="" />
                             </div>
 
                             <div class="mx-auto py-4 wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
-                                <img src="assets/images/client/google.svg" class="h-6" alt="" />
+                                <img src={Google} class="h-6" alt="" />
                             </div>
 
                             <div class="mx-auto py-4 wow animate__animated animate__fadeInUp" data-wow-delay=".5s">
-                                <img src="assets/images/client/lenovo.svg" class="h-6" alt="" />
+                                <img src={Lenovo} class="h-6" alt="" />
                             </div>
 
                             <div class="mx-auto py-4 wow animate__animated animate__fadeInUp" data-wow-delay=".7s">
-                                <img src="assets/images/client/paypal.svg" class="h-6" alt="" />
+                                <img src={Paypal} class="h-6" alt="" />
                             </div>
 
                             <div class="mx-auto py-4 wow animate__animated animate__fadeInUp" data-wow-delay=".9s">
-                                <img src="assets/images/client/shopify.svg" class="h-6" alt="" />
+                                <img src={Shopify} class="h-6" alt="" />
                             </div>
 
                             <div class="mx-auto py-4 wow animate__animated animate__fadeInUp" data-wow-delay="1.1s">
-                                <img src="assets/images/client/spotify.svg" class="h-6" alt="" />
+                                <img src={Spotify} class="h-6" alt="" />
                             </div>
                         </div>
                         {/* <!--end grid--> */}
@@ -547,7 +832,7 @@ const LandingPage = () => {
 
                         <div class="grid md:grid-cols-2 grid-cols-1 items-center mt-16 gap-[30px]">
                             <div class="relative wow animate__animated animate__fadeInLeft" data-wow-delay=".3s">
-                                <img src="assets/images/saas/classic02.png" class="rounded-lg shadow-md dark:shadow-gray-800" alt="" />
+                                <img src={Classic02} class="rounded-lg shadow-md dark:shadow-gray-800" alt="" />
                                 <div class="overflow-hidden absolute lg:h-[400px] h-[320px] lg:w-[400px] w-[320px] bg-indigo-600/5 bottom-0 left-0 rotate-45 -z-1 rounded-3xl"></div>
                             </div>
 
@@ -571,7 +856,7 @@ const LandingPage = () => {
                     <div class="container md:mt-24 mt-16">
                         <div class="grid md:grid-cols-2 grid-cols-1 items-center gap-[30px]">
                             <div class="relative order-1 md:order-2 wow animate__animated animate__fadeInRight" data-wow-delay=".5s">
-                                <img src="assets/images/saas/classic03.png" class="rounded-lg shadow-md dark:shadow-gray-800" alt="" />
+                                <img src={Classic03} class="rounded-lg shadow-md dark:shadow-gray-800" alt="" />
                                 <div class="overflow-hidden absolute lg:h-[400px] h-[320px] lg:w-[400px] w-[320px] bg-indigo-600/5 bottom-0 right-0 rotate-45 -z-1 rounded-3xl"></div>
                             </div>
 
@@ -617,7 +902,7 @@ const LandingPage = () => {
                                         </div>
 
                                         <div class="text-center mt-5">
-                                            <img src="assets/images/client/01.jpg" class="h-14 w-14 rounded-full shadow-md mx-auto" alt="" />
+                                            <img src={Client01} class="h-14 w-14 rounded-full shadow-md mx-auto" alt="" />
                                             <h6 class="mt-2 font-semibold">Calvin Carlo</h6>
                                             <span class="text-slate-400 text-sm">Manager</span>
                                         </div>
@@ -639,7 +924,7 @@ const LandingPage = () => {
                                         </div>
 
                                         <div class="text-center mt-5">
-                                            <img src="assets/images/client/02.jpg" class="h-14 w-14 rounded-full shadow-md mx-auto" alt="" />
+                                            <img src={Client02} class="h-14 w-14 rounded-full shadow-md mx-auto" alt="" />
                                             <h6 class="mt-2 font-semibold">Christa Smith</h6>
                                             <span class="text-slate-400 text-sm">Manager</span>
                                         </div>
@@ -661,7 +946,7 @@ const LandingPage = () => {
                                         </div>
 
                                         <div class="text-center mt-5">
-                                            <img src="assets/images/client/03.jpg" class="h-14 w-14 rounded-full shadow-md mx-auto" alt="" />
+                                            <img src={Client03} class="h-14 w-14 rounded-full shadow-md mx-auto" alt="" />
                                             <h6 class="mt-2 font-semibold">Jemina CLone</h6>
                                             <span class="text-slate-400 text-sm">Manager</span>
                                         </div>
@@ -683,7 +968,7 @@ const LandingPage = () => {
                                         </div>
 
                                         <div class="text-center mt-5">
-                                            <img src="assets/images/client/04.jpg" class="h-14 w-14 rounded-full shadow-md mx-auto" alt="" />
+                                            <img src={Client04} class="h-14 w-14 rounded-full shadow-md mx-auto" alt="" />
                                             <h6 class="mt-2 font-semibold">Smith Vodka</h6>
                                             <span class="text-slate-400 text-sm">Manager</span>
                                         </div>
@@ -705,7 +990,7 @@ const LandingPage = () => {
                                         </div>
 
                                         <div class="text-center mt-5">
-                                            <img src="assets/images/client/05.jpg" class="h-14 w-14 rounded-full shadow-md mx-auto" alt="" />
+                                            <img src={Client05} class="h-14 w-14 rounded-full shadow-md mx-auto" alt="" />
                                             <h6 class="mt-2 font-semibold">Cristino Murfi</h6>
                                             <span class="text-slate-400 text-sm">Manager</span>
                                         </div>
@@ -727,7 +1012,7 @@ const LandingPage = () => {
                                         </div>
 
                                         <div class="text-center mt-5">
-                                            <img src="assets/images/client/06.jpg" class="h-14 w-14 rounded-full shadow-md mx-auto" alt="" />
+                                            <img src={Client06} class="h-14 w-14 rounded-full shadow-md mx-auto" alt="" />
                                             <h6 class="mt-2 font-semibold">Cristino Murfi</h6>
                                             <span class="text-slate-400 text-sm">Manager</span>
                                         </div>
@@ -749,7 +1034,7 @@ const LandingPage = () => {
                             <div class="relative z-1">
                                 <div class="grid grid-cols-1 md:text-left text-center justify-center">
                                     <div class="relative">
-                                        <img src="assets/images/saas/home.png" alt="" />
+                                        <img src={Home} alt="" />
                                         <div class="absolute bottom-2/4 translate-y-2/4 right-0 left-0 text-center">
                                             <a href="#!" data-type="youtube" data-id="yba7hPeTSjk"
                                                 class="lightbox h-20 w-20 rounded-full shadow-lg dark:shadow-gray-800 inline-flex items-center justify-center bg-white dark:bg-slate-900 text-indigo-600">
@@ -873,7 +1158,7 @@ const LandingPage = () => {
 
                         <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 mt-8 gap-[30px]">
                             <div class="blog relative rounded-md shadow dark:shadow-gray-800 overflow-hidden wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
-                                <img src="assets/images/blog/01.jpg" alt="" />
+                                <img src={Blog01} alt="" />
 
                                 <div class="content p-6">
                                     <a href="blog-detail.html" class="title h5 text-lg font-medium hover:text-indigo-600 duration-500 ease-in-out">Design your apps in your own way</a>
@@ -886,7 +1171,7 @@ const LandingPage = () => {
                             </div>
 
                             <div class="blog relative rounded-md shadow dark:shadow-gray-800 overflow-hidden wow animate__animated animate__fadeInUp" data-wow-delay=".5s">
-                                <img src="assets/images/blog/02.jpg" alt="" />
+                                <img src={Blog02} alt="" />
 
                                 <div class="content p-6">
                                     <a href="blog-detail.html" class="title h5 text-lg font-medium hover:text-indigo-600 duration-500 ease-in-out">How apps is changing the IT world</a>
@@ -899,7 +1184,7 @@ const LandingPage = () => {
                             </div>
 
                             <div class="blog relative rounded-md shadow dark:shadow-gray-800 overflow-hidden wow animate__animated animate__fadeInUp" data-wow-delay=".7s">
-                                <img src="assets/images/blog/03.jpg" alt="" />
+                                <img src={Blog03} alt="" />
 
                                 <div class="content p-6">
                                     <a href="blog-detail.html" class="title h5 text-lg font-medium hover:text-indigo-600 duration-500 ease-in-out">Smartest Applications for Business</a>
@@ -935,7 +1220,7 @@ const LandingPage = () => {
                                     <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
                                         <div class="lg:col-span-4 md:col-span-12">
                                             <a href="#" class="text-[22px] focus:outline-none">
-                                                <img src="assets/images/logo-light.png" alt=""/>
+                                                <img src={LogoLight} alt="" />
                                             </a>
                                             <p class="mt-6 text-gray-300">Start working with Tailwind CSS that can provide everything you need to generate awareness, drive traffic, connect.</p>
                                             <ul class="list-none mt-6">
@@ -988,7 +1273,7 @@ const LandingPage = () => {
                                                         <label class="form-label">Write your email <span class="text-red-600">*</span></label>
                                                         <div class="form-icon relative mt-2">
                                                             <i data-feather="mail" class="w-4 h-4 absolute top-3 left-4"></i>
-                                                            <input type="email" class="form-input bg-gray-800 border border-gray-800 text-gray-100 pl-12 focus:shadow-none" placeholder="Email" name="email" required=""/>
+                                                            <input type="email" class="form-input bg-gray-800 border border-gray-800 text-gray-100 pl-12 focus:shadow-none" placeholder="Email" name="email" required="" />
                                                         </div>
                                                     </div>
 
@@ -996,7 +1281,7 @@ const LandingPage = () => {
                                                 </div>
                                             </form>
                                         </div>
-                                            {/* !--end col--> */}
+                                        {/* !--end col--> */}
                                     </div>
                                     {/* <!--end grid--> */}
                                 </div>
@@ -1015,11 +1300,11 @@ const LandingPage = () => {
                                 </div>
 
                                 <ul class="list-none md:text-right text-center mt-6 md:mt-0">
-                                    <li class="inline"><a href=""><img src="assets/images/payments/american-ex.png" class="max-h-6 inline" title="American Express" alt=""/></a></li>
-                                    <li class="inline"><a href=""><img src="assets/images/payments/discover.png" class="max-h-6 inline" title="Discover" alt=""/></a></li>
-                                    <li class="inline"><a href=""><img src="assets/images/payments/master-card.png" class="max-h-6 inline" title="Master Card" alt=""/></a></li>
-                                    <li class="inline"><a href=""><img src="assets/images/payments/paypal.png" class="max-h-6 inline" title="Paypal" alt=""/></a></li>
-                                    <li class="inline"><a href=""><img src="assets/images/payments/visa.png" class="max-h-6 inline" title="Visa" alt=""/></a></li>
+                                    <li class="inline"><a href=""><img src={AmericanEx} class="max-h-6 inline" title="American Express" alt="" /></a></li>
+                                    <li class="inline"><a href=""><img src={Discover} class="max-h-6 inline" title="Discover" alt="" /></a></li>
+                                    <li class="inline"><a href=""><img src={MasterCard} class="max-h-6 inline" title="Master Card" alt="" /></a></li>
+                                    <li class="inline"><a href=""><img src={PaypalPayment} class="max-h-6 inline" title="Paypal" alt="" /></a></li>
+                                    <li class="inline"><a href=""><img src={Visa} class="max-h-6 inline" title="Visa" alt="" /></a></li>
                                 </ul>
                             </div>
                             {/* <!--end grid--> */}
