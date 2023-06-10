@@ -1,9 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import classNames from "../utils/classNames";
-
 import Avatar200x200 from "../assets/images/200x200.png";
 import AppLogo from "../assets/images/app-logo.svg";
-import { components } from "react-select";
 import { render } from "@testing-library/react";
 import Chat from "../pages/Chat/Chat";
 import { ClosingSidebar, OpeningSidebar } from "../Redux/Action";
