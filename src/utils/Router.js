@@ -31,6 +31,7 @@ import InfiniteQuery from "../pages/Chat/InfiniteQuery";
 import LandingPage from "../pages/Landing/LandingPage";
 import Subscribtion from "../pages/Subscribtion/Subscribtion";
 import ActiveRedirect from "./ActiveRedirect";
+import PopOverTest from "../pages/Tests/PopOverTest";
 
 const Router = () => {
   return (
@@ -77,6 +78,8 @@ const Router = () => {
           <Route path="/chat" element={<Chat_test />} />
           <Route path="/search" element={<Search />} />
           <Route path="/reactquery" element={<InfiniteQuery />} />
+          <Route path="/poper" element={<PopOverTest />} />
+
 
           {/* <Routes>
               <Route path="/" element={<Homepage />} />
