@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate, useParams } from "react-router-dom";
 import React from "react";
 
 import { AuthProvider } from "../context/AuthContext";
@@ -30,6 +30,7 @@ import Search from "../pages/Room/Task/Search";
 import InfiniteQuery from "../pages/Chat/InfiniteQuery";
 import LandingPage from "../pages/Landing/LandingPage";
 import Subscribtion from "../pages/Subscribtion/Subscribtion";
+import ActiveRedirect from "./ActiveRedirect";
 
 const Router = () => {
   return (
@@ -56,6 +57,8 @@ const Router = () => {
           <Route path="/profileEdit" element={<Setting />} />
           <Route path="/subscribtion" element={<Subscribtion />} />
           {/* <Route path="/room/info" element={<InfoTab />} /> */}
+          <Route path="/room/:idroom" element={<ActiveRedirect/>} />
+
           <Route path="/room/:idroom/info" element={<InfoTab />} />
           <Route
             path="/room/:idroom/info/edit"
