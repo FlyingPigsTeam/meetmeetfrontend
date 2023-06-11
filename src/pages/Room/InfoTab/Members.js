@@ -572,11 +572,12 @@ const Members = () => {
                 </a>
               </li>
             </ol> */}
+            {totalpage !== 1 &&
             <Pagination
               total={totalpage}
               current={page}
               setPage={setPage}
-            />
+            />}
 
             {/* <div className="text-xs+">1 - 10 of 10 entries</div> */}
             <div className="text-xs+">{`${page*entries-entries+1} - ${Math.min(page*entries, users_Data.count)} of ${users_Data.count} entries`}</div>
