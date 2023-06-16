@@ -1,0 +1,64 @@
+/*********************************/
+/*         Testimonial           */
+/*===============================*/
+.client-testi {
+  @apply cursor-e-resize;
+}
+.client-testi .content {
+  @apply before:content-[""] before:absolute before:top-8 before:left-0 before:ml-3 before:box-border before:border-8 before:border-solid before:origin-[0] before:rotate-[135deg] before:shadow before:border-t-transparent before:border-r-white dark:before:border-r-slate-900 before:border-b-white dark:before:border-b-slate-900 before:border-l-transparent;
+  /* border-color: transparent theme('colors.white') theme('colors.white') transparent; */
+}
+
+.customer-testi {
+  @apply cursor-e-resize;
+}
+.customer-testi .content {
+  @apply before:content-[""] before:absolute before:left-1/2 before:-bottom-[4px] before:box-border before:border-8 before:rotate-[45deg] before:border-t-transparent before:border-r-white dark:before:border-r-slate-900 before:border-b-white dark:before:border-b-slate-900 before:border-l-transparent before:shadow-testi dark:before:shadow-gray-700;
+}
+.customer-testi .content:before {
+  transform-origin: 0 0;
+}
+
+.tns-nav {
+  @apply text-center mt-3;
+}
+.tns-nav button {
+  @apply rounded-[3px] bg-indigo-600/30 transition-all duration-500 ease-in-out border-0 m-1 p-[5px];
+}
+.tns-nav button.tns-nav-active {
+  @apply bg-indigo-600 rotate-[45deg];
+}
+
+/* Tns control */
+.tns-controls button[data-controls=prev],
+.tns-controls button[data-controls=next] {
+  @apply absolute top-2/4 -translate-y-2/4 text-base w-8 h-8 rounded-full bg-white dark:bg-slate-900 text-dark dark:text-white border-0 transition-all duration-500 ease-in-out z-10 shadow-md dark:shadow-gray-800;
+}
+.tns-controls button[data-controls=prev]:hover,
+.tns-controls button[data-controls=next]:hover {
+  @apply bg-indigo-600 text-white;
+}
+.tns-controls button[data-controls=prev] {
+  @apply left-0;
+}
+.tns-controls button[data-controls=next] {
+  @apply right-0;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-2160px);
+  }
+}
+.slider:after {
+  transform: rotateZ(360deg);
+}
+.slider .slide-track {
+  animation: scroll 120s linear infinite;
+  width: 7200px;
+}
+
+/*# sourceMappingURL=_testi.css.map */
