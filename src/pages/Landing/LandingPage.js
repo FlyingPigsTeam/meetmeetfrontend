@@ -1,8 +1,7 @@
 import React from 'react';
-import '../../assets/scss/tailwind.scss'
 import WOW from 'wow.js';
 import { tns } from 'tiny-slider';
-import '../../assets/scss/components/tiny-slider.scss';
+
 import * as feather from 'feather-icons';
 
 

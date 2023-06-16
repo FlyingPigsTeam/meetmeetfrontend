@@ -1,0 +1,42 @@
+/*****************/
+/*  Swiper Slider     */
+/*****************/
+.swiper-slider-hero .swiper-container,
+.swiper-slider-hero .swiper-slide .slide-inner {
+  @apply absolute right-0 top-0 w-full h-full;
+}
+.swiper-slider-hero .swiper-container .swiper-button-prev,
+.swiper-slider-hero .swiper-container .swiper-button-next {
+  @apply bg-transparent w-[35px] h-[35px] leading-[35px] -mt-[30px] bg-none border border-solid border-white/50;
+}
+.swiper-slider-hero .swiper-container .swiper-button-prev:before,
+.swiper-slider-hero .swiper-container .swiper-button-next:before {
+  @apply font-bold text-white;
+  font-family: "Material Design Icons";
+}
+.swiper-slider-hero .swiper-container .swiper-button-prev:hover,
+.swiper-slider-hero .swiper-container .swiper-button-next:hover {
+  @apply bg-indigo-600 border-indigo-600;
+}
+.swiper-slider-hero .swiper-container .swiper-button-prev:before {
+  content: "\f0141";
+}
+.swiper-slider-hero .swiper-container .swiper-button-next:before {
+  content: "\f0142";
+}
+.swiper-slider-hero .swiper-pagination-bullet {
+  @apply text-gray-50 bg-transparent;
+}
+.swiper-slider-hero .swiper-pagination-bullet-active {
+  @apply text-white;
+}
+.swiper-slider-hero .swiper-container-horizontal > .swiper-pagination-bullets,
+.swiper-slider-hero .swiper-pagination-custom,
+.swiper-slider-hero .swiper-pagination-fraction {
+  @apply bottom-[45px];
+}
+.swiper-slider-hero .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+  @apply my-0 mx-[13px];
+}
+
+/*# sourceMappingURL=_swiper-slider.css.map */
