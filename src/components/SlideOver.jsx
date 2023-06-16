@@ -5,6 +5,7 @@ import { PlusCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import AuthContext from "../context/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { BASEURL } from "../data/BASEURL";
 
 const SlideOver = ({ slideover, setslideover, id }) => {
   let authTokens = useContext(AuthContext).authTokens;
@@ -12,12 +13,7 @@ const SlideOver = ({ slideover, setslideover, id }) => {
   const [status, setstatus] = useState("none");
   const req = async () => {
     const { data } = await axios
-      .get(`http://127.0.0.1:8000/api/my-rooms/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      })
+      .get(`/api/my-rooms/${id}`)
       .then((response) => response);
     setstatus(data);
   };
@@ -27,7 +23,7 @@ const SlideOver = ({ slideover, setslideover, id }) => {
 
   const [joinRequest, setJoinRequest] = useState({});
   const JoinReq = async () => {
-    const data = await fetch(`http://127.0.0.1:8000/api/my-rooms/${id}`, {
+    const data = await fetch(BASEURL + `/api/my-rooms/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -68,6 +64,15 @@ const SlideOver = ({ slideover, setslideover, id }) => {
   for (let i = 0; i < categories.length; i++) {
     category.push(categories[i].name);
   }
+  const tasks = status.tasks ? status.tasks : [];
+  // const tasks = [
+  //   { priority: 2, title: "salam" },
+  //   { priority: 3, title: "khubi" },
+  //   { priority: 1, title: "cheroti" },
+  //   { priority: 1, title: "mamad" },
+  //   { priority: 3, title: "amin" },
+  // ];
+  //console.log(tasks);
   const members = status ? status.room_members : {};
   const member_count = members ? members.length : 0;
   const member_maximum_count = status
@@ -227,8 +232,107 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                                 )
                               : ""}
                           </div>
-                          <div className="h-40 border-darkBlue border-4 rounded-lg p-3 mt-4">
-                            Task Part
+                          <div className=" text-slate-800 dark:text-navy-50 text-xl font-bold my-2">
+                            Task Part:
+                            <div className="border border-slate-50 rounded-md overflow-y-scroll h-40">
+                              {tasks
+                                ? tasks.map((item, index) => (
+                                    <ol className="timeline line-space mt-5 px-4 [--size:1.5rem]">
+                                      <li className="timeline-item">
+                                        <div className="timeline-item-point rounded-full border border-current bg-white text-primary dark:bg-navy-700">
+                                          <i className="fa-solid fa-check text-tiny"></i>
+                                        </div>
+
+                                        <div className="timeline-item-content flex-1 pl-4">
+                                          <div className="flex flex-col justify-between pb-2 sm:flex-col-1 sm:pb-0">
+                                            <p className="pb-2 font-medium text-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0">
+                                              {item.title}
+                                            </p>
+                                          </div>
+                                          <p className="py-1 text-sm">
+                                            {/* {item.priority} */}
+                                            {item.priority == 3 ? (
+                                              <div className="flex flex-wrap items-center font-inter text-xs">
+                                                <div className="badge space-x-2.5 px-1 text-success">
+                                                  <div className="h-2 w-2 rounded-full bg-current"></div>
+                                                  <span className=" font-medium text-sm">
+                                                    Low
+                                                  </span>
+                                                </div>
+                                              </div>
+                                            ) : item.priority == 2 ? (
+                                              <div className="flex flex-wrap items-center font-inter text-xs">
+                                                <div className="badge space-x-2.5 px-1 text-warning">
+                                                  <div className="h-2 w-2 rounded-full bg-current"></div>
+                                                  <span className=" font-medium text-sm">
+                                                    Medium
+                                                  </span>
+                                                </div>
+                                              </div>
+                                            ) : (
+                                              <div className="flex flex-wrap items-center font-inter text-xs">
+                                                <div className="badge space-x-2.5 px-1 text-error">
+                                                  <div className="h-2 w-2 rounded-full bg-current"></div>
+                                                  <span className=" font-medium text-sm">
+                                                    Hard
+                                                  </span>
+                                                </div>
+                                              </div>
+                                            )}
+                                          </p>
+                                          <div class="flex-grow h-px bg-slate-50"></div>
+                                          {/* <div>
+                                    <p class="text-xs text-slate-400 dark:text-navy-50">
+                                      Members:
+                                    </p>
+                                    <div class="mt-2 flex justify-between">
+                                      <div class="flex flex-wrap -space-x-2">
+                                        <div class="avatar h-7 w-7 hover:z-10">
+                                          <img
+                                            class="rounded-full ring ring-white dark:ring-navy-700"
+                                            src="images/200x200.png"
+                                            alt="avatar"
+                                          />
+                                        </div>
+
+                                        <div class="avatar h-7 w-7 hover:z-10">
+                                          <div class="is-initial rounded-full bg-info text-xs+ uppercase text-white ring ring-white dark:ring-navy-700">
+                                            jd
+                                          </div>
+                                        </div>
+
+                                        <div class="avatar h-7 w-7 hover:z-10">
+                                          <img
+                                            class="rounded-full ring ring-white dark:ring-navy-700"
+                                            src="images/200x200.png"
+                                            alt="avatar"
+                                          />
+                                        </div>
+
+                                        <div class="avatar h-7 w-7 hover:z-10">
+                                          <img
+                                            class="rounded-full ring ring-white dark:ring-navy-700"
+                                            src="images/200x200.png"
+                                            alt="avatar"
+                                          />
+                                        </div>
+
+                                        <div class="avatar h-7 w-7 hover:z-10">
+                                          <img
+                                            class="rounded-full ring ring-white dark:ring-navy-700"
+                                            src="images/200x200.png"
+                                            alt="avatar"
+                                          />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div> */}
+                                        </div>
+                                      </li>
+                                    </ol>
+                                  ))
+                                : ""}
+                            </div>
                           </div>
                           <button
                             type="button"
@@ -254,3 +358,260 @@ const SlideOver = ({ slideover, setslideover, id }) => {
 };
 
 export default SlideOver;
+// {/* <ol class="timeline line-space mt-5 px-4 [--size:1.5rem]">
+// <li class="timeline-item">
+//   <div class="timeline-item-point rounded-full border border-current bg-white text-secondary dark:bg-navy-700 dark:text-secondary-light">
+//     <i class="fa fa-user-edit text-tiny"></i>
+//   </div>
+//   <div class="timeline-item-content flex-1 pl-4">
+//     <div class="flex flex-col justify-between pb-2 sm:flex-row sm:pb-0">
+//       <p class="pb-2 font-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0">
+//         User Photo Changed
+//       </p>
+//       <span class="text-xs text-slate-400 dark:text-navy-300">
+//         12 minute ago
+//       </span>
+//     </div>
+//     <p class="py-1">
+//       John Doe changed his avatar photo
+//     </p>
+//     <div class="avatar mt-2 h-20 w-20">
+//       <img
+//         class="mask is-squircle"
+//         src="images/200x200.png"
+//         alt="avatar"
+//       />
+//     </div>
+//   </div>
+// </li>
+// <li class="timeline-item">
+//   <div class="timeline-item-point rounded-full border border-current bg-white text-primary dark:bg-navy-700 dark:text-accent">
+//     <i class="fa-solid fa-image text-tiny"></i>
+//   </div>
+//   <div class="timeline-item-content flex-1 pl-4">
+//     <div class="flex flex-col justify-between pb-2 sm:flex-row sm:pb-0">
+//       <p class="pb-2 font-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0">
+//         Images Added
+//       </p>
+//       <span class="text-xs text-slate-400 dark:text-navy-300">
+//         1 hour ago
+//       </span>
+//     </div>
+//     <p class="py-1">
+//       Mores Clarke added new image gallery
+//     </p>
+//     <div class="mt-4 grid grid-cols-3 gap-3">
+//       <img
+//         class="rounded-lg"
+//         src="images/800x600.png"
+//         alt="image"
+//       />
+//       <img
+//         class="rounded-lg"
+//         src="images/800x600.png"
+//         alt="image"
+//       />
+//       <img
+//         class="rounded-lg"
+//         src="images/800x600.png"
+//         alt="image"
+//       />
+//       <img
+//         class="rounded-lg"
+//         src="images/800x600.png"
+//         alt="image"
+//       />
+//       <img
+//         class="rounded-lg"
+//         src="images/800x600.png"
+//         alt="image"
+//       />
+//       <img
+//         class="rounded-lg"
+//         src="images/800x600.png"
+//         alt="image"
+//       />
+//     </div>
+//     <div class="mt-4">
+//       <span class="font-medium text-slate-600 dark:text-navy-100">
+//         Category:
+//       </span>
+
+//       <a
+//         href="#"
+//         class="text-xs text-primary hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+//       >
+//         #Tag
+//       </a>
+
+//       <a
+//         href="#"
+//         class="text-xs text-primary hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+//       >
+//         #Category
+//       </a>
+//     </div>
+//   </div>
+// </li>
+// <li class="timeline-item">
+//   <div class="timeline-item-point rounded-full border border-current bg-white text-success dark:bg-navy-700">
+//     {/* <i class="fa fa-leaf text-tiny"></i> */}
+//     <i class="fa-solid fa-check text-tiny"></i>
+//   </div>
+//   <div class="timeline-item-content flex-1 pl-4">
+//     <div class="flex flex-col justify-between pb-2 sm:flex-row sm:pb-0">
+//       <p class="pb-2 font-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0">
+//         Design Completed
+//       </p>
+//       <span class="text-xs text-slate-400 dark:text-navy-300">
+//         3 hours ago
+//       </span>
+//     </div>
+//     <p class="py-1">
+//       Robert Nolan completed the design of the CRM
+//       application
+//     </p>
+//     <a
+//       href="#"
+//       class="inline-flex items-center space-x-1 pt-2 text-slate-600 transition-colors hover:text-primary dark:text-navy-100 dark:hover:text-accent"
+//     >
+//       <svg
+//         xmlns="http://www.w3.org/2000/svg"
+//         class="h-5 w-5"
+//         fill="none"
+//         viewBox="0 0 24 24"
+//         stroke="currentColor"
+//         stroke-width="1.5"
+//       >
+//         <path
+//           stroke-linecap="round"
+//           stroke-linejoin="round"
+//           d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+//         />
+//       </svg>
+//       <span>File_final.fig</span>
+//     </a>
+//     <div class="pt-2">
+//       <a
+//         href="#"
+//         class="tag rounded-full border border-secondary/30 bg-secondary/10 text-secondary hover:bg-secondary/20 focus:bg-secondary/20 active:bg-secondary/25 dark:border-secondary-light/30 dark:bg-secondary-light/10 dark:text-secondary-light dark:hover:bg-secondary-light/20 dark:focus:bg-secondary-light/20 dark:active:bg-secondary-light/25"
+//       >
+//         UI/UX
+//       </a>
+
+//       <a
+//         href="#"
+//         class="tag rounded-full border border-info/30 bg-info/10 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25"
+//       >
+//         CRM
+//       </a>
+
+//       <a
+//         href="#"
+//         class="tag rounded-full border border-success/30 bg-success/10 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25"
+//       >
+//         Dashboard
+//       </a>
+//     </div>
+//   </div>
+// </li>
+// <li class="timeline-item">
+//   <div class="timeline-item-point rounded-full border border-current bg-white text-primary dark:bg-navy-700">
+//     {/* //<i class="fa fa-project-diagram text-tiny"></i> */}
+//     <i class="fa-solid fa-check text-tiny"></i>
+//   </div>
+//   <div class="timeline-item-content flex-1 pl-4">
+//     <div class="flex flex-col justify-between pb-2 sm:flex-row sm:pb-0">
+//       <p class="pb-2 font-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0">
+//         ER Diagram
+//       </p>
+//       <span class="text-xs text-slate-400 dark:text-navy-300">
+//         a day ago
+//       </span>
+//     </div>
+//     <p class="py-1">
+//       Team completed the ER diagram app
+//     </p>
+//     <div>
+//       <p class="text-xs text-slate-400 dark:text-navy-300">
+//         Members:
+//       </p>
+//       <div class="mt-2 flex justify-between">
+//         <div class="flex flex-wrap -space-x-2">
+//           <div class="avatar h-7 w-7 hover:z-10">
+//             <img
+//               class="rounded-full ring ring-white dark:ring-navy-700"
+//               src="images/200x200.png"
+//               alt="avatar"
+//             />
+//           </div>
+
+//           <div class="avatar h-7 w-7 hover:z-10">
+//             <div class="is-initial rounded-full bg-info text-xs+ uppercase text-white ring ring-white dark:ring-navy-700">
+//               jd
+//             </div>
+//           </div>
+
+//           <div class="avatar h-7 w-7 hover:z-10">
+//             <img
+//               class="rounded-full ring ring-white dark:ring-navy-700"
+//               src="images/200x200.png"
+//               alt="avatar"
+//             />
+//           </div>
+
+//           <div class="avatar h-7 w-7 hover:z-10">
+//             <img
+//               class="rounded-full ring ring-white dark:ring-navy-700"
+//               src="images/200x200.png"
+//               alt="avatar"
+//             />
+//           </div>
+
+//           <div class="avatar h-7 w-7 hover:z-10">
+//             <img
+//               class="rounded-full ring ring-white dark:ring-navy-700"
+//               src="images/200x200.png"
+//               alt="avatar"
+//             />
+//           </div>
+//         </div>
+//         <button class="btn h-7 w-7 rounded-full bg-slate-150 p-0 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+//           <svg
+//             xmlns="http://www.w3.org/2000/svg"
+//             class="h-5 w-5 rotate-45"
+//             fill="none"
+//             viewBox="0 0 24 24"
+//             stroke="currentColor"
+//           >
+//             <path
+//               stroke-linecap="round"
+//               stroke-linejoin="round"
+//               stroke-width="2"
+//               d="M7 11l5-5m0 0l5 5m-5-5v12"
+//             />
+//           </svg>
+//         </button>
+//       </div>
+//     </div>
+//   </div>
+// </li>
+// <li class="timeline-item">
+//   <div class="timeline-item-point rounded-full border border-current bg-white text-error dark:bg-navy-700">
+//     <i class="fa fa-history text-tiny"></i>
+//   </div>
+//   <div class="timeline-item-content flex-1 pl-4">
+//     <div class="flex flex-col justify-between pb-2 sm:flex-row sm:pb-0">
+//       <p class="pb-2 font-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0">
+//         Weekly Report
+//       </p>
+//       <span class="text-xs text-slate-400 dark:text-navy-300">
+//         a day ago
+//       </span>
+//     </div>
+//     <p class="py-1">
+//       The weekly report was uploaded
+//     </p>
+//   </div>
+// </li>
+// </ol> */}

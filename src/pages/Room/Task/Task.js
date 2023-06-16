@@ -37,12 +37,7 @@ const Task = () => {
   const [tasks, settasks] = useState([]);
   const reqForGettingAll = async () => {
     const { data } = await axios
-      .get(`http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?show_all=1`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      })
+      .get(`/api/my-rooms/${roomId}/tasks?show_all=1`)
       .then((response) => response);
     settasks(data);
   };
@@ -50,15 +45,7 @@ const Task = () => {
   const [deleteStatus, setdeleteStatus] = useState([]);
   const reqForDeleting = async (taskId) => {
     const { data } = await axios
-      .delete(
-        `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?task_id=${taskId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + authTokens.access,
-          },
-        }
-      )
+      .delete(`/api/my-rooms/${roomId}/tasks?task_id=${taskId}`)
       .then((response) => response);
     setdeleteStatus(data);
   };
@@ -85,36 +72,72 @@ const Task = () => {
 
   const [checkStatus, setcheckStatus] = useState();
   const [checking, setchecking] = useState();
-  const reqForChecking = async (taskID) => {
+  const reqForChecking = async (taskID, status) => {
+    console.log(status);
     const { data } = await axios
-      .put(
-        `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks?task_id=${taskID}`,
-        JSON.stringify({
-          done: 1,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + authTokens.access,
-          },
-        }
-      )
+      .put(`/api/my-rooms/${roomId}/tasks?task_id=${taskID}`, {
+        done: status == "off" ? 1 : 0,
+      })
       .then((response) => response);
     setchecking(data);
   };
-  // console.log(checkStatus);
-  // console.log(checking);
-
-  useEffect(() => {
-    if (checkStatus && checkStatus[0] == "on") {
-      reqForChecking(checkStatus[1]);
-      setcheckStatus([]);
+  const reqForUnChecking = async (taskID) => {
+    const { data } = await axios
+      .put(`/api/my-rooms/${roomId}/tasks?task_id=${taskID}`, {
+        done: 0,
+      })
+      .then((response) => response);
+    setchecking(data);
+  };
+  const [search, setsearch] = useState("");
+  const [showSearch, setshowSearch] = useState(false);
+  console.log(search);
+  const handlesubmit = async (e) => {
+    e.preventDefault();
+    if (search.length < 3) {
+      setshowSearch(true);
+    } else {
+      // part for getting api
+      const { data } = await axios
+        .get(`/api/my-rooms/${roomId}/tasks?task_name=${search}`)
+        .then((response) => response);
+      console.log(tasks);
+      if (data) {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "No Task Found",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        settasks(data);
+      }
+      // setshowSearch(false);
+      setsearch("");
     }
-  }, [checkStatus]);
+  };
+  useEffect(() => {
+    if (search.length > 2) {
+      setshowSearch(false);
+    }
+  }, [search]);
+  //console.log(checking);
+
+  // useEffect(() => {
+  //   if (checkStatus && checkStatus[0] == "on") {
+  //     reqForChecking(checkStatus[1]);
+  //     setcheckStatus([]);
+  //   }
+  //   if (checkStatus && checkStatus[0] == "off") {
+  //     reqForUnChecking(checkStatus[1]);
+  //     setcheckStatus([]);
+  //   }
+  // }, [checkStatus]);
   useEffect(() => {
     reqForGettingAll();
   }, [authTokens, deleteStatus, addChanges, editChanges, checking]);
-
+  //console.log(tasks);
   return (
     <>
       <PageWrapper>
@@ -141,7 +164,7 @@ const Task = () => {
               </Sidebar.Primary.Middle.Rooms>
             </Sidebar.Primary.Middle>
             <Sidebar.Primary.Bottom>
-              <Sidebar.Primary.Bottom.LogOut />
+              {/* <Sidebar.Primary.Bottom.LogOut /> */}
               <Sidebar.Primary.Bottom.Profile />
             </Sidebar.Primary.Bottom>
           </Sidebar.Primary>
@@ -195,29 +218,64 @@ const Task = () => {
               roomId={roomId}
               setaddChanges={setaddChanges}
             />
-            <SliderForEditting
-              slideover={slideoverEdit}
-              setslideover={setslideoverEdit}
-              roomId={roomId}
-              taskId={taskId}
-              seteditChanges={seteditChanges}
-            />
-            <div
-              x-show="!isSearchbarActive"
-              className="flex items-center justify-between"
-            >
-              <div>
-                <div className="flex space-x-2">
-                  <p className="text-2xl font-semibold text-slate-900 dark:text-navy-50">
-                    Tasks
-                  </p>
+            {taskId && (
+              <SliderForEditting
+                slideover={slideoverEdit}
+                setslideover={setslideoverEdit}
+                roomId={roomId}
+                taskId={taskId}
+                seteditChanges={seteditChanges}
+              />
+            )}
+            {tasks.length == 0 ? (
+              <p className="mt-1 text-sm">Start Writting Your Tasks</p>
+            ) : (
+              <div className="">
+                <div
+                  x-show="!isSearchbarActive"
+                  className="flex items-center justify-between"
+                >
+                  <div>
+                    <div className="flex space-x-2">
+                      <p className="text-2xl basis-3/4 font-semibold text-slate-900 dark:text-navy-50">
+                        Tasks
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    {showSearch ? (
+                      <div className=" text-red-500">
+                        Your word must have more than 3 letters
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    <form
+                      onSubmit={handlesubmit}
+                      className="relative flex sm:w-72"
+                    >
+                      <input
+                        className="form-input peer h-9 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                        placeholder="Search todos..."
+                        type="text"
+                        value={search}
+                        onChange={(e) => setsearch(e.target.value)}
+                      />
+                      <span className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-4.5 w-4.5 transition-colors duration-200"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M3.316 13.781l.73-.171-.73.171zm0-5.457l.73.171-.73-.171zm15.473 0l.73-.171-.73.171zm0 5.457l.73.171-.73-.171zm-5.008 5.008l-.171-.73.171.73zm-5.457 0l-.171.73.171-.73zm0-15.473l-.171-.73.171.73zm5.457 0l.171-.73-.171.73zM20.47 21.53a.75.75 0 101.06-1.06l-1.06 1.06zM4.046 13.61a11.198 11.198 0 010-5.115l-1.46-.342a12.698 12.698 0 000 5.8l1.46-.343zm14.013-5.115a11.196 11.196 0 010 5.115l1.46.342a12.698 12.698 0 000-5.8l-1.46.343zm-4.45 9.564a11.196 11.196 0 01-5.114 0l-.342 1.46c1.907.448 3.892.448 5.8 0l-.343-1.46zM8.496 4.046a11.198 11.198 0 015.115 0l.342-1.46a12.698 12.698 0 00-5.8 0l.343 1.46zm0 14.013a5.97 5.97 0 01-4.45-4.45l-1.46.343a7.47 7.47 0 005.568 5.568l.342-1.46zm5.457 1.46a7.47 7.47 0 005.568-5.567l-1.46-.342a5.97 5.97 0 01-4.45 4.45l.342 1.46zM13.61 4.046a5.97 5.97 0 014.45 4.45l1.46-.343a7.47 7.47 0 00-5.568-5.567l-.342 1.46zm-5.457-1.46a7.47 7.47 0 00-5.567 5.567l1.46.342a5.97 5.97 0 014.45-4.45l-.343-1.46zm8.652 15.28l3.665 3.664 1.06-1.06-3.665-3.665-1.06 1.06z" />
+                        </svg>
+                      </span>
+                    </form>
+                  </div>
                 </div>
-                {tasks.length==0 ? 
-                <p className="mt-1 text-sm">Start Writting Your Tasks</p>
-                : ""}
               </div>
-              <div className="flex items-center space-x-2"></div>
-            </div>
+            )}
           </div>
           <div className="card px-4 pt-2 pb-4">
             <div
@@ -233,25 +291,19 @@ const Task = () => {
                 <div className="grid sm:grid-cols-5 items-center border-b border-slate-200 py-3 dark:border-navy-500">
                   <div className=" col-start-1 xl:col-end-5 sm:col-end-4">
                     <div className="flex items-center space-x-2 sm:space-x-3">
-                      {item.done == 1 ? (
-                        <label className="flex">
-                          <input
-                            checked
-                            type="checkbox"
-                            className="form-checkbox is-outline h-5 w-5 rounded-full border-slate-400/70 before:bg-white checked:border-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:before:bg-white dark:checked:border-accent dark:hover:border-accent dark:focus:border-accent"
-                          />
-                        </label>
-                      ) : (
-                        <label className="flex">
-                          <input
-                            onChange={(e) =>
-                              setcheckStatus([e.target.value, item.id])
-                            }
-                            type="checkbox"
-                            className="form-checkbox is-outline h-5 w-5 rounded-full border-slate-400/70 before:bg-white checked:border-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:before:bg-white dark:checked:border-accent dark:hover:border-accent dark:focus:border-accent"
-                          />
-                        </label>
-                      )}
+                      <label className="flex">
+                        <input
+                          onChange={(e) => {
+                            reqForChecking(item.id, e.target.value);
+                            // window.location.reload()
+                          }}
+                          value={item.done == 1 ? "on" : "off"}
+                          checked={item.done == 1 ? "checked" : ""}
+                          type="checkbox"
+                          className="form-checkbox is-outline text-green-600 h-5 w-5 rounded-full border-slate-400/70 before:bg-white checked:border-green-600 hover:border-green-600 focus:border-green-600 dark:border-navy-400 dark:before:bg-white dark:checked:border-green-600 dark:hover:border-green-600 dark:focus:border-green-600"
+                        />
+                      </label>
+
                       <h2 className="text-lg font-bold text-slate-600 line-clamp-1 dark:text-navy-100">
                         {item.title}
                       </h2>
@@ -287,7 +339,7 @@ const Task = () => {
                         )}
                       </div>
                       <div className="mt-2">
-                        <Skeleton />
+                        <Skeleton members={item.user} />
                       </div>
                     </div>
                   </div>
@@ -339,7 +391,7 @@ const Task = () => {
                 </div>
               ))}
 
-                {/*           
+              {/*                         
           <div className="border-b border-slate-150 py-3 dark:border-navy-500">
             <div className="flex items-center space-x-2 sm:space-x-3">
               <label className="flex">

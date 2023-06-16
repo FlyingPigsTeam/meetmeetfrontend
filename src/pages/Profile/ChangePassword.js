@@ -8,6 +8,7 @@ import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import PageWrapper from "../../components/PageWrapper";
 import DarkModeToggle from "../../components/DarkModeToggle";
+import { BASEURL } from "../../data/BASEURL";
 
 const ChangePassword = (props) => {
   const initialValues = {
@@ -33,7 +34,7 @@ const ChangePassword = (props) => {
   const handleUpdate = async (updatedUser) => {
     let response = "";
     try {
-      response = await fetch("http://127.0.0.1:8000/api/profile", {
+      response = await fetch(BASEURL +"/api/profile", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -169,20 +170,20 @@ const ChangePassword = (props) => {
                 />
               </div>
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-end">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  className="mx-1 ml-3 inline-flex justify-center rounded-md border border-transparent text-white bg-indigo-600 hover:bg-indigo-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                   {isSubmitting ? "Updating..." : "Update Password"}
                 </button>
-                <button
+                {/* <button
                     className=" px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
                     onClick={() => props.setfalse(false)}
                 >
-                  Cancel
-                </button>
+                  Close
+                </button> */}
               </div>
             </Form>
           )}

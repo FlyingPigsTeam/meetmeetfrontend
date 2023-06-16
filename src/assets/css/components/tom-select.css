@@ -45,10 +45,10 @@
 }
 
 .ts-wrapper.single .ts-control, .ts-wrapper.single.input-active .ts-control {
-  @apply bg-no-repeat bg-center pr-9;
+  @apply !bg-no-repeat !bg-center !pr-9;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 20 20'%3e%3cpath stroke='%235C6B8A' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-  background-position: right .5rem center;
-  background-size: 1.5em 1.5em;
-  print-color-adjust: exact;
+  background-position: right .5rem center !important;
+  background-size: 1.5em 1.5em !important;
+  print-color-adjust: exact !important;
 }
 

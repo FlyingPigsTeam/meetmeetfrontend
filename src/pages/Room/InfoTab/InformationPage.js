@@ -1,61 +1,79 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
+import { BASEURL, FrontURL } from "../../../data/BASEURL";
+import { useQuery } from "react-query";
+import Moment from "react-moment";
 
 import AuthContext from "../../../context/AuthContext";
 import Avatar200x200 from "../../../assets/images/200x200.png";
 import { useParams, useNavigate } from "react-router-dom";
+import { useClipboard } from "@mantine/hooks";
+import Swal from "sweetalert2";
+
 
 export default function InformationPage() {
-  const {idroom} = useParams();
+  const { idroom } = useParams();
   const navigate = useNavigate();
   let authTokens = useContext(AuthContext).authTokens;
-
+  
+  const clipboard = useClipboard({ timeout: 20000 });
   const [seePassword, setSeePassword] = useState(false);
-  const [link, setLink] = useState("This is the text I want to copy");
-  let [roomData, setRoomData] = useState({});
-
-  const req = async () => {
-    const { data } = await axios
-      .get(`http://127.0.0.1:8000/api/my-rooms/${idroom}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      })
-      .then((response) => response);
-    console.log("roomDataFetch", data);
-    setRoomData(data);
-    setLink(data.link);
-  };
+  const [link, setLink] = useState(null);
+  // let [roomData.data, setroomData.data] = useState({});
+  const { isLoading, data: roomData } = useQuery(["room", idroom], () => {
+    return axios.get(`/api/my-rooms/${idroom}`);
+  });
+  // const req = async () => {
+  //     const {data} = await axios
+  //         .get(`/api/my-rooms/${idroom}`)
+  //         .then((response) => response);
+  //     console.log("roomData.dataFetch", data);
+  //     setroomData.data(data);
+  //     setLink(data.link);
+  // };
+  // useEffect(() => {
+  //     req();
+  // }, [idroom]);
   useEffect(() => {
-    req();
-  }, [idroom]);
+    setLink(roomData?.data?.link)
+  },[roomData])
   const refreshLink = async () => {
     const { data } = await axios
-      .put(`http://127.0.0.1:8000/api/my-rooms/${idroom}?link=${link}`, null, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      })
+      .put(`/api/my-rooms/${idroom}?link=${link}`, null)
       .then((response) => response);
     setLink(data.success);
   };
   const deleteRoom = async () => {
-    const { data } = await axios
-      .delete(`http://127.0.0.1:8000/api/my-rooms/${idroom}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authTokens.access,
-        },
-      })
-      .then();
+    const { data } = await axios.delete(`/api/my-rooms/${idroom}`).then();
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Room deleted Successfully!",
+      showConfirmButton: false,
+      timer: 2000,
+    });
     navigate("/");
   };
 
-  function copyToClipboard() {
-    navigator.clipboard.writeText("http://localhost:3000/joinroom/" + link);
-    alert("Text copied to clipboard");
+  const copyLinkToClipboard = async (copylink) => {
+    clipboard.copy(copylink);
+    if (clipboard.copied) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Link copied to clipboard",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
+  }
+
+
+  if (roomData) {
+    localStorage.setItem("RoomTitle", roomData.data.title);
+  }
+  if (isLoading) {
+    return <p>LOADING ...</p>;
   }
   return (
     <>
@@ -64,9 +82,12 @@ export default function InformationPage() {
           <h2 className="text-lg font-medium tracking-wide text-slate-700 dark:text-navy-100">
             Room Information
           </h2>
-          {roomData.is_admin && (
+          {roomData.data.is_admin && (
             <div className="flex justify-center space-x-2">
-              <button onClick={deleteRoom} className="badge space-x-2 bg-error text-white">
+              <button
+                onClick={deleteRoom}
+                className="badge space-x-2 bg-error text-white"
+              >
                 <span>Delete</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +104,10 @@ export default function InformationPage() {
                   />
                 </svg>
               </button>
-              <button onClick={()=>navigate(`/room/${idroom}/info/edit`)} className="badge space-x-2 bg-slate-150 text-slate-800 dark:bg-navy-500 dark:text-navy-100">
+              <button
+                onClick={() => navigate(`/room/${idroom}/info/edit`)}
+                className="badge space-x-2 bg-slate-150 text-slate-800 dark:bg-navy-500 dark:text-navy-100"
+              >
                 <span>Edit</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +129,16 @@ export default function InformationPage() {
         </div>
         <div className="flex flex-col my-2">
           <div className="avatar mt-1.5 h-20 w-20">
-            <img className="mask is-squircle" src={Avatar200x200} alt="avatar" />
+            <img
+              className="mask is-squircle"
+              src={
+                roomData.data.main_picture_path === "" ||
+                  roomData.data.main_picture_path === "__"
+                  ? Avatar200x200
+                  : roomData.data.main_picture_path
+              }
+              alt="avatar"
+            />
           </div>
         </div>
 
@@ -114,7 +147,7 @@ export default function InformationPage() {
             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
               <dt className="text-sm font-medium ">Title</dt>
               <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
-                <span className="flex-grow">{roomData.title}</span>
+                <span className="flex-grow">{roomData.data.title}</span>
                 {/* <span className="ml-4 flex-shrink-0">
                   <button
                     type="button"
@@ -130,7 +163,7 @@ export default function InformationPage() {
               <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow space-x-2 space-y-2">
                   <div className="badge space-x-2 bg-primary text-white dark:bg-accent">
-                    {!roomData.room_type ? (
+                    {!roomData.data.room_type ? (
                       <>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -147,7 +180,7 @@ export default function InformationPage() {
                           />
                         </svg>
 
-                        <span>Public</span>
+                        <span>Private</span>
                       </>
                     ) : (
                       <>
@@ -169,7 +202,7 @@ export default function InformationPage() {
                       </>
                     )}
                   </div>
-                  {roomData.is_premium == 1 && (
+                  {roomData.data.is_premium == 1 && (
                     <div className="badge space-x-2 bg-secondary text-white">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -190,7 +223,7 @@ export default function InformationPage() {
                     </div>
                   )}
                   <div className="badge space-x-2 bg-info text-white">
-                    {roomData.open_status ? (
+                    {roomData.data.open_status ? (
                       <>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -239,7 +272,7 @@ export default function InformationPage() {
                       className="form-input w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary disabled:pointer-events-none disabled:select-none disabled:border-none disabled:bg-zinc-100 dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent dark:disabled:bg-navy-600"
                       placeholder="Password"
                       type={seePassword ? "text" : "password"}
-                      value={roomData.password}
+                      value={roomData.data.password}
                       disabled="true"
                     />
                     <div className="pointer-events-none absolute right-0 flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
@@ -271,9 +304,9 @@ export default function InformationPage() {
             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
               <dt className="text-sm font-medium ">Categories</dt>
               <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
-                {roomData?.categories && (
+                {roomData.data?.categories && (
                   <span className="flex-grow space-x-2 space-y-2">
-                    {roomData.categories.map((item) => (
+                    {roomData.data.categories.map((item) => (
                       <div className="flex">
                         <a
                           href="#"
@@ -299,7 +332,7 @@ export default function InformationPage() {
               <dt className="text-sm font-medium ">Max members</dt>
               <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow">
-                  {roomData.maximum_member_count}
+                  {roomData.data.maximum_member_count}
                 </span>
                 {/* <span className="ml-4 flex-shrink-0">
                   <button
@@ -315,17 +348,11 @@ export default function InformationPage() {
               <dt className="text-sm font-medium ">Start Date & End Date</dt>
               <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow">
-                  {new Date(roomData.start_date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "numeric",
-                    day: "numeric",
-                    hour: "numeric",
-                    minute: "numeric",
-                    second: "numeric",
-                    timeZoneName: "short",
-                  }) +
-                    " till " +
-                    new Date(roomData.end_date).toLocaleDateString("en-US", {
+                  <Moment>{roomData.data.start_date}</Moment>
+                  <br />
+                  {new Date(roomData.data.start_date).toLocaleDateString(
+                    "en-US",
+                    {
                       year: "numeric",
                       month: "numeric",
                       day: "numeric",
@@ -333,7 +360,21 @@ export default function InformationPage() {
                       minute: "numeric",
                       second: "numeric",
                       timeZoneName: "short",
-                    })}
+                    }
+                  ) +
+                    " till " +
+                    new Date(roomData.data.end_date).toLocaleDateString(
+                      "en-US",
+                      {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                        hour: "numeric",
+                        minute: "numeric",
+                        second: "numeric",
+                        timeZoneName: "short",
+                      }
+                    )}
                 </span>
                 {/* <span className="ml-4 flex-shrink-0">
                   <button
@@ -348,7 +389,7 @@ export default function InformationPage() {
             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
               <dt className="text-sm font-medium ">Description</dt>
               <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
-                <span className="flex-grow">{roomData.description}</span>
+                <span className="flex-grow">{roomData.data.description}</span>
                 {/* <span className="ml-4 flex-shrink-0">
                   <button
                     type="button"
@@ -365,18 +406,13 @@ export default function InformationPage() {
                 <span className="flex-grow">
                   <div className="alert flex items-center justify-between rounded-lg bg-primary px-4 py-3 text-white dark:bg-accent sm:px-5">
                     <p id="clipboardContent1">
-                      {"http://localhost:3000/joinroom/" + link}
+                      {FrontURL + "/joinroom/" + link}
                     </p>
                     <div>
                       <button
                         id={"clipBoardCopy"}
-                        onClick={copyToClipboard}
+                        onClick={()=>copyLinkToClipboard(FrontURL + "/joinroom/" + link)}
                         className="btn h-6 shrink-0 rounded mx-1 my-2 bg-white/20 px-2 text-xs text-white active:bg-white/25"
-                        //   @click="$clipboard({
-                        //     content:document.querySelector('#clipboardContent1').innerText,
-                        //     success:()=>$notification({text:'Text Copied',variant:'success'}),
-                        //     error:()=>$notification({text:'Error',variant:'error'})
-                        //   })"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -394,16 +430,16 @@ export default function InformationPage() {
                         </svg>
                       </button>
 
-                      {roomData.is_admin && (
+                      {roomData.data.is_admin && (
                         <>
                           <button
-                            onClick={refreshLink}
+                            onClick={ async ()=>await refreshLink()}
                             className="btn h-6 shrink-0 rounded mx-1 my-2 bg-white/20 px-2 space-x-1 space-y-2 text-xs text-white active:bg-white/25"
-                            //   @click="$clipboard({
-                            //     content:document.querySelector('#clipboardContent1').innerText,
-                            //     success:()=>$notification({text:'Text Copied',variant:'success'}),
-                            //     error:()=>$notification({text:'Error',variant:'error'})
-                            //   })"
+                          //   @click="$clipboard({
+                          //     content:document.querySelector('#clipboardContent1').innerText,
+                          //     success:()=>$notification({text:'Text Copied',variant:'success'}),
+                          //     error:()=>$notification({text:'Error',variant:'error'})
+                          //   })"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

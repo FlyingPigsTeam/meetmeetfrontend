@@ -5,6 +5,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import AuthContext from "../../../context/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import AutoComplete from "../../../components/AutoCompleteTask";
 
 export default function SliderForAdding({
   slideover,
@@ -12,6 +13,7 @@ export default function SliderForAdding({
   roomId,
   setaddChanges,
 }) {
+  const [listUser, setUser] = useState();
   const [title, settitle] = useState("");
   const [description, setdescription] = useState("");
   const [selectedDifficulty, setSelectedDifficulty] = useState(3);
@@ -24,24 +26,19 @@ export default function SliderForAdding({
   const reqForAdding = async () => {
     const { data } = await axios
       .post(
-        `http://127.0.0.1:8000/api/my-rooms/${roomId}/tasks`,
-        JSON.stringify({
+        `/api/my-rooms/${roomId}/tasks`,
+        {
           title: title,
           priority: selectedDifficulty,
           description: description,
           done: 0,
-          user: 2,
+          user: listUser,
           room: roomId,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + authTokens.access,
-          },
         }
       )
       .then((response) => response);
     setaddStatus(data);
+    console.log("member", data.user);
     setaddChanges((e) => e + 1);
     //console.log(data);
   };
@@ -124,7 +121,9 @@ export default function SliderForAdding({
                           />
                         </label>
                         <label className="block">
-                          <span className=" dark:text-navy-50">Task Description</span>
+                          <span className=" dark:text-navy-50">
+                            Task Description
+                          </span>
                           <textarea
                             onChange={(e) => setdescription(e.target.value)}
                             className="form-input mt-1.5 h-24 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
@@ -141,31 +140,35 @@ export default function SliderForAdding({
                             value={selectedDifficulty}
                             onChange={handleDifficultyChange}
                             placeholder="Select difficulty of the task"
-                            //autoComplete="off"
+                          //autoComplete="off"
                           >
                             <option value="3">Low</option>
                             <option value="2">Medium</option>
                             <option value="1">High</option>
                           </select>
                         </label>
-                        <label className="block z-40">
+                        {/* <label className="block z-40"> */}
                           <span className=" dark:text-navy-50">Assigned To:</span>
-                          <select
+                          <div className="card mt-3 p-4"><AutoComplete setmember={setUser}/></div>
+                          {/* <select
                             //x-init="$el._x_tom = new Tom($el)"
                             className="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
                             //multiple
                             value={selectedDifficulty}
                             onChange={handleDifficultyChange}
                             placeholder="Select difficulty of the task"
-                            //autoComplete="off"
+                          //autoComplete="off"
                           >
                             <option value=""></option>
-                          </select>
-                        </label>
+                          </select> */}
+                        {/* </label> */}
                       </div>
                       <div className="flex items-center justify-between mt-20 xl:mt-52 py-3 px-4">
                         <button
-                          onClick={reqForAdding}
+                          onClick={() => {
+                            reqForAdding();
+                            setslideover(false);
+                          }}
                           className="z-20 grid h-10 w-full items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm bg-primary text-slate-100 hover:opacity-80 dark:text-navy-50 duration-300"
                         >
                           Add
