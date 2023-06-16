@@ -639,7 +639,7 @@ const LandingPage = () => {
                     <div class="container z-2">
                         <div class="grid grid-cols-1 md:mt-44 mt-32 text-center">
                             <div class="wow animate__animated animate__fadeIn">
-                                <h4 class="font-bold lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5">MeetMeet me2 fast, Meet quickly.</h4>
+                                <h4 class="font-bold lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5">MeetMeet me3 fast, Meet quickly.</h4>
                                 <p class="text-slate-400 text-lg max-w-xl mx-auto">Launch your campaign and benefit from our expertise
                                     on designing and managing conversion centered Tailwind CSS v3.x html page.</p>
 
