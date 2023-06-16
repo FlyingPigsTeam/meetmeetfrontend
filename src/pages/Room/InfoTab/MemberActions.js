@@ -7,9 +7,13 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useClickOutside } from '@mantine/hooks';
 
-const MemberActions = ({ user }) => {
-    const navigate = useNavigate();
+const MemberActions = ({ user, refetchMembers, setPage }) => {
     const { idroom } = useParams();
+
+    const [show, setShow] = React.useState(false);
+    // console.log(show);
+    const toggle = () => { setShow(cur => !cur); console.log(show); };
+    const popperOutClick = useClickOutside(() => setShow(false));
 
 
     const ConvertRole = (member) => {
@@ -53,7 +57,9 @@ const MemberActions = ({ user }) => {
                     console.log("memberAccept", data);
                 };
                 await acceptUser();
-                navigate(0);
+                setPage(1);
+                refetchMembers();
+                setShow(false);
             },
         },
         Kick: {
@@ -78,7 +84,9 @@ const MemberActions = ({ user }) => {
                     console.log("memberKick", data);
                 };
                 await deleteUser();
-                navigate(0);
+                setPage(1);
+                refetchMembers();
+                setShow(false);
             },
         },
 
@@ -104,7 +112,9 @@ const MemberActions = ({ user }) => {
                     console.log("memberReject", data);
                 };
                 await deleteUser();
-                navigate(0);
+                setPage(1);
+                refetchMembers();
+                setShow(false);
             },
         },
     };
@@ -144,10 +154,6 @@ const MemberActions = ({ user }) => {
         },
     };
 
-    const [show, setShow] = React.useState(false);
-    console.log(show);
-    const toggle = () => { setShow(cur => !cur); console.log(show); };
-    const popperOutClick = useClickOutside(()=>setShow(false));
     return (
         <>
 

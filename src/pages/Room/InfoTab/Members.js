@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import ReactPaginate from 'react-paginate';
-
+import { useQuery } from "react-query";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import AutoComplete from "../../../components/AutoComplete";
@@ -16,54 +16,51 @@ import Pagination from '../../Home/Pagination'
 import Avatar200x200 from "../../../assets/images/200x200.png";
 import MemberActions from "./MemberActions";
 
+import { useGetRoomMembers } from "../../../api/endpoints/useRoomMembers";
+
 const Members = () => {
 
   const { idroom } = useParams();
-  const navigate = useNavigate();
-  let authTokens = useContext(AuthContext).authTokens;
-  let [users_Data, setUser_Data] = useState([]);
-  let [roomData, setRoomData] = useState({});
+
+
+
+  const [roomData, setRoomData] = useState({});
   const entriesOptions = [1, 2, 3, 4, 5, 10, 15]
 
   const [totalpage, setTotalpage] = useState(1);
   const [page, setPage] = useState(1);
   const [entries, setEntries] = useState(1)
-  console.log("entries", entries)
-  const req = async () => {
-    const { data } = await axios
-      .get(`/api/my-rooms/${idroom}/requests?show_members=1&page=${page}&entries=${entries}`)
-      .then((response) => response);
-    console.log("memberFetch", data);
-    setUser_Data(data);
 
-    let count = data.count;
-    let number = 1;
-    if (count % entries === 0) {
-      number = count / entries;
-    } else {
-      number = (count - (count % entries)) / entries + 1;
+  const { data: users_Data, isLoading, isError,refetch:refetchMembers } = useGetRoomMembers(idroom, page, entries);
+  const calculateTotalPage = async () => {
+    if (!isLoading) {
+
+      let count = users_Data?.data?.count;
+      let number = 1;
+      if (count % entries === 0) {
+        number = count / entries;
+      } else {
+        number = (count - (count % entries)) / entries + 1;
+      }
+      setTotalpage(number);
     }
-    setTotalpage(number);
-    console.log("totalpage", totalpage);
   };
+
   const thisroom = async () => {
     const { data } = await axios
       .get(`/api/my-rooms/${idroom}`)
       .then((response) => response);
-    console.log("roomDataFetch", data);
     setRoomData(data);
-
-
   };
   useEffect(() => {
-    req();
     thisroom();
   }, []);
 
   useEffect(() => {
-    req();
-  }, [idroom, page, entries]);
+    calculateTotalPage();
+  }, [idroom, page, entries, users_Data]);
 
+  // console.log("totalpage", totalpage);
 
   const ConvertRole = (member) => {
     const result =
@@ -106,7 +103,9 @@ const Members = () => {
           console.log("memberAccept", data);
         };
         acceptUser();
-        navigate(0);
+        setPage(1);
+        refetchMembers();
+
       },
     },
     Kick: {
@@ -131,7 +130,8 @@ const Members = () => {
           console.log("memberKick", data);
         };
         deleteUser();
-        navigate(0);
+        setPage(1);
+        refetchMembers();
       },
     },
 
@@ -148,7 +148,7 @@ const Members = () => {
       ),
       action: (requestId) => {
 
-        const deleteUser = async () => {
+        const rejectUser = async () => {
           const { data } = await axios
             .delete(
               `/api/my-rooms/${idroom}/requests?request_id=${requestId}`
@@ -156,8 +156,9 @@ const Members = () => {
             .then((response) => response);
           console.log("memberReject", data);
         };
-        deleteUser();
-        navigate(0);
+        rejectUser();
+        setPage(1);
+        refetchMembers();
       },
     },
   };
@@ -196,6 +197,10 @@ const Members = () => {
       Actions: ["Accept", "Reject"],
     },
   };
+
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
   return (
     <>
       <div>
@@ -347,7 +352,7 @@ const Members = () => {
                 </tr>
               </thead>
               <tbody>
-                {users_Data?.results?.map((user, idx) => {
+                {users_Data?.data?.results?.map((user, idx) => {
                   return (
                     <tr
                       key={`user-item-${idx}`}
@@ -390,7 +395,7 @@ const Members = () => {
                         </label>
                       </td> */}
                       {roomData.is_admin && <td className="whitespace-nowrap px-4 py-3 sm:px-5">
-                      <MemberActions user={user} />
+                        <MemberActions user={user} setPage={setPage} refetchMembers={refetchMembers} />
                       </td>}
                     </tr>
                   );
@@ -406,6 +411,7 @@ const Members = () => {
               <span>Show</span>
               <label className="block">
                 <select
+                  value={entries}
                   onChange={(e) => {
                     setPage(1);
                     setEntries(e.target.value);
@@ -512,11 +518,11 @@ const Members = () => {
               />}
 
             {/* <div className="text-xs+">1 - 10 of 10 entries</div> */}
-            <div className="text-xs+">{`${page * entries - entries + 1} - ${Math.min(page * entries, users_Data.count)} of ${users_Data.count} entries`}</div>
+            <div className="text-xs+">{`${page * entries - entries + 1} - ${Math.min(page * entries, users_Data?.data?.count)} of ${users_Data?.data?.count} entries`}</div>
 
           </div>
         </div>
-        <div className="card mt-3 p-4"><AutoComplete members={users_Data} /></div>
+        <div className="card mt-3 p-4"><AutoComplete /></div>
       </div>
     </>
   );

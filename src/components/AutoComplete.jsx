@@ -5,37 +5,33 @@ import AuthContext from "../context/AuthContext";
 import Avatar200x200 from "../assets/images/200x200.png";
 import axios from "axios";
 import { BASEURL } from "../data/BASEURL";
+import { useAddRoomMembers } from "../api/endpoints/useRoomMembers";
 
-const AutoComplete = ({ members }) => {
+const AutoComplete = () => {
   const { idroom } = useParams();
-  console.log(idroom);
-  console.log(members);
   const { authTokens } = useContext(AuthContext);
 
   const [selectedMembers, setSelectedMembers] = useState([]);
-  const navigate = useNavigate();
-  const selectCustom = useRef(null);
+  const [selectNew, setSelectedNew, addRoomMembersMutation] = useAddRoomMembers(idroom);
 
   const handleSubmit = async () => {
-    console.log(selectedMembers);
     try {
-      for (let member of selectedMembers) {
-        console.log(member);
-        const { data } = await axios
-          .post(`/api/my-rooms/${idroom}/requests?username=${member}`)
-          .then((response) => response);
-        console.log(data);
-      }
-      navigate(0);
+      await addRoomMembersMutation.mutateAsync(idroom, selectedMembers);
+      setSelectedNew([])
+      tomselect.clear()
+
     } catch (error) {
-      console.error(error);
+      console.error("error", error);
     }
   };
 
-  useEffect(() => {
-    // const selectOptions = new Tom(selectCustom.current, {
 
-    const selectOptions = new Tom("#user_autocomplete", {
+  const selectCustom = useRef(null);
+  const [tomselect, settomselect] = useState(null)
+  useEffect(() => {
+    const selectOptions = new Tom(selectCustom.current, {
+
+      // const selectOptions = new Tom("#user_autocomplete", {
       // labelField: "first_name",
       maxItems: 10,
       plugins: ["remove_button"],
@@ -45,7 +41,8 @@ const AutoComplete = ({ members }) => {
       // items: [],
       placeholder: "Select some members",
       onChange: (value) => {
-        setSelectedMembers(value.split(","));
+        // setSelectedMembers(value.split(","));
+        setSelectedNew(value.split(","));
       },
       load: function (query, callback) {
         var url =
@@ -57,16 +54,24 @@ const AutoComplete = ({ members }) => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${authTokens.access}`,
           },
-        }).then(async (response) => {
-          const data = await response.json();
-          console.log(data);
-          const filteredData = data.filter((item) => {
-            return !members.some(
-              (member) => member.member.username === item.username
-            );
+        })
+          .then(async response => {
+            const data = await response.json();
+            // console.log("response", data);
+            callback(data);
+          }).catch(() => {
+            callback();
           });
-          callback(filteredData);
-        });
+        // .then(async (response) => {
+        //   const data = await response.json();
+        //   console.log(data);
+        //   const filteredData = data.filter((item) => {
+        //     return !members.some(
+        //       (member) => member.member.username === item.username
+        //     );
+        //   });
+        //   callback(filteredData);
+        // });
       },
 
       render: {
@@ -74,16 +79,16 @@ const AutoComplete = ({ members }) => {
           return `<div class="flex space-x-3">
                         <div class="avatar w-8 h-8">
                             <img class="rounded-full" src="${escape(
-                              item.picture_path
-                            )}" alt="avatar"/>
+            item.picture_path
+          )}" alt="avatar"/>
                         </div>
                         <div class="flex flex-col">
                             <span>${escape(item.first_name)} ${escape(
             item.last_name
           )}</span>
                             <span class="text-xs opacity-80"> ${escape(
-                              item.username
-                            )}</span>
+            item.username
+          )}</span>
                         </div>
                     </div>`;
         },
@@ -91,8 +96,8 @@ const AutoComplete = ({ members }) => {
           return `<span class="badge rounded-full bg-primary dark:bg-accent text-white p-px mr-2">
                         <span class="avatar w-6 h-6">
                             <img class="rounded-full" src="${escape(
-                              item.picture_path
-                            )}" alt="avatar"/>
+            item.picture_path
+          )}" alt="avatar"/>
 
                         </span>
                         <span class="mx-2">${escape(item.first_name)} ${escape(
@@ -102,11 +107,14 @@ const AutoComplete = ({ members }) => {
         },
       },
     });
+    settomselect(selectOptions)
+
 
     return () => {
       selectOptions.destroy();
     };
   }, []);
+
 
   return (
     <div>
