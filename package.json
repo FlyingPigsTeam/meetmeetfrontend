@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@editorjs/editorjs": "^2.27.0",
     "@headlessui/react": "^1.7.15",
     "@makotot/paginated": "^1.0.1",
     "@mantine/hooks": "^6.0.13",

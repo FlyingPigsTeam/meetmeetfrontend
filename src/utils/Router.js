@@ -32,6 +32,7 @@ import LandingPage from "../pages/Landing/LandingPage";
 import Subscribtion from "../pages/Subscribtion/Subscribtion";
 import ActiveRedirect from "./ActiveRedirect";
 import PopOverTest from "../pages/Tests/PopOverTest";
+import Introduction from "../pages/Room/Introduction/Introduction";
 
 const Router = () => {
   return (
@@ -61,12 +62,13 @@ const Router = () => {
           <Route path="/room/:idroom" element={<ActiveRedirect/>} />
 
           <Route path="/room/:idroom/info" element={<InfoTab />} />
-          <Route
-            path="/room/:idroom/info/edit"
-            element={<InformationForm Title="Edit" />}
-          />
+          <Route path="/room/:idroom/info/edit" element={<InformationForm Title="Edit" />}/>
           <Route path="/room/:idroom/task" element={<Task />} />
           <Route path="/room/:idroom/chat" element={<Chat />} />
+          <Route path="/room/:idroom/" element={<Chat />} />
+          <Route path="/intro" element={<Introduction />} />
+
+
           <Route path="/joinRoom/:randomId" element={<JoinRoom />} />
           <Route path="/profile" element={<Profile />} />
           <Route
