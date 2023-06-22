@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import swal from "sweetalert";
 import axios from "axios";
 import { BASEURL } from "../data/BASEURL";
@@ -23,6 +23,9 @@ export const AuthProvider = ({ children }) => {
   const [loading, setloading] = useState(true);
 
   const Navigate = useNavigate();
+  const location = useLocation();
+  //const from = location.state?.from?.pathname || "/home";
+  console.log(location.state?.form);
 
   const loginUser = async (values) => {
     // e.preventDefault();
@@ -43,7 +46,11 @@ export const AuthProvider = ({ children }) => {
       setAuthTokens(data);
       setUser(jwt_decode(data.access));
       localStorage.setItem("authTokens", JSON.stringify(data));
-      Navigate(-1);
+      //Navigate(-1);
+      // Navigate(from, { replace: true });
+      const from = location.state?.form || "/home";
+
+      Navigate(from, { replace: true });
     } else {
       console.log(data.error);
       if (data.error === "Invalid credentials") {
