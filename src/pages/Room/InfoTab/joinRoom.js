@@ -30,7 +30,7 @@ function JoinRoom() {
         let idRoomError = err.response.data.id;
         if (error === "wrong link") {
           swal("Error!", "Room with this link does not exist ", "error");
-          Navigate("/");
+          Navigate("/home");
         } else if (error === "already joined") {
           swal("Error!", "Your are already join the group", "error");
           //Navigate("/room/:idroom/info");
@@ -44,15 +44,15 @@ function JoinRoom() {
     linkRequest();
   }, [randomId]);
   const joinRoom = async () => {
-    const data = await axios.post(
-      `/api/my-rooms/${roomData.id}`, null
-    ).then((response) => response);
+    const data = await axios
+      .post(`/api/my-rooms/${roomData.id}`, null)
+      .then((response) => response);
     if (data.status === 202) {
       swal("Success!", "Request sent!", "success");
-      Navigate("/");
+      Navigate("/home");
     } else if (data.status === 406) {
       swal("Error!", data.error, "error");
-      Navigate("/");
+      Navigate("/home");
     }
   };
   return (

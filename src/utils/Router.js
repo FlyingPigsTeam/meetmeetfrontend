@@ -40,10 +40,10 @@ const Router = () => {
         <AxiosGlobalConfig />
         {/* <Header /> */}
         <Routes>
-          <Route path="/landing" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage />} />
           <Route element={<PrivateRoute />}>
             {/* <Route element={<Home />} path="/" /> */}
-            <Route path="/" element={<Homepage />} />
+            <Route path="/home" element={<Homepage />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -58,7 +58,7 @@ const Router = () => {
           <Route path="/profileEdit" element={<Setting />} />
           <Route path="/subscribtion" element={<Subscribtion />} />
           {/* <Route path="/room/info" element={<InfoTab />} /> */}
-          <Route path="/room/:idroom" element={<ActiveRedirect/>} />
+          <Route path="/room/:idroom" element={<ActiveRedirect />} />
 
           <Route path="/room/:idroom/info" element={<InfoTab />} />
           <Route
@@ -79,7 +79,6 @@ const Router = () => {
           <Route path="/search" element={<Search />} />
           <Route path="/reactquery" element={<InfiniteQuery />} />
           <Route path="/poper" element={<PopOverTest />} />
-
 
           {/* <Routes>
               <Route path="/" element={<Homepage />} />

@@ -10,12 +10,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useClipboard } from "@mantine/hooks";
 import Swal from "sweetalert2";
 
-
 export default function InformationPage() {
   const { idroom } = useParams();
   const navigate = useNavigate();
   let authTokens = useContext(AuthContext).authTokens;
-  
+
   const clipboard = useClipboard({ timeout: 20000 });
   const [seePassword, setSeePassword] = useState(false);
   const [link, setLink] = useState(null);
@@ -35,8 +34,8 @@ export default function InformationPage() {
   //     req();
   // }, [idroom]);
   useEffect(() => {
-    setLink(roomData?.data?.link)
-  },[roomData])
+    setLink(roomData?.data?.link);
+  }, [roomData]);
   const refreshLink = async () => {
     const { data } = await axios
       .put(`/api/my-rooms/${idroom}?link=${link}`, null)
@@ -52,7 +51,7 @@ export default function InformationPage() {
       showConfirmButton: false,
       timer: 2000,
     });
-    navigate("/");
+    navigate("/home");
   };
 
   const copyLinkToClipboard = async (copylink) => {
@@ -66,8 +65,7 @@ export default function InformationPage() {
         timer: 2000,
       });
     }
-  }
-
+  };
 
   if (roomData) {
     localStorage.setItem("RoomTitle", roomData.data.title);
@@ -133,7 +131,7 @@ export default function InformationPage() {
               className="mask is-squircle"
               src={
                 roomData.data.main_picture_path === "" ||
-                  roomData.data.main_picture_path === "__"
+                roomData.data.main_picture_path === "__"
                   ? Avatar200x200
                   : roomData.data.main_picture_path
               }
@@ -411,7 +409,9 @@ export default function InformationPage() {
                     <div>
                       <button
                         id={"clipBoardCopy"}
-                        onClick={()=>copyLinkToClipboard(FrontURL + "/joinroom/" + link)}
+                        onClick={() =>
+                          copyLinkToClipboard(FrontURL + "/joinroom/" + link)
+                        }
                         className="btn h-6 shrink-0 rounded mx-1 my-2 bg-white/20 px-2 text-xs text-white active:bg-white/25"
                       >
                         <svg
@@ -433,13 +433,13 @@ export default function InformationPage() {
                       {roomData.data.is_admin && (
                         <>
                           <button
-                            onClick={ async ()=>await refreshLink()}
+                            onClick={async () => await refreshLink()}
                             className="btn h-6 shrink-0 rounded mx-1 my-2 bg-white/20 px-2 space-x-1 space-y-2 text-xs text-white active:bg-white/25"
-                          //   @click="$clipboard({
-                          //     content:document.querySelector('#clipboardContent1').innerText,
-                          //     success:()=>$notification({text:'Text Copied',variant:'success'}),
-                          //     error:()=>$notification({text:'Error',variant:'error'})
-                          //   })"
+                            //   @click="$clipboard({
+                            //     content:document.querySelector('#clipboardContent1').innerText,
+                            //     success:()=>$notification({text:'Text Copied',variant:'success'}),
+                            //     error:()=>$notification({text:'Error',variant:'error'})
+                            //   })"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
   const loginUser = async (values) => {
     // e.preventDefault();
     //console.log("form submitted")
-    const response = await fetch(BASEURL +"/auth/login/", {
+    const response = await fetch(BASEURL + "/auth/login/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,18 +59,15 @@ export const AuthProvider = ({ children }) => {
   const forgetpassUser = async (values) => {
     // e.preventDefault();
     //console.log("form submitted")
-    const response = await fetch(
-      BASEURL + "/auth/forget-password/",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: values.email,
-        }),
-      }
-    );
+    const response = await fetch(BASEURL + "/auth/forget-password/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: values.email,
+      }),
+    });
     const data = await response.json();
     console.log(data);
 
@@ -150,7 +147,8 @@ export const AuthProvider = ({ children }) => {
     forgetpassUser: forgetpassUser,
   };
   useEffect(() => {
-    if (loading) {
+    //console.log(authTokens);
+    if (loading && authTokens) {
       updateToken();
     }
     const interval = setInterval(() => {
