@@ -1,5 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams, useLocation, NavLink } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useLocation,
+  NavLink,
+} from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../context/AuthContext";
 import AddRoom from "../pages/Room/AddRoom";
@@ -39,7 +45,7 @@ Sidebar.Primary = function PrimarySidebar({ classes, children, ...restProps }) {
 Sidebar.Primary.Logo = function SidebarLogo() {
   return (
     <div className="flex pt-4">
-      <Link to={"/"}>
+      <Link to={"/home"}>
         <img
           className="h-11 w-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
           src={AppLogo}
@@ -69,9 +75,9 @@ Sidebar.Primary.Middle.Home = function PrimarySidebar({
 }) {
   return (
     <Link
-      to={"/"}
+      to={"/home"}
       className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-    // x-tooltip.placement.right="'Dashboards'"
+      // x-tooltip.placement.right="'Dashboards'"
     >
       <svg
         className="h-7 w-7"
@@ -111,7 +117,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="#"
         className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-      // x-tooltip.placement.right="'Dashboards'"
+        // x-tooltip.placement.right="'Dashboards'"
       >
         <svg
           className="h-7 w-7"
@@ -143,7 +149,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="apps-list.html"
         className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
-      // x-tooltip.placement.right="'Applications'"
+        // x-tooltip.placement.right="'Applications'"
       >
         <svg
           className="h-7 w-7"
@@ -175,7 +181,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="pages-card-user-1.html"
         className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-      // x-tooltip.placement.right="'Pages & Layouts'"
+        // x-tooltip.placement.right="'Pages & Layouts'"
       >
         <svg
           className="h-7 w-7"
@@ -209,7 +215,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="form-input-text.html"
         className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-      // x-tooltip.placement.right="'Forms'"
+        // x-tooltip.placement.right="'Forms'"
       >
         <svg
           className="h-7 w-7"
@@ -238,7 +244,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="components-accordion.html"
         className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-      // x-tooltip.placement.right="'Components'"
+        // x-tooltip.placement.right="'Components'"
       >
         <svg
           className="h-7 w-7"
@@ -267,7 +273,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="elements-avatar.html"
         className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-      // x-tooltip.placement.right="'Elements'"
+        // x-tooltip.placement.right="'Elements'"
       >
         <svg
           className="h-7 w-7"
@@ -373,30 +379,24 @@ Sidebar.Primary.Middle.Rooms.Item = function PrimaryRoomsItems({
 }) {
   return (
     <>
-
       <div
         // @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/200x200.png',name:'Konnor Guzman'})"
         className="flex cursor-pointer items-center justify-center py-2.5 "
       >
-        <NavLink
-          to={`/room/${item.id}`}
-        >
+        <NavLink to={`/room/${item.id}`}>
           {({ isActive, isPending }) => (
-            <div
-              className="avatar h-10 w-10"
-            >
-
-
+            <div className="avatar h-10 w-10">
               <img
-
                 className={classNames(
                   "rounded-full",
                   "hover:border-primary hover:border-2  hover:shadow-soft",
                   "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
-                  isActive && "border-info border-2 shadow-soft shadow-info-focus/40"
+                  isActive &&
+                    "border-info border-2 shadow-soft shadow-info-focus/40"
                 )}
                 src={
-                  item.main_picture_path === "" || item.main_picture_path === "__"
+                  item.main_picture_path === "" ||
+                  item.main_picture_path === "__"
                     ? Avatar200x200
                     : item.main_picture_path
                 }
@@ -405,7 +405,7 @@ Sidebar.Primary.Middle.Rooms.Item = function PrimaryRoomsItems({
             </div>
           )}
         </NavLink>
-      </div >
+      </div>
     </>
   );
 };
@@ -615,8 +615,8 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                   className="rounded-full"
                   src={
                     data.picture_path &&
-                      data.picture_path != "" &&
-                      data.picture_path != "__"
+                    data.picture_path != "" &&
+                    data.picture_path != "__"
                       ? data.picture_path
                       : Avatar200x200
                   }
@@ -654,8 +654,8 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                         className="rounded-full"
                         src={
                           data.picture_path &&
-                            data.picture_path != "" &&
-                            data.picture_path != "__"
+                          data.picture_path != "" &&
+                          data.picture_path != "__"
                             ? data.picture_path
                             : Avatar200x200
                         }
@@ -1449,7 +1449,7 @@ Sidebar.Secondary.Expanded.Body.Middle.SectionHeader = function ({
             <div
               x-ref="popperRoot"
               className="popper-root"
-            // :className="isShowPopper && 'show'"
+              // :className="isShowPopper && 'show'"
             >
               <div className="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
                 <ul>
@@ -1930,7 +1930,7 @@ Sidebar.Secondary.Minimized.Body.MoreActions = function ({
           <div
             x-ref="popperRoot"
             className="popper-root"
-          // :className="isShowPopper && 'show'"
+            // :className="isShowPopper && 'show'"
           >
             <div className="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
               <ul>
