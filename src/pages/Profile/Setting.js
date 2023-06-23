@@ -23,7 +23,7 @@
   }
   ```
 */
-import React, { Fragment, useContext, useState } from "react";
+import React, { Fragment, useContext, useId, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
 import {
@@ -154,6 +154,8 @@ export default function Setting({ user, onCancel }) {
     }
     navigate(0);
   };
+  const UploadProfileID = useId();
+
   return (
     <>
       <div className="flex h-full">
@@ -201,11 +203,11 @@ export default function Setting({ user, onCancel }) {
                             />
                             <div className="absolute bottom-0 right-0 flex items-center justify-center rounded-full bg-white dark:bg-navy-700">
                               <label
-                                htmlFor={"edit-avatar-btn"}
+                                htmlFor={UploadProfileID}
                                 className="btn h-6 w-6 rounded-full border border-slate-200 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:border-navy-500 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                               >
                                 <input
-                                  id="edit-avatar-btn"
+                                  id={UploadProfileID}
                                   type="file"
                                   accept=".jpg, .jpeg, .png"
                                   onChange={onSelectImage}

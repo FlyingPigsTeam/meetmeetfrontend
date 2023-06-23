@@ -5,6 +5,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@makotot/paginated": "^1.0.1",
+    "@mantine/hooks": "^6.0.13",
     "@popperjs/core": "^2.11.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -32,7 +33,6 @@
     "react-toggle-dark-mode": "^1.1.1",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
-    "sweetalert": "^2.1.2",
     "sweetalert2": "^11.7.3",
     "tiny-slider": "^2.9.4",
     "tom-select": "^2.2.2",

@@ -6,63 +6,61 @@ import React, {
   useState,
 } from "react";
 import ReactPaginate from 'react-paginate';
-
-import { Menu, Transition } from "@headlessui/react";
+import { useQuery } from "react-query";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import AutoComplete from "../../../components/AutoComplete";
 import AuthContext from "../../../context/AuthContext";
-import PopOver from "../../../components/PopOver";import Pagination from '../../Home/Pagination'
+import Pagination from '../../Home/Pagination'
 
 import Avatar200x200 from "../../../assets/images/200x200.png";
+import MemberActions from "./MemberActions";
+
+import { useGetRoomMembers } from "../../../api/endpoints/useRoomMembers";
 
 const Members = () => {
+
   const { idroom } = useParams();
-  const navigate = useNavigate();
-  let authTokens = useContext(AuthContext).authTokens;
-  let [users_Data, setUser_Data] = useState([]);
-  let [roomData, setRoomData] = useState({});
-  const entriesOptions=[1,2,3,4,5,10,15]
-  
+
+
+
+  const [roomData, setRoomData] = useState({});
+  const entriesOptions = [1, 2, 3, 4, 5, 10, 15]
+
   const [totalpage, setTotalpage] = useState(1);
   const [page, setPage] = useState(1);
   const [entries, setEntries] = useState(1)
-  console.log("entries", entries)
-  const req = async () => {
-    const { data } = await axios
-      .get(`/api/my-rooms/${idroom}/requests?show_members=1&page=${page}&entries=${entries}`)
-      .then((response) => response);
-    console.log("memberFetch", data);
-    setUser_Data(data);
 
-    let count = data.count;
-    let number = 1;
-    if (count % entries === 0) {
-      number = count / entries;
-    } else {
-      number = (count - (count % entries)) / entries + 1;
+  const { data: users_Data, isLoading, isError,refetch:refetchMembers } = useGetRoomMembers(idroom, page, entries);
+  const calculateTotalPage = async () => {
+    if (!isLoading) {
+
+      let count = users_Data?.data?.count;
+      let number = 1;
+      if (count % entries === 0) {
+        number = count / entries;
+      } else {
+        number = (count - (count % entries)) / entries + 1;
+      }
+      setTotalpage(number);
     }
-    setTotalpage(number);
-    console.log("totalpage", totalpage);
   };
+
   const thisroom = async () => {
     const { data } = await axios
       .get(`/api/my-rooms/${idroom}`)
       .then((response) => response);
-    console.log("roomDataFetch", data);
     setRoomData(data);
-
-
   };
   useEffect(() => {
-    req();
     thisroom();
   }, []);
 
   useEffect(() => {
-    req();
-  }, [idroom, page, entries]);
+    calculateTotalPage();
+  }, [idroom, page, entries, users_Data]);
 
+  // console.log("totalpage", totalpage);
 
   const ConvertRole = (member) => {
     const result =
@@ -105,7 +103,9 @@ const Members = () => {
           console.log("memberAccept", data);
         };
         acceptUser();
-        navigate(0);
+        setPage(1);
+        refetchMembers();
+
       },
     },
     Kick: {
@@ -130,7 +130,8 @@ const Members = () => {
           console.log("memberKick", data);
         };
         deleteUser();
-        navigate(0);
+        setPage(1);
+        refetchMembers();
       },
     },
 
@@ -147,7 +148,7 @@ const Members = () => {
       ),
       action: (requestId) => {
 
-        const deleteUser = async () => {
+        const rejectUser = async () => {
           const { data } = await axios
             .delete(
               `/api/my-rooms/${idroom}/requests?request_id=${requestId}`
@@ -155,8 +156,9 @@ const Members = () => {
             .then((response) => response);
           console.log("memberReject", data);
         };
-        deleteUser();
-        navigate(0);
+        rejectUser();
+        setPage(1);
+        refetchMembers();
       },
     },
   };
@@ -195,6 +197,10 @@ const Members = () => {
       Actions: ["Accept", "Reject"],
     },
   };
+
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
   return (
     <>
       <div>
@@ -346,7 +352,7 @@ const Members = () => {
                 </tr>
               </thead>
               <tbody>
-                {users_Data?.results?.map((user, idx) => {
+                {users_Data?.data?.results?.map((user, idx) => {
                   return (
                     <tr
                       key={`user-item-${idx}`}
@@ -389,77 +395,7 @@ const Members = () => {
                         </label>
                       </td> */}
                       {roomData.is_admin && <td className="whitespace-nowrap px-4 py-3 sm:px-5">
-                        <Menu
-                          as="div"
-                          className="relative inline-block text-left"
-                        >
-                          <div>
-                            <Menu.Button
-                              className="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                                />
-                              </svg>
-                            </Menu.Button>
-                          </div>
-                          {ConvertRole(user) !== "Owner" && (
-                            <Transition
-                              as={Fragment}
-                              enter="transition ease-out duration-100"
-                              enterFrom="transform opacity-0 scale-95"
-                              enterTo="transform opacity-100 scale-100"
-                              leave="transition ease-in duration-75"
-                              leaveFrom="transform opacity-100 scale-100"
-                              leaveTo="transform opacity-0 scale-95"
-                            >
-                              {
-                                <Menu.Items
-                                  className="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
-                                  <div>
-                                    {roleDetails[ConvertRole(user)].Actions.map(
-                                      (action, index) => (
-                                        <Menu.Item id={`action-item-${index}`}>
-                                          <button
-                                            onClick={() => actionsDetails[action].action(user.id)}
-                                            className="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                          >
-                                            <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              className="mt-px h-4.5 w-4.5"
-                                              fill="none"
-                                              viewBox="0 0 24 24"
-                                              stroke="currentColor"
-                                              strokeWidth="1.5"
-                                            >
-                                              {actionsDetails[action].iconPath}
-                                            </svg>
-                                            <span>
-                                              {" "}
-                                              {
-                                                actionsDetails[action]
-                                                  .actionName
-                                              }
-                                            </span>
-                                          </button>
-                                        </Menu.Item>
-                                      )
-                                    )}
-                                  </div>
-                                </Menu.Items>
-                              }
-                            </Transition>
-                          )}
-                        </Menu>
+                        <MemberActions user={user} setPage={setPage} refetchMembers={refetchMembers} />
                       </td>}
                     </tr>
                   );
@@ -475,14 +411,16 @@ const Members = () => {
               <span>Show</span>
               <label className="block">
                 <select
+                  value={entries}
                   onChange={(e) => {
                     setPage(1);
-                    setEntries(e.target.value);}}
+                    setEntries(e.target.value);
+                  }}
                   className="form-select text-xs+ rounded-full border border-slate-300 bg-white px-2 py-1 pr-6 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
                 >
                   {entriesOptions.map((option, index) => (<option>{option}</option>))}
 
-                  
+
                 </select>
               </label>
               <span>entries</span>
@@ -572,18 +510,19 @@ const Members = () => {
                 </a>
               </li>
             </ol> */}
-            <Pagination
-              total={totalpage}
-              current={page}
-              setPage={setPage}
-            />
+            {totalpage !== 1 &&
+              <Pagination
+                total={totalpage}
+                current={page}
+                setPage={setPage}
+              />}
 
             {/* <div className="text-xs+">1 - 10 of 10 entries</div> */}
-            <div className="text-xs+">{`${page*entries-entries+1} - ${Math.min(page*entries, users_Data.count)} of ${users_Data.count} entries`}</div>
+            <div className="text-xs+">{`${page * entries - entries + 1} - ${Math.min(page * entries, users_Data?.data?.count)} of ${users_Data?.data?.count} entries`}</div>
 
           </div>
         </div>
-        <div className="card mt-3 p-4"><AutoComplete members={users_Data}/></div>
+        <div className="card mt-3 p-4"><AutoComplete /></div>
       </div>
     </>
   );

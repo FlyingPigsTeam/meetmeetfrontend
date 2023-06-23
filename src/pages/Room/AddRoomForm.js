@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
 import Flatpickr from "react-flatpickr";
-import React, { useRef, useState, useEffect, useContext } from "react";
+import React, { useRef, useState, useEffect, useContext, useId } from "react";
 import Tom from "tom-select";
 import { useQuery } from "react-query";
 
@@ -17,7 +17,7 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const authTokens = useContext(AuthContext).authTokens;
-
+    const UploadAddroomID = useId();
     // TODO: HANDLE VALID CATEGORIES
 
 
@@ -164,14 +164,15 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
                 .then((response) => response);
             console.log(data);
 
-
-            const resPic = await axios.putForm(`/api/upload?id=${data.id}&where=room`,
-                { 'image': image },
-            ).then((response) => {
-                console.log(JSON.stringify(response.data));
-            }).catch((error) => {
-                console.log(error);
-            });
+            if (image) {
+                const resPic = await axios.putForm(`/api/upload?id=${data.id}&where=room`,
+                    { 'image': image },
+                ).then((response) => {
+                    console.log(JSON.stringify(response.data));
+                }).catch((error) => {
+                    console.log(error);
+                });
+            }
             setModalOpen(false);
             // TODO : NAVIGATE AFTER SUBMITION
             // TODO : IS SUBMITTING HANDLE
@@ -213,7 +214,7 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
             };
         }
     }, [isLoadingCategories]);
-    
+
     if (isLoadingCategories) {
         return (<p>loading ...</p>)
     }
@@ -245,13 +246,13 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
                     />
                     <div className="absolute bottom-0 right-0 flex items-center justify-center rounded-full bg-white dark:bg-navy-700">
                         <input
-                            id="edit-avatar-btn"
+                            id={UploadAddroomID}
                             type="file"
                             accept=".jpg, .jpeg, .png"
                             onChange={onSelectImage}
                             hidden
                         />
-                        <label htmlFor={"edit-avatar-btn"}
+                        <label htmlFor={UploadAddroomID}
                             className="btn h-6 w-6 rounded-full border border-slate-200 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:border-navy-500 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
