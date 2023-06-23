@@ -13,7 +13,7 @@ export default function SliderForAdding({
   roomId,
   setaddChanges,
 }) {
-  const [listUser, setUser] = useState();
+  const [listUser, setUser] = useState([]);
   const [title, settitle] = useState("");
   const [description, setdescription] = useState("");
   const [selectedDifficulty, setSelectedDifficulty] = useState(3);
