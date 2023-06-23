@@ -183,7 +183,8 @@ const Chat = () => {
               {localStorage.getItem("RoomTitle")}
             </div>
             <Header.Right>
-              <DarkModeToggle />
+              <Header.Right.DarkModeToggle />
+              <Header.Right.Notification/>
             </Header.Right>
           </Header.Items>
         </Header>

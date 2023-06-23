@@ -145,7 +145,8 @@ const Task = () => {
           <Header.Items>
             <Header.SidebarToggle />
             <Header.Right>
-              <DarkModeToggle />
+              <Header.Right.DarkModeToggle />
+              <Header.Right.Notification/>
             </Header.Right>
           </Header.Items>
         </Header>
