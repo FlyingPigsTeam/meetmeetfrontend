@@ -163,7 +163,7 @@ export default function SliderForAdding({
                           </select> */}
                         {/* </label> */}
                       </div>
-                      <div className="flex items-center justify-between mt-20 xl:mt-52 py-3 px-4">
+                      <div className="flex items-center justify-between fixed md:w-[83%] w-[90%] bottom-6 py-3 px-4">
                         <button
                           onClick={() => {
                             reqForAdding();
