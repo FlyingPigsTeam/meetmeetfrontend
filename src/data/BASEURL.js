@@ -1,2 +1,2 @@
-export const BASEURL = 'https://meet-meet.ir/backend';
+export const BASEURL = 'http://localhost:8000';
 export const FrontURL = 'http://localhost:3000';
