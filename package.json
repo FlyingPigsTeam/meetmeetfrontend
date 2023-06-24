@@ -33,7 +33,6 @@
     "react-toggle-dark-mode": "^1.1.1",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
-    "sweetalert": "^2.1.2",
     "sweetalert2": "^11.7.3",
     "tiny-slider": "^2.9.4",
     "tom-select": "^2.2.2",

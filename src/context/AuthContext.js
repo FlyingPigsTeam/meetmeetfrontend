@@ -1,7 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import swal from "sweetalert";
+//import swal from "sweetalert";
+import Swal from "sweetalert2";
 import axios from "axios";
 import { BASEURL } from "../data/BASEURL";
 
@@ -55,11 +56,25 @@ export const AuthProvider = ({ children }) => {
       console.log(data.error);
       if (data.error === "Invalid credentials") {
         //show pop up
-        swal("Error!", "Invalid credentials!", "error");
+        //swal("Error!", "Invalid credentials!", "error");
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Invalid credentials!",
+          showConfirmButton: false,
+          timer: 2000,
+        });
       }
       if (data.error === "email is not verified") {
-        swal("Error!", "check your mailbox for verification", "error");
+        //swal("Error!", "check your mailbox for verification", "error");
         //show pop up with  check your mailbox for verification
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "check your mailbox for verification",
+          showConfirmButton: false,
+          timer: 2000,
+        });
       }
     }
   };
@@ -80,9 +95,23 @@ export const AuthProvider = ({ children }) => {
 
     if (response.status === 200) {
       //check your email to reset your password
-      swal("success!", "check your email to reset your password!", "success");
+      //swal("success!", "check your email to reset your password!", "success");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "check your email to reset your password!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
     } else if (response.status === 400) {
-      swal("Error!", "Invalid Email", "error");
+      //swal("Error!", "Invalid Email", "error");
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Invalid Email",
+        showConfirmButton: false,
+        timer: 2000,
+      });
     }
   };
   const registerUser = async (values) => {
@@ -103,16 +132,37 @@ export const AuthProvider = ({ children }) => {
     });
     const reg_data = await reg_response.json();
     if (reg_response.status === 201) {
-      swal("success!", "please verify your email!", "success");
+      //swal("success!", "please verify your email!", "success");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "please verify your email",
+        showConfirmButton: false,
+        timer: 2000,
+      });
       Navigate("/login");
     } else {
       if (reg_data.message.email) {
-        swal("Error!", reg_data.message.email[0], "error");
+        //swal("Error!", reg_data.message.email[0], "error");
         //console.log(reg_data.message.email[0]); //show pop up
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: reg_data.message.email[0],
+          showConfirmButton: false,
+          timer: 2000,
+        });
       }
       if (reg_data.message.username) {
-        swal("Error!", reg_data.message.username[0], "error");
+        //swal("Error!", reg_data.message.username[0], "error");
         //console.log(reg_data.message.username[0]);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: reg_data.message.username[0],
+          showConfirmButton: false,
+          timer: 2000,
+        });
       }
     }
   };

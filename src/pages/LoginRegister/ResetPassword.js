@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import swal from "sweetalert";
-import AppLogo from "../../assets/images/app-logo.svg"
+import AppLogo from "../../assets/images/app-logo.svg";
+//import swal from "sweetalert";
+import Swal from "sweetalert2";
 import classNames from "../../utils/classNames";
 import { BASEURL } from "../../data/BASEURL";
 
@@ -41,7 +42,8 @@ const ResetPassword = () => {
     // e.preventDefault();
     //console.log("form submitted")
     const response = await fetch(
-      BASEURL + "/auth/reset-password/?" +
+      BASEURL +
+        "/auth/reset-password/?" +
         new URLSearchParams({
           token: token1,
         }),
@@ -58,10 +60,24 @@ const ResetPassword = () => {
     const data = await response.json();
     console.log(response);
     if (response.status === 200) {
-      swal("success!", "your password successfully reset", "success");
+      //swal("success!", "your password successfully reset", "success");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "your password successfully reset",
+        showConfirmButton: false,
+        timer: 2000,
+      });
       Navigate("/login");
     } else {
-      swal("Error!", data.error, "error");
+      //swal("Error!", data.error, "error");
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: data.error,
+        showConfirmButton: false,
+        timer: 2000,
+      });
     }
   };
 
