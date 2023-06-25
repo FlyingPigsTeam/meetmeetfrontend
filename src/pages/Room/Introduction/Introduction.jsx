@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom/client";
+
 import EditorJS from "@editorjs/editorjs";
 import { Header as EditorHeader } from "@editorjs/header";
 import { Paragraph as EditorParagraph } from "@editorjs/paragraph";
@@ -121,7 +122,7 @@ const Introduction = () => {
             ejInstance?.current?.destroy();
             ejInstance.current = null;
         };
-    }, [divSection.current]);
+    }, []);
     console.warn("Editordiv", divSection);
     console.warn("EditorIns", ejInstance);
     return (
@@ -193,7 +194,9 @@ const Introduction = () => {
                     </Sidebar.Secondary>
                 </Sidebar>
                 <MainSection classes={"todo-app"}>
-                    <div ref={divSection} id='editorjs'></div>
+                    <div id='editorjs'></div>
+
+
 
                 </MainSection>
             </PageWrapper>
