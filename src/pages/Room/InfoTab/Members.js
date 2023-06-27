@@ -208,7 +208,7 @@ const Members = () => {
           <h2 className="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
             Users Table
           </h2>
-          <div className="flex">
+          {/* <div className="flex">
 
             <div className="flex items-center" x-data="{isInputActive:false}">
               <label className="block">
@@ -312,7 +312,7 @@ const Members = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="card mt-3">
 
