@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import AuthContext from "../../../context/AuthContext";
 import Avatar200x200 from "../../../assets/images/200x200.png";
 import { useParams, useNavigate } from "react-router-dom";
+import Moment from "react-moment";
 
 function JoinRoom() {
   const Navigate = useNavigate();
@@ -224,7 +225,7 @@ function JoinRoom() {
                   </dd>
                 </div>
 
-                <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-4">
+                {/* <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-4">
                   <dt className="text-sm font-medium ">Start Date </dt>
                   <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                     <span className="flex-grow">
@@ -256,6 +257,28 @@ function JoinRoom() {
                         second: "numeric",
                         timeZoneName: "short",
                       })}
+                    </span>
+                  </dd>
+                </div> */}
+                <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-4">
+                  <dt className="text-sm font-medium ">Start Date </dt>
+                  <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
+                    <span className="flex-grow">
+                      <Moment format="YYYY/MM/DD HH:mm">
+                        {roomData.start_date}
+                      </Moment>
+                      <br />
+                    </span>
+                  </dd>
+                </div>
+                <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-4">
+                  <dt className="text-sm font-medium ">End Date</dt>
+                  <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
+                    <span className="flex-grow">
+                      <Moment format="YYYY/MM/DD HH:mm">
+                        {roomData.end_date}
+                      </Moment>
+                      <br />
                     </span>
                   </dd>
                 </div>

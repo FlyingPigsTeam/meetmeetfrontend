@@ -350,7 +350,7 @@ export default function InformationPage() {
                 </span> */}
               </dd>
             </div>
-            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
+            {/* <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
               <dt className="text-sm font-medium ">Start Date & End Date</dt>
               <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow">
@@ -382,14 +382,44 @@ export default function InformationPage() {
                       }
                     )}
                 </span>
-                {/* <span className="ml-4 flex-shrink-0">
-                  <button
-                    type="button"
-                    className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  >
-                    Update
-                  </button>
-                </span> */}
+              </dd>
+            </div> */}
+            {/* <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
+              <dt className="text-sm font-medium ">Start Date & End Date</dt>
+              <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
+                <span className="flex-grow">
+                  <Moment format="YYYY/MM/DD HH:mm">
+                    {roomData.data.start_date}
+                  </Moment>
+                  <br />
+                  till
+                  <br />
+                  <Moment format="YYYY/MM/DD HH:mm">
+                    {roomData.data.start_date}
+                  </Moment>
+                </span>
+              </dd>
+            </div> */}
+            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-4">
+              <dt className="text-sm font-medium ">Start Date </dt>
+              <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
+                <span className="flex-grow">
+                  <Moment format="YYYY/MM/DD HH:mm">
+                    {roomData.data.start_date}
+                  </Moment>
+                  <br />
+                </span>
+              </dd>
+            </div>
+            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-4">
+              <dt className="text-sm font-medium ">End Date</dt>
+              <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
+                <span className="flex-grow">
+                  <Moment format="YYYY/MM/DD HH:mm">
+                    {roomData.data.end_date}
+                  </Moment>
+                  <br />
+                </span>
               </dd>
             </div>
             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
