@@ -675,9 +675,9 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                     </div>
                   </div>
                   <div class="flex flex-col pt-2 pb-5">
-                    <a
-                      href="http://localhost:3000/profile"
-                      class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                    <Link
+                      to={"/profile"}
+                      className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                     >
                       <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-warning text-white">
                         <svg
@@ -704,7 +704,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                           Your profile setting
                         </div>
                       </div>
-                    </a>
+                    </Link>
                     {/* <a
                                                 href="#"
                                                 class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
