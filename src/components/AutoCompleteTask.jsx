@@ -47,6 +47,7 @@ const AutoComplete = ({ setmember }) => {
         const selectOptions = new Tom("#user_autocomplete", {
             // labelField: "first_name",
             maxItems: 5,
+            maxOptions :5,
             plugins: ['remove_button'],
             valueField: "id",
             searchField: "username",
