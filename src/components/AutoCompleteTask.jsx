@@ -46,7 +46,7 @@ const AutoComplete = ({ setmember }) => {
         // const selectOptions = new Tom(selectCustom.current, {
         const selectOptions = new Tom("#user_autocomplete", {
             // labelField: "first_name",
-            maxItems: 10,
+            maxItems: 5,
             plugins: ['remove_button'],
             valueField: "id",
             searchField: "username",
