@@ -522,7 +522,7 @@ const Members = () => {
 
           </div>
         </div>
-        <div className="card mt-3 p-4"><AutoComplete /></div>
+        {roomData.is_admin && <div className="card mt-3 p-4"><AutoComplete /></div>}
       </div>
     </>
   );
