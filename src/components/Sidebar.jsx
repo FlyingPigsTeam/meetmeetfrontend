@@ -17,7 +17,7 @@ import { ClosingSidebar, OpeningSidebar } from "../Redux/Action";
 
 import PopOver from "./PopOver";
 import PopOverContext from "../context/PopOverContext";
-import { useClickOutside } from "@mantine/hooks";
+import { useClickOutside ,useLogger } from "@mantine/hooks";
 // TODO : ACTIVE SELECTION
 // TODO : HOVER COLORIZE
 // TODO : HOME BUTTON SHAPE CHANGES ON OVERFLOW ROOMS
@@ -30,7 +30,6 @@ export default function Sidebar({ classes, children, ...restProps }) {
     document.body.classList.contains("is-sidebar-open") &&
       document.body.classList.remove("is-sidebar-open");
   }, [location]);
-
   return <div className="sidebar print:hidden">{children}</div>;
 }
 

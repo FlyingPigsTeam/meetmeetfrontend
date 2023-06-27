@@ -418,7 +418,7 @@ const Members = () => {
                   }}
                   className="form-select text-xs+ rounded-full border border-slate-300 bg-white px-2 py-1 pr-6 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
                 >
-                  {entriesOptions.map((option, index) => (<option>{option}</option>))}
+                  {entriesOptions.map((option, index) => (<option key={`option-entry-${option}`}>{option}</option>))}
 
 
                 </select>

@@ -233,7 +233,7 @@ const Task = () => {
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-4.5 h-4.5"
+                        className="w-4.5 h-4.5"
                       >
                         <path
                           stroke-linecap="round"
@@ -260,7 +260,7 @@ const Task = () => {
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-4.5 h-4.5"
+                        className="w-4.5 h-4.5"
                       >
                         <path
                           stroke-linecap="round"
@@ -314,7 +314,7 @@ const Task = () => {
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-4.5 h-4.5"
+                        className="w-4.5 h-4.5"
                       >
                         <path
                           stroke-linecap="round"

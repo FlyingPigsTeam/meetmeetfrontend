@@ -122,11 +122,11 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                 <button
                   ref={setReferenceElement}
                   onClick={toggle}
-                  class="btn relative h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                  className="btn relative h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 text-slate-500 dark:text-navy-100"
+                    className="h-5 w-5 text-slate-500 dark:text-navy-100"
                     stroke="currentColor"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -139,9 +139,9 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                     />
                   </svg>
 
-                  <span class="absolute -top-px -right-px flex h-3 w-3 items-center justify-center">
-                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary opacity-80"></span>
-                    <span class="inline-flex h-2 w-2 rounded-full bg-secondary"></span>
+                  <span className="absolute -top-px -right-px flex h-3 w-3 items-center justify-center">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary opacity-80"></span>
+                    <span className="inline-flex h-2 w-2 rounded-full bg-secondary"></span>
                   </span>
                 </button>
                 <div
@@ -152,23 +152,23 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                 >
                   <div
                     ref={notif_box}
-                    class="popper-box mx-4 mt-1 flex max-h-[calc(100vh-6rem)] w-[calc(100vw-2rem)] flex-col rounded-lg border border-slate-150 bg-white shadow-soft dark:border-navy-800 dark:bg-navy-700 dark:shadow-soft-dark sm:m-0 sm:w-80"
+                    className="popper-box mx-4 mt-1 flex max-h-[calc(100vh-6rem)] w-[calc(100vw-2rem)] flex-col rounded-lg border border-slate-150 bg-white shadow-soft dark:border-navy-800 dark:bg-navy-700 dark:shadow-soft-dark sm:m-0 sm:w-80"
                   >
-                    <div class="rounded-t-lg bg-slate-100 text-slate-600 dark:bg-navy-800 dark:text-navy-200">
-                      <div class="flex items-center justify-between px-4 pt-2">
-                        <div class="flex items-center space-x-2">
-                          <h3 class="font-medium text-slate-700 dark:text-navy-100">
+                    <div className="rounded-t-lg bg-slate-100 text-slate-600 dark:bg-navy-800 dark:text-navy-200">
+                      <div className="flex items-center justify-between px-4 pt-2">
+                        <div className="flex items-center space-x-2">
+                          <h3 className="font-medium text-slate-700 dark:text-navy-100">
                             Notifications
                           </h3>
-                          <div class="badge h-5 rounded-full bg-primary/10 px-1.5 text-primary dark:bg-accent-light/15 dark:text-accent-light">
+                          <div className="badge h-5 rounded-full bg-primary/10 px-1.5 text-primary dark:bg-accent-light/15 dark:text-accent-light">
                             26
                           </div>
                         </div>
 
-                        <button class="btn -mr-1.5 h-7 w-7 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                        <button className="btn -mr-1.5 h-7 w-7 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="h-4.5 w-4.5"
+                            className="h-4.5 w-4.5"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -188,7 +188,7 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                         </button>
                       </div>
 
-                      <div class="is-scrollbar-hidden flex shrink-0 overflow-x-auto px-3">
+                      <div className="is-scrollbar-hidden flex shrink-0 overflow-x-auto px-3">
                         <button
                           onClick={() => setActiveTab("tabAll")}
                           className={classNames(
@@ -236,32 +236,32 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                       </div>
                     </div>
 
-                    <div class="tab-content flex flex-col overflow-hidden">
+                    <div className="tab-content flex flex-col overflow-hidden">
                       {activeTab === "tabAll" && (
                         <div
                           // x-transition:enter="transition-all duration-300 easy-in-out"
                           // x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]"
                           // x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]"
-                          class="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
+                          className="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
                         >
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary/10 dark:bg-secondary-light/15">
-                              <i class="fa fa-user-edit text-secondary dark:text-secondary-light"></i>
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary/10 dark:bg-secondary-light/15">
+                              <i className="fa fa-user-edit text-secondary dark:text-secondary-light"></i>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 User Photo Changed
                               </p>
-                              <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                              <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                                 John Doe changed his avatar photo
                               </div>
                             </div>
                           </div>
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5 text-info"
+                                className="h-5 w-5 text-info"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -275,49 +275,49 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                               </svg>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 Mon, June 14, 2021
                               </p>
-                              <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
-                                <span class="shrink-0">08:00 - 09:00</span>
-                                <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                              <div className="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                                <span className="shrink-0">08:00 - 09:00</span>
+                                <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
 
-                                <span class="line-clamp-1">Frontend Conf</span>
+                                <span className="line-clamp-1">Frontend Conf</span>
                               </div>
                             </div>
                           </div>
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 dark:bg-accent-light/15">
-                              <i class="fa-solid fa-image text-primary dark:text-accent-light"></i>
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 dark:bg-accent-light/15">
+                              <i className="fa-solid fa-image text-primary dark:text-accent-light"></i>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 Images Added
                               </p>
-                              <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                              <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                                 Mores Clarke added new image gallery
                               </div>
                             </div>
                           </div>
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-success/10 dark:bg-success/15">
-                              <i class="fa fa-leaf text-success"></i>
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-success/10 dark:bg-success/15">
+                              <i className="fa fa-leaf text-success"></i>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 Design Completed
                               </p>
-                              <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                              <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                                 Robert Nolan completed the design of the CRM
                                 application
                               </div>
                             </div>
                           </div>
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5 text-info"
+                                className="h-5 w-5 text-info"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -331,35 +331,35 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                               </svg>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 Wed, June 21, 2021
                               </p>
-                              <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
-                                <span class="shrink-0">16:00 - 20:00</span>
-                                <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                              <div className="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                                <span className="shrink-0">16:00 - 20:00</span>
+                                <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
 
-                                <span class="line-clamp-1">UI/UX Conf</span>
+                                <span className="line-clamp-1">UI/UX Conf</span>
                               </div>
                             </div>
                           </div>
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
-                              <i class="fa fa-project-diagram text-warning"></i>
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
+                              <i className="fa fa-project-diagram text-warning"></i>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 ER Diagram
                               </p>
-                              <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                              <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                                 Team completed the ER diagram app
                               </div>
                             </div>
                           </div>
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5 text-warning"
+                                className="h-5 w-5 text-warning"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -373,27 +373,27 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                               </svg>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 THU, May 11, 2021
                               </p>
-                              <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
-                                <span class="shrink-0">10:00 - 11:30</span>
-                                <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
-                                <span class="line-clamp-1">
+                              <div className="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                                <span className="shrink-0">10:00 - 11:30</span>
+                                <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                                <span className="line-clamp-1">
                                   Interview, Konnor Guzman
                                 </span>
                               </div>
                             </div>
                           </div>
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-error/10 dark:bg-error/15">
-                              <i class="fa fa-history text-error"></i>
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-error/10 dark:bg-error/15">
+                              <i className="fa fa-history text-error"></i>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 Weekly Report
                               </p>
-                              <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                              <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                                 The weekly report was uploaded
                               </div>
                             </div>
@@ -405,70 +405,70 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                           // x-transition:enter="transition-all duration-300 easy-in-out"
                           // x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]"
                           // x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]"
-                          class="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
+                          className="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
                         >
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary/10 dark:bg-secondary-light/15">
-                              <i class="fa fa-user-edit text-secondary dark:text-secondary-light"></i>
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary/10 dark:bg-secondary-light/15">
+                              <i className="fa fa-user-edit text-secondary dark:text-secondary-light"></i>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 User Photo Changed
                               </p>
-                              <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                              <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                                 John Doe changed his avatar photo
                               </div>
                             </div>
                           </div>
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 dark:bg-accent-light/15">
-                              <i class="fa-solid fa-image text-primary dark:text-accent-light"></i>
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 dark:bg-accent-light/15">
+                              <i className="fa-solid fa-image text-primary dark:text-accent-light"></i>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 Images Added
                               </p>
-                              <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                              <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                                 Mores Clarke added new image gallery
                               </div>
                             </div>
                           </div>
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-success/10 dark:bg-success/15">
-                              <i class="fa fa-leaf text-success"></i>
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-success/10 dark:bg-success/15">
+                              <i className="fa fa-leaf text-success"></i>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 Design Completed
                               </p>
-                              <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                              <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                                 Robert Nolan completed the design of the CRM
                                 application
                               </div>
                             </div>
                           </div>
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
-                              <i class="fa fa-project-diagram text-warning"></i>
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
+                              <i className="fa fa-project-diagram text-warning"></i>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 ER Diagram
                               </p>
-                              <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                              <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                                 Team completed the ER diagram app
                               </div>
                             </div>
                           </div>
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-error/10 dark:bg-error/15">
-                              <i class="fa fa-history text-error"></i>
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-error/10 dark:bg-error/15">
+                              <i className="fa fa-history text-error"></i>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 Weekly Report
                               </p>
-                              <div class="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                              <div className="mt-1 text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                                 The weekly report was uploaded
                               </div>
                             </div>
@@ -480,13 +480,13 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                           // x-transition:enter="transition-all duration-300 easy-in-out"
                           // x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]"
                           // x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]"
-                          class="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
+                          className="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
                         >
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5 text-info"
+                                className="h-5 w-5 text-info"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -500,22 +500,22 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                               </svg>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 Mon, June 14, 2021
                               </p>
-                              <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
-                                <span class="shrink-0">08:00 - 09:00</span>
-                                <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                              <div className="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                                <span className="shrink-0">08:00 - 09:00</span>
+                                <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
 
-                                <span class="line-clamp-1">Frontend Conf</span>
+                                <span className="line-clamp-1">Frontend Conf</span>
                               </div>
                             </div>
                           </div>
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5 text-info"
+                                className="h-5 w-5 text-info"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -529,22 +529,22 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                               </svg>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 Wed, June 21, 2021
                               </p>
-                              <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
-                                <span class="shrink-0">16:00 - 20:00</span>
-                                <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                              <div className="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                                <span className="shrink-0">16:00 - 20:00</span>
+                                <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
 
-                                <span class="line-clamp-1">UI/UX Conf</span>
+                                <span className="line-clamp-1">UI/UX Conf</span>
                               </div>
                             </div>
                           </div>
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5 text-warning"
+                                className="h-5 w-5 text-warning"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -558,23 +558,23 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                               </svg>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 THU, May 11, 2021
                               </p>
-                              <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
-                                <span class="shrink-0">10:00 - 11:30</span>
-                                <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
-                                <span class="line-clamp-1">
+                              <div className="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                                <span className="shrink-0">10:00 - 11:30</span>
+                                <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                                <span className="line-clamp-1">
                                   Interview, Konnor Guzman
                                 </span>
                               </div>
                             </div>
                           </div>
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5 text-info"
+                                className="h-5 w-5 text-info"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -588,22 +588,22 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                               </svg>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 Mon, Jul 16, 2021
                               </p>
-                              <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
-                                <span class="shrink-0">06:00 - 16:00</span>
-                                <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                              <div className="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                                <span className="shrink-0">06:00 - 16:00</span>
+                                <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
 
-                                <span class="line-clamp-1">Laravel Conf</span>
+                                <span className="line-clamp-1">Laravel Conf</span>
                               </div>
                             </div>
                           </div>
-                          <div class="flex items-center space-x-3">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5 text-warning"
+                                className="h-5 w-5 text-warning"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -617,13 +617,13 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                               </svg>
                             </div>
                             <div>
-                              <p class="font-medium text-slate-600 dark:text-navy-100">
+                              <p className="font-medium text-slate-600 dark:text-navy-100">
                                 Wed, Jun 16, 2021
                               </p>
-                              <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
-                                <span class="shrink-0">15:30 - 11:30</span>
-                                <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
-                                <span class="line-clamp-1">
+                              <div className="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                                <span className="shrink-0">15:30 - 11:30</span>
+                                <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                                <span className="line-clamp-1">
                                   Interview, Jonh Doe
                                 </span>
                               </div>
@@ -636,19 +636,19 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                           // x-transition:enter="transition-all duration-300 easy-in-out"
                           // x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]"
                           // x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]"
-                          class="is-scrollbar-hidden overflow-y-auto px-4"
+                          className="is-scrollbar-hidden overflow-y-auto px-4"
                         >
-                          <div class="mt-8 pb-8 text-center">
+                          <div className="mt-8 pb-8 text-center">
                             <img
-                              class="mx-auto w-36"
+                              className="mx-auto w-36"
                               src={EmptyBox}
                               alt="image"
                             />
-                            <div class="mt-5">
-                              <p class="text-base font-semibold text-slate-700 dark:text-navy-100">
+                            <div className="mt-5">
+                              <p className="text-base font-semibold text-slate-700 dark:text-navy-100">
                                 No any logs
                               </p>
-                              <p class="text-slate-400 dark:text-navy-300">
+                              <p className="text-slate-400 dark:text-navy-300">
                                 There are no unread logs yet
                               </p>
                             </div>

@@ -80,15 +80,15 @@ const PopOverTest = () => {
                                 <button
                                     onClick={toggle}
                                     ref={setReferenceElement}
-                                    class="avatar h-12 w-12 mt-[30%]"
+                                    className="avatar h-12 w-12 mt-[30%]"
                                 >
                                     <img
-                                        class="rounded-full"
+                                        className="rounded-full"
                                         src={Avatar200x200}
                                         alt="avatar"
                                     />
                                     <span
-                                        class="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"
+                                        className="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"
                                     ></span>
                                 </button>
                                 <div
@@ -98,14 +98,14 @@ const PopOverTest = () => {
                                     {...attributes.popper}
                                 >
                                     <div
-                                        class="popper-box w-64 rounded-lg border text-left border-slate-150 bg-white shadow-soft dark:border-navy-600 dark:bg-navy-700"
+                                        className="popper-box w-64 rounded-lg border text-left border-slate-150 bg-white shadow-soft dark:border-navy-600 dark:bg-navy-700"
                                     >
                                         <div
-                                            class="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800"
+                                            className="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800"
                                         >
-                                            <div class="avatar h-14 w-14">
+                                            <div className="avatar h-14 w-14">
                                                 <img
-                                                    class="rounded-full"
+                                                    className="rounded-full"
                                                     src="images/200x200.png"
                                                     alt="avatar"
                                                 />
@@ -113,26 +113,26 @@ const PopOverTest = () => {
                                             <div>
                                                 <a
                                                     href="#"
-                                                    class="text-base font-medium text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light"
+                                                    className="text-base font-medium text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light"
                                                 >
                                                     Travis Fuller
                                                 </a>
-                                                <p class="text-xs text-slate-400 dark:text-navy-300">
+                                                <p className="text-xs text-slate-400 dark:text-navy-300">
                                                     Product Designer
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="flex flex-col pt-2 pb-5">
+                                        <div className="flex flex-col pt-2 pb-5">
                                             <a
                                                 href="#"
-                                                class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                                                className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                                             >
                                                 <div
-                                                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-warning text-white"
+                                                    className="flex h-8 w-8 items-center justify-center rounded-lg bg-warning text-white"
                                                 >
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
-                                                        class="h-4.5 w-4.5"
+                                                        className="h-4.5 w-4.5"
                                                         fill="none"
                                                         viewBox="0 0 24 24"
                                                         stroke="currentColor"
@@ -148,12 +148,12 @@ const PopOverTest = () => {
 
                                                 <div>
                                                     <h2
-                                                        class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
+                                                        className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
                                                     >
                                                         Profile
                                                     </h2>
                                                     <div
-                                                        class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
+                                                        className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
                                                     >
                                                         Your profile setting
                                                     </div>
@@ -161,14 +161,14 @@ const PopOverTest = () => {
                                             </a>
                                             <a
                                                 href="#"
-                                                class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                                                className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                                             >
                                                 <div
-                                                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-info text-white"
+                                                    className="flex h-8 w-8 items-center justify-center rounded-lg bg-info text-white"
                                                 >
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
-                                                        class="h-4.5 w-4.5"
+                                                        className="h-4.5 w-4.5"
                                                         fill="none"
                                                         viewBox="0 0 24 24"
                                                         stroke="currentColor"
@@ -184,12 +184,12 @@ const PopOverTest = () => {
 
                                                 <div>
                                                     <h2
-                                                        class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
+                                                        className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
                                                     >
                                                         Messages
                                                     </h2>
                                                     <div
-                                                        class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
+                                                        className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
                                                     >
                                                         Your messages and tasks
                                                     </div>
@@ -197,14 +197,14 @@ const PopOverTest = () => {
                                             </a>
                                             <a
                                                 href="#"
-                                                class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                                                className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                                             >
                                                 <div
-                                                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary text-white"
+                                                    className="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary text-white"
                                                 >
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
-                                                        class="h-4.5 w-4.5"
+                                                        className="h-4.5 w-4.5"
                                                         fill="none"
                                                         viewBox="0 0 24 24"
                                                         stroke="currentColor"
@@ -220,12 +220,12 @@ const PopOverTest = () => {
 
                                                 <div>
                                                     <h2
-                                                        class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
+                                                        className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
                                                     >
                                                         Team
                                                     </h2>
                                                     <div
-                                                        class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
+                                                        className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
                                                     >
                                                         Your team activity
                                                     </div>
@@ -233,14 +233,14 @@ const PopOverTest = () => {
                                             </a>
                                             <a
                                                 href="#"
-                                                class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                                                className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                                             >
                                                 <div
-                                                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-error text-white"
+                                                    className="flex h-8 w-8 items-center justify-center rounded-lg bg-error text-white"
                                                 >
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
-                                                        class="h-4.5 w-4.5"
+                                                        className="h-4.5 w-4.5"
                                                         fill="none"
                                                         viewBox="0 0 24 24"
                                                         stroke="currentColor"
@@ -256,12 +256,12 @@ const PopOverTest = () => {
 
                                                 <div>
                                                     <h2
-                                                        class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
+                                                        className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
                                                     >
                                                         Activity
                                                     </h2>
                                                     <div
-                                                        class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
+                                                        className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
                                                     >
                                                         Your activity and events
                                                     </div>
@@ -269,14 +269,14 @@ const PopOverTest = () => {
                                             </a>
                                             <a
                                                 href="#"
-                                                class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                                                className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                                             >
                                                 <div
-                                                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-success text-white"
+                                                    className="flex h-8 w-8 items-center justify-center rounded-lg bg-success text-white"
                                                 >
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
-                                                        class="h-4.5 w-4.5"
+                                                        className="h-4.5 w-4.5"
                                                         fill="none"
                                                         viewBox="0 0 24 24"
                                                         stroke="currentColor"
@@ -297,24 +297,24 @@ const PopOverTest = () => {
 
                                                 <div>
                                                     <h2
-                                                        class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
+                                                        className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
                                                     >
                                                         Settings
                                                     </h2>
                                                     <div
-                                                        class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
+                                                        className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
                                                     >
                                                         Webapp settings
                                                     </div>
                                                 </div>
                                             </a>
-                                            <div class="mt-3 px-4">
+                                            <div className="mt-3 px-4">
                                                 <button
-                                                    class="btn h-9 w-full space-x-2 bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+                                                    className="btn h-9 w-full space-x-2 bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
                                                 >
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
-                                                        class="h-5 w-5"
+                                                        className="h-5 w-5"
                                                         fill="none"
                                                         viewBox="0 0 24 24"
                                                         stroke="currentColor"
