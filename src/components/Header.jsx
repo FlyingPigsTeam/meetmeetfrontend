@@ -132,9 +132,9 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                     viewBox="0 0 24 24"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
                       d="M15.375 17.556h-6.75m6.75 0H21l-1.58-1.562a2.254 2.254 0 01-.67-1.596v-3.51a6.612 6.612 0 00-1.238-3.85 6.744 6.744 0 00-3.262-2.437v-.379c0-.59-.237-1.154-.659-1.571A2.265 2.265 0 0012 2c-.597 0-1.169.234-1.591.65a2.208 2.208 0 00-.659 1.572v.38c-2.621.915-4.5 3.385-4.5 6.287v3.51c0 .598-.24 1.172-.67 1.595L3 17.556h12.375zm0 0v1.11c0 .885-.356 1.733-.989 2.358A3.397 3.397 0 0112 22a3.397 3.397 0 01-2.386-.976 3.313 3.313 0 01-.989-2.357v-1.111h6.75z"
                     />
                   </svg>
@@ -172,16 +172,16 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
-                            stroke-width="1.5"
+                            strokeWidth="1.5"
                           >
                             <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                               d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
                             />
                             <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                               d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                             />
                           </svg>
@@ -265,11 +265,11 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
-                                stroke-width="1.5"
+                                strokeWidth="1.5"
                               >
                                 <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                   d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                                 />
                               </svg>
@@ -321,11 +321,11 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
-                                stroke-width="1.5"
+                                strokeWidth="1.5"
                               >
                                 <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                   d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                                 />
                               </svg>
@@ -363,11 +363,11 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
-                                stroke-width="1.5"
+                                strokeWidth="1.5"
                               >
                                 <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                   d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
                                 />
                               </svg>
@@ -490,11 +490,11 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
-                                stroke-width="1.5"
+                                strokeWidth="1.5"
                               >
                                 <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                   d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                                 />
                               </svg>
@@ -519,11 +519,11 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
-                                stroke-width="1.5"
+                                strokeWidth="1.5"
                               >
                                 <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                   d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                                 />
                               </svg>
@@ -548,11 +548,11 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
-                                stroke-width="1.5"
+                                strokeWidth="1.5"
                               >
                                 <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                   d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
                                 />
                               </svg>
@@ -578,11 +578,11 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
-                                stroke-width="1.5"
+                                strokeWidth="1.5"
                               >
                                 <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                   d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                                 />
                               </svg>
@@ -607,11 +607,11 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
-                                stroke-width="1.5"
+                                strokeWidth="1.5"
                               >
                                 <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                   d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
                                 />
                               </svg>
