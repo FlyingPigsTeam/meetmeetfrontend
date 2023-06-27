@@ -366,7 +366,7 @@ Sidebar.Primary.Middle.Rooms.LoadItems = function LoaderRoomsItems({
   return (
     <>
       {myrooms?.map((item) => (
-        <Sidebar.Primary.Middle.Rooms.Item item={item} />
+        <Sidebar.Primary.Middle.Rooms.Item item={item} key={item.title} />
       ))}
     </>
   );

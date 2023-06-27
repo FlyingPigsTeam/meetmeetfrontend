@@ -271,7 +271,7 @@ export default function InformationPage() {
                       placeholder="Password"
                       type={seePassword ? "text" : "password"}
                       value={roomData.data.password}
-                      disabled="true"
+                      disabled={true}
                     />
                     <div className="pointer-events-none absolute right-0 flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
                       <svg
@@ -281,9 +281,9 @@ export default function InformationPage() {
                       >
                         <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         ></path>
                       </svg>
                     </div>
@@ -324,7 +324,7 @@ export default function InformationPage() {
                 {roomData.data?.categories && (
                   <span className="flex-grow ">
                     {roomData.data.categories.map((item) => (
-                      <div className="badge">
+                      <div className="badge" key={item.name}>
                         <p className="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                           {item.name}
                         </p>
