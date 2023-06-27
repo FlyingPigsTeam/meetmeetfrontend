@@ -17,6 +17,7 @@ import { ClosingSidebar, OpeningSidebar } from "../Redux/Action";
 
 import PopOver from "./PopOver";
 import PopOverContext from "../context/PopOverContext";
+import { useClickOutside } from "@mantine/hooks";
 // TODO : ACTIVE SELECTION
 // TODO : HOVER COLORIZE
 // TODO : HOME BUTTON SHAPE CHANGES ON OVERFLOW ROOMS
@@ -587,6 +588,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
   useEffect(() => {
     fetchData();
   }, []);
+  const profile_box = useClickOutside(() => setShow(false));
   return (
     <>
       <PopOver
@@ -647,7 +649,10 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                 style={styles.popper}
                 {...attributes.popper}
               >
-                <div class="popper-box w-64 rounded-lg border text-left border-slate-150 bg-white shadow-soft dark:border-navy-600 dark:bg-navy-700">
+                <div
+                  ref={profile_box}
+                  class="popper-box w-64 rounded-lg border text-left border-slate-150 bg-white shadow-soft dark:border-navy-600 dark:bg-navy-700"
+                >
                   <div class="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
                     <div class="avatar h-14 w-14">
                       <img
