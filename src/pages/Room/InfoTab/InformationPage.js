@@ -299,7 +299,7 @@ export default function InformationPage() {
                 </span> */}
               </dd>
             </div>
-            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
+            {/* <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
               <dt className="text-sm font-medium ">Categories</dt>
               <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 {roomData.data?.categories && (
@@ -316,14 +316,22 @@ export default function InformationPage() {
                     ))}
                   </span>
                 )}
-                {/* <span className="ml-4 flex-shrink-0">
-                  <button
-                    type="button"
-                    className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  >
-                    Update
-                  </button>
-                </span> */}
+              </dd>
+            </div> */}
+            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-3 ">
+              <dt className="text-sm font-medium sm:py-2">Categories</dt>
+              <dd className="mt-1 flex  text-sm  sm:col-span-2 sm:mt-0">
+                {roomData.data?.categories && (
+                  <span className="flex-grow ">
+                    {roomData.data.categories.map((item) => (
+                      <div className="badge">
+                        <p className="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                          {item.name}
+                        </p>
+                      </div>
+                    ))}
+                  </span>
+                )}
               </dd>
             </div>
             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
