@@ -138,6 +138,8 @@ const Task = () => {
     reqForGettingAll();
   }, [authTokens, deleteStatus, addChanges, editChanges, checking]);
   console.log("Tasks:", tasks);
+  const [Filter, setFilter] = useState("");
+  const [Label, setLabel] = useState("");
   return (
     <>
       <PageWrapper>
@@ -146,7 +148,7 @@ const Task = () => {
             <Header.SidebarToggle />
             <Header.Right>
               <Header.Right.DarkModeToggle />
-              <Header.Right.Notification/>
+              <Header.Right.Notification />
             </Header.Right>
           </Header.Items>
         </Header>
@@ -187,15 +189,265 @@ const Task = () => {
                   <Sidebar.Secondary.Expanded.Body.Tabs.InfoTab />
                   {/* <Sidebar.Secondary.Expanded.Body.Tabs.AllItems /> */}
                 </Sidebar.Secondary.Expanded.Body.Tabs>
-                {/* <Sidebar.Secondary.Expanded.Body.Middle.TopButton />
-              <Sidebar.Secondary.Expanded.Body.Middle.Items>
-                <Sidebar.Secondary.Expanded.Body.Middle.Items.AllItem />
-              </Sidebar.Secondary.Expanded.Body.Middle.Items>
-              <Sidebar.Secondary.Expanded.Body.Middle.Divider />
-              <Sidebar.Secondary.Expanded.Body.Middle.SectionHeader />
-              <Sidebar.Secondary.Expanded.Body.Middle.Items>
-                <Sidebar.Secondary.Expanded.Body.Middle.Items.AllLabelItems />
-              </Sidebar.Secondary.Expanded.Body.Middle.Items> */}
+                {/* <Sidebar.Secondary.Expanded.Body.Middle.TopButton /> */}
+                <div className="mt-2 px-4">
+                  <button
+                    onClick={() => {
+                      setslideoverAdd(true);
+                    }}
+                    className="btn w-full space-x-2 rounded-full border border-slate-200 py-2 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-500 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 4v16m8-8H4"
+                      />
+                    </svg>
+                    <span> New Task </span>
+                  </button>
+                </div>
+                {/* <Sidebar.Secondary.Expanded.Body.Middle.Items>
+                          <Sidebar.Secondary.Expanded.Body.Middle.Items.AllItem />
+                        </Sidebar.Secondary.Expanded.Body.Middle.Items> */}
+                <ul className="mt-5 space-y-1.5 px-2 font-inter text-xs+ font-medium">
+                  <li>
+                    <span
+                      onClick={() => setFilter("assigned")}
+                      className={
+                        Filter == "assigned"
+                          ? "cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all bg-slate-300 dark:bg-navy-500 text-slate-800 dark:text-navy-100"
+                          : "cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all text-slate-800 hover:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600"
+                      }
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-4.5 h-4.5"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                        />
+                      </svg>
+
+                      <span>Assigned Tasks</span>
+                    </span>
+                  </li>
+                  <li>
+                    <span
+                      onClick={() => setFilter("notAssigned")}
+                      className={
+                        Filter == "notAssigned"
+                          ? "cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all bg-slate-300 dark:bg-navy-500 text-slate-800 dark:text-navy-100"
+                          : "cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all text-slate-800 hover:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600"
+                      }
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-4.5 h-4.5"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 01-.657.643 48.39 48.39 0 01-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 01-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 00-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 01-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 00.657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 01-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 005.427-.63 48.05 48.05 0 00.582-4.717.532.532 0 00-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 00.658-.663 48.422 48.422 0 00-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 01-.61-.58v0z"
+                        />
+                      </svg>
+
+                      <span>Not Assigned Tasks</span>
+                    </span>
+                  </li>
+                  <li>
+                    <span
+                      onClick={() => setFilter("done")}
+                      className={
+                        Filter == "done"
+                          ? "cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all bg-slate-300 dark:bg-navy-500 text-slate-800 dark:text-navy-100"
+                          : "cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all text-slate-800 hover:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600"
+                      }
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="h-4.5 w-4.5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+
+                      <span>Done Tasks</span>
+                    </span>
+                  </li>
+                  <li>
+                    <span
+                      onClick={() => setFilter("unDone")}
+                      className={
+                        Filter == "unDone"
+                          ? "cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all bg-slate-300 dark:bg-navy-500 text-slate-800 dark:text-navy-100"
+                          : "cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all text-slate-800 hover:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600"
+                      }
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-4.5 h-4.5"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+
+                      <span>unDone Tasks</span>
+                    </span>
+                  </li>
+                </ul>
+
+                <Sidebar.Secondary.Expanded.Body.Middle.Divider />
+                <Sidebar.Secondary.Expanded.Body.Middle.SectionHeader />
+                {/* <Sidebar.Secondary.Expanded.Body.Middle.Items>
+                  <Sidebar.Secondary.Expanded.Body.Middle.Items.AllLabelItems />
+                </Sidebar.Secondary.Expanded.Body.Middle.Items> */}
+
+                <ul className="mt-5 space-y-1.5 px-2 font-inter text-xs+ font-medium">
+                  <li>
+                    <span
+                      onClick={() => setLabel("low")}
+                      className={
+                        Label == "low"
+                          ? " cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all bg-success/20"
+                          : " cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-success/20 focus:bg-success/20"
+                      }
+                    >
+                      <svg
+                        className="h-4.5 w-4.5 text-success"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M7 6H21M7 12H21M7 18H21"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M3 6H4M3 12H4M3 18H4"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      <span className="text-slate-800 dark:text-navy-100">
+                        Low
+                      </span>
+                    </span>
+                  </li>
+                  <li>
+                    <span
+                      onClick={() => setLabel("medium")}
+                      className={
+                        Label == "medium"
+                          ? " cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all bg-warning/20"
+                          : " cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-warning/20 focus:bg-warning/20"
+                      }
+                    >
+                      <svg
+                        className="h-4.5 w-4.5 text-warning"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M7 6H21M7 12H21M7 18H21"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M3 6H4M3 12H4M3 18H4"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      <span className="text-slate-800 dark:text-navy-100">
+                        Medium
+                      </span>
+                    </span>
+                  </li>
+                  <li>
+                    <span
+                      onClick={() => setLabel("hard")}
+                      className={
+                        Label == "hard"
+                          ? " cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all bg-error/20"
+                          : " cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-error/20 focus:bg-error/20"
+                      }
+                    >
+                      <svg
+                        className="h-4.5 w-4.5 text-error"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M7 6H21M7 12H21M7 18H21"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M3 6H4M3 12H4M3 18H4"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      <span className="text-slate-800 dark:text-navy-100">
+                        High
+                      </span>
+                    </span>
+                  </li>
+                  <li>
+                    <span
+                      onClick={() => {
+                        setLabel("");
+                        setFilter("");
+                      }}
+                      className=" cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all"
+                    >
+                      <span className="text-slate-600 dark:text-navy-300 hover:text-slate-500 dark:hover:text-navy-200 transition-all">
+                        Reset All Filters
+                      </span>
+                    </span>
+                  </li>
+                </ul>
               </Sidebar.Secondary.Expanded.Body>
             </Sidebar.Secondary.Expanded>
             <Sidebar.Secondary.Minimized>
