@@ -1,5 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useLocation,
+  NavLink,
+} from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../context/AuthContext";
 import AddRoom from "../pages/Room/AddRoom";
@@ -39,7 +45,7 @@ Sidebar.Primary = function PrimarySidebar({ classes, children, ...restProps }) {
 Sidebar.Primary.Logo = function SidebarLogo() {
   return (
     <div className="flex pt-4">
-      <Link to={"/"}>
+      <Link to={"/home"}>
         <img
           className="h-11 w-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
           src={AppLogo}
@@ -69,7 +75,7 @@ Sidebar.Primary.Middle.Home = function PrimarySidebar({
 }) {
   return (
     <Link
-      to={"/"}
+      to={"/home"}
       className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
       // x-tooltip.placement.right="'Dashboards'"
     >
@@ -371,27 +377,34 @@ Sidebar.Primary.Middle.Rooms.Item = function PrimaryRoomsItems({
   children,
   ...restProps
 }) {
-  const navigate = useNavigate();
   return (
     <>
       <div
         // @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/200x200.png',name:'Konnor Guzman'})"
         className="flex cursor-pointer items-center justify-center py-2.5 "
       >
-        <button
-          onClick={() => navigate(`/room/${item.id}/info`)}
-          className="avatar h-10 w-10"
-        >
-          <img
-            className="rounded-full  hover:border-primary hover:border-2  hover:shadow-soft  dark:hover:shadow-primary-focus"
-            src={
-              item.main_picture_path === "" || item.main_picture_path === "__"
-                ? Avatar200x200
-                : item.main_picture_path
-            }
-            alt="avatar"
-          />
-        </button>
+        <NavLink to={`/room/${item.id}`}>
+          {({ isActive, isPending }) => (
+            <div className="avatar h-10 w-10">
+              <img
+                className={classNames(
+                  "rounded-full",
+                  "hover:border-primary hover:border-2  hover:shadow-soft",
+                  "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
+                  isActive &&
+                    "border-info border-2 shadow-soft shadow-info-focus/40"
+                )}
+                src={
+                  item.main_picture_path === "" ||
+                  item.main_picture_path === "__"
+                    ? Avatar200x200
+                    : item.main_picture_path
+                }
+                alt="avatar"
+              />
+            </div>
+          )}
+        </NavLink>
       </div>
     </>
   );
@@ -562,12 +575,9 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/profile", {
-        headers: {
-          Authorization: `Bearer ${authTokens.access}`,
-        },
-      });
-      const data = await response.json();
+      const { data } = await axios
+        .get("/api/profile")
+        .then((response) => response);
       setData(data);
       console.log("man", data.first_name);
     } catch (error) {

@@ -1,0 +1,15 @@
+/********************/
+/*    breadcrumbm    */
+/*==================*/
+.breadcrumbm .breadcrumbm-item {
+  @apply before:content-[""] after:text-sm after:text-black after:dark:text-white after:pl-[5px] last:after:hidden;
+}
+.breadcrumbm .breadcrumbm-item:after {
+  content: "\f0142" !important;
+  font-family: "Material Design Icons";
+}
+.breadcrumbm.breadcrumbm-light .breadcrumbm-item {
+  @apply after:text-white/50;
+}
+
+/*# sourceMappingURL=_breadcrumb.css.map */

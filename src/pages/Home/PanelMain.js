@@ -9,7 +9,10 @@ const PanelMain = () => {
     ? document.body.classList.add("is-sidebar-open")
     : document.body.classList.remove("is-sidebar-open");
   return (
-    <div id="root" className="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
+    <div
+      id="root"
+      className="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900"
+    >
       {/* <!-- Sidebar --> */}
       <div className="sidebar print:hidden">
         {/* <!-- Main Sidebar --> */}
@@ -17,7 +20,7 @@ const PanelMain = () => {
           <div className="flex h-full w-full flex-col items-center border-r border-slate-150 bg-white dark:border-navy-700 dark:bg-navy-800">
             {/* <!-- Application Logo --> */}
             <div className="flex pt-4">
-              <a href="/">
+              <a href="/home">
                 <img
                   className="h-11 w-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
                   src={AppLogo}
@@ -409,7 +412,11 @@ const PanelMain = () => {
                   x-ref="popperRef"
                   className="avatar h-12 w-12"
                 >
-                  <img className="rounded-full" src={Avatar200x200} alt="avatar" />
+                  <img
+                    className="rounded-full"
+                    src={Avatar200x200}
+                    alt="avatar"
+                  />
                   <span className="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
                 </button>
 
@@ -681,7 +688,7 @@ const PanelMain = () => {
 
             {/* <!-- Sidebar Panel Body --> */}
             <div className="flex h-[calc(100%-4.5rem)] grow flex-col">
-                            {/* <!--TABS--> */}
+              {/* <!--TABS--> */}
               <div className="flex shrink-0 justify-between px-1.5 py-1">
                 <a
                   href="apps-mail.html"
@@ -784,7 +791,7 @@ const PanelMain = () => {
                   </svg>
                 </a>
               </div>
-              
+
               <div className="is-scrollbar-hidden grow overflow-y-auto">
                 <div className="mt-2 px-4">
                   <button className="btn w-full space-x-2 rounded-full border border-slate-200 py-2 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-500 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
@@ -1037,7 +1044,9 @@ const PanelMain = () => {
                           strokeLinejoin="round"
                         />
                       </svg>
-                      <span className="text-slate-800 dark:text-navy-100">Low</span>
+                      <span className="text-slate-800 dark:text-navy-100">
+                        Low
+                      </span>
                     </a>
                   </li>
                   <li>
@@ -1129,7 +1138,6 @@ const PanelMain = () => {
                   </li>
                 </ul>
               </div>
-
             </div>
           </div>
         </div>
@@ -1673,7 +1681,9 @@ const PanelMain = () => {
                               <span className="shrink-0">08:00 - 09:00</span>
                               <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
 
-                              <span className="line-clamp-1">Frontend Conf</span>
+                              <span className="line-clamp-1">
+                                Frontend Conf
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -1896,7 +1906,9 @@ const PanelMain = () => {
                               <span className="shrink-0">08:00 - 09:00</span>
                               <div className="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
 
-                              <span className="line-clamp-1">Frontend Conf</span>
+                              <span className="line-clamp-1">
+                                Frontend Conf
+                              </span>
                             </div>
                           </div>
                         </div>

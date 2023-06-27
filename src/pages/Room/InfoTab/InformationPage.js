@@ -1,20 +1,23 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
-import { BASEURL } from "../../../data/BASEURL";
+import { BASEURL, FrontURL } from "../../../data/BASEURL";
 import { useQuery } from "react-query";
 import Moment from "react-moment";
 
 import AuthContext from "../../../context/AuthContext";
 import Avatar200x200 from "../../../assets/images/200x200.png";
 import { useParams, useNavigate } from "react-router-dom";
+import { useClipboard } from "@mantine/hooks";
+import Swal from "sweetalert2";
 
 export default function InformationPage() {
   const { idroom } = useParams();
   const navigate = useNavigate();
   let authTokens = useContext(AuthContext).authTokens;
 
+  const clipboard = useClipboard({ timeout: 20000 });
   const [seePassword, setSeePassword] = useState(false);
-  const [link, setLink] = useState("This is the text I want to copy");
+  const [link, setLink] = useState(null);
   // let [roomData.data, setroomData.data] = useState({});
   const { isLoading, data: roomData } = useQuery(["room", idroom], () => {
     return axios.get(`/api/my-rooms/${idroom}`);
@@ -30,6 +33,9 @@ export default function InformationPage() {
   // useEffect(() => {
   //     req();
   // }, [idroom]);
+  useEffect(() => {
+    setLink(roomData?.data?.link);
+  }, [roomData]);
   const refreshLink = async () => {
     const { data } = await axios
       .put(`/api/my-rooms/${idroom}?link=${link}`, null)
@@ -38,14 +44,29 @@ export default function InformationPage() {
   };
   const deleteRoom = async () => {
     const { data } = await axios.delete(`/api/my-rooms/${idroom}`).then();
-    navigate("/");
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Room deleted Successfully!",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+    navigate("/home");
   };
 
-  function copyToClipboard() {
-    navigator.clipboard.writeText(BASEURL + "/joinroom/" + link);
-    alert("Text copied to clipboard");
-    //TODO : CONVERT TO SWAL
-  }
+  const copyLinkToClipboard = async (copylink) => {
+    clipboard.copy(copylink);
+    if (clipboard.copied) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Link copied to clipboard",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
+  };
+
   if (roomData) {
     localStorage.setItem("RoomTitle", roomData.data.title);
   }
@@ -383,18 +404,15 @@ export default function InformationPage() {
                 <span className="flex-grow">
                   <div className="alert flex items-center justify-between rounded-lg bg-primary px-4 py-3 text-white dark:bg-accent sm:px-5">
                     <p id="clipboardContent1">
-                      {"http://localhost:3000/joinroom/" + link}
+                      {FrontURL + "/joinroom/" + link}
                     </p>
                     <div>
                       <button
                         id={"clipBoardCopy"}
-                        onClick={copyToClipboard}
+                        onClick={() =>
+                          copyLinkToClipboard(FrontURL + "/joinroom/" + link)
+                        }
                         className="btn h-6 shrink-0 rounded mx-1 my-2 bg-white/20 px-2 text-xs text-white active:bg-white/25"
-                        //   @click="$clipboard({
-                        //     content:document.querySelector('#clipboardContent1').innerText,
-                        //     success:()=>$notification({text:'Text Copied',variant:'success'}),
-                        //     error:()=>$notification({text:'Error',variant:'error'})
-                        //   })"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -415,7 +433,7 @@ export default function InformationPage() {
                       {roomData.data.is_admin && (
                         <>
                           <button
-                            onClick={refreshLink}
+                            onClick={async () => await refreshLink()}
                             className="btn h-6 shrink-0 rounded mx-1 my-2 bg-white/20 px-2 space-x-1 space-y-2 text-xs text-white active:bg-white/25"
                             //   @click="$clipboard({
                             //     content:document.querySelector('#clipboardContent1').innerText,

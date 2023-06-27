@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@headlessui/react": "^1.7.15",
     "@makotot/paginated": "^1.0.1",
     "@mantine/hooks": "^6.0.13",
     "@popperjs/core": "^2.11.7",
@@ -10,11 +11,14 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "animate.css": "^4.1.1",
+    "aos": "^2.3.4",
     "axios": "^1.4.0",
     "create-react-app": "^5.0.1",
+    "feather-icons": "^4.29.0",
     "formik": "^2.2.9",
     "http": "^0.0.1-security",
     "jwt-decode": "^3.1.2",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-flatpickr": "^3.10.13",
@@ -29,11 +33,12 @@
     "react-toggle-dark-mode": "^1.1.1",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
-    "sweetalert": "^2.1.2",
     "sweetalert2": "^11.7.3",
+    "tiny-slider": "^2.9.4",
     "tom-select": "^2.2.2",
     "web-vitals": "^2.1.4",
     "websocket": "^1.0.34",
+    "wow.js": "^1.2.2",
     "yup": "^1.0.2"
   },
   "scripts": {
@@ -61,7 +66,6 @@
     ]
   },
   "devDependencies": {
-    "@headlessui/react": "^1.7.13",
     "@headlessui/tailwindcss": "^0.1.2",
     "@heroicons/react": "^2.0.17",
     "@tailwindcss/aspect-ratio": "^0.4.2",

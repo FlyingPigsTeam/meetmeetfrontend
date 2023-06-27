@@ -3,24 +3,23 @@ import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
 import Flatpickr from "react-flatpickr";
-import React, { useRef, useState, useEffect, useContext } from "react";
+import React, { useRef, useState, useEffect, useContext, useId } from "react";
 import Tom from "tom-select";
+import { useQuery } from "react-query";
 
 import AuthContext from "../../context/AuthContext";
 
 import Avatar200x200 from "../../assets/images/200x200.png";
 
 const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
-    const max_member_options = [10, 25, 40, 50];
+    const { isLoading: isLoadingCategories, data: categories } = useQuery('categories', () => { return axios.get("/api/category") })
+    const max_member_options = [6, 10, 25, 40, 50];
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const authTokens = useContext(AuthContext).authTokens;
-
+    const UploadAddroomID = useId();
     // TODO: HANDLE VALID CATEGORIES
-    const categories = [
-        { value: "cinema", label: "cinema" },
-        { value: "sport", label: "sport" },
-    ];
+
 
     const sampleValidJson4API = {
         title: "soltaniali208040gmail.com",
@@ -126,6 +125,21 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
                 ),
         }),
         onSubmit: async (values) => {
+            const sendData = {
+                title: values.title,
+                description: values.description,
+                room_type: values.room_type ? 1 : 0,
+                is_premium: values.is_premium ? 1 : 0,
+                open_status: values.open_status ? 1 : 0,
+                password: values.password,
+                maximum_member_count: values.maximum_member_count,
+                categories: values.categories?.map((item) => {
+                    return { name: item };
+                }),
+                start_date: values.dateRange[0].toISOString(),
+                end_date: values.dateRange[1].toISOString(),
+            };
+            console.log("EDITEDROOMJSON", sendData);
             // TODO: CREATE API PROXY + ACCELRATORS
             const { data } = await axios
                 .post(
@@ -150,14 +164,15 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
                 .then((response) => response);
             console.log(data);
 
-
-            const resPic = await axios.putForm(`/api/upload?id=${data.id}&where=room`,
-                { 'image': image },
-            ).then((response) => {
-                console.log(JSON.stringify(response.data));
-            }).catch((error) => {
-                console.log(error);
-            });
+            if (image) {
+                const resPic = await axios.putForm(`/api/upload?id=${data.id}&where=room`,
+                    { 'image': image },
+                ).then((response) => {
+                    console.log(JSON.stringify(response.data));
+                }).catch((error) => {
+                    console.log(error);
+                });
+            }
             setModalOpen(false);
             // TODO : NAVIGATE AFTER SUBMITION
             // TODO : IS SUBMITTING HANDLE
@@ -172,29 +187,37 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
     //1
     const selectCustom = useRef(null);
     useEffect(() => {
-        const selectOptions = new Tom(selectCustom.current, {
-            valueField: "value",
-            labelField: "label",
-            options: categories,
-            items: [],
-            placeholder: "Select some Categories",
-            hidePlaceholder: true,
-            onBlur: () => {
-                formik.setFieldTouched("categories", true);
-                formik.validateForm();
-            },
-            onChange: (value) => {
-                formik.setFieldValue("categories", value);
-                formik.validateForm();
-            },
-        });
+        if (!isLoadingCategories) {
 
-        return () => {
-            selectOptions.destroy();
-        };
-    }, []);
+            const selectOptions = new Tom(selectCustom.current, {
+                valueField: "name",
+                labelField: "name",
+                searchField: "name",
+                options: categories?.data,
+                items: [],
+                placeholder: "Select some Categories",
+                hidePlaceholder: true,
+                onBlur: () => {
+                    formik.setFieldTouched("categories", true);
+                    formik.validateForm();
+                },
+                onChange: (value) => {
+                    formik.setFieldValue("categories", value.split(","));
+                    formik.validateForm();
 
 
+                },
+            });
+
+            return () => {
+                selectOptions.destroy();
+            };
+        }
+    }, [isLoadingCategories]);
+
+    if (isLoadingCategories) {
+        return (<p>loading ...</p>)
+    }
     return (
         <>
             <div
@@ -209,42 +232,42 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
                     <button className="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
                         Save
                     </button> */}
-                    </div>
                 </div>
-                <div className="px-4 py-2 sm:px-5 flex flex-col">
-            <span className="text-base text-left font-medium text-slate-600 dark:text-navy-100">
-              Avatar
-            </span>
-                    <div className="avatar mt-1.5 h-20 w-20">
-                        <img
-                            className="mask is-squircle"
-                            src={previewUrl ? previewUrl : Avatar200x200}
-                            alt="avatar"
+            </div>
+            <div className="px-4 py-2 sm:px-5 flex flex-col">
+                <span className="text-base text-left font-medium text-slate-600 dark:text-navy-100">
+                    Avatar
+                </span>
+                <div className="avatar mt-1.5 h-20 w-20">
+                    <img
+                        className="mask is-squircle"
+                        src={previewUrl ? previewUrl : Avatar200x200}
+                        alt="avatar"
+                    />
+                    <div className="absolute bottom-0 right-0 flex items-center justify-center rounded-full bg-white dark:bg-navy-700">
+                        <input
+                            id={UploadAddroomID}
+                            type="file"
+                            accept=".jpg, .jpeg, .png"
+                            onChange={onSelectImage}
+                            hidden
                         />
-                        <div className="absolute bottom-0 right-0 flex items-center justify-center rounded-full bg-white dark:bg-navy-700">
-                            <input
-                                id="edit-avatar-btn"
-                                type="file"
-                                accept=".jpg, .jpeg, .png"
-                                onChange={onSelectImage}
-                                hidden
-                            />
-                            <label htmlFor={"edit-avatar-btn"}
-                                   className="btn h-6 w-6 rounded-full border border-slate-200 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:border-navy-500 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-3.5 w-3.5"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
-                                </svg>
-                            </label>
-                        </div>
+                        <label htmlFor={UploadAddroomID}
+                            className="btn h-6 w-6 rounded-full border border-slate-200 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:border-navy-500 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-3.5 w-3.5"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                            </svg>
+                        </label>
                     </div>
                 </div>
-                <div className="my-4 h-px bg-slate-200 dark:bg-navy-500"></div>
+            </div>
+            <div className="my-4 h-px bg-slate-200 dark:bg-navy-500"></div>
 
             <form onSubmit={formik.handleSubmit}>
                 <div className="p-4 sm:p-5">
@@ -375,20 +398,15 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
                         </label>
                         <label className="block text-left">
                             <span>Select Categories</span>
-                            <select
+                            <input
                                 ref={selectCustom}
                                 className="mt-1.5 w-full"
                                 autoComplete="off"
                                 multiple
                                 id="categories"
                                 name="categories"
-                            >
-                                {categories.map((item) => (
-                                    <option value={item.value} selected={item.selected}>
-                                        {item.label}
-                                    </option>
-                                ))}
-                            </select>
+
+                            />
                             {formik.touched.categories && formik.errors.categories && (
                                 <span className="text-tiny+ text-left text-error mt-1 line-clamp-1">
                                     {formik.errors.categories}
@@ -406,7 +424,7 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
                                 className="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
                             >
                                 <option >Corporate event</option>
-                                {max_member_options.map((item)=><option>{item}</option>)}
+                                {max_member_options.map((item) => <option>{item}</option>)}
                             </select>
                             {formik.touched.maximum_member_count &&
                                 formik.errors.maximum_member_count && (
@@ -622,7 +640,7 @@ const AddRoomFrom = ({ setModalOpen, ...restProps }) => {
                         </button>
                     </div>
                 </div>
-            </form>
+            </form >
         </>
     );
 }

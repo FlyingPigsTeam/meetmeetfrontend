@@ -1,1 +1,2 @@
-export const BASEURL = 'http://127.0.0.1:8000';
+export const BASEURL = 'http://localhost:8000';
+export const FrontURL = 'http://localhost:3000';

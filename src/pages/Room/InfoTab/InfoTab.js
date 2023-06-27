@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import Header from "../../../components/Header";
 import Sidebar from "../../../components/Sidebar";
 
-import DarkModeToggle from "../../../components/DarkModeToggle";
 import PageWrapper from "../../../components/PageWrapper";
 import MainSection from "../../../components/MainSection";
 
@@ -25,7 +24,8 @@ const InfoTab = () => {
           <Header.Items>
             <Header.SidebarToggle />
             <Header.Right>
-              <DarkModeToggle />
+              <Header.Right.DarkModeToggle />
+              <Header.Right.Notification/>
             </Header.Right>
           </Header.Items>
         </Header>

@@ -13,7 +13,7 @@ export default function PopOver({ children, popperConfigs, Show }) {
 
 
 
-                    {children}
+                {children}
 
                 {/* <div
                     ref={setReferenceElement}
@@ -50,9 +50,9 @@ PopOver.Button = function PPButton({ children, Click }) {
                         {person.name}
                     </li>
                 )} */}
-                {
-                    
-                }
+            {
+
+            }
             <button
                 type='button'
                 className="btn mt-[20%] bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
@@ -184,23 +184,20 @@ PopOver.Popper.Arrow = function PArrow() {
 
 const buildOptions = (options) => {
     const config = {
-        placement: options.placement ?? "auto",
-        strategy: options.strategy ?? "fixed",
-        onFirstUpdate: options.onFirstUpdate ?? function () { },
-
+        placement: options?.placement || "auto",
+        strategy: options?.strategy || "fixed",
+        onFirstUpdate: options?.onFirstUpdate || function () { },
         modifiers: [
             {
                 name: "offset",
                 options: {
-                    offset: [0, options.offset ?? 0],
+                    offset: [0, options?.offset || 0],
                 },
             },
         ],
     };
 
-    if (options.modifiers) config.modifiers.push(...options.modifiers);
+    if (options?.modifiers) config.modifiers.push(...options.modifiers);
 
     return config;
 };
-
-
