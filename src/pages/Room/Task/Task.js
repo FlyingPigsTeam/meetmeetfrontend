@@ -140,6 +140,17 @@ const Task = () => {
   console.log("Tasks:", tasks);
   const [Filter, setFilter] = useState("");
   const [Label, setLabel] = useState("");
+  // useEffect(() => {
+  //   if (Label == "") reqForGettingAll();
+  //   let temp = [];
+  //   for (let i = 0; i < tasks.length; i++) {
+  //     if (tasks[i].priority == Label) {
+  //       temp.push(tasks[i]);
+  //     }
+  //   }
+  //   settasks(temp);
+  // }, [Filter, Label]);
+
   return (
     <>
       <PageWrapper>
@@ -337,9 +348,9 @@ const Task = () => {
                 <ul className="mt-5 space-y-1.5 px-2 font-inter text-xs+ font-medium">
                   <li>
                     <span
-                      onClick={() => setLabel("low")}
+                      onClick={() => setLabel(3)}
                       className={
-                        Label == "low"
+                        Label == 3
                           ? " cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all bg-success/20"
                           : " cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-success/20 focus:bg-success/20"
                       }
@@ -370,9 +381,9 @@ const Task = () => {
                   </li>
                   <li>
                     <span
-                      onClick={() => setLabel("medium")}
+                      onClick={() => setLabel(2)}
                       className={
-                        Label == "medium"
+                        Label == 2
                           ? " cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all bg-warning/20"
                           : " cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-warning/20 focus:bg-warning/20"
                       }
@@ -403,9 +414,9 @@ const Task = () => {
                   </li>
                   <li>
                     <span
-                      onClick={() => setLabel("hard")}
+                      onClick={() => setLabel(1)}
                       className={
-                        Label == "hard"
+                        Label == 1
                           ? " cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all bg-error/20"
                           : " cursor-pointer group flex space-x-2 rounded-lg p-2 tracking-wide outline-none transition-all hover:bg-error/20 focus:bg-error/20"
                       }
@@ -541,113 +552,124 @@ const Task = () => {
           })"
             >
               {tasks
-                ? tasks.map((item, index) => (
-                    <div className="grid sm:grid-cols-5 items-center border-b border-slate-200 py-3 dark:border-navy-500">
-                      <div className=" col-start-1 xl:col-end-5 sm:col-end-4">
-                        <div className="flex items-center space-x-2 sm:space-x-3">
-                          <label className="flex">
-                            <input
-                              onChange={(e) => {
-                                reqForChecking(item.id, e.target.value);
-                                // window.location.reload()
-                              }}
-                              value={item.done == 1 ? "on" : "off"}
-                              checked={item.done == 1 ? "checked" : ""}
-                              type="checkbox"
-                              className="form-checkbox is-outline text-green-600 h-5 w-5 rounded-full border-slate-400/70 before:bg-white checked:border-green-600 hover:border-green-600 focus:border-green-600 dark:border-navy-400 dark:before:bg-white dark:checked:border-green-600 dark:hover:border-green-600 dark:focus:border-green-600"
-                            />
-                          </label>
+                ? tasks
+                    .filter((item) => {
+                      return Label != "" ? item.priority == Label : true;
+                    })
+                    .filter((item) => {
+                      if (Filter == "assigned") return item.user != [];
+                      else if (Filter == "notAssigned") return item.user == [];
+                      else if (Filter == "done") return item.done == true;
+                      else if (Filter == "unDone") return item.done == false;
+                      else return true;
+                    })
+                    .map((item, index) => (
+                      <div className="grid sm:grid-cols-5 items-center border-b border-slate-200 py-3 dark:border-navy-500">
+                        <div className=" col-start-1 xl:col-end-4 sm:col-end-4">
+                          <div className="flex items-center space-x-2 sm:space-x-3">
+                            <label className="flex">
+                              <input
+                                onChange={(e) => {
+                                  reqForChecking(item.id, e.target.value);
+                                  // window.location.reload()
+                                }}
+                                value={item.done == 1 ? "on" : "off"}
+                                checked={item.done == 1 ? "checked" : ""}
+                                type="checkbox"
+                                className="form-checkbox is-outline text-green-600 h-5 w-5 rounded-full border-slate-400/70 before:bg-white checked:border-green-600 hover:border-green-600 focus:border-green-600 dark:border-navy-400 dark:before:bg-white dark:checked:border-green-600 dark:hover:border-green-600 dark:focus:border-green-600"
+                              />
+                            </label>
 
-                          <h2 className="text-lg font-bold text-slate-600 line-clamp-1 dark:text-navy-100">
-                            {item.title}
+                            <h2 className="text-lg font-bold text-slate-600 line-clamp-1 dark:text-navy-100">
+                              {item.title}
+                            </h2>
+                          </div>
+                          <h2 className="text-left mt-2 text-sm font-medium text-slate-500 line-clamp-1 dark:text-navy-200">
+                            {item.description}
                           </h2>
-                        </div>
-                        <h2 className="text-left mt-2 text-sm font-medium text-slate-500 line-clamp-1 dark:text-navy-200">
-                          {item.description}
-                        </h2>
-                        <div className="grid grid-cols-2 w-64 items-center">
-                          <div className="mt-1 flex items-end justify-between">
-                            {item.priority == 3 ? (
-                              <div className="flex flex-wrap items-center font-inter text-xs">
-                                <div className="badge space-x-2.5 px-1 text-success">
-                                  <div className="h-2 w-2 rounded-full bg-current"></div>
-                                  <span className=" font-medium text-sm">
-                                    Low
-                                  </span>
+                          <div className="grid grid-cols-2 w-64 items-center">
+                            <div className="mt-1 flex items-end justify-between">
+                              {item.priority == 3 ? (
+                                <div className="flex flex-wrap items-center font-inter text-xs">
+                                  <div className="badge space-x-2.5 px-1 text-success">
+                                    <div className="h-2 w-2 rounded-full bg-current"></div>
+                                    <span className=" font-medium text-sm">
+                                      Low
+                                    </span>
+                                  </div>
                                 </div>
-                              </div>
-                            ) : item.priority == 2 ? (
-                              <div className="flex flex-wrap items-center font-inter text-xs">
-                                <div className="badge space-x-2.5 px-1 text-warning">
-                                  <div className="h-2 w-2 rounded-full bg-current"></div>
-                                  <span className=" font-medium text-sm">
-                                    Medium
-                                  </span>
+                              ) : item.priority == 2 ? (
+                                <div className="flex flex-wrap items-center font-inter text-xs">
+                                  <div className="badge space-x-2.5 px-1 text-warning">
+                                    <div className="h-2 w-2 rounded-full bg-current"></div>
+                                    <span className=" font-medium text-sm">
+                                      Medium
+                                    </span>
+                                  </div>
                                 </div>
-                              </div>
-                            ) : (
-                              <div className="flex flex-wrap items-center font-inter text-xs">
-                                <div className="badge space-x-2.5 px-1 text-error">
-                                  <div className="h-2 w-2 rounded-full bg-current"></div>
-                                  <span className=" font-medium text-sm">
-                                    Hard
-                                  </span>
+                              ) : (
+                                <div className="flex flex-wrap items-center font-inter text-xs">
+                                  <div className="badge space-x-2.5 px-1 text-error">
+                                    <div className="h-2 w-2 rounded-full bg-current"></div>
+                                    <span className=" font-medium text-sm">
+                                      Hard
+                                    </span>
+                                  </div>
                                 </div>
-                              </div>
-                            )}
-                          </div>
-                          <div className="mt-2">
-                            <Skeleton members={item.user} />
+                              )}
+                            </div>
+                            <div className="mt-2">
+                              <Skeleton members={item.user} />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="xl:col-start-5 sm:col-start-4 sm:col-end-6 mt-2 sm:mt-0">
-                        <button
-                          onClick={() => {
-                            setslideoverEdit(true);
-                            settaskId(item.id);
-                          }}
-                          className="badge space-x-2 h-9 w-28 bg-slate-150 text-slate-800 dark:bg-navy-500 dark:text-navy-100"
-                        >
-                          <span>Edit Task</span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            className="w-4 h-4"
+                        <div className="xl:col-start-4 xl:ml-[12vw] sm:col-start-4 sm:col-end-6 mt-2 sm:mt-0">
+                          <button
+                            onClick={() => {
+                              setslideoverEdit(true);
+                              settaskId(item.id);
+                            }}
+                            className="badge space-x-2 h-9 w-28 bg-slate-150 text-slate-800 dark:bg-navy-500 dark:text-navy-100"
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                            />
-                          </svg>
-                        </button>
-                        <button
-                          onClick={() => deleting(item.id)}
-                          className="badge space-x-2 h-9 w-28 ml-3 bg-error text-white"
-                        >
-                          <span>Delete</span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            className="w-4 h-4"
+                            <span>Edit Task</span>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth="1.5"
+                              stroke="currentColor"
+                              className="w-4 h-4"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                              />
+                            </svg>
+                          </button>
+                          <button
+                            onClick={() => deleting(item.id)}
+                            className="badge space-x-2 h-9 w-28 ml-3 bg-error text-white"
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                            />
-                          </svg>
-                        </button>
+                            <span>Delete</span>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth="1.5"
+                              stroke="currentColor"
+                              className="w-4 h-4"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                              />
+                            </svg>
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  ))
+                    ))
                 : ""}
 
               {/*                         
