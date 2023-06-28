@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useInfiniteQuery, useQuery } from "react-query";
 import { useIntersection } from "@mantine/hooks";
 import axios from "axios";
@@ -8,14 +8,14 @@ const PAGE_SIZE = 10;
 
 const fetchChatCount = async () => {
   const response = await axios.get(
-    "http://166.0.162.72/history/api/history/count/4"
+    "http://meet-meet.ir/history/api/history/count/1"
   );
   return response.data;
 };
 
 const fetchChatHistory = async ({ pageParam = 1 }) => {
   const response = await axios.get(
-    `http://166.0.162.72/history/api/history/4?page=${pageParam}`
+    `http://meet-meet.ir/history/api/history/1?page=${pageParam}`
   );
   return response.data;
 };
@@ -43,9 +43,15 @@ const Chatroom = () => {
     },
   });
 
-  const lastPostRef = React.useRef(null);
+  // const lastPostRef = React.useRef(null);
+  // const { ref, entry } = useIntersection({
+  //   root: lastPostRef.current,
+  //   threshold: 1,
+  // });
+
+  const firstPostRef = React.useRef(null);
   const { ref, entry } = useIntersection({
-    root: lastPostRef.current,
+    root: firstPostRef.current,
     threshold: 1,
   });
 
@@ -57,28 +63,32 @@ const Chatroom = () => {
 
   const chatMessages = historyData?.pages.flatMap((page) => page);
 
+  const messageEndRef = useRef(null);
+  useEffect(() => {
+    messageEndRef.current?.scrollIntoView({ block: "end" });
+  }, []);
   return (
-    <div>
+    <div ref={messageEndRef}>
       {countLoading || historyLoading ? (
         <div>Loading...</div>
       ) : countError || historyError ? (
         <div>Error occurred while fetching data.</div>
       ) : (
         <>
+          <div ref={ref}></div>
           {console.log(chatMessages)}
           {chatMessages &&
-            chatMessages.map((message, i) => {
+            chatMessages.reverse().map((message, i) => {
               return (
                 <>
-                  <div className="h-20 font-extrabold" key={message.time}>
-                    {i + " - " + message.time}
+                  <div className="h-40 font-extrabold" key={message.message}>
+                    {i + " - " + message.message}
                   </div>
                   <br />
                 </>
               );
             })}
-          <div ref={ref}></div>
-          <button
+          {/* <button
             onClick={fetchNextPage}
             className={classNames(
               "btn min-w-[7rem] rounded-full font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90",
@@ -90,7 +100,7 @@ const Chatroom = () => {
             {isFetching
               ? "Loading more..." + totalPage + " " + countData.count
               : "Load More " + totalPage + " " + countData.count}
-          </button>
+          </button> */}
         </>
       )}
     </div>
