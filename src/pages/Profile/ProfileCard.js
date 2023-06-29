@@ -16,6 +16,47 @@ return (
           <h2 className="text-lg font-medium tracking-wide text-slate-700 dark:text-navy-100">
           Personal Information
           </h2>
+          <div className="badge space-x-2 bg-primary text-white dark:bg-accent">
+                    {user.usertype==1 ? (
+                      <>
+                      <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth="1.5"
+                          stroke="currentColor"
+                          className="w-4 h-4"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M13.5 10.5V6.75a4.5 4.5 0 119 0v3.75M3.75 21.75h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H3.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                          />
+                        </svg>
+                        
+                        <span>Premium</span>
+                      </>
+                    ) : (
+                      <>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth="1.5"
+                          stroke="currentColor"
+                          className="w-4 h-4"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                          />
+                        </svg>
+
+                        <span>Normal</span>
+                      </>
+                    )}
+                  </div>
           { (
             <div className="flex justify-center space-x-2">
               {/* <button onClick={()=>navigate("/profile")} className="badge space-x-2 bg-error text-white">
