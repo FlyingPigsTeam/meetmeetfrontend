@@ -61,9 +61,9 @@ const AutoComplete = ({ setmember }) => {
             },
 
             load: function (query, callback) {
-                const url = BASEURL+ `/api/my-rooms/${idroom}/requests?show_members=1&username=${encodeURIComponent(
+                const url = BASEURL+ `/api/my-rooms/${idroom}/requests?&username=${encodeURIComponent(
                     query
-                )}`;
+                )}&show_members=1&task_search=1`;
                 fetch(url, {
                     method: "GET",
                     headers: {
