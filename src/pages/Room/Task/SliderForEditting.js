@@ -171,7 +171,7 @@ export default function SliderForEditting({
                           </select> */}
                         </label>
                       </div>
-                      <div className="flex items-center justify-between fixed md:w-[20.8vw] w-[90%] bottom-6 py-3 px-4">
+                      <div className="flex items-center justify-between fixed md:w-[20.8vw] w-[81vw] bottom-6 py-3 px-4">
                         <button
                           onClick={() => {
                             reqForEditing();
