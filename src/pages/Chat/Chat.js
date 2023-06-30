@@ -210,10 +210,12 @@ const Chat = () => {
     root: firstPostRef.current,
     threshold: 1,
   });
+  
 
   React.useEffect(() => {
     if (entry?.isIntersecting && hasNextPage) {
       fetchNextPage();
+      // console.log(document.scrollingElement.scrollHeight)
     }
   }, [entry, fetchNextPage, hasNextPage]);
 
