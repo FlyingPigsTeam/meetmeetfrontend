@@ -74,7 +74,7 @@ const AutoComplete = ({ setmember }) => {
                         const data = await response.json();
                         console.log(data);
                         // console.log(data);
-                        console.log(data[0].id);
+                        //console.log(data[0].id);
                         // data.forEach((item) => {
                             
                         //     dictionary[item.username] = item.order;
