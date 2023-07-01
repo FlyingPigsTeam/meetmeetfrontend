@@ -150,7 +150,6 @@ const Task = () => {
   //   }
   //   settasks(temp);
   // }, [Filter, Label]);
-
   return (
     <>
       <PageWrapper>
@@ -557,8 +556,8 @@ const Task = () => {
                       return Label != "" ? item.priority == Label : true;
                     })
                     .filter((item) => {
-                      if (Filter == "assigned") return item.user != [];
-                      else if (Filter == "notAssigned") return item.user == [];
+                      if (Filter == "assigned") return item.user.length != 0;
+                      else if (Filter == "notAssigned") return item.user.length == 0;
                       else if (Filter == "done") return item.done == true;
                       else if (Filter == "unDone") return item.done == false;
                       else return true;
