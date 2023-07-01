@@ -110,7 +110,7 @@ export default function SliderForAdding({
                           aria-hidden="true"
                         />
                       </div>
-                      <div className="overflow-auto flex grow flex-col space-y-4 overflow-y-auto p-4">
+                      <div className=" h-[60vh] flex grow flex-col space-y-4  p-4">
                         <label className="block">
                           <span className=" dark:text-navy-50">Task Title</span>
                           <input
@@ -147,9 +147,9 @@ export default function SliderForAdding({
                             <option value="1">High</option>
                           </select>
                         </label>
-                        <label className="block z-100">
+                        <label className="block z-50">
                           <span className=" dark:text-navy-50">Assigned To:</span>
-                          <div className="card mt-30 p-4 grow"><AutoComplete setmember={setUser}/></div>
+                          <div className="dark:bg-navy-500 card mt-30 p-4 grow"><AutoComplete setmember={setUser}/></div>
                           {/* <select
                             //x-init="$el._x_tom = new Tom($el)"
                             className="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"

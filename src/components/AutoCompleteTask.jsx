@@ -91,13 +91,14 @@ const AutoComplete = ({ setmember }) => {
 
             render: {
                 option: function (item, escape) {
-                    return `<div class="flex space-x-3 bg-primary">
+                    return `
+                    <div class="flex  space-x-3 bg-navy-500">
                         <div class="avatar w-8 h-8">
                             <img class="rounded-full" src="${escape(
                         item.picture_path
                     )}" alt="avatar"/>
                         </div>
-                        <div class="flex flex-col">
+                        <div class="flex  flex-col">
                             <span>${escape(item.first_name)} ${escape(item.last_name)}</span>
                             <span class="text-xs opacity-80"> ${escape(
                         item.username
@@ -106,7 +107,7 @@ const AutoComplete = ({ setmember }) => {
                     </div>`;
                 },
                 item: function (item, escape) {
-                    return `<span class="badge rounded-full bg-primary dark:bg-accent text-white p-px mr-2">
+                    return `<span class="badge rounded-full bg-navy-500 dark:bg-accent text-white p-px mr-2">
                         <span class="avatar w-6 h-6">
                             <img class="rounded-full" src="${escape(
                         item.picture_path
@@ -126,12 +127,12 @@ const AutoComplete = ({ setmember }) => {
 
     return (
         <div>
-            <label className="block text-left">
+            <label className="block dark:bg-navy-500 text-left">
                 <span>Select Members</span>
                 <input
                     ref={selectCustom}
                     id={"user_autocomplete"}
-                    className="mt-1.5 w-full"
+                    className="dark:bg-navy-500 mt-1.5 w-full"
                     autoComplete="off"
                     multiple
                 >
