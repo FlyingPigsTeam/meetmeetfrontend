@@ -568,7 +568,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
   let authTokens = useContext(AuthContext).authTokens;
   const toggle = () => {
     setShow((cur) => !cur);
-    console.log(show);
+    // console.log(show);
   };
 
   const [data, setData] = useState({});
@@ -579,7 +579,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
         .get("/api/profile")
         .then((response) => response);
       setData(data);
-      console.log("man", data.first_name);
+      console.log("man", data.usertype);
     } catch (error) {
       console.error(error);
     }
@@ -764,7 +764,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
 
                       <div>
                         <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
-                          Premium
+                        {data.usertype==1 ? "Pricing Page" : "Premium"}
                         </h2>
                         <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                           Your team activity
