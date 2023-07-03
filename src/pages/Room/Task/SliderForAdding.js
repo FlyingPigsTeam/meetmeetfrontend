@@ -17,6 +17,8 @@ export default function SliderForAdding({
   const [title, settitle] = useState("");
   const [description, setdescription] = useState("");
   const [selectedDifficulty, setSelectedDifficulty] = useState(3);
+  const [titleAlert, settitleAlert] = useState(false);
+  const [descriptionAlert, setdescriptionAlert] = useState(false);
   function handleDifficultyChange(event) {
     setSelectedDifficulty(event.target.value);
   }
@@ -25,17 +27,14 @@ export default function SliderForAdding({
   const [addStatus, setaddStatus] = useState([]);
   const reqForAdding = async () => {
     const { data } = await axios
-      .post(
-        `/api/my-rooms/${roomId}/tasks`,
-        {
-          title: title,
-          priority: selectedDifficulty,
-          description: description,
-          done: 0,
-          user: listUser,
-          room: roomId,
-        }
-      )
+      .post(`/api/my-rooms/${roomId}/tasks`, {
+        title: title,
+        priority: selectedDifficulty,
+        description: description,
+        done: 0,
+        user: listUser,
+        room: roomId,
+      })
       .then((response) => response);
     setaddStatus(data);
     console.log("member", data.user);
@@ -114,21 +113,38 @@ export default function SliderForAdding({
                         <label className="block">
                           <span className=" dark:text-navy-50">Task Title</span>
                           <input
-                            onChange={(e) => settitle(e.target.value)}
-                            className="form-input mt-1.5 h-9 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
+                            onChange={(e) => {
+                              settitle(e.target.value);
+                              settitleAlert(false);
+                            }}
+                            className={
+                              titleAlert
+                                ? "form-input mt-1.5 h-9 w-full rounded-lg border border-error bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:hover:border-navy-100 dark:focus:border-accent"
+                                : "form-input mt-1.5 h-9 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
+                            }
                             placeholder="Enter todo title"
                             type="text"
+                            required
                           />
                         </label>
                         <label className="block">
                           <span className=" dark:text-navy-50">
                             Task Description
                           </span>
+
                           <textarea
-                            onChange={(e) => setdescription(e.target.value)}
-                            className="form-input mt-1.5 h-24 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
+                            onChange={(e) => {
+                              setdescription(e.target.value);
+                              setdescriptionAlert(false);
+                            }}
+                            className={
+                              descriptionAlert
+                                ? "form-input mt-1.5 h-24 w-full rounded-lg border border-error bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-error dark:hover:border-navy-100 dark:focus:border-accent"
+                                : "form-input mt-1.5 h-24 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
+                            }
                             placeholder="Enter todo description"
                             type="text"
+                            required
                           />
                         </label>
                         <label className="block z-40">
@@ -140,7 +156,7 @@ export default function SliderForAdding({
                             value={selectedDifficulty}
                             onChange={handleDifficultyChange}
                             placeholder="Select difficulty of the task"
-                          //autoComplete="off"
+                            //autoComplete="off"
                           >
                             <option value="3">Low</option>
                             <option value="2">Medium</option>
@@ -148,9 +164,11 @@ export default function SliderForAdding({
                           </select>
                         </label>
                         {/* <label className="block z-40"> */}
-                          <span className=" dark:text-navy-50">Assigned To:</span>
-                          <div className="card mt-3 p-4"><AutoComplete setmember={setUser}/></div>
-                          {/* <select
+                        <span className=" dark:text-navy-50">Assigned To:</span>
+                        <div className="card mt-3 p-4">
+                          <AutoComplete setmember={setUser} />
+                        </div>
+                        {/* <select
                             //x-init="$el._x_tom = new Tom($el)"
                             className="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
                             //multiple
@@ -166,8 +184,14 @@ export default function SliderForAdding({
                       <div className="flex items-center justify-between fixed md:w-[83%] w-[90%] bottom-6 py-3 px-4">
                         <button
                           onClick={() => {
-                            reqForAdding();
-                            setslideover(false);
+                            if (title.length == 0) {
+                              settitleAlert(true);
+                            } else if (description.length == 0) {
+                              setdescriptionAlert(true);
+                            } else {
+                              reqForAdding();
+                              setslideover(false);
+                            }
                           }}
                           className="z-20 grid h-10 w-full items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm bg-primary text-slate-100 hover:opacity-80 dark:text-navy-50 duration-300"
                         >

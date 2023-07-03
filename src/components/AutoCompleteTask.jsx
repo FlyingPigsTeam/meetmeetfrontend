@@ -74,7 +74,7 @@ const AutoComplete = ({ setmember }) => {
           const data = await response.json();
           console.log(data);
           // console.log(data);
-          console.log(data[0].id);
+          //console.log(data[0].id);
           // data.forEach((item) => {
 
           //     dictionary[item.username] = item.order;
@@ -89,46 +89,77 @@ const AutoComplete = ({ setmember }) => {
 
       render: {
         option: function (item, escape) {
-          return `<div class="flex space-x-3 bg-primary">
-                    <div className="avatar h-8 w-8 hover:z-10 relative">
-                    ${escape(item.picture_path)} &&
-                    ${escape(item.picture_path)} !== "" &&
-                    ${escape(item.picture_path)} !== "__" ? (
-                      <img
-                        className="rounded-full ring ring-white dark:ring-navy-700"
-                        src=${escape(item.picture_path)}
-                        alt="avatar"
-                      />
-                    ) : (
-                      <div className="is-initial rounded-full bg-info text-xs+ uppercase text-white ring ring-white dark:ring-navy-700">
-                        ${escape(item.first_name[0])} ${escape(
-            item.last_name[0]
-          )}
-                      </div>
-                    )}
-              </div>
-                        <div class="flex flex-col">
-                            <span>${escape(item.first_name)} ${escape(
-            item.last_name
-          )}</span>
-                            <span class="text-xs opacity-80"> ${escape(
-                              item.username
-                            )}</span>
-                        </div>
-                    </div>`;
+          var html = '<div class="flex space-x-3 dark:bg-primary bg-slate-100">';
+          if (
+            item.picture_path &&
+            item.picture_path !== "" &&
+            item.picture_path !== "__"
+          ) {
+            html +=
+              '<div class="avatar w-8 h-8">' +
+              '<img class="rounded-full" src="' +
+              item.picture_path +
+              '" alt="avatar" />' +
+              "</div>";
+          } else {
+            html +=
+              '<div class="avatar w-8 h-8">' +
+              '<div class="is-initial rounded-full bg-info text-xs+ uppercase text-white">' +
+              item.first_name[0] +
+              item.last_name[0] +
+              "</div>" +
+              "</div>";
+          }
+
+          html +=
+            '<div class="flex flex-col">' +
+            "<span>" +
+            escape(item.first_name) +
+            " " +
+            escape(item.last_name) +
+            "</span>" +
+            '<span class="text-xs opacity-80">' +
+            escape(item.username) +
+            "</span>" +
+            "</div>" +
+            "</div>";
+
+          return html;
         },
         item: function (item, escape) {
-          return `<span class="badge rounded-full bg-primary dark:bg-accent text-white p-px mr-2">
-                        <span class="avatar w-6 h-6">
-                            <img class="rounded-full" src="${escape(
-                              item.picture_path
-                            )}" alt="avatar"/>
+          var html =
+            '<span class="badge rounded-full bg-primary dark:bg-accent text-white p-px mr-2">';
 
-                        </span>
-                        <span class="mx-2">${escape(item.first_name)} ${escape(
-            item.last_name
-          )}</span>
-                    </span>`;
+          if (
+            item.picture_path &&
+            item.picture_path !== "" &&
+            item.picture_path !== "__"
+          ) {
+            html +=
+              '<span class="avatar w-6 h-6">' +
+              '<img class="rounded-full" src="' +
+              escape(item.picture_path) +
+              '" alt="avatar"/>' +
+              "</span>";
+          } else {
+            html +=
+              '<span class="avatar w-6 h-6">' +
+              '<div class="is-initial rounded-full bg-info text-xs uppercase text-white">' +
+              item.first_name[0] +
+              item.last_name[0] +
+              "</div>" +
+              "</span>";
+          }
+
+          html +=
+            '<span class="mx-2">' +
+            escape(item.first_name) +
+            " " +
+            escape(item.last_name) +
+            "</span>" +
+            "</span>";
+
+          return html;
         },
       },
     });
