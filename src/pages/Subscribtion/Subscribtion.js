@@ -80,61 +80,61 @@ const Subscribtion = () => {
                     </Sidebar.Primary>
                 </Sidebar>
                 <MainSection>
-                    <div class="dark:bg-navy-800 py-24 sm:py-32">
+                    <div class="bg-400 dark:bg-navy-600 py-24 sm:py-32">
                         <div class="mx-auto max-w-7xl px-6 lg:px-8">
                             <div class="mx-auto max-w-2xl sm:text-center">
-                                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Simple no-tricks pricing</h2>
-                                <p class="mt-6 text-lg leading-8 text-gray-600">Distinctio et nulla eum soluta et neque labore quibusdam. Saepe et quasi iusto modi velit ut non voluptas in. Explicabo id ut laborum.</p>
+                                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Premium</h2>
+                                <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-100">With the premium feature, you get the ability to expand the number of people in your group, and also display your event in a unique way, in a way that will be completely different and attract the opinion of other people.</p>
                             </div>
                             <div class="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
                                 <div class="p-8 sm:p-10 lg:flex-auto">
-                                    <h3 class="text-2xl font-bold tracking-tight text-gray-900">Lifetime membership</h3>
-                                    <p class="mt-6 text-base leading-7 text-gray-600">Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque amet indis perferendis blanditiis repellendus etur quidem assumenda.</p>
+                                    <h3 class="text-2xl font-bold tracking-tight text-gray-900">Premium feature</h3>
+                                    <p class="mt-6 text-base leading-7 text-gray-600 dark:text-gray-100">You don't have to worry about the task creation limit anymore, with this ability you can easily create up to 30 tasks and easily coordinate all your programs. Also, your events will have a brief plan feature that will present your program with details and photos, which will double its appeal and will be very effective in increasing the number of people in the program..</p>
                                     <div class="mt-10 flex items-center gap-x-4">
                                         <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">What’s included</h4>
                                         <div class="h-px flex-auto bg-gray-100"></div>
                                     </div>
-                                    <ul role="list" class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 sm:grid-cols-2 sm:gap-6">
+                                    <ul role="list" class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 dark:text-gray-100 sm:grid-cols-2 sm:gap-6">
                                         <li class="flex gap-x-3">
                                             <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                 <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                                             </svg>
-                                            Private forum access
+                                            Increasing the number of group members to 40
                                         </li>
                                         <li class="flex gap-x-3">
                                             <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                 <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                                             </svg>
-                                            Member resources
+                                            Increasing the number of tasks to 30
                                         </li>
                                         <li class="flex gap-x-3">
                                             <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                 <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                                             </svg>
-                                            Entry to annual conference
+                                            Add a brief plan
                                         </li>
                                         <li class="flex gap-x-3">
-                                            <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <svg class="h-6 w-5 flex-none text-indigo-600 " viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                 <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                                             </svg>
-                                            Official member t-shirt
+                                            All features of the general panel
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
                                     <div class="rounded-2xl border py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
                                         <div class="mx-auto max-w-xs px-8">
-                                            <p class="text-base font-semibold text-gray-600">Pay once, own it forever</p>
+                                            <p class="text-base font-semibold text-gray-600 dark:text-gray-100">Pay once, own it forever</p>
                                             <p class="mt-6 flex items-baseline justify-center gap-x-2">
                                                 <span class="text-5xl font-bold tracking-tight text-gray-900">$349</span>
-                                                <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600">USD</span>
+                                                <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600 dark:text-gray-100">USD</span>
                                             </p>
                                             <button
                                                 onClick={handleGetAccess}
                                                 className="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                             >
                                                 Get access
-                                            </button>                                            <p class="mt-6 text-xs leading-5 text-gray-600">Invoices and receipts available for easy company reimbursement</p>
+                                            </button>                                            
                                         </div>
                                     </div>
                                 </div>
