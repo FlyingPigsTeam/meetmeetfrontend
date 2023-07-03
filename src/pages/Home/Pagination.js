@@ -2,19 +2,19 @@ import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/20/solid
 import { useEffect, useState } from 'react';
 import { usePaginated } from '@makotot/paginated';
 
-const Pagination = ({current,total ,setPage}) => {
+const Pagination = ({ current, total, setPage }) => {
 
-  const [currentP,setCurrentP] = useState(current);
+  const [currentP, setCurrentP] = useState(current);
   const { pages, currentPage, hasPrev, hasNext, getFirstBoundary, getLastBoundary, isPrevTruncated, isNextTruncated } = usePaginated({ currentPage: current, totalPage: total, siblingsSize: 2, boundarySize: 2 });
   const goToNextPage = () => {
     setPage(currentPage < total ? currentPage + 1 : total);
     setCurrentP(currentPage < total ? currentPage + 1 : total);
-    
+
   };
   const goToPreviousPage = () => {
     setPage(currentPage > 1 ? currentPage - 1 : 1);
     setCurrentP(currentPage > 1 ? currentPage - 1 : 1);
-   
+
   };
   return (
 
@@ -57,50 +57,54 @@ const Pagination = ({current,total ,setPage}) => {
             </svg>
           </a>
         </li>}
-        {getFirstBoundary().map(boundary => <li className="bg-slate-150 dark:bg-navy-500">
-      <a
-        onClick={() =>{ setPage(boundary);
-          setCurrentP(boundary);
-        }}
-        className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
-      >{boundary}</a
-      >
-    </li>)}
+        {getFirstBoundary().map(boundary => <li key={boundary} className="bg-slate-150 dark:bg-navy-500">
+          <a
+            onClick={() => {
+              setPage(boundary);
+              setCurrentP(boundary);
+            }}
+            className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+          >{boundary}</a
+          >
+        </li>)}
         {isPrevTruncated && <SimpleButton >...</SimpleButton>}
         {pages.map(page => {
           return page === currentPage ? (
-            <li className="bg-slate-150 dark:bg-navy-500">
-      <a
-        onClick={() =>{ setPage(page);
-          setCurrentP(page);
-        }}
-        className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg bg-primary px-3 leading-tight text-white transition-colors hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
-      >{page}</a
-      >
-    </li>
+            <li key={page} className="bg-slate-150 dark:bg-navy-500">
+              <a
+                onClick={() => {
+                  setPage(page);
+                  setCurrentP(page);
+                }}
+                className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg bg-primary px-3 leading-tight text-white transition-colors hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+              >{page}</a
+              >
+            </li>
           ) : (
-            <li className="bg-slate-150 dark:bg-navy-500">
-      <a
-        onClick={() =>{ setPage(page);
-          setCurrentP(page);
-        }}
-        className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
-      >{page}</a
-      >
-    </li>
+            <li key={page} className="bg-slate-150 dark:bg-navy-500">
+              <a
+                onClick={() => {
+                  setPage(page);
+                  setCurrentP(page);
+                }}
+                className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+              >{page}</a
+              >
+            </li>
           );
         })}
 
         {isNextTruncated && <SimpleButton >...</SimpleButton>}
-        {getLastBoundary().map(boundary => <li className="bg-slate-150 dark:bg-navy-500">
-      <a
-        onClick={() =>{ setPage(boundary);
-          setCurrentP(boundary);
-        }}
-        className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
-      >{boundary}</a
-      >
-    </li>)}
+        {getLastBoundary().map(boundary => <li key={boundary} className="bg-slate-150 dark:bg-navy-500">
+          <a
+            onClick={() => {
+              setPage(boundary);
+              setCurrentP(boundary);
+            }}
+            className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+          >{boundary}</a
+          >
+        </li>)}
 
 
 
@@ -129,7 +133,7 @@ const Pagination = ({current,total ,setPage}) => {
       </ol>
 
       <div className="text-xs+"> </div>
-    {/*        <div className="text-xs+">1 - 10 of 10 entries</div>*/}
+      {/*        <div className="text-xs+">1 - 10 of 10 entries</div>*/}
     </div>
 
   );
@@ -140,7 +144,7 @@ const SimpleButton = ({ children }) => {
   return (
     <li className="bg-slate-150 dark:bg-navy-500">
       <a
-      
+
         className="flex h-8 min-w-[2rem] items-center justify-center rounded-lg px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
       >{children}</a
       >

@@ -32,7 +32,7 @@ const Homepage = () => {
     maxMember: 40,
   };
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(10);
+  const [totalPages, setTotalPages] = useState(1);
   let authTokens = useContext(AuthContext).authTokens;
   // console.log(authTokens.access);
   const [paramsFilter, setparamsFilter] = useState("");
@@ -151,11 +151,11 @@ const Homepage = () => {
               </div>
             )}
           </div>
-          <Pagination
+          {totalPages !== 1 &&<Pagination
             current={currentPage}
             total={totalPages}
             setPage={(page) => setCurrentPage(page)}
-          />
+          />}
         </MainSection>
       </PageWrapper>
     </>

@@ -38,9 +38,9 @@ const Login = () => {
       <main className="grid w-full grow grid-cols-1 place-items-center">
         <div className="w-full max-w-[26rem] p-4 sm:px-5">
           <div className="text-center">
-            {/* <div class="avatar h-16 w-16">
-              <div class="is-initial rounded-full bg-slate-200 text-4xl uppercase text-white dark:bg-navy-500">
-                <i class="fa fa-user"></i>
+            {/* <div className="avatar h-16 w-16">
+              <div className="is-initial rounded-full bg-slate-200 text-4xl uppercase text-white dark:bg-navy-500">
+                <i className="fa fa-user"></i>
               </div>
             </div> */}
             <img

@@ -304,7 +304,7 @@ const Chat = () => {
             className={"mt-0 flex flex-col"}
             style={{ height: "80vh", width: "107%" }}
           >
-            <div class="grow overflow-y-auto px-[calc(var(--margin-x)-.5rem)] py-5 transition-all duration-[.25s]">
+            <div className="grow overflow-y-auto px-[calc(var(--margin-x)-.5rem)] py-5 transition-all duration-[.25s]">
               <div className="space-y-2">
                 <div className="mx-4 flex items-center space-x-3">
                   {/* <div className="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
