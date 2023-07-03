@@ -12,6 +12,7 @@ import Sidebar from "../../../components/Sidebar";
 import DarkModeToggle from "../../../components/DarkModeToggle";
 import MainSection from "../../../components/MainSection";
 import { useParams } from "react-router";
+import Spinner from "../../../components/Spinner";
 
 const Task = () => {
   const [slideoverAdd, setslideoverAdd] = useState(false);
@@ -19,36 +20,31 @@ const Task = () => {
   const [addChanges, setaddChanges] = useState(0);
   const [editChanges, seteditChanges] = useState(0);
   const [taskId, settaskId] = useState();
-  const data = [
-    {
-      title: "Hello World",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      isFinished: true,
-      difficulty: "easy",
-    },
-    { title: "Hello World", isFinished: false, difficulty: "medium" },
-    { title: "Hello World", isFinished: true, difficulty: "hard" },
-  ];
+  const [spinner, setspinner] = useState(false);
   const params = useParams();
   const roomId = params.idroom;
   let authTokens = useContext(AuthContext).authTokens;
   //this part is for getting all tasks of a room
   const [tasks, settasks] = useState([]);
   const reqForGettingAll = async () => {
+    setspinner(true);
     const { data } = await axios
       .get(`/api/my-rooms/${roomId}/tasks?show_all=1`)
       .then((response) => response);
     settasks(data);
+    setspinner(false);
   };
 
   const [deleteStatus, setdeleteStatus] = useState([]);
   const reqForDeleting = async (taskId) => {
+    setspinner(true);
     const { data } = await axios
       .delete(`/api/my-rooms/${roomId}/tasks?task_id=${taskId}`)
       .then((response) => response);
     setdeleteStatus(data);
+    setspinner(false);
   };
+
   //console.log(deleteStatus);
   const deleting = (task_id) => {
     Swal.fire({
@@ -73,6 +69,7 @@ const Task = () => {
   const [checkStatus, setcheckStatus] = useState();
   const [checking, setchecking] = useState();
   const reqForChecking = async (taskID, status) => {
+    //setspinner(true);
     console.log(status);
     const { data } = await axios
       .put(`/api/my-rooms/${roomId}/tasks?task_id=${taskID}`, {
@@ -80,15 +77,9 @@ const Task = () => {
       })
       .then((response) => response);
     setchecking(data);
+    //setspinner(false);
   };
-  const reqForUnChecking = async (taskID) => {
-    const { data } = await axios
-      .put(`/api/my-rooms/${roomId}/tasks?task_id=${taskID}`, {
-        done: 0,
-      })
-      .then((response) => response);
-    setchecking(data);
-  };
+
   const [search, setsearch] = useState("");
   const [showSearch, setshowSearch] = useState(false);
   console.log(search);
@@ -98,6 +89,7 @@ const Task = () => {
       setshowSearch(true);
     } else {
       // part for getting api
+      setspinner(true);
       const { data } = await axios
         .get(`/api/my-rooms/${roomId}/tasks?task_name=${search}`)
         .then((response) => response);
@@ -115,6 +107,7 @@ const Task = () => {
       }
       // setshowSearch(false);
       setsearch("");
+      setspinner(false);
     }
   };
   useEffect(() => {
@@ -490,6 +483,7 @@ const Task = () => {
                 seteditChanges={seteditChanges}
               />
             )}
+
             {tasks.length == 0 ? (
               <p className="mt-1 text-sm">Start Writting Your Tasks</p>
             ) : (
@@ -556,6 +550,15 @@ const Task = () => {
               </div>
             )}
           </div>
+          {spinner ? (
+            <div className=" flex justify-center mb-4 mt-4" style={{}}>
+              <div className=" m-auto" style={{ margin: "0 auto" }}>
+                <Spinner />
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
           <div className="card px-4 pt-2 pb-4">
             <div
               x-init="Sortable.create($el, {
@@ -782,6 +785,7 @@ const Task = () => {
             </div>
           </div> */}
             </div>
+
             <button
               onClick={() => {
                 setslideoverAdd(true);
