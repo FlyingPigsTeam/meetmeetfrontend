@@ -184,6 +184,7 @@ const Chat = () => {
     );
     return response.data;
   };
+
   const {
     data: countData,
     isLoading: countLoading,
@@ -210,7 +211,6 @@ const Chat = () => {
     root: firstPostRef.current,
     threshold: 1,
   });
-  
 
   React.useEffect(() => {
     if (entry?.isIntersecting && hasNextPage) {
@@ -221,6 +221,29 @@ const Chat = () => {
 
   const chatMessages = historyData?.pages.flatMap((page) => page);
 
+  const [Pics, setPics] = useState([]);
+  const reqForGettingPics = async () => {
+    const { data } = await axios
+      .get(`/api/my-rooms/${roomId}/requests?show_members=1&picture=1`)
+      .then((response) => response);
+    setPics(data);
+  };
+  const [PicsObject, setPicsObject] = useState([]);
+  function toObject(arr) {
+    var rv = {};
+    for (var i = 0; i < arr.length; ++i)
+      rv[arr[i].username] = arr[i].picture_path;
+    return rv;
+  }
+  useEffect(() => {
+    reqForGettingPics();
+  }, []);
+  useEffect(() => {
+    setPicsObject(toObject(Pics));
+  }, [Pics]);
+
+  console.log(Pics);
+  console.log(PicsObject);
   return (
     <>
       <PageWrapper>
@@ -401,13 +424,28 @@ const Chat = () => {
                         <div key={index}>
                           {item.username != user.username ? (
                             <div className="flex items-start space-x-2.5 sm:space-x-5">
-                              <div className="avatar">
+                              <div className="avatar h-10 w-10 hover:z-10 relative mt-2">
+                                {PicsObject[item.username] &&
+                                PicsObject[item.username] !== "" &&
+                                PicsObject[item.username] !== "__" ? (
+                                  <img
+                                    className="rounded-full"
+                                    src={PicsObject[item.username]}
+                                    alt="avatar"
+                                  />
+                                ) : (
+                                  <div className="is-initial rounded-full bg-info text-xs+ uppercase text-white ">
+                                    {item.username[0] + item.username[1]}
+                                  </div>
+                                )}
+                              </div>
+                              {/* <div className="avatar">
                                 <img
                                   className="rounded-full"
                                   src={Avatar200x200}
                                   alt="avatar"
                                 />
-                              </div>
+                              </div> */}
                               <div className="flex flex-col items-start space-y-3.5">
                                 <div className="mr-4 max-w-lg sm:mr-10">
                                   <div className=" text-left text-md  text-slate-600 dark:text-navy-200">
@@ -423,7 +461,7 @@ const Chat = () => {
                                     <p> {item.message}</p>
                                   </div>
                                   <p className="mt-1 ml-auto text-right text-xs text-slate-400 dark:text-navy-300">
-                                    {item.time.slice(11,16)}
+                                    {item.time.slice(11, 16)}
                                   </p>
                                 </div>
                               </div>
@@ -442,17 +480,32 @@ const Chat = () => {
                                     <p>{item.message}</p>
                                   </div>
                                   <p className="mt-1 ml-4 max-w-lg sm:ml-10 text-left text-xs text-slate-400 dark:text-navy-300">
-                                    {item.time.slice(11,16)}
+                                    {item.time.slice(11, 16)}
                                   </p>
                                 </div>
                               </div>
-                              <div className="avatar">
+                              <div className="avatar h-10 w-10 hover:z-10 relative">
+                                {PicsObject[item.username] &&
+                                PicsObject[item.username] !== "" &&
+                                PicsObject[item.username] !== "__" ? (
+                                  <img
+                                    className="rounded-full"
+                                    src={PicsObject[item.username]}
+                                    alt="avatar"
+                                  />
+                                ) : (
+                                  <div className="is-initial rounded-full bg-info text-xs+ uppercase text-white ">
+                                    {item.username[0] + item.username[1]}
+                                  </div>
+                                )}
+                              </div>
+                              {/* <div className="avatar">
                                 <img
                                   className="rounded-full"
                                   src={Avatar200x200}
                                   alt="avatar"
                                 />
-                              </div>
+                              </div> */}
                             </div>
                           )}
                         </div>
@@ -465,12 +518,27 @@ const Chat = () => {
                       <div key={index}>
                         {item.username != user.username ? (
                           <div className="flex items-start space-x-2.5 sm:space-x-5">
-                            <div className="avatar">
+                            {/* <div className="avatar">
                               <img
                                 className="rounded-full"
                                 src={Avatar200x200}
                                 alt="avatar"
                               />
+                            </div> */}
+                            <div className="avatar h-10 w-10 hover:z-10 relative mt-2">
+                              {PicsObject[item.username] &&
+                              PicsObject[item.username] !== "" &&
+                              PicsObject[item.username] !== "__" ? (
+                                <img
+                                  className="rounded-full"
+                                  src={PicsObject[item.username]}
+                                  alt="avatar"
+                                />
+                              ) : (
+                                <div className="is-initial rounded-full bg-info text-xs+ uppercase text-white ">
+                                  {item.username[0] + item.username[1]}
+                                </div>
+                              )}
                             </div>
                             <div className="flex flex-col items-start space-y-3.5">
                               <div className="mr-4 max-w-lg sm:mr-10">
@@ -510,12 +578,27 @@ const Chat = () => {
                                 </p>
                               </div>
                             </div>
-                            <div className="avatar">
+                            {/* <div className="avatar">
                               <img
                                 className="rounded-full"
                                 src={Avatar200x200}
                                 alt="avatar"
                               />
+                            </div> */}
+                            <div className="avatar h-10 w-10 hover:z-10 relative">
+                              {PicsObject[item.username] &&
+                              PicsObject[item.username] !== "" &&
+                              PicsObject[item.username] !== "__" ? (
+                                <img
+                                  className="rounded-full"
+                                  src={PicsObject[item.username]}
+                                  alt="avatar"
+                                />
+                              ) : (
+                                <div className="is-initial rounded-full bg-info text-xs+ uppercase text-white ">
+                                  {item.username[0] + item.username[1]}
+                                </div>
+                              )}
                             </div>
                           </div>
                         )}
