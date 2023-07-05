@@ -481,7 +481,7 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
                   </label>
                   <select
                     className="inline rounded-md  px-7 text-1xl mb-7 ml-2  font-bold hover:font-bold w-40  text-base focus:outline-none sm:text-sm text-slate-700 focus:ring-slate-600 focus:border-slate-600 bg-slate-300 dark:bg-navy-500 dark:text-navy-100 dark:focus:ring-navy-100 dark:focus:border-navy-100 cursor-pointer"
-                    defaultValue="None"
+                    // defaultValue="None"
                     value={capacity}
                     onChange={(e) => setcapacity(e.target.value)}
                   >
