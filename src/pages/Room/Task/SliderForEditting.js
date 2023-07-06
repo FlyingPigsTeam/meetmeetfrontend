@@ -166,7 +166,7 @@ export default function SliderForEditting({
                           <span className=" dark:text-navy-50">
                             Assigned To:
                           </span>
-                          <div className="card mt-3 p-4">
+                          <div className="mt-3">
                             {!loading && (
                               <AutoComplete
                                 assignedmember={mydata}

@@ -174,7 +174,6 @@ const AutoComplete = ({ assignedmember, setmember }) => {
   return (
     <div>
       <label className="block text-left">
-        <span>Select Members</span>
         <input
           ref={selectCustom}
           id={"user_autocomplete"}

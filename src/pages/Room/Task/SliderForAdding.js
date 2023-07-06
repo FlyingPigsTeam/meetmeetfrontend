@@ -165,8 +165,11 @@ export default function SliderForAdding({
                         </label>
                         {/* <label className="block z-40"> */}
                         <span className=" dark:text-navy-50">Assigned To:</span>
-                        <div className="card mt-3 p-4">
-                          <AutoComplete setmember={setUser} />
+                        <div className="mt-3">
+                          <AutoComplete
+                            setmember={setUser}
+                            assignedmember={[]}
+                          />
                         </div>
                         {/* <select
                             //x-init="$el._x_tom = new Tom($el)"
