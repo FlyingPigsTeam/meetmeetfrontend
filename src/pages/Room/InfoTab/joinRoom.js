@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import AuthContext from "../../../context/AuthContext";
 import Avatar200x200 from "../../../assets/images/200x200.png";
 import { useParams, useNavigate } from "react-router-dom";
+import Moment from "react-moment";
 
 function JoinRoom() {
   const Navigate = useNavigate();
@@ -21,7 +22,7 @@ function JoinRoom() {
   let [roomData, setRoomData] = useState({});
 
   const linkRequest = async () => {
-    const { data } = await axios
+    const checkdata = await axios
       .get(`/api/rooms/${randomId}`)
       .then((response) => response)
       .catch((err) => {
@@ -52,17 +53,33 @@ function JoinRoom() {
           Navigate(`/room/${idRoomError}/info`);
         }
       });
-    console.log("roomData :", data);
-    setRoomData(data);
+    setRoomData(checkdata?.data);
   };
+  console.log("roomData :", roomData);
   useEffect(() => {
     linkRequest();
   }, [randomId]);
   const joinRoom = async () => {
     const data = await axios
-      .post(`/api/my-rooms/${roomData.id}`, null)
-      .then((response) => response);
-    if (data.status === 202) {
+      .post(`/api/my-rooms/${roomData?.id}`, null)
+      .then((response) => response)
+      .catch((err) => {
+        // Handle error
+        //console.log(err);
+        let error = err.response.data.fail;
+        if (error === "already requested") {
+          //swal("Error!", "Room with this link does not exist ", "error");
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "You have been already requested ",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          Navigate("/home");
+        }
+      });
+    if (data?.status === 202) {
       //swal("Success!", "Request sent!", "success");
       Swal.fire({
         position: "center",
@@ -72,24 +89,25 @@ function JoinRoom() {
         timer: 2000,
       });
       Navigate("/home");
-    } else if (data.status === 406) {
-      //swal("Error!", data.error, "error");
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: data.error,
-        showConfirmButton: false,
-        timer: 2000,
-      });
-      Navigate("/home");
     }
+    // else if (data.status === 406) {
+    //   //swal("Error!", data.error, "error");
+    //   Swal.fire({
+    //     position: "center",
+    //     icon: "error",
+    //     title: data.error,
+    //     showConfirmButton: false,
+    //     timer: 2000,
+    //   });
+    //   Navigate("/home");
+    // }
   };
   return (
     <>
       {roomData ? (
         <div className="bg-slate-50 fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden px-4 py-6  sm:px-5">
           <div className="card mt-5  rounded-lg p-12 lg:p-7 ">
-            <div className="flex flex-col my-2 flex flex-col items-center">
+            <div className="flex flex-col my-2 items-center">
               <div className="avatar mt-1.5 h-20 w-20 ">
                 <img
                   className="mask is-squircle"
@@ -224,7 +242,7 @@ function JoinRoom() {
                   </dd>
                 </div>
 
-                <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-4">
+                {/* <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-4">
                   <dt className="text-sm font-medium ">Start Date </dt>
                   <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                     <span className="flex-grow">
@@ -258,6 +276,28 @@ function JoinRoom() {
                       })}
                     </span>
                   </dd>
+                </div> */}
+                <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-4">
+                  <dt className="text-sm font-medium ">Start Date </dt>
+                  <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
+                    <span className="flex-grow">
+                      <Moment format="YYYY/MM/DD HH:mm">
+                        {roomData.start_date}
+                      </Moment>
+                      <br />
+                    </span>
+                  </dd>
+                </div>
+                <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-4">
+                  <dt className="text-sm font-medium ">End Date</dt>
+                  <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
+                    <span className="flex-grow">
+                      <Moment format="YYYY/MM/DD HH:mm">
+                        {roomData.end_date}
+                      </Moment>
+                      <br />
+                    </span>
+                  </dd>
                 </div>
                 <div className="flex justify-center space-x-5 pt-8">
                   <button
@@ -282,7 +322,7 @@ function JoinRoom() {
                   </button>
                   <button
                     onClick={joinRoom}
-                    className="badge space-x-5 bg-success text-slate-50 text-slate-800 hover:opacity-75 "
+                    className="badge space-x-5 bg-success text-slate-800 hover:opacity-75 "
                   >
                     <span>Join</span>
                     <svg

@@ -15,8 +15,10 @@ export default function SliderForEditting({
   seteditChanges,
 }) {
   const [listUser, setUser] = useState([]);
+  const [mydata, setmydata] = useState([]);
   const [title, settitle] = useState();
   const [description, setdescription] = useState();
+  const [loading, setloading] = useState(true);
   const [selectedDifficulty, setSelectedDifficulty] = useState();
   function handleDifficultyChange(event) {
     setSelectedDifficulty(event.target.value);
@@ -24,32 +26,32 @@ export default function SliderForEditting({
   let authTokens = useContext(AuthContext).authTokens;
   const reqForGettingTask = async () => {
     const { data } = await axios
-      .get(
-        `/api/my-rooms/${roomId}/tasks?task_id=${taskId}`
-      )
+      .get(`/api/my-rooms/${roomId}/tasks?task_id=${taskId}`)
       .then((response) => response);
     settitle(data.title);
     setdescription(data.description);
     setSelectedDifficulty(data.priority);
-    console.log('member',data.user);
+    //console.log("member", data.user);
+    setUser(data.user.map((member) => member.id));
+    setmydata(data.user);
+    setloading(false);
   };
   useEffect(() => {
+    setloading(true);
     reqForGettingTask();
   }, [slideover]);
 
   const [editStatus, seteditStatus] = useState([]);
   const reqForEditing = async () => {
+    console.log("listuser", listUser);
     const { data } = await axios
-      .put(
-        `/api/my-rooms/${roomId}/tasks?task_id=${taskId}`,
-        {
-          title: title,
-          priority: selectedDifficulty,
-          description: description,
-          user: listUser,
-          room: roomId,
-        }
-      )
+      .put(`/api/my-rooms/${roomId}/tasks?task_id=${taskId}`, {
+        title: title,
+        priority: selectedDifficulty,
+        description: description,
+        user: listUser,
+        room: roomId,
+      })
       .then((response) => response);
     seteditStatus(data);
     seteditChanges((e) => e + 1);
@@ -129,7 +131,9 @@ export default function SliderForEditting({
                           />
                         </label>
                         <label className="block">
-                          <span className=" dark:text-navy-50">Task Description</span>
+                          <span className=" dark:text-navy-50">
+                            Task Description
+                          </span>
                           <textarea
                             onChange={(e) => setdescription(e.target.value)}
                             value={description}
@@ -147,16 +151,29 @@ export default function SliderForEditting({
                             value={selectedDifficulty}
                             onChange={handleDifficultyChange}
                             placeholder="Select difficulty of the task"
-                          //autoComplete="off"
+                            //autoComplete="off"
                           >
                             <option value="3">Low</option>
                             <option value="2">Medium</option>
                             <option value="1">Hard</option>
                           </select>
                         </label>
-                        <label className="block z-50">
+                        {/* <label className="block z-50">
                           <span className=" dark:text-navy-50">Assigned To:</span>
-                          <div className="dark:bg-navy-500 card mt-30 p-4 grow"><AutoComplete setmember={setUser}/></div>
+                          <div className="dark:bg-navy-500 card mt-30 p-4 grow"><AutoComplete setmember={setUser}/></div> */}
+
+                        <label className="block z-40">
+                          <span className=" dark:text-navy-50">
+                            Assigned To:
+                          </span>
+                          <div className="card mt-3 p-4">
+                            {!loading && (
+                              <AutoComplete
+                                assignedmember={mydata}
+                                setmember={setUser}
+                              />
+                            )}
+                          </div>
                           {/* <select
                             //x-init="$el._x_tom = new Tom($el)"
                             className="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
@@ -170,13 +187,13 @@ export default function SliderForEditting({
                           </select> */}
                         </label>
                       </div>
-                      <div className="flex items-center justify-between fixed md:w-[83%] w-[90%] bottom-6 py-3 px-4">
+                      <div className="flex items-center justify-between fixed md:w-[20.8vw] w-[81vw] bottom-6 py-3 px-4">
                         <button
                           onClick={() => {
                             reqForEditing();
                             setslideover(false);
                           }}
-                          className=" z-20 grid h-10 w-full items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm bg-primary text-slate-100 hover:opacity-80 dark:text-navy-50 duration-300"
+                          className="z-20 grid h-10 w-full items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm bg-primary text-slate-100 hover:opacity-80 dark:text-navy-50 duration-300"
                         >
                           Save
                         </button>

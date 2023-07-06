@@ -12,7 +12,8 @@ import { data } from "browserslist";
 import { async } from "q";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery, useQuery } from "react-query";
+import { useIntersection } from "@mantine/hooks";
 
 const Chat = () => {
   const sidebarExp = useSelector((state) => state.SidebarExpanded);
@@ -22,7 +23,7 @@ const Chat = () => {
   const { user } = useContext(AuthContext);
   // const [client, setclient] = useState(new w3cwebsocket(`ws://localhost:8080/${roomId}`));
   const client = useMemo(
-    () => new w3cwebsocket(`ws://166.0.162.72/chat/${roomId}`),
+    () => new w3cwebsocket(`ws://meet-meet.ir/chat/${roomId}`),
     []
   );
   const [message, setmessage] = useState([]);
@@ -90,7 +91,6 @@ const Chat = () => {
   }, [message]);
 
   const [inputValue, setInputValue] = useState("");
-
   const handleInputChange = async (event) => {
     const value = event.target.value;
     setInputValue(value);
@@ -99,41 +99,43 @@ const Chat = () => {
   // console.log(message);
   // console.log(user);
 
-  const [count, setcount] = useState(0);
-  const [AllMassages, setAllMassages] = useState([]);
-  let counter = 0;
-  const req = async (roomId) => {
-    const { data } = await axios
-      .get(`http://166.0.162.72/history/api/history/count/${roomId}`)
-      .then((response) => response);
-    setcount(data.count);
-    // console.log(data.count)
-  };
-  const req1 = async (roomId, i) => {
-    const { data } = await axios
-      .get(`http://166.0.162.72/history/api/history/${roomId}?page=${i}`)
-      .then((response) => response);
-    console.log(data);
-    setAllMassages((e) => [data.reverse(), ...e]);
-    // console.log(data.count)
-  };
-  useEffect(() => {
-    req(roomId);
-    let i = 1;
-    while (i <= Math.round(count / 10)) {
-      req1(roomId, i);
-      i++;
-    }
-  }, [count]);
-  console.log(count);
-  console.log(AllMassages);
+  //Chat History
+  // const [count, setcount] = useState(0);
+  // const [AllMassages, setAllMassages] = useState([]);
+  // let counter = 0;
+  // const req = async (roomId) => {
+  //   const { data } = await axios
+  //     .get(`http://meet-meet.ir/history/api/history/count/${roomId}`)
+  //     .then((response) => response);
+  //   setcount(data.count);
+  //   // console.log(data.count)
+  // };
+  // const req1 = async (roomId, i) => {
+  //   const { data } = await axios
+  //     .get(`http://meet-meet.ir/history/api/history/${roomId}?page=${i}`)
+  //     .then((response) => response);
+  //   console.log(data);
+  //   setAllMassages((e) => [data.reverse(), ...e]);
+  //   // console.log(data.count)
+  // };
+  // useEffect(() => {
+  //   req(roomId);
+  //   let i = 1;
+  //   while (i <= Math.round(count / 10)) {
+  //     req1(roomId, i);
+  //     i++;
+  //   }
+  // }, [count]);
+  // console.log(count);
+  // console.log(AllMassages);
 
-  const fetchRepositories = async (page) => {
-    const response = await fetch(
-      `http://166.0.162.72/history/api/history/4?page=${page}`
-    );
-    return response.json();
-  };
+  // const fetchRepositories = async (page) => {
+  //   const response = await fetch(
+  //     `http://166.0.162.72/history/api/history/4?page=${page}`
+  //   );
+  //   return response.json();
+  // };
+
   // const { data, hasNextPage, fetchNextPage } = useInfiniteQuery(
   //   "repositories",
   //   ({ pageParam = 1 }) => fetchRepositories(pageParam),
@@ -167,6 +169,81 @@ const Chat = () => {
   //   };
   // }, []);
 
+  const PAGE_SIZE = 10;
+
+  const fetchChatCount = async () => {
+    const response = await axios.get(
+      `http://meet-meet.ir/history/api/history/count/${roomId}`
+    );
+    return response.data;
+  };
+
+  const fetchChatHistory = async ({ pageParam = 1 }) => {
+    const response = await axios.get(
+      `http://meet-meet.ir/history/api/history/${roomId}?page=${pageParam}`
+    );
+    return response.data;
+  };
+
+  const {
+    data: countData,
+    isLoading: countLoading,
+    isError: countError,
+  } = useQuery("chatCount", fetchChatCount);
+
+  const totalPage = Math.ceil(countData?.count / PAGE_SIZE);
+
+  const {
+    data: historyData,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isLoading: historyLoading,
+    isError: historyError,
+  } = useInfiniteQuery("chatHistory", fetchChatHistory, {
+    enabled: !!countData,
+    getNextPageParam: (lastPage, pages) => {
+      return pages.length + 1 <= totalPage ? pages.length + 1 : undefined;
+    },
+  });
+  const firstPostRef = React.useRef(null);
+  const { ref, entry } = useIntersection({
+    root: firstPostRef.current,
+    threshold: 1,
+  });
+
+  React.useEffect(() => {
+    if (entry?.isIntersecting && hasNextPage) {
+      fetchNextPage();
+      // console.log(document.scrollingElement.scrollHeight)
+    }
+  }, [entry, fetchNextPage, hasNextPage]);
+
+  const chatMessages = historyData?.pages.flatMap((page) => page);
+
+  const [Pics, setPics] = useState([]);
+  const reqForGettingPics = async () => {
+    const { data } = await axios
+      .get(`/api/my-rooms/${roomId}/requests?show_members=1&picture=1`)
+      .then((response) => response);
+    setPics(data);
+  };
+  const [PicsObject, setPicsObject] = useState([]);
+  function toObject(arr) {
+    var rv = {};
+    for (var i = 0; i < arr.length; ++i)
+      rv[arr[i].username] = arr[i].picture_path;
+    return rv;
+  }
+  useEffect(() => {
+    reqForGettingPics();
+  }, []);
+  useEffect(() => {
+    setPicsObject(toObject(Pics));
+  }, [Pics]);
+
+  console.log(Pics);
+  console.log(PicsObject);
   return (
     <>
       <PageWrapper>
@@ -184,7 +261,7 @@ const Chat = () => {
             </div>
             <Header.Right>
               <Header.Right.DarkModeToggle />
-              <Header.Right.Notification/>
+              <Header.Right.Notification />
             </Header.Right>
           </Header.Items>
         </Header>
@@ -250,7 +327,7 @@ const Chat = () => {
             className={"mt-0 flex flex-col"}
             style={{ height: "80vh", width: "107%" }}
           >
-            <div class="grow overflow-y-auto px-[calc(var(--margin-x)-.5rem)] py-5 transition-all duration-[.25s]">
+            <div className="grow overflow-y-auto px-[calc(var(--margin-x)-.5rem)] py-5 transition-all duration-[.25s]">
               <div className="space-y-2">
                 <div className="mx-4 flex items-center space-x-3">
                   {/* <div className="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
@@ -273,7 +350,7 @@ const Chat = () => {
                     )
                   : ""} */}
 
-                {AllMassages
+                {/* {AllMassages
                   ? AllMassages.map((data, index) =>
                       data.map((item, index) => (
                         <div key={index}>
@@ -336,19 +413,132 @@ const Chat = () => {
                         </div>
                       ))
                     )
-                  : ""}
+                  : ""} */}
+
+                <>
+                  <div ref={ref}></div>
+                  {console.log(chatMessages)}
+                  {chatMessages &&
+                    chatMessages.reverse().map((item, index) => {
+                      return (
+                        <div key={index}>
+                          {item.username != user.username ? (
+                            <div className="flex items-start space-x-2.5 sm:space-x-5">
+                              <div className="avatar h-10 w-10 hover:z-10 relative mt-2">
+                                {PicsObject[item.username] &&
+                                PicsObject[item.username] !== "" &&
+                                PicsObject[item.username] !== "__" ? (
+                                  <img
+                                    className="rounded-full"
+                                    src={PicsObject[item.username]}
+                                    alt="avatar"
+                                  />
+                                ) : (
+                                  <div className="is-initial rounded-full bg-info text-xs+ uppercase text-white ">
+                                    {item.username[0] + item.username[1]}
+                                  </div>
+                                )}
+                              </div>
+                              {/* <div className="avatar">
+                                <img
+                                  className="rounded-full"
+                                  src={Avatar200x200}
+                                  alt="avatar"
+                                />
+                              </div> */}
+                              <div className="flex flex-col items-start space-y-3.5">
+                                <div className="mr-4 max-w-lg sm:mr-10">
+                                  <div className=" text-left text-md  text-slate-600 dark:text-navy-200">
+                                    {item.username}:
+                                  </div>
+                                  <div
+                                    style={{
+                                      whiteSpace: "initial",
+                                      wordWrap: "break-word",
+                                    }}
+                                    className="rounded-2xl text-left rounded-tl-none bg-slate-200 p-2 text-slate-900 shadow-sm dark:bg-navy-700 dark:text-navy-50"
+                                  >
+                                    <p> {item.message}</p>
+                                  </div>
+                                  <p className="mt-1 ml-auto text-right text-xs text-slate-400 dark:text-navy-300">
+                                    {item.time.slice(11, 16)}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="flex items-start justify-end space-x-2.5 sm:space-x-5">
+                              <div className="flex flex-col items-end space-y-3.5">
+                                <div className="ml-4 max-w-lg sm:ml-10">
+                                  <div
+                                    style={{
+                                      whiteSpace: "initial",
+                                      wordWrap: "break-word",
+                                    }}
+                                    className=" text-ellipsis rounded-2xl text-left rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white"
+                                  >
+                                    <p>{item.message}</p>
+                                  </div>
+                                  <p className="mt-1 ml-4 max-w-lg sm:ml-10 text-left text-xs text-slate-400 dark:text-navy-300">
+                                    {item.time.slice(11, 16)}
+                                  </p>
+                                </div>
+                              </div>
+                              <div className="avatar h-10 w-10 hover:z-10 relative">
+                                {PicsObject[item.username] &&
+                                PicsObject[item.username] !== "" &&
+                                PicsObject[item.username] !== "__" ? (
+                                  <img
+                                    className="rounded-full"
+                                    src={PicsObject[item.username]}
+                                    alt="avatar"
+                                  />
+                                ) : (
+                                  <div className="is-initial rounded-full bg-info text-xs+ uppercase text-white ">
+                                    {item.username[0] + item.username[1]}
+                                  </div>
+                                )}
+                              </div>
+                              {/* <div className="avatar">
+                                <img
+                                  className="rounded-full"
+                                  src={Avatar200x200}
+                                  alt="avatar"
+                                />
+                              </div> */}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                </>
 
                 {message.length != 0
                   ? message.map((item, index) => (
                       <div key={index}>
                         {item.username != user.username ? (
                           <div className="flex items-start space-x-2.5 sm:space-x-5">
-                            <div className="avatar">
+                            {/* <div className="avatar">
                               <img
                                 className="rounded-full"
                                 src={Avatar200x200}
                                 alt="avatar"
                               />
+                            </div> */}
+                            <div className="avatar h-10 w-10 hover:z-10 relative mt-2">
+                              {PicsObject[item.username] &&
+                              PicsObject[item.username] !== "" &&
+                              PicsObject[item.username] !== "__" ? (
+                                <img
+                                  className="rounded-full"
+                                  src={PicsObject[item.username]}
+                                  alt="avatar"
+                                />
+                              ) : (
+                                <div className="is-initial rounded-full bg-info text-xs+ uppercase text-white ">
+                                  {item.username[0] + item.username[1]}
+                                </div>
+                              )}
                             </div>
                             <div className="flex flex-col items-start space-y-3.5">
                               <div className="mr-4 max-w-lg sm:mr-10">
@@ -388,12 +578,27 @@ const Chat = () => {
                                 </p>
                               </div>
                             </div>
-                            <div className="avatar">
+                            {/* <div className="avatar">
                               <img
                                 className="rounded-full"
                                 src={Avatar200x200}
                                 alt="avatar"
                               />
+                            </div> */}
+                            <div className="avatar h-10 w-10 hover:z-10 relative">
+                              {PicsObject[item.username] &&
+                              PicsObject[item.username] !== "" &&
+                              PicsObject[item.username] !== "__" ? (
+                                <img
+                                  className="rounded-full"
+                                  src={PicsObject[item.username]}
+                                  alt="avatar"
+                                />
+                              ) : (
+                                <div className="is-initial rounded-full bg-info text-xs+ uppercase text-white ">
+                                  {item.username[0] + item.username[1]}
+                                </div>
+                              )}
                             </div>
                           </div>
                         )}

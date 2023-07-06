@@ -14,6 +14,7 @@ import Filters from "./Filter";
 
 import AuthContext from "../../context/AuthContext";
 import { number } from "yup";
+import Spinner from "../../components/Spinner";
 
 const Homepage = () => {
   // const [sort, setSort] = useState("None");
@@ -32,7 +33,7 @@ const Homepage = () => {
     maxMember: 40,
   };
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(10);
+  const [totalPages, setTotalPages] = useState(1);
   let authTokens = useContext(AuthContext).authTokens;
   // console.log(authTokens.access);
   const [paramsFilter, setparamsFilter] = useState("");
@@ -57,12 +58,14 @@ const Homepage = () => {
   url = url.replaceAll("%3A", ":");
   url = url.replace("categories=", "");
   // console.log("params", url);
-
+  const [spinner, setspinner] = useState(false);
   const [status, setstatus] = useState("");
   const req = async () => {
+    setspinner(true);
     const { data } = await axios.get(`/api/rooms?${url}&page=${currentPage}`);
     // .then((response) => response);
     setstatus(data);
+    setspinner(false);
     // console.log(`http://127.0.0.1:8000/api/rooms?${url}&page=${currentPage}`);
     // console.log(currentPage);
     let count = data.count;
@@ -98,7 +101,7 @@ const Homepage = () => {
             {/* <Header.SidebarToggle /> */}
             <Header.Right>
               <Header.Right.DarkModeToggle />
-              <Header.Right.Notification/>
+              <Header.Right.Notification />
             </Header.Right>
           </Header.Items>
         </Header>
@@ -132,30 +135,41 @@ const Homepage = () => {
               paramsFilter={paramsFilter}
               setparamsFilter={handleFilterChange}
             />
-
-            {status.count ? (
-              <div
-                className="grid grid-cols-1 md:grid-cols-2 gap-6 "
-                style={{ width: "78vw", marginTop: "5vh" }}
-              >
-                {cards.map((item, index) => (
-                  <Card key={index} info={information} data={item} />
-                ))}
+            {spinner ? (
+              <div className=" flex justify-center mb-4 mt-[6vh]" style={{}}>
+                <div className=" m-auto " style={{ margin: "0 auto" }}>
+                  <Spinner />
+                </div>
               </div>
             ) : (
-              <div
-                className="dark:text-navy-50 text-slate-900 pt-20 text-2xl font-semibold"
-                style={{ paddingLeft: "35vw" }}
-              >
-                No Room Found
+              <div>
+                {status.count ? (
+                  <div
+                    className="grid grid-cols-1 md:grid-cols-2 gap-6 "
+                    style={{ width: "78vw", marginTop: "5vh" }}
+                  >
+                    {cards.map((item, index) => (
+                      <Card key={index} info={information} data={item} />
+                    ))}
+                  </div>
+                ) : (
+                  <div
+                    className="dark:text-navy-50 text-slate-900 pt-20 text-2xl font-semibold"
+                    style={{ paddingLeft: "35vw" }}
+                  >
+                    No Room Found
+                  </div>
+                )}
               </div>
             )}
           </div>
-          <Pagination
-            current={currentPage}
-            total={totalPages}
-            setPage={(page) => setCurrentPage(page)}
-          />
+          {totalPages !== 1 && (
+            <Pagination
+              current={currentPage}
+              total={totalPages}
+              setPage={(page) => setCurrentPage(page)}
+            />
+          )}
         </MainSection>
       </PageWrapper>
     </>
