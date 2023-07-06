@@ -55,8 +55,14 @@ const AutoComplete = ({ assignedmember, setmember }) => {
       items: assignedmember?.map((member) => member.id),
       placeholder: "Select some members",
       onChange: (value) => {
-        setSelectedMembers(value.split(","));
-        setmember(value.split(","));
+        //console.log("check value :", value);
+        if (!value) {
+          setSelectedMembers([]);
+          setmember([]);
+        } else {
+          setSelectedMembers(value.split(","));
+          setmember(value.split(","));
+        }
       },
 
       load: function (query, callback) {

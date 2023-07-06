@@ -44,6 +44,16 @@ export default function SliderForEditting({
   const [editStatus, seteditStatus] = useState([]);
   const reqForEditing = async () => {
     console.log("listuser", listUser);
+    // console.log(
+    //   "put request ",
+    //   JSON.stringify({
+    //     title: title,
+    //     priority: selectedDifficulty,
+    //     description: description,
+    //     user: listUser,
+    //     room: roomId,
+    //   })
+    // );
     const { data } = await axios
       .put(`/api/my-rooms/${roomId}/tasks?task_id=${taskId}`, {
         title: title,
