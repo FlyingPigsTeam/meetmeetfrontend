@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import WOW from "wow.js";
 import { tns } from "tiny-slider";
 
@@ -9,7 +9,7 @@ import LogoLight from "../../assets/images/app-logo-white.svg";
 import Classic01 from "../../assets/images/landing/images/saas/main2.png";
 import Classic02 from "../../assets/images/landing/images/saas/room2.png";
 import Classic03 from "../../assets/images/landing/images/saas/task2.png";
-
+import AuthContext from "../../context/AuthContext";
 import Client01 from "../../assets/images/landing/images/client/01.jpg";
 import Client02 from "../../assets/images/landing/images/client/02.jpg";
 import Client03 from "../../assets/images/landing/images/client/03.jpg";
@@ -37,6 +37,7 @@ import Spotify from "../../assets/images/landing/images/client/spotify.svg";
 import { Link } from "react-router-dom";
 
 const LandingPage = () => {
+  const {user} = useContext(AuthContext);
   React.useEffect(() => {
     const mywow = new WOW();
     mywow.init();
@@ -342,9 +343,9 @@ const LandingPage = () => {
 
             {/* <!--Login button Start--> */}
             <ul class="buy-button list-none mb-0">
-              {/* <li class="inline mb-0">
-                                <a href="" class="btnm btnm-icon rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white"><i data-feather="settings" class="h-4 w-4"></i></a>
-                            </li> */}
+              
+            {user ==false ? ( 
+              <>
             <Link
                 to="/login"
                 class="btnm  rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white">
@@ -357,15 +358,34 @@ const LandingPage = () => {
                 <i data-feather="settings" class="h-4 w-4"></i> */}
               </Link>
 
-              {/* <li class="inline pl-1 mb-0">
-                <a
-                  href="https://1.envato.market/techwind"
-                  target="_blank"
-                  class="btnm btnm-icon rounded-full bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white"
+              <li class="inline pl-1 mb-0">
+              <Link
+                to="/register"
+                class="btnm  rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white">
+              {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg> */}
+                            Sign up
+              {/* <Link
+                to="/login"
+                class="btnm btnm-icon rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white"
+              >
+                <i data-feather="settings" class="h-4 w-4"></i> */}
+              </Link>
+              </li>
+              </>): (
+                <li class="inline pl-1 mb-0">
+                <Link
+                  to="/home"
+                  class="btnm  rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white">
+                {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg> */}
+                              Home
+                {/* <Link
+                  to="/login"
+                  class="btnm btnm-icon rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white"
                 >
-                  <i data-feather="shopping-cart" class="h-4 w-4"></i>
-                </a>
-              </li> */}
+                  <i data-feather="settings" class="h-4 w-4"></i> */}
+                </Link>
+                </li>
+              )}
             </ul>
             {/* <!--Login button End--> */}
 

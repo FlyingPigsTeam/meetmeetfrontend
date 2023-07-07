@@ -768,7 +768,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
 
                       <div>
                         <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
-                          {data.usertype == 1 ? "Pricing Page" : "Premium"}
+                          {data.usertype == 0 ? "Pricing Page" : "Premium"}
                         </h2>
                         <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                           Your team activity
