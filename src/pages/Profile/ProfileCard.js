@@ -16,9 +16,9 @@ return (
           <h2 className="text-lg font-medium tracking-wide text-slate-700 dark:text-navy-100">
           Personal Information
           </h2>
-          <div className="badge space-x-2 bg-secondary text-white dark:bg-secondary">
+          <div >
                     {user.usertype==1 ? (
-                      <>
+                      <div className="badge space-x-2 bg-secondary text-white dark:bg-secondary">
                       <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -35,9 +35,9 @@ return (
                         </svg>
                         
                         <span>Premium</span>
-                      </>
+                      </div>
                     ) : (
-                      <>
+                      <div className="badge space-x-2 bg-info text-white dark:bg-info">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -54,7 +54,7 @@ return (
                         </svg>
 
                         <span>Normal</span>
-                      </>
+                      </div>
                     )}
                   </div>
           { (

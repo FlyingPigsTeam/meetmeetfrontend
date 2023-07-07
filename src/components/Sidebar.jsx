@@ -745,6 +745,8 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                                                     </div>
                                                 </div>
                                             </a>*/}
+                                            
+                                            {data.usertype == 1 ?(<>
                     <Link
                       to={"/subscribtion"}
                       className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
@@ -768,13 +770,35 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
 
                       <div>
                         <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
-                          {data.usertype == 0 ? "Pricing Page" : "Premium"}
+                          Premium
                         </h2>
                         <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                           Your team activity
                         </div>
                       </div>
                     </Link>
+                    </>):(
+                      <Link
+                      to={"/subscribtion"}
+                      className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                    >
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-info text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
+</svg>
+
+                      </div>
+
+                      <div>
+                        <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                          Pricing Page
+                        </h2>
+                        <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                          Your team activity
+                        </div>
+                      </div>
+                    </Link>
+                    )}
                     {/* <a
                                                 href="#"
                                                 className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
