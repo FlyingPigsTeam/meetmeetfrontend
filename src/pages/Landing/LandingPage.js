@@ -345,14 +345,21 @@ const LandingPage = () => {
               {/* <li class="inline mb-0">
                                 <a href="" class="btnm btnm-icon rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white"><i data-feather="settings" class="h-4 w-4"></i></a>
                             </li> */}
-              <Link
+            <Link
+                to="/login"
+                class="btnm btnm-icon rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+              </svg>
+
+              {/* <Link
                 to="/login"
                 class="btnm btnm-icon rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white"
               >
-                <i data-feather="settings" class="h-4 w-4"></i>
+                <i data-feather="settings" class="h-4 w-4"></i> */}
               </Link>
 
-              <li class="inline pl-1 mb-0">
+              {/* <li class="inline pl-1 mb-0">
                 <a
                   href="https://1.envato.market/techwind"
                   target="_blank"
@@ -360,12 +367,11 @@ const LandingPage = () => {
                 >
                   <i data-feather="shopping-cart" class="h-4 w-4"></i>
                 </a>
-              </li>
+              </li> */}
             </ul>
             {/* <!--Login button End--> */}
 
-            <div id="navigation">
-              {/* <!-- Navigation Menu--> */}
+            {/* <div id="navigation">
               <ul class="navigation-menu">
                 <li>
                   <a href="index.html" class="sub-menu-item">
@@ -1456,8 +1462,7 @@ const LandingPage = () => {
                   </a>
                 </li>
               </ul>
-              {/* <!--end navigation menu--> */}
-            </div>
+            </div> */}
             {/* <!--end navigation--> */}
           </div>
           {/* <!--end container--> */}
@@ -2575,67 +2580,76 @@ In the task section, there are the following features:
                         Company
                       </h5>
                       <ul class="list-none footer-list mt-6">
-                        <li>
+                        {/* <li>
                           <a
                             href="page-aboutus.html"
                             class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
                           >
                             <i class="uil uil-angle-right-b me-1"></i> About us
                           </a>
-                        </li>
-                        <li class="mt-[10px]">
+                        </li> */}
+                        {/* <li class="mt-[10px]">
                           <a
                             href="page-services.html"
                             class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
                           >
                             <i class="uil uil-angle-right-b me-1"></i> Services
                           </a>
-                        </li>
+                        </li> */}
                         <li class="mt-[10px]">
                           <a
-                            href="page-team.html"
+                            href="https://github.com/FlyingPigsTeam/meetmeetfrontend"
                             class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
                           >
-                            <i class="uil uil-angle-right-b me-1"></i> Team
+                            <i class="uil uil-angle-right-b me-1"></i> Front team
                           </a>
                         </li>
                         <li class="mt-[10px]">
+                          <a
+                            href="https://github.com/FlyingPigsTeam/MeetMeetBackEnd"
+                            class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
+                          >
+                            <i class="uil uil-angle-right-b me-1"></i> Back team
+                          </a>
+                        </li>
+                        {/* <li class="mt-[10px]">
                           <a
                             href="page-pricing.html"
                             class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
                           >
                             <i class="uil uil-angle-right-b me-1"></i> Pricing
                           </a>
-                        </li>
-                        <li class="mt-[10px]">
+                        </li> */}
+                        {/* <li class="mt-[10px]">
                           <a
                             href="portfolio-creative-four.html"
                             class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
                           >
                             <i class="uil uil-angle-right-b me-1"></i> Project
                           </a>
-                        </li>
-                        <li class="mt-[10px]">
+                        </li> */}
+                        {/* <li class="mt-[10px]">
                           <a
                             href="blog.html"
                             class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
                           >
                             <i class="uil uil-angle-right-b me-1"></i> Blog
                           </a>
-                        </li>
+                        </li> */}
                         <li class="mt-[10px]">
-                          <a
+                        <Link
+                          to="/login"
                             href="auth-login.html"
                             class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
                           >
                             <i class="uil uil-angle-right-b me-1"></i> Login
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
                     {/* <!--end col--> */}
 
-                    <div class="lg:col-span-3 md:col-span-4">
+                    {/* <div class="lg:col-span-3 md:col-span-4">
                       <h5 class="tracking-[1px] text-gray-100 font-semibold">
                         Usefull Links
                       </h5>
@@ -2684,10 +2698,10 @@ In the task section, there are the following features:
                           </a>
                         </li>
                       </ul>
-                    </div>
+                    </div> */}
                     {/* <!--end col--> */}
 
-                    <div class="lg:col-span-3 md:col-span-4">
+                    {/* <div class="lg:col-span-3 md:col-span-4">
                       <h5 class="tracking-[1px] text-gray-100 font-semibold">
                         Newsletter
                       </h5>
@@ -2726,7 +2740,7 @@ In the task section, there are the following features:
                           </button>
                         </div>
                       </form>
-                    </div>
+                    </div> */}
                     {/* !--end col--> */}
                   </div>
                   {/* <!--end grid--> */}
@@ -2744,20 +2758,20 @@ In the task section, there are the following features:
                 <div class="md:text-left text-center">
                   <p class="mb-0">
                     © <script>document.write(new Date().getFullYear())</script>{" "}
-                    Techwind. Design with{" "}
+                    Meet Meet. Design {" "}
                     <i class="mdi mdi-heart text-red-600"></i> by{" "}
                     <a
-                      href="https://shreethemes.in/"
+                      href="https://github.com/FlyingPigsTeam"
                       target="_blank"
                       class="text-reset"
                     >
-                      Shreethemes
+                      Flying Pigs
                     </a>
                     .
                   </p>
                 </div>
 
-                <ul class="list-none md:text-right text-center mt-6 md:mt-0">
+                {/* <ul class="list-none md:text-right text-center mt-6 md:mt-0">
                   <li class="inline">
                     <a href="">
                       <img
@@ -2808,11 +2822,9 @@ In the task section, there are the following features:
                       />
                     </a>
                   </li>
-                </ul>
+                </ul> */}
               </div>
-              {/* <!--end grid--> */}
             </div>
-            {/* <!--end container--> */}
           </div>
         </footer>
         {/* <!--end footer--> */}
