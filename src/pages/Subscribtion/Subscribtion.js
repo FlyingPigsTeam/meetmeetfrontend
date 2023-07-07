@@ -39,7 +39,7 @@ const Subscribtion = () => {
     const handleGetAccess = async () => {
         try {
             await axios
-                .put("http://127.0.0.1:8000/api/premium");
+                .put("api/premium");
                 
 
         } catch (error) {
