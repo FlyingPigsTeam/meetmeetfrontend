@@ -19,7 +19,7 @@ const Task = () => {
   const [slideoverEdit, setslideoverEdit] = useState(false);
   const [addChanges, setaddChanges] = useState(0);
   const [editChanges, seteditChanges] = useState(0);
-  const [taskId, settaskId] = useState();
+  const [taskId, settaskId] = useState(null);
   const [spinner, setspinner] = useState(false);
   const params = useParams();
   const roomId = params.idroom;
@@ -474,7 +474,7 @@ const Task = () => {
               roomId={roomId}
               setaddChanges={setaddChanges}
             />
-            {taskId && (
+            {/* {taskId && ( */}
               <SliderForEditting
                 slideover={slideoverEdit}
                 setslideover={setslideoverEdit}
@@ -482,7 +482,7 @@ const Task = () => {
                 taskId={taskId}
                 seteditChanges={seteditChanges}
               />
-            )}
+            {/* )} */}
 
             {tasks.length == 0 ? (
               <p className="mt-1 text-sm">Start Writting Your Tasks</p>

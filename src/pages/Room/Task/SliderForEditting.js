@@ -16,25 +16,35 @@ export default function SliderForEditting({
 }) {
   const [listUser, setUser] = useState([]);
   const [mydata, setmydata] = useState([]);
-  const [title, settitle] = useState();
-  const [description, setdescription] = useState();
+  const [title, settitle] = useState("");
+  const [description, setdescription] = useState("");
   const [loading, setloading] = useState(true);
-  const [selectedDifficulty, setSelectedDifficulty] = useState();
+  const [selectedDifficulty, setSelectedDifficulty] = useState("");
   function handleDifficultyChange(event) {
     setSelectedDifficulty(event.target.value);
   }
+  const handleTitleChange = (event) => {
+    settitle(event.target.value);
+  };
+
+  const handleDescriptionChange = (event) => {
+    setdescription(event.target.value);
+  };
+
   let authTokens = useContext(AuthContext).authTokens;
   const reqForGettingTask = async () => {
-    const { data } = await axios
-      .get(`/api/my-rooms/${roomId}/tasks?task_id=${taskId}`)
-      .then((response) => response);
-    settitle(data.title);
-    setdescription(data.description);
-    setSelectedDifficulty(data.priority);
-    //console.log("member", data.user);
-    setUser(data.user.map((member) => member.id));
-    setmydata(data.user);
-    setloading(false);
+    if (taskId) {
+      const { data } = await axios
+        .get(`/api/my-rooms/${roomId}/tasks?task_id=${taskId}`)
+        .then((response) => response);
+      settitle(data.title);
+      setdescription(data.description);
+      setSelectedDifficulty(data.priority);
+      //console.log("member", data.user);
+      setUser(data.user.map((member) => member.id));
+      setmydata(data.user);
+      setloading(false);
+    }
   };
   useEffect(() => {
     setloading(true);
@@ -43,7 +53,7 @@ export default function SliderForEditting({
 
   const [editStatus, seteditStatus] = useState([]);
   const reqForEditing = async () => {
-    console.log("listuser", listUser);
+    //console.log("listuser", listUser);
     // console.log(
     //   "put request ",
     //   JSON.stringify({
@@ -122,6 +132,7 @@ export default function SliderForEditting({
                         </div>
                       </div>
                     </div>
+
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
                       <div className="absolute inset-0 px-4 sm:px-6">
                         <div
@@ -134,7 +145,7 @@ export default function SliderForEditting({
                           <span className=" dark:text-navy-50">Task Title</span>
                           <input
                             value={title}
-                            onChange={(e) => settitle(e.target.value)}
+                            onChange={(e) => handleTitleChange(e)}
                             className="form-input mt-1.5 h-9 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
                             placeholder="Enter todo title"
                             type="text"
@@ -145,7 +156,7 @@ export default function SliderForEditting({
                             Task Description
                           </span>
                           <textarea
-                            onChange={(e) => setdescription(e.target.value)}
+                            onChange={(e) => handleDescriptionChange(e)}
                             value={description}
                             className="form-input mt-1.5 h-24 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
                             placeholder="Enter todo title"
@@ -197,7 +208,7 @@ export default function SliderForEditting({
                           </select> */}
                         </label>
                       </div>
-                      <div className="flex items-center justify-between fixed md:w-[20.8vw] w-[81vw] bottom-6 py-3 px-4">
+                      <div className="flex items-center justify-between fixed md:w-[83%] w-[90%] bottom-6 py-3 px-4">
                         <button
                           onClick={() => {
                             reqForEditing();

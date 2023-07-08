@@ -37,7 +37,7 @@ export default function SliderForAdding({
       })
       .then((response) => response);
     setaddStatus(data);
-    console.log("member", data.user);
+    //console.log("member", data.user);
     setaddChanges((e) => e + 1);
     //console.log(data);
   };
