@@ -17,7 +17,7 @@ import { ClosingSidebar, OpeningSidebar } from "../Redux/Action";
 
 import PopOver from "./PopOver";
 import PopOverContext from "../context/PopOverContext";
-import { useClickOutside, useLogger } from "@mantine/hooks";
+import { useClickOutside, useForceUpdate, useLogger } from "@mantine/hooks";
 // TODO : ACTIVE SELECTION
 // TODO : HOVER COLORIZE
 // TODO : HOME BUTTON SHAPE CHANGES ON OVERFLOW ROOMS
@@ -377,6 +377,7 @@ Sidebar.Primary.Middle.Rooms.Item = function PrimaryRoomsItems({
   children,
   ...restProps
 }) {
+  const forceUpdate = useForceUpdate();
   return (
     <>
       <div
@@ -386,22 +387,31 @@ Sidebar.Primary.Middle.Rooms.Item = function PrimaryRoomsItems({
         <NavLink to={`/room/${item.id}`}>
           {({ isActive, isPending }) => (
             <div className="avatar h-10 w-10">
-              <img
-                className={classNames(
-                  "rounded-full",
-                  "hover:border-primary hover:border-2  hover:shadow-soft",
-                  "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
-                  isActive &&
-                    "border-info border-2 shadow-soft shadow-info-focus/40"
-                )}
-                src={
-                  item.main_picture_path === "" ||
-                  item.main_picture_path === "__"
-                    ? Avatar200x200
-                    : item.main_picture_path
-                }
-                alt="avatar"
-              />
+              <React.Suspense 
+                fallback={<Sidebar.Primary.Middle.Rooms.ItemSuspence item={item} isActive={isActive} />} 
+                error={ <Sidebar.Primary.Middle.Rooms.ItemSuspence item={item} isActive={isActive} />}
+              >
+
+              {item.main_picture_path === "" ||
+                item.main_picture_path === "__"
+                ? <Sidebar.Primary.Middle.Rooms.ItemSuspence item={item} isActive={isActive} />
+                :
+                <img
+                  className={classNames(
+                    "rounded-full",
+                    isActive &&"border-primary border-2  shadow-soft",
+                    "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
+                    "hover:border-info hover:border-2 hover:shadow-soft hover:shadow-info-focus/40"
+                  )}
+                  src={
+                    item.main_picture_path
+                  }
+                  onError={()=>{item.main_picture_path = "__"; forceUpdate();}}
+                  alt="avatar"
+                />
+              }
+              </React.Suspense>
+
             </div>
           )}
         </NavLink>
@@ -409,6 +419,29 @@ Sidebar.Primary.Middle.Rooms.Item = function PrimaryRoomsItems({
     </>
   );
 };
+Sidebar.Primary.Middle.Rooms.ItemSuspence = function PrimaryRoomsItemsSus({
+  classes,
+  item,
+  isActive,
+  children,
+  ...restProps
+}) {
+  console.log("ITEM",item);
+  return (
+    <>
+      <div
+
+        className={classNames(
+          "is-initial rounded-full  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light"
+          , isActive && "border-4 border-primary/30 dark:border-accent-light/30"
+          ,"hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
+        )}
+      >
+        {item?.title[0]}
+      </div>
+    </>
+  );
+}
 Sidebar.Primary.Middle.Rooms.AddRoom = function AddRoomButton({
   classes,
   children,
