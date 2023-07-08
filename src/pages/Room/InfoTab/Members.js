@@ -197,7 +197,7 @@ const Members = ({UpperLoading,setUpperLoading}) => {
   const forceUpdate =useForceUpdate()
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return <p> </p>
   }
   return (
     <>
