@@ -1813,7 +1813,7 @@ const LandingPage = () => {
                     Events are divided into public and private                                   </li>
                 </ul>
 
-                <div class="mt-4">
+                {/* <div class="mt-4">
                   <a
                     href="page-aboutus.html"
                     class="btnm btnm-link text-indigo-600 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out"
@@ -1821,7 +1821,7 @@ const LandingPage = () => {
                     Find Out More{" "}
                     <i class="uil uil-angle-right-b align-middle"></i>
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -1874,7 +1874,7 @@ In the task section, there are the following features:
                   </li>
                 </ul>
 
-                <div class="mt-4">
+                {/* <div class="mt-4">
                   <a
                     href="page-aboutus.html"
                     class="btnm btnm-link text-indigo-600 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out"
@@ -1882,7 +1882,7 @@ In the task section, there are the following features:
                     Find Out More{" "}
                     <i class="uil uil-angle-right-b align-middle"></i>
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
