@@ -14,9 +14,14 @@ import InformationPage from "./InformationPage";
 import Members from "./Members";
 
 import Avatar200x200 from "../../../assets/images/200x200.png";
+import { useState } from "react";
+import Spinner from "../../../components/Spinner"
 
 const InfoTab = () => {
   const { idroom } = useParams();
+  const [spinner1, setSpinner1] = useState(true)
+  const [spinner2, setSpinner2] = useState(true)
+
   return (
     <>
       <PageWrapper>
@@ -88,15 +93,19 @@ const InfoTab = () => {
         </Sidebar>
         <MainSection>
 
-
+        {spinner1 && spinner2 && <div className=" flex justify-center mb-4 mt-[6vh]" style={{}}>
+                <div className=" m-auto " style={{ margin: "0 auto" }}>
+                  <Spinner/>
+                </div>
+        </div>}
           <div className="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
             <div className="col-span-12 lg:col-span-6">
               {/* <VerticalNav />
               <AddRoom /> */}
-              <InformationPage />
+              <InformationPage UpperLoading={spinner2} setUpperLoading={setSpinner2}/>
             </div>
             <div className="col-span-12 lg:col-span-6">
-              <Members />
+              <Members UpperLoading={spinner1} setUpperLoading={setSpinner1}/>
               {/* <div className="card"> */}
               {/* <InformationForm Title="Add" /> */}
               {/* </div> */}

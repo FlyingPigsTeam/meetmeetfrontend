@@ -54,7 +54,7 @@ export default function SliderForAdding({
       });
     }
   }, [addStatus]);
-
+  useEffect(() => { setUser([]) }, [slideover])
   // console.log(title);
   // console.log(description);
   // console.log(selectedDifficulty);
@@ -156,7 +156,7 @@ export default function SliderForAdding({
                             value={selectedDifficulty}
                             onChange={handleDifficultyChange}
                             placeholder="Select difficulty of the task"
-                            //autoComplete="off"
+                          //autoComplete="off"
                           >
                             <option value="3">Low</option>
                             <option value="2">Medium</option>

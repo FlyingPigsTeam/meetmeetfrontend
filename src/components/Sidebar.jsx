@@ -426,7 +426,7 @@ Sidebar.Primary.Middle.Rooms.ItemSuspence = function PrimaryRoomsItemsSus({
   children,
   ...restProps
 }) {
-  console.log("ITEM",item);
+  // console.log("ITEM",item);
   return (
     <>
       <div
@@ -621,6 +621,8 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
     fetchData();
   }, []);
   const profile_box = useClickOutside(() => setShow(false));
+  const forceUpdate=useForceUpdate()
+  // console.log("DATAAAA",data)
   return (
     <>
       <PopOver
@@ -645,7 +647,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                 ref={setReferenceElement}
                 className="avatar h-12 w-12 mt-[30%]"
               >
-                <img
+                {/* <img
                   className="rounded-full"
                   src={
                     data.picture_path &&
@@ -655,7 +657,37 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                       : Avatar200x200
                   }
                   alt="avatar"
+                /> */}
+
+
+              {!(data.picture_path &&
+                    data.picture_path != "" &&
+                    data.picture_path != "__")
+                ? 
+                <div
+
+                className={classNames(
+                  "is-initial rounded-full  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light"
+                  ,"hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
+                )}
+              >
+                {  data?.first_name && (data?.first_name[0]+data?.first_name[1])} 
+              </div>
+                : 
+                <img
+                  className={classNames(
+                    "rounded-full",
+                    "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
+                    "hover:border-info hover:border-2 hover:shadow-soft hover:shadow-info-focus/40"
+                  )}
+                  src={
+                    data.picture_path
+                  }
+                  onError={()=>{data.picture_path = "__"; forceUpdate();}}
+                  alt="avatar"
                 />
+              }
+
 
                 <span className="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
               </button>
@@ -687,17 +719,33 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                 >
                   <div className="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
                     <div className="avatar h-14 w-14">
-                      <img
-                        className="rounded-full"
-                        src={
-                          data.picture_path &&
-                          data.picture_path != "" &&
-                          data.picture_path != "__"
-                            ? data.picture_path
-                            : Avatar200x200
-                        }
-                        alt="avatar"
-                      />
+                      {!(data.picture_path &&
+                        data.picture_path != "" &&
+                        data.picture_path != "__")
+                        ?
+                        <div
+
+                          className={classNames(
+                            "is-initial rounded-full  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light"
+                            , "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
+                          )}
+                        >
+                          {data?.first_name && (data?.first_name[0] + data?.first_name[1])}
+                        </div>
+                        :
+                        <img
+                          className={classNames(
+                            "rounded-full",
+                            "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
+                            "hover:border-info hover:border-2 hover:shadow-soft hover:shadow-info-focus/40"
+                          )}
+                          src={
+                            data.picture_path
+                          }
+                          onError={() => { data.picture_path = "__"; forceUpdate(); }}
+                          alt="avatar"
+                        />
+                      }
                     </div>
                     <div>
                       <a

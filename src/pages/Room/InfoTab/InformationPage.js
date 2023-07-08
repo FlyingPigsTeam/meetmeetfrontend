@@ -7,13 +7,15 @@ import Moment from "react-moment";
 import AuthContext from "../../../context/AuthContext";
 import Avatar200x200 from "../../../assets/images/200x200.png";
 import { useParams, useNavigate } from "react-router-dom";
-import { useClipboard } from "@mantine/hooks";
+import { useClipboard, useForceUpdate } from "@mantine/hooks";
 import Swal from "sweetalert2";
+import classNames from "../../../utils/classNames";
 
-export default function InformationPage() {
+export default function InformationPage({UpperLoading,setUpperLoading}) {
   const { idroom } = useParams();
   const navigate = useNavigate();
   let authTokens = useContext(AuthContext).authTokens;
+
 
   const clipboard = useClipboard({ timeout: 20000 });
   const [seePassword, setSeePassword] = useState(false);
@@ -70,8 +72,10 @@ export default function InformationPage() {
   if (roomData) {
     localStorage.setItem("RoomTitle", roomData.data.title);
   }
+  useEffect(() => {setUpperLoading(curr=>curr & isLoading)},[isLoading]);
+  const forceUpdate = useForceUpdate()
   if (isLoading) {
-    return <p>LOADING ...</p>;
+    return <p> </p>;
   }
   return (
     <>
@@ -127,7 +131,7 @@ export default function InformationPage() {
         </div>
         <div className="flex flex-col my-2">
           <div className="avatar mt-1.5 h-20 w-20">
-            <img
+            {/* <img
               className="mask is-squircle"
               src={
                 roomData.data.main_picture_path === "" ||
@@ -136,7 +140,33 @@ export default function InformationPage() {
                   : roomData.data.main_picture_path
               }
               alt="avatar"
-            />
+            /> */}
+            {roomData.data.main_picture_path === "" ||
+                roomData.data.main_picture_path === "__"
+                ?       
+                <div
+
+                className={classNames(
+                  "is-initial rounded-full  bg-primary/10 text-2xl uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light"
+                  ,"hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
+                )}
+              >
+                {roomData?.data?.title[0]}
+              </div>
+                :
+                <img
+                  className={classNames(
+                    "rounded-full",
+                    "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
+                    "hover:border-info hover:border-2 hover:shadow-soft hover:shadow-info-focus/40"
+                  )}
+                  src={
+                    roomData?.data?.main_picture_path
+                  }
+                  onError={()=>{roomData.data.main_picture_path = "__"; forceUpdate();}}
+                  alt="avatar"
+                />
+              }
           </div>
         </div>
 
