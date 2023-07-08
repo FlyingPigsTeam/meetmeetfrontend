@@ -5,8 +5,8 @@ import * as yup from "yup";
 import AuthContext from "../../context/AuthContext";
 import classNames from "../../utils/classNames";
 import AppLogo from "../../assets/images/app-logo.svg";
+import Spinner from "../../components/Spinner"
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
@@ -23,9 +23,9 @@ const Login = () => {
       password: yup.string().required("Required"),
     }),
     onSubmit: async (values, e) => {
-      loginUser(values);
-      await delay(4000);
-      //e.preventDefault();
+      // e.preventDefault();
+      await loginUser(values);
+
       console.log(values);
     },
   });
@@ -128,7 +128,7 @@ const Login = () => {
               </div>
               <button
                 className={classNames(
-                  "btn mt-5 w-full  font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90",
+                  "btn mt-5 w-full  font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90",
                   formik.isSubmitting && "bg-slate-100",
                   !formik.isSubmitting && "bg-primary"
                 )}
@@ -137,9 +137,7 @@ const Login = () => {
                 value="Login"
               >
                 {formik.isSubmitting ? (
-                  <>
-                    <div className="spinner h-7 w-7 animate-spin rounded-full border-[3px] border-primary/30 border-r-primary dark:border-accent/30 dark:border-r-accent"></div>
-                  </>
+                  <Spinner/>
                 ) : (
                   "Sign In"
                 )}

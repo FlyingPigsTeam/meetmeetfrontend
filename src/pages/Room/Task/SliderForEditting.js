@@ -15,8 +15,10 @@ export default function SliderForEditting({
   seteditChanges,
 }) {
   const [listUser, setUser] = useState([]);
+  const [mydata, setmydata] = useState([]);
   const [title, settitle] = useState();
   const [description, setdescription] = useState();
+  const [loading, setloading] = useState(true);
   const [selectedDifficulty, setSelectedDifficulty] = useState();
   function handleDifficultyChange(event) {
     setSelectedDifficulty(event.target.value);
@@ -29,14 +31,29 @@ export default function SliderForEditting({
     settitle(data.title);
     setdescription(data.description);
     setSelectedDifficulty(data.priority);
-    console.log("member", data.user);
+    //console.log("member", data.user);
+    setUser(data.user.map((member) => member.id));
+    setmydata(data.user);
+    setloading(false);
   };
   useEffect(() => {
+    setloading(true);
     reqForGettingTask();
   }, [slideover]);
 
   const [editStatus, seteditStatus] = useState([]);
   const reqForEditing = async () => {
+    console.log("listuser", listUser);
+    // console.log(
+    //   "put request ",
+    //   JSON.stringify({
+    //     title: title,
+    //     priority: selectedDifficulty,
+    //     description: description,
+    //     user: listUser,
+    //     room: roomId,
+    //   })
+    // );
     const { data } = await axios
       .put(`/api/my-rooms/${roomId}/tasks?task_id=${taskId}`, {
         title: title,
@@ -112,7 +129,7 @@ export default function SliderForEditting({
                           aria-hidden="true"
                         />
                       </div>
-                      <div className="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto p-4">
+                      <div className=" h-[60vh] flex grow flex-col space-y-4  p-4">
                         <label className="block">
                           <span className=" dark:text-navy-50">Task Title</span>
                           <input
@@ -151,12 +168,21 @@ export default function SliderForEditting({
                             <option value="1">Hard</option>
                           </select>
                         </label>
+                        {/* <label className="block z-50">
+                          <span className=" dark:text-navy-50">Assigned To:</span>
+                          <div className="dark:bg-navy-500 card mt-30 p-4 grow"><AutoComplete setmember={setUser}/></div> */}
+
                         <label className="block z-40">
                           <span className=" dark:text-navy-50">
                             Assigned To:
                           </span>
-                          <div className="card mt-3 p-4">
-                            <AutoComplete setmember={setUser} />
+                          <div className="mt-3">
+                            {!loading && (
+                              <AutoComplete
+                                assignedmember={mydata}
+                                setmember={setUser}
+                              />
+                            )}
                           </div>
                           {/* <select
                             //x-init="$el._x_tom = new Tom($el)"

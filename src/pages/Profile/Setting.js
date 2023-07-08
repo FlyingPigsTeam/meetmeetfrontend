@@ -196,8 +196,8 @@ export default function Setting({ user, onCancel }) {
                                   ? previewUrl
                                   : user.picture_path != "" &&
                                     user.picture_path != "__"
-                                  ? user.picture_path
-                                  : Avatar200x200
+                                    ? user.picture_path
+                                    : Avatar200x200
                               }
                               alt="avatar"
                             />
@@ -233,16 +233,40 @@ export default function Setting({ user, onCancel }) {
                           >
                             First name
                           </label>
-                          <input
-                            value={firstName}
-                            type="text"
-                            name="first-name"
-                            id="first-name"
-                            autoComplete="given-name"
-                            className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                            onChange={(event) => setFName(event.target.value)}
-                            required
-                          />
+                          <label className="block text-left">
+                            <span className="relative mt-1.5 flex">
+                              <input
+                                value={firstName}
+                                type="text"
+                                name="first-name"
+                                id="first-name"
+                                autoComplete="given-name"
+                                className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                onChange={(event) => setFName(event.target.value)}
+                                required
+
+                              />
+                              <span
+                                className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  strokeWidth={1.5}
+                                  stroke="currentColor"
+                                  className="w-6 h-6"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"
+                                  />
+                                </svg>
+                              </span>
+                            </span>
+
+
+                          </label>
                         </div>
 
                         <div className="sm:col-span-3">
@@ -252,16 +276,40 @@ export default function Setting({ user, onCancel }) {
                           >
                             Last name
                           </label>
-                          <input
-                            value={lastName}
-                            type="text"
-                            name="last-name"
-                            id="last-name"
-                            autoComplete="family-name"
-                            className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                            onChange={(event) => setLName(event.target.value)}
-                            required
-                          />
+                          <label className="block text-left">
+                            <span className="relative mt-1.5 flex">
+                              <input
+                                value={lastName}
+                                type="text"
+                                name="last-name"
+                                id="last-name"
+                                autoComplete="family-name"
+                                className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                onChange={(event) => setLName(event.target.value)}
+                                required
+                              />
+                              <span
+                                className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  strokeWidth={1.5}
+                                  stroke="currentColor"
+                                  className="w-6 h-6"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"
+                                  />
+                                </svg>
+                              </span>
+                            </span>
+
+
+                          </label>
+
                         </div>
 
                         <div className="sm:col-span-6">
@@ -272,18 +320,42 @@ export default function Setting({ user, onCancel }) {
                             Username
                           </label>
                           <div className="mt-1 flex rounded-md shadow-sm">
-                            <input
-                              value={userName}
-                              type="text"
-                              name="username"
-                              id="username"
-                              autoComplete="username"
-                              className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                              onChange={(event) =>
-                                setUserName(event.target.value)
-                              }
-                              disabled // Add the disabled attribute
-                            />
+                            <label className="block text-left">
+                              <span className="relative mt-1.5 flex">
+                                <input
+                                  value={userName}
+                                  type="text"
+                                  name="username"
+                                  id="username"
+                                  autoComplete="username"
+                                  className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                  onChange={(event) =>
+                                    setUserName(event.target.value)
+                                  }
+                                  disabled // Add the disabled attribute
+                                />
+                                <span
+                                  className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth={1.5}
+                                    stroke="currentColor"
+                                    className="w-6 h-6"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+
+
+                            </label>
+
                           </div>
                         </div>
                         <div className="sm:col-span-3">
@@ -293,16 +365,30 @@ export default function Setting({ user, onCancel }) {
                           >
                             Email address
                           </label>
-                          <input
-                            value={email}
-                            type="text"
-                            name="email-address"
-                            id="email-address"
-                            autoComplete="email"
-                            className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                            onChange={(event) => setEmail(event.target.value)}
-                            disabled
-                          />
+                          <label className="block text-left">
+                            <span className="relative mt-1.5 flex">
+                              <input
+                                value={email}
+                                type="text"
+                                name="email-address"
+                                id="email-address"
+                                autoComplete="email"
+                                className="form-input peer w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                onChange={(event) => setEmail(event.target.value)}
+                                disabled
+                              />
+                              <span
+                                className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                  <path strokeLinecap="round" d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25" />
+                                </svg>
+
+                              </span>
+                            </span>
+
+
+                          </label>
+
                         </div>
                       </div>
                       <div className="grid grid-cols-1 gap-y-6 pt-8 sm:grid-cols-6 sm:gap-x-6">
@@ -319,8 +405,18 @@ export default function Setting({ user, onCancel }) {
                             htmlFor="description"
                             className="block text-sm  font-medium text-blue-gray-900"
                           >
+
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+                              className="inline-flex w-6 h-6"
+                            >
+                              <path
+                                strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+                              />
+                            </svg>
                             Description
                           </label>
+
                           <div className="mt-1">
                             <textarea
                               value={bio}
@@ -335,6 +431,7 @@ export default function Setting({ user, onCancel }) {
                           </div>
                         </div>
                       </div>
+
 
                       <div className="flex justify-end pt-8">
                         <button

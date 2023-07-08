@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import WOW from "wow.js";
 import { tns } from "tiny-slider";
 
 import * as feather from "feather-icons";
-
-import LogoDark from "../../assets/images/landing/images/logo-dark.png";
-import LogoLight from "../../assets/images/landing/images/logo-light.png";
-import Classic01 from "../../assets/images/landing/images/saas/classic01.png";
-import Classic02 from "../../assets/images/landing/images/saas/classic02.png";
-import Classic03 from "../../assets/images/landing/images/saas/classic03.png";
-
+import Subscribtion from "../Subscribtion/Subscribtion";
+import LogoDark from "../../assets/images/app-logo.svg";
+import LogoLight from "../../assets/images/app-logo-white.svg";
+import Classic01 from "../../assets/images/landing/images/saas/main2.png";
+import Classic02 from "../../assets/images/landing/images/saas/room2.png";
+import Classic03 from "../../assets/images/landing/images/saas/task2.png";
+import AuthContext from "../../context/AuthContext";
 import Client01 from "../../assets/images/landing/images/client/01.jpg";
 import Client02 from "../../assets/images/landing/images/client/02.jpg";
 import Client03 from "../../assets/images/landing/images/client/03.jpg";
@@ -37,6 +37,7 @@ import Spotify from "../../assets/images/landing/images/client/spotify.svg";
 import { Link } from "react-router-dom";
 
 const LandingPage = () => {
+  const {user} = useContext(AuthContext);
   React.useEffect(() => {
     const mywow = new WOW();
     mywow.init();
@@ -317,8 +318,8 @@ const LandingPage = () => {
           <div class="container">
             {/* <!-- Logo container--> */}
             <a class="logo pl-0" href="index.html">
-              <img src={LogoDark} class="inline-block dark:hidden" alt="" />
-              <img src={LogoLight} class="hidden dark:inline-block" alt="" />
+              <img src={LogoDark} class="h-11 w-11  inline-block dark:hidden" alt="" />
+              <img src={LogoLight} class="h-11 w-11  hidden dark:inline-block" alt="" />
             </a>
 
             {/* <!-- End Logo container--> */}
@@ -342,30 +343,56 @@ const LandingPage = () => {
 
             {/* <!--Login button Start--> */}
             <ul class="buy-button list-none mb-0">
-              {/* <li class="inline mb-0">
-                                <a href="" class="btnm btnm-icon rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white"><i data-feather="settings" class="h-4 w-4"></i></a>
-                            </li> */}
-              <Link
+              
+            {user  ? ( 
+              
+            <li class="inline pl-1 mb-0">
+                <Link
+                  to="/home"
+                  class="btnm  rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white">
+                {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg> */}
+                              Home
+                {/* <Link
+                  to="/login"
+                  class="btnm btnm-icon rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white"
+                >
+                  <i data-feather="settings" class="h-4 w-4"></i> */}
+                </Link>
+                </li>
+              ): (
+                <>
+                <Link
+                to="/login"
+                class="btnm  rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white">
+              {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg> */}
+                            Login
+              {/* <Link
                 to="/login"
                 class="btnm btnm-icon rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white"
               >
-                <i data-feather="settings" class="h-4 w-4"></i>
+                <i data-feather="settings" class="h-4 w-4"></i> */}
               </Link>
 
               <li class="inline pl-1 mb-0">
-                <a
-                  href="https://1.envato.market/techwind"
-                  target="_blank"
-                  class="btnm btnm-icon rounded-full bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white"
-                >
-                  <i data-feather="shopping-cart" class="h-4 w-4"></i>
-                </a>
+              <Link
+                to="/register"
+                class="btnm  rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white">
+              {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg> */}
+                            Sign up
+              {/* <Link
+                to="/login"
+                class="btnm btnm-icon rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white"
+              >
+                <i data-feather="settings" class="h-4 w-4"></i> */}
+              </Link>
               </li>
+
+              </>
+              )}
             </ul>
             {/* <!--Login button End--> */}
 
-            <div id="navigation">
-              {/* <!-- Navigation Menu--> */}
+            {/* <div id="navigation">
               <ul class="navigation-menu">
                 <li>
                   <a href="index.html" class="sub-menu-item">
@@ -1456,8 +1483,7 @@ const LandingPage = () => {
                   </a>
                 </li>
               </ul>
-              {/* <!--end navigation menu--> */}
-            </div>
+            </div> */}
             {/* <!--end navigation--> */}
           </div>
           {/* <!--end container--> */}
@@ -1470,16 +1496,14 @@ const LandingPage = () => {
             <div class="grid grid-cols-1 md:mt-44 mt-32 text-center">
               <div class="wow animate__animated animate__fadeIn">
                 <h4 class="font-bold lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5">
-                  MeetMeet me4 fast, Meet quickly.
+                  MeetMeet
                 </h4>
                 <p class="text-slate-400 text-lg max-w-xl mx-auto">
-                  Launch your campaign and benefit from our expertise on
-                  designing and managing conversion centered Tailwind CSS v3.x
-                  html page.
+                For the convenience of your gatherings
                 </p>
 
-                <div class="mt-6">
-                  <a
+                {/* <div class="mt-6">
+                   <a
                     href=""
                     class="btnm bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md"
                   >
@@ -1488,8 +1512,8 @@ const LandingPage = () => {
 
                   <p class="text-slate-400 text-sm mt-3">
                     No credit card required. Free 14-days trial
-                  </p>
-                </div>
+                  </p> 
+                </div> */}
               </div>
               <div class="home-dashboard mt-8 z-3 wow animate__animated animate__fadeIn">
                 <img src={Classic01} alt="" class="mover" />
@@ -1509,7 +1533,7 @@ const LandingPage = () => {
         {/* <!-- End Hero --> */}
 
         {/* <!-- Business Partner --> */}
-        <section class="py-6">
+        {/* <section class="py-6">
           <div class="container">
             <div class="grid md:grid-cols-6 grid-cols-2 justify-center gap-[30px]">
               <div
@@ -1554,14 +1578,9 @@ const LandingPage = () => {
                 <img src={Spotify} class="h-6" alt="" />
               </div>
             </div>
-            {/* <!--end grid--> */}
           </div>
-          {/* <!--end container--> */}
-        </section>
-        {/* <!--end section--> */}
-        {/* <!-- Business Partner --> */}
+        </section> */}
 
-        {/* <!-- Start Section--> */}
         <section class="relative md:py-24 py-16 overflow-hidden">
           <div class="container">
             <div
@@ -1573,8 +1592,8 @@ const LandingPage = () => {
               </h3>
 
               <p class="text-slate-400 max-w-xl mx-auto">
-                Start working with Tailwind CSS that can provide everything you
-                need to generate awareness, drive traffic, connect.
+              By using meet meet, you will get everything you need to make plans,
+                coordinate and establish relationships with familiar and unfamiliar people.
               </p>
             </div>
             {/* <!--end grid--> */}
@@ -1589,7 +1608,7 @@ const LandingPage = () => {
                     <i data-feather="monitor" class="h-5 w-5 rotate-45"></i>
                   </div>
                   <div class="flex-1">
-                    <h4 class="mb-0 text-lg font-medium">Fully Responsive</h4>
+                    <h5 class="mb-0 text-lg font-medium">Possibility of group chat to coordinate people</h5>
                   </div>
                 </div>
               </div>
@@ -1603,9 +1622,9 @@ const LandingPage = () => {
                     <i data-feather="heart" class="h-5 w-5 rotate-45"></i>
                   </div>
                   <div class="flex-1">
-                    <h4 class="mb-0 text-lg font-medium">
-                      Browser Compatibility
-                    </h4>
+                    <h5 class="mb-0 text-lg font-medium">
+                    The possibility of using anonymous groups and getting to know them
+                    </h5>
                   </div>
                 </div>
               </div>
@@ -1619,7 +1638,7 @@ const LandingPage = () => {
                     <i data-feather="eye" class="h-5 w-5 rotate-45"></i>
                   </div>
                   <div class="flex-1">
-                    <h4 class="mb-0 text-lg font-medium">Retina Ready</h4>
+                    <h5 class="mb-0 text-lg font-medium">Ability to view and join groups with different categories</h5>
                   </div>
                 </div>
               </div>
@@ -1633,9 +1652,9 @@ const LandingPage = () => {
                     <i data-feather="layout" class="h-5 w-5 rotate-45"></i>
                   </div>
                   <div class="flex-1">
-                    <h4 class="mb-0 text-lg font-medium">
-                      Based On Tailwindcss 3
-                    </h4>
+                    <h5 class="mb-0 text-lg font-medium">
+                    The possibility of viewing the profile and characteristics of people in order to establish a relationship
+                    </h5>
                   </div>
                 </div>
               </div>
@@ -1649,55 +1668,10 @@ const LandingPage = () => {
                     <i data-feather="feather" class="h-5 w-5 rotate-45"></i>
                   </div>
                   <div class="flex-1">
-                    <h4 class="mb-0 text-lg font-medium">Feather Icons</h4>
+                    <h5 class="mb-0 text-lg font-medium">The possibility of viewing top programs and events using premium</h5>
                   </div>
                 </div>
               </div>
-
-              <div
-                class="lg:col-span-4 md:col-span-6 wow animate__animated animate__fadeInUp"
-                data-wow-delay="1.1s"
-              >
-                <div class="flex transition-all duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900">
-                  <div class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full mr-3">
-                    <i data-feather="code" class="h-5 w-5 rotate-45"></i>
-                  </div>
-                  <div class="flex-1">
-                    <h4 class="mb-0 text-lg font-medium">Built With SASS</h4>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="lg:col-span-4 md:col-span-6 wow animate__animated animate__fadeInUp"
-                data-wow-delay="1.3s"
-              >
-                <div class="flex transition-all duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900">
-                  <div class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full mr-3">
-                    <i data-feather="user-check" class="h-5 w-5 rotate-45"></i>
-                  </div>
-                  <div class="flex-1">
-                    <h4 class="mb-0 text-lg font-medium">W3c Valid Code</h4>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="lg:col-span-4 md:col-span-6 wow animate__animated animate__fadeInUp"
-                data-wow-delay="1.5s"
-              >
-                <div class="flex transition-all duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900">
-                  <div class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full mr-3">
-                    <i data-feather="globe" class="h-5 w-5 rotate-45"></i>
-                  </div>
-                  <div class="flex-1">
-                    <h4 class="mb-0 text-lg font-medium">
-                      Browsers Compatible
-                    </h4>
-                  </div>
-                </div>
-              </div>
-
               <div
                 class="lg:col-span-4 md:col-span-6 wow animate__animated animate__fadeInUp"
                 data-wow-delay="1.7s"
@@ -1707,10 +1681,56 @@ const LandingPage = () => {
                     <i data-feather="settings" class="h-5 w-5 rotate-45"></i>
                   </div>
                   <div class="flex-1">
-                    <h4 class="mb-0 text-lg font-medium">Easy to customize</h4>
+                    <h5 class="mb-0 text-lg font-medium">The possibility of creating a group performance for a program with a maximum capacity of 40 people and 30 different tasks</h5>
                   </div>
                 </div>
               </div>
+              <div
+                class="lg:col-span-4 md:col-span-6 wow animate__animated animate__fadeInUp"
+                data-wow-delay="1.1s"
+              >
+                <div class="flex transition-all duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900">
+                  <div class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full mr-3">
+                    <i data-feather="code" class="h-5 w-5 rotate-45"></i>
+                  </div>
+                  <div class="flex-1">
+                    <h5 class="mb-0 text-lg font-medium">Ability to create a group</h5>
+                  </div>
+                </div>
+              </div>
+
+              
+              <div
+                class="lg:col-span-4 md:col-span-6 wow animate__animated animate__fadeInUp"
+                data-wow-delay="1.5s"
+              >
+                <div class="flex transition-all duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900">
+                  <div class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full mr-3">
+                    <i data-feather="globe" class="h-5 w-5 rotate-45"></i>
+                  </div>
+                  <div class="flex-1">
+                    <h5 class="mb-0 text-lg font-medium">
+                    The possibility of adding people using a link or directly
+                    </h5>
+                  </div>
+                </div>
+              </div>
+
+              
+              <div
+                class="lg:col-span-4 md:col-span-6 wow animate__animated animate__fadeInUp"
+                data-wow-delay="1.3s"
+              >
+                <div class="flex transition-all duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900">
+                  <div class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full mr-3">
+                    <i data-feather="user-check" class="h-5 w-5 rotate-45"></i>
+                  </div>
+                  <div class="flex-1">
+                    <h5 class="mb-0 text-lg font-medium">Ability to assign tasks to each person</h5>
+                  </div>
+                </div>
+              </div>
+
             </div>
             {/* <!--end grid--> */}
 
@@ -1736,12 +1756,11 @@ const LandingPage = () => {
               data-wow-delay=".1s"
             >
               <h3 class="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">
-                Why Everyone Loves Techwind
+                Why Everyone Loves Meet Meet
               </h3>
 
               <p class="text-slate-400 max-w-xl mx-auto">
-                Start working with Tailwind CSS that can provide everything you
-                need to generate awareness, drive traffic, connect.
+              Because we created a space to get to know people as easily as possible
               </p>
             </div>
             {/* <!--end grid--> */}
@@ -1764,30 +1783,37 @@ const LandingPage = () => {
                 data-wow-delay=".3s"
               >
                 <h4 class="mb-4 text-2xl leading-normal font-medium">
-                  Great Product Analytics <br /> With Real Problem
+                  Events 
                 </h4>
                 <p class="text-slate-400">
-                  Due to its widespread use as filler text for layouts,
-                  non-readability is of great importance: human perception is
-                  tuned to recognize certain patterns and repetitions in texts.
-                  If the distribution of letters visual impact.
+                Events for a small family friendly or business outing have the following facilities
                 </p>
                 <ul class="list-none text-slate-400 mt-4">
                   <li class="mb-1 flex">
                     <i class="uil uil-check-circle text-indigo-600 text-xl mr-2"></i>{" "}
-                    Digital Marketing Solutions for Tomorrow
+                    Creating and editing the profile of the event (room) and making changes in the members section
                   </li>
                   <li class="mb-1 flex">
                     <i class="uil uil-check-circle text-indigo-600 text-xl mr-2"></i>{" "}
-                    Our Talented & Experienced Marketing Agency
+                    The Rome introduction letter section can be completed by premium users
                   </li>
                   <li class="mb-1 flex">
                     <i class="uil uil-check-circle text-indigo-600 text-xl mr-2"></i>{" "}
-                    Create your own skin to match your brand
+                    There are facilities such as more explanations and the possibility of posting photos for introduction
+                    </li>
+<li class="mb-1 flex">
+                    <i class="uil uil-check-circle text-indigo-600 text-xl mr-2"></i>{" "}
+                    Chat people in the event                  </li>
+                  <li class="mb-1 flex">
+                    <i class="uil uil-check-circle text-indigo-600 text-xl mr-2"></i>{" "}
+                    View tasks
                   </li>
+                  <li class="mb-1 flex">
+                    <i class="uil uil-check-circle text-indigo-600 text-xl mr-2"></i>{" "}
+                    Events are divided into public and private                                   </li>
                 </ul>
 
-                <div class="mt-4">
+                {/* <div class="mt-4">
                   <a
                     href="page-aboutus.html"
                     class="btnm btnm-link text-indigo-600 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out"
@@ -1795,7 +1821,7 @@ const LandingPage = () => {
                     Find Out More{" "}
                     <i class="uil uil-angle-right-b align-middle"></i>
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -1820,30 +1846,35 @@ const LandingPage = () => {
                 data-wow-delay=".5s"
               >
                 <h4 class="mb-4 text-2xl leading-normal font-medium">
-                  Get Notified About Importent Email
+                  Tasks and Chat
                 </h4>
                 <p class="text-slate-400">
-                  Due to its widespread use as filler text for layouts,
-                  non-readability is of great importance: human perception is
-                  tuned to recognize certain patterns and repetitions in texts.
-                  If the distribution of letters visual impact.
+                In the chat of each event, members can talk to each other and also express the requirements of the event to be added to the tasks later.
+In the task section, there are the following features:
                 </p>
                 <ul class="list-none text-slate-400 mt-4">
                   <li class="mb-1 flex">
                     <i class="uil uil-check-circle text-indigo-600 text-xl mr-2"></i>{" "}
-                    Digital Marketing Solutions for Tomorrow
-                  </li>
+                    Create and select a task                  </li>
                   <li class="mb-1 flex">
                     <i class="uil uil-check-circle text-indigo-600 text-xl mr-2"></i>{" "}
-                    Our Talented & Experienced Marketing Agency
+                    having a determined degree of importance (easy/medium/hard)
                   </li>
                   <li class="mb-1 flex">
                     <i class="uil uil-check-circle text-indigo-600 text-xl mr-2"></i>{" "}
                     Create your own skin to match your brand
                   </li>
+                  <li class="mb-1 flex">
+                    <i class="uil uil-check-circle text-indigo-600 text-xl mr-2"></i>{" "}
+                    Has a task title
+                  </li>
+                  <li class="mb-1 flex">
+                    <i class="uil uil-check-circle text-indigo-600 text-xl mr-2"></i>{" "}
+                    The ability to assign a person to it or the ability to choose it by a person
+                  </li>
                 </ul>
 
-                <div class="mt-4">
+                {/* <div class="mt-4">
                   <a
                     href="page-aboutus.html"
                     class="btnm btnm-link text-indigo-600 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out"
@@ -1851,13 +1882,13 @@ const LandingPage = () => {
                     Find Out More{" "}
                     <i class="uil uil-angle-right-b align-middle"></i>
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
           {/* <!--end container--> */}
 
-          <div class="container md:mt-24 mt-16">
+          {/* <div class="container md:mt-24 mt-16">
             <div
               class="grid grid-cols-1 pb-8 text-center wow animate__animated animate__fadeInUp"
               data-wow-delay=".1s"
@@ -1871,7 +1902,7 @@ const LandingPage = () => {
                 need to generate awareness, drive traffic, connect.
               </p>
             </div>
-            {/* <!--end grid--> */}
+            
 
             <div class="grid grid-cols-1 mt-8">
               <div
@@ -2113,15 +2144,15 @@ const LandingPage = () => {
                 </div>
               </div>
             </div>
-            {/* <!--end grid--> */}
-          </div>
+            
+          </div> */}
           {/* <!--end container--> */}
         </section>
         {/* <!--end section--> */}
         {/* <!-- End Section--> */}
 
         {/* <!-- Start --> */}
-        <section class="relative md:py-24 py-16 md:pt-0 pt-0">
+        {/* <section class="relative md:py-24 py-16 md:pt-0 pt-0">
           <div class="container">
             <div
               class="grid grid-cols-1 justify-center wow animate__animated animate__fadeInUp"
@@ -2177,18 +2208,16 @@ const LandingPage = () => {
                 </div>
               </div>
             </div>
-            {/* <!--end row --> */}
           </div>
-          {/* <!--end container--> */}
 
           <div class="absolute bottom-0 left-0 right-0 sm:h-2/3 h-4/5 bg-gradient-to-b from-indigo-500 to-indigo-600"></div>
-        </section>
+        </section> */}
         {/* <!--end section--> */}
         {/* <!-- End --> */}
 
         {/* <!-- Start --> */}
         <section class="relative md:py-24 py-16">
-          <div class="container">
+          {/* <div class="container">
             <div
               class="grid lg:grid-cols-12 grid-cols-1 items-center gap-[30px] wow animate__animated animate__fadeInUp"
               data-wow-delay=".1s"
@@ -2214,8 +2243,7 @@ const LandingPage = () => {
                   </div>
                 </div>
               </div>
-              {/* <!--end col--> */}
-
+              
               <div class="lg:col-span-7 mt-8 lg:mt-0">
                 <div class="lg:ml-8">
                   <div class="grid md:grid-cols-2 grid-cols-1 md:gap-0 gap-[30px]">
@@ -2313,13 +2341,13 @@ const LandingPage = () => {
                   </div>
                 </div>
               </div>
-              {/* <!--end col--> */}
+              
             </div>
-            {/* <!--end grid--> */}
-          </div>
+            
+          </div> */}
           {/* <!--end container--> */}
 
-          <div class="container md:mt-24 mt-16">
+          {/* <div class="container md:mt-24 mt-16">
             <div
               class="grid md:grid-cols-12 grid-cols-1 items-center wow animate__animated animate__fadeInUp"
               data-wow-delay=".1s"
@@ -2340,7 +2368,6 @@ const LandingPage = () => {
                 </p>
               </div>
             </div>
-            {/* <!--end grid--> */}
 
             <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 mt-8 gap-[30px]">
               <div
@@ -2430,13 +2457,9 @@ const LandingPage = () => {
                 </div>
               </div>
             </div>
-            {/* <!--end grid--> */}
-          </div>
-          {/* <!--end container--> */}
+          </div> */}
         </section>
-        {/* <!--end section--> */}
-        {/* <!-- End --> */}
-
+        
         {/* @@include("partials/footer/footer.html") */}
 
         {/* @@include("partials/cookies.html") */}
@@ -2461,12 +2484,10 @@ const LandingPage = () => {
                   <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
                     <div class="lg:col-span-4 md:col-span-12">
                       <a href="#" class="text-[22px] focus:outline-none">
-                        <img src={LogoLight} alt="" />
+                        <img src={LogoLight} class ="h-11 w-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]" alt="" />
                       </a>
                       <p class="mt-6 text-gray-300">
-                        Start working with Tailwind CSS that can provide
-                        everything you need to generate awareness, drive
-                        traffic, connect.
+                      By starting to work with this program, you will see that you have become a more social person.
                       </p>
                       <ul class="list-none mt-6">
                         <li class="inline">
@@ -2580,67 +2601,76 @@ const LandingPage = () => {
                         Company
                       </h5>
                       <ul class="list-none footer-list mt-6">
-                        <li>
+                        {/* <li>
                           <a
                             href="page-aboutus.html"
                             class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
                           >
                             <i class="uil uil-angle-right-b me-1"></i> About us
                           </a>
-                        </li>
-                        <li class="mt-[10px]">
+                        </li> */}
+                        {/* <li class="mt-[10px]">
                           <a
                             href="page-services.html"
                             class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
                           >
                             <i class="uil uil-angle-right-b me-1"></i> Services
                           </a>
-                        </li>
+                        </li> */}
                         <li class="mt-[10px]">
                           <a
-                            href="page-team.html"
+                            href="https://github.com/FlyingPigsTeam/meetmeetfrontend"
                             class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
                           >
-                            <i class="uil uil-angle-right-b me-1"></i> Team
+                            <i class="uil uil-angle-right-b me-1"></i> Front team
                           </a>
                         </li>
                         <li class="mt-[10px]">
+                          <a
+                            href="https://github.com/FlyingPigsTeam/MeetMeetBackEnd"
+                            class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
+                          >
+                            <i class="uil uil-angle-right-b me-1"></i> Back team
+                          </a>
+                        </li>
+                        {/* <li class="mt-[10px]">
                           <a
                             href="page-pricing.html"
                             class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
                           >
                             <i class="uil uil-angle-right-b me-1"></i> Pricing
                           </a>
-                        </li>
-                        <li class="mt-[10px]">
+                        </li> */}
+                        {/* <li class="mt-[10px]">
                           <a
                             href="portfolio-creative-four.html"
                             class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
                           >
                             <i class="uil uil-angle-right-b me-1"></i> Project
                           </a>
-                        </li>
-                        <li class="mt-[10px]">
+                        </li> */}
+                        {/* <li class="mt-[10px]">
                           <a
                             href="blog.html"
                             class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
                           >
                             <i class="uil uil-angle-right-b me-1"></i> Blog
                           </a>
-                        </li>
+                        </li> */}
                         <li class="mt-[10px]">
-                          <a
+                        <Link
+                          to="/login"
                             href="auth-login.html"
                             class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
                           >
                             <i class="uil uil-angle-right-b me-1"></i> Login
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
                     {/* <!--end col--> */}
 
-                    <div class="lg:col-span-3 md:col-span-4">
+                    {/* <div class="lg:col-span-3 md:col-span-4">
                       <h5 class="tracking-[1px] text-gray-100 font-semibold">
                         Usefull Links
                       </h5>
@@ -2689,10 +2719,10 @@ const LandingPage = () => {
                           </a>
                         </li>
                       </ul>
-                    </div>
+                    </div> */}
                     {/* <!--end col--> */}
 
-                    <div class="lg:col-span-3 md:col-span-4">
+                    {/* <div class="lg:col-span-3 md:col-span-4">
                       <h5 class="tracking-[1px] text-gray-100 font-semibold">
                         Newsletter
                       </h5>
@@ -2731,7 +2761,7 @@ const LandingPage = () => {
                           </button>
                         </div>
                       </form>
-                    </div>
+                    </div> */}
                     {/* !--end col--> */}
                   </div>
                   {/* <!--end grid--> */}
@@ -2749,20 +2779,20 @@ const LandingPage = () => {
                 <div class="md:text-left text-center">
                   <p class="mb-0">
                     © <script>document.write(new Date().getFullYear())</script>{" "}
-                    Techwind. Design with{" "}
+                    Meet Meet. Design {" "}
                     <i class="mdi mdi-heart text-red-600"></i> by{" "}
                     <a
-                      href="https://shreethemes.in/"
+                      href="https://github.com/FlyingPigsTeam"
                       target="_blank"
                       class="text-reset"
                     >
-                      Shreethemes
+                      Flying Pigs
                     </a>
                     .
                   </p>
                 </div>
 
-                <ul class="list-none md:text-right text-center mt-6 md:mt-0">
+                {/* <ul class="list-none md:text-right text-center mt-6 md:mt-0">
                   <li class="inline">
                     <a href="">
                       <img
@@ -2813,11 +2843,9 @@ const LandingPage = () => {
                       />
                     </a>
                   </li>
-                </ul>
+                </ul> */}
               </div>
-              {/* <!--end grid--> */}
             </div>
-            {/* <!--end container--> */}
           </div>
         </footer>
         {/* <!--end footer--> */}

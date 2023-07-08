@@ -5,7 +5,7 @@ import AuthContext from "../context/AuthContext";
 import Avatar200x200 from "../assets/images/200x200.png";
 import { BASEURL } from "../data/BASEURL";
 
-const AutoComplete = ({ setmember }) => {
+const AutoComplete = ({ assignedmember, setmember }) => {
   const { idroom } = useParams();
   console.log(idroom);
   // console.log(members);
@@ -46,16 +46,23 @@ const AutoComplete = ({ setmember }) => {
     const selectOptions = new Tom("#user_autocomplete", {
       // labelField: "first_name",
       maxItems: 5,
+      maxOptions: 5,
       plugins: ["remove_button"],
       valueField: "id",
       searchField: "username",
       labelField: "username",
-      // options: items,
-      // items: [],
+      options: assignedmember,
+      items: assignedmember?.map((member) => member.id),
       placeholder: "Select some members",
       onChange: (value) => {
-        setSelectedMembers(value.split(","));
-        setmember(value.split(","));
+        //console.log("check value :", value);
+        if (!value) {
+          setSelectedMembers([]);
+          setmember([]);
+        } else {
+          setSelectedMembers(value.split(","));
+          setmember(value.split(","));
+        }
       },
 
       load: function (query, callback) {
@@ -63,7 +70,7 @@ const AutoComplete = ({ setmember }) => {
           BASEURL +
           `/api/my-rooms/${idroom}/requests?show_members=1&username=${encodeURIComponent(
             query
-          )}`;
+          )}&task_search=1`;
         fetch(url, {
           method: "GET",
           headers: {
@@ -89,7 +96,8 @@ const AutoComplete = ({ setmember }) => {
 
       render: {
         option: function (item, escape) {
-          var html = '<div class="flex space-x-3 dark:bg-primary bg-slate-100">';
+          var html =
+            '<div class="flex space-x-3 dark:bg-primary bg-slate-100">';
           if (
             item.picture_path &&
             item.picture_path !== "" &&
@@ -172,7 +180,6 @@ const AutoComplete = ({ setmember }) => {
   return (
     <div>
       <label className="block text-left">
-        <span>Select Members</span>
         <input
           ref={selectCustom}
           id={"user_autocomplete"}

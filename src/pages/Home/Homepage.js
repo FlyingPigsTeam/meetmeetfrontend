@@ -136,8 +136,8 @@ const Homepage = () => {
               setparamsFilter={handleFilterChange}
             />
             {spinner ? (
-              <div className=" flex justify-center mb-4" style={{}}>
-                <div className=" m-auto" style={{ margin: "0 auto" }}>
+              <div className=" flex justify-center mb-4 mt-[6vh]" style={{}}>
+                <div className=" m-auto " style={{ margin: "0 auto" }}>
                   <Spinner />
                 </div>
               </div>
