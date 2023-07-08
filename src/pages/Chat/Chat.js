@@ -244,6 +244,7 @@ const Chat = () => {
 
   console.log(Pics);
   console.log(PicsObject);
+  
   return (
     <>
       <PageWrapper>
@@ -334,88 +335,8 @@ const Chat = () => {
                   <p>Yesterday</p>
                   <div className="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div> */}
                 </div>
-
-                {/* {data
-                  ? data.pages.map((e) =>
-                      e.map((repo, index) => (
-                        <li className=" ml-[50vw]" key={repo.index}>
-                          <p>
-                            <p>{repo.username}</p>
-                            <p>{repo.user_id}</p>
-                          </p>
-                          <p>{repo.message}</p>
-                          <br />
-                        </li>
-                      ))
-                    )
-                  : ""} */}
-
-                {/* {AllMassages
-                  ? AllMassages.map((data, index) =>
-                      data.map((item, index) => (
-                        <div key={index}>
-                          {item.username != user.username ? (
-                            <div className="flex items-start space-x-2.5 sm:space-x-5">
-                              <div className="avatar">
-                                <img
-                                  className="rounded-full"
-                                  src={Avatar200x200}
-                                  alt="avatar"
-                                />
-                              </div>
-                              <div className="flex flex-col items-start space-y-3.5">
-                                <div className="mr-4 max-w-lg sm:mr-10">
-                                  <div className=" text-left text-md  text-slate-600 dark:text-navy-200">
-                                    {item.username}:
-                                  </div>
-                                  <div
-                                    style={{
-                                      whiteSpace: "initial",
-                                      wordWrap: "break-word",
-                                    }}
-                                    className="rounded-2xl text-left rounded-tl-none bg-slate-200 p-2 text-slate-900 shadow-sm dark:bg-navy-700 dark:text-navy-50"
-                                  >
-                                    <p> {item.message}</p>
-                                  </div>
-                                  <p className="mt-1 ml-auto text-right text-xs text-slate-400 dark:text-navy-300">
-                                    {item.time.split("T")[1].substring(0, 5)}
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          ) : (
-                            <div className="flex items-start justify-end space-x-2.5 sm:space-x-5">
-                              <div className="flex flex-col items-end space-y-3.5">
-                                <div className="ml-4 max-w-lg sm:ml-10">
-                                  <div
-                                    style={{
-                                      whiteSpace: "initial",
-                                      wordWrap: "break-word",
-                                    }}
-                                    className=" text-ellipsis rounded-2xl text-left rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white"
-                                  >
-                                    <p>{item.message}</p>
-                                  </div>
-                                  <p className="mt-1 ml-4 max-w-lg sm:ml-10 text-left text-xs text-slate-400 dark:text-navy-300">
-                                    {item.time.split("T")[1].substring(0, 5)}
-                                  </p>
-                                </div>
-                              </div>
-                              <div className="avatar">
-                                <img
-                                  className="rounded-full"
-                                  src={Avatar200x200}
-                                  alt="avatar"
-                                />
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      ))
-                    )
-                  : ""} */}
-
-                <>
+                {/* content at the end */}
+                <div>
                   <div ref={ref}></div>
                   {console.log(chatMessages)}
                   {chatMessages &&
@@ -511,7 +432,7 @@ const Chat = () => {
                         </div>
                       );
                     })}
-                </>
+                </div>
 
                 {message.length != 0
                   ? message.map((item, index) => (
@@ -743,3 +664,87 @@ const Chat = () => {
 };
 
 export default Chat;
+
+{
+  /* {data
+                  ? data.pages.map((e) =>
+                      e.map((repo, index) => (
+                        <li className=" ml-[50vw]" key={repo.index}>
+                          <p>
+                            <p>{repo.username}</p>
+                            <p>{repo.user_id}</p>
+                          </p>
+                          <p>{repo.message}</p>
+                          <br />
+                        </li>
+                      ))
+                    )
+                  : ""} */
+}
+
+{
+  /* {AllMassages
+                  ? AllMassages.map((data, index) =>
+                      data.map((item, index) => (
+                        <div key={index}>
+                          {item.username != user.username ? (
+                            <div className="flex items-start space-x-2.5 sm:space-x-5">
+                              <div className="avatar">
+                                <img
+                                  className="rounded-full"
+                                  src={Avatar200x200}
+                                  alt="avatar"
+                                />
+                              </div>
+                              <div className="flex flex-col items-start space-y-3.5">
+                                <div className="mr-4 max-w-lg sm:mr-10">
+                                  <div className=" text-left text-md  text-slate-600 dark:text-navy-200">
+                                    {item.username}:
+                                  </div>
+                                  <div
+                                    style={{
+                                      whiteSpace: "initial",
+                                      wordWrap: "break-word",
+                                    }}
+                                    className="rounded-2xl text-left rounded-tl-none bg-slate-200 p-2 text-slate-900 shadow-sm dark:bg-navy-700 dark:text-navy-50"
+                                  >
+                                    <p> {item.message}</p>
+                                  </div>
+                                  <p className="mt-1 ml-auto text-right text-xs text-slate-400 dark:text-navy-300">
+                                    {item.time.split("T")[1].substring(0, 5)}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="flex items-start justify-end space-x-2.5 sm:space-x-5">
+                              <div className="flex flex-col items-end space-y-3.5">
+                                <div className="ml-4 max-w-lg sm:ml-10">
+                                  <div
+                                    style={{
+                                      whiteSpace: "initial",
+                                      wordWrap: "break-word",
+                                    }}
+                                    className=" text-ellipsis rounded-2xl text-left rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white"
+                                  >
+                                    <p>{item.message}</p>
+                                  </div>
+                                  <p className="mt-1 ml-4 max-w-lg sm:ml-10 text-left text-xs text-slate-400 dark:text-navy-300">
+                                    {item.time.split("T")[1].substring(0, 5)}
+                                  </p>
+                                </div>
+                              </div>
+                              <div className="avatar">
+                                <img
+                                  className="rounded-full"
+                                  src={Avatar200x200}
+                                  alt="avatar"
+                                />
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))
+                    )
+                  : ""} */
+}
