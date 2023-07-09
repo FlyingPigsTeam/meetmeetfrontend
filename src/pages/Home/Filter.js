@@ -92,19 +92,44 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
       name: "Category",
       options: [
         {
-          value: "sport",
-          label: "sport",
-          checked: category.includes("sport") ? true : false,
+          value: "Adventure",
+          label: "Adventure",
+          checked: category.includes("Adventure") ? true : false,
         },
         {
-          value: "cinema",
-          label: "cinema",
-          checked: category.includes("cinema") ? true : false,
+          value: "Cinema",
+          label: "Cinema",
+          checked: category.includes("Cinema") ? true : false,
         },
         {
-          value: "religion",
-          label: "religion",
-          checked: category.includes("religion") ? true : false,
+          value: "Musical",
+          label: "Musical",
+          checked: category.includes("Musical") ? true : false,
+        },
+        {
+          value: "Study",
+          label: "Study",
+          checked: category.includes("Study") ? true : false,
+        },
+        {
+          value: "Gaming",
+          label:"Gaming",
+          checked: category.includes("Gaming") ? true : false,
+        },
+        {
+          value: "Art",
+          label:"Art",
+          checked: category.includes("Art") ? true : false,
+        },
+        {
+          value: "Work",
+          label:"Work",
+          checked: category.includes("Work") ? true : false,
+        },
+        {
+          value: "Sport",
+          label:"Sport",
+          checked: category.includes("Sport") ? true : false,
         },
       ],
     },
