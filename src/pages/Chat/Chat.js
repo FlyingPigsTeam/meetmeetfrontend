@@ -474,13 +474,13 @@ const Chat = () => {
                 </div>
               </Sidebar.Secondary.Expanded.Body>
             </Sidebar.Secondary.Expanded>
-            <Sidebar.Secondary.Minimized>
+            {/* <Sidebar.Secondary.Minimized>
               <Sidebar.Secondary.Minimized.Header />
-              {/* <Sidebar.Secondary.Minimized.Body>
+              <Sidebar.Secondary.Minimized.Body>
               <Sidebar.Secondary.Minimized.Body.Middle />
               <Sidebar.Secondary.Minimized.Body.MoreActions />
-            </Sidebar.Secondary.Minimized.Body> */}
-            </Sidebar.Secondary.Minimized>
+            </Sidebar.Secondary.Minimized.Body>
+            </Sidebar.Secondary.Minimized> */}
           </Sidebar.Secondary>
         </Sidebar>
         <MainSection className="w-full">
