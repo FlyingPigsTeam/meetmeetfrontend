@@ -365,8 +365,8 @@ Sidebar.Primary.Middle.Rooms.LoadItems = function LoaderRoomsItems({
   }, []);
   return (
     <>
-      {myrooms?.map((item) => (
-        <Sidebar.Primary.Middle.Rooms.Item item={item} key={item.title} />
+      {myrooms?.map((item, index) => (
+        <Sidebar.Primary.Middle.Rooms.Item item={item} key={index} />
       ))}
     </>
   );
@@ -426,7 +426,7 @@ Sidebar.Primary.Middle.Rooms.ItemSuspence = function PrimaryRoomsItemsSus({
   children,
   ...restProps
 }) {
-  console.log("ITEM",item);
+  //console.log("ITEM",item);
   return (
     <>
       <div

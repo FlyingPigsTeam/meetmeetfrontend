@@ -73,7 +73,7 @@ const InfiniteQuery = () => {
       {data
         ? data.pages.map((e) =>
             e.map((repo, index) => (
-              <li className=" ml-[50vw]" key={repo.index}>
+              <li className=" ml-[50vw]" key={index}>
                 <p>
                   <p>{repo.username}</p>
                   <p>{repo.user_id}</p>

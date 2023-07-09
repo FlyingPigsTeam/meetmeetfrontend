@@ -190,6 +190,7 @@ const Chat = () => {
     isLoading: countLoading,
     isError: countError,
   } = useQuery("chatCount", fetchChatCount);
+  const [loading, setloading] = useState(false);
 
   const totalPage = Math.ceil(countData?.count / PAGE_SIZE);
 
@@ -212,10 +213,19 @@ const Chat = () => {
     threshold: 1,
   });
 
+  const divRef = useRef(null);
   React.useEffect(() => {
     if (entry?.isIntersecting && hasNextPage) {
+      setloading(true);
       fetchNextPage();
+      setloading(false);
+      const scrollPosition = divRef.current.scrollHeight;
+      console.log("Scroll position: " + scrollPosition);
       // console.log(document.scrollingElement.scrollHeight)
+      // const { current } = divRef;
+      // if (current) {
+      //   current.scrollIntoView(300, 300);
+      // }
     }
   }, [entry, fetchNextPage, hasNextPage]);
 
@@ -242,9 +252,14 @@ const Chat = () => {
     setPicsObject(toObject(Pics));
   }, [Pics]);
 
-  console.log(Pics);
-  console.log(PicsObject);
-  
+  // console.log(Pics);
+  // console.log(PicsObject);
+
+  const getScrollPosition = () => {
+    const scrollPosition = divRef.current.scrollTop;
+    console.log("Scroll position: " + scrollPosition);
+  };
+
   return (
     <>
       <PageWrapper>
@@ -330,15 +345,20 @@ const Chat = () => {
           >
             <div className="grow overflow-y-auto px-[calc(var(--margin-x)-.5rem)] py-5 transition-all duration-[.25s]">
               <div className="space-y-2">
-                <div className="mx-4 flex items-center space-x-3">
-                  {/* <div className="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
-                  <p>Yesterday</p>
-                  <div className="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div> */}
-                </div>
+                {loading ? (
+                  <div className="mx-4 flex items-center space-x-3">
+                    <div className="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+                    <div className="spinner h-7 w-7 animate-spin rounded-full border-[3px] border-primary/30 border-r-primary dark:border-accent/30 dark:border-r-accent"></div>
+                    {/* <p>Yesterday</p> */}
+                    <div className="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+                  </div>
+                ) : (
+                  ""
+                )}
                 {/* content at the end */}
-                <div>
+                <div ref={divRef} onScroll={getScrollPosition}>
                   <div ref={ref}></div>
-                  {console.log(chatMessages)}
+                  {/* {console.log(chatMessages)} */}
                   {chatMessages &&
                     chatMessages.reverse().map((item, index) => {
                       return (
@@ -433,7 +453,6 @@ const Chat = () => {
                       );
                     })}
                 </div>
-
                 {message.length != 0
                   ? message.map((item, index) => (
                       <div key={index}>
