@@ -26,6 +26,7 @@ const Homepage = () => {
   //   { id: "unfinishedTasks", title: "Unfinished Tasks" },
   //   { id: "none", title: "None" },
   // ];
+  
   const information = {
     name: "Name of the event",
     categories: ["sport", "cultural"],
@@ -95,10 +96,20 @@ const Homepage = () => {
   // console.log(`data is ${status.results}`);
   let cards = status ? status.results : {};
   console.log(status.count);
-  const { data: tasks } = useQuery("mytasks",
-    () => { return axios.get("/api/my-tasks") }
-  );
 
+  const { data: tasks , isError } = useQuery("mytasks",
+    () => { 
+      try {
+        return axios.get("/api/my-tasks")
+      } catch (error) {
+        if(error.statusCode === 404) {
+          return []
+        }
+        throw error
+      }
+      }
+  );
+  if
   return (
     <>
       <PageWrapper>
