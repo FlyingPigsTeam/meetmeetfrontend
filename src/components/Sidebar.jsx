@@ -406,6 +406,7 @@ Sidebar.Primary.Middle.Rooms.Item = function PrimaryRoomsItems({
                   src={
                     item.main_picture_path
                   }
+                  
                   onError={()=>{item.main_picture_path = "__"; forceUpdate();}}
                   alt="avatar"
                 />
@@ -601,10 +602,14 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
   let authTokens = useContext(AuthContext).authTokens;
   const toggle = () => {
     setShow((cur) => !cur);
+
     // console.log(show);
   };
 
   const [data, setData] = useState({});
+ const [LoadPic, setLoadPic] = useState(true)
+
+  
 
   const fetchData = async () => {
     try {
@@ -660,7 +665,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                 /> */}
 
 
-              {!(data.picture_path &&
+              {LoadPic || !(data.picture_path &&
                     data.picture_path != "" &&
                     data.picture_path != "__")
                 ? 
@@ -680,6 +685,12 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                     "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
                     "hover:border-info hover:border-2 hover:shadow-soft hover:shadow-info-focus/40"
                   )}
+                  onLoad = {
+                    () =>{
+                      setLoadPic(false)
+                      forceUpdate();
+                    }
+                  }
                   src={
                     data.picture_path
                   }
