@@ -8,11 +8,11 @@ const AxiosGlobalConfig = () => {
     axios.defaults.baseURL = BASEURL;
     if (authTokens?.access) {
         axios.defaults.headers.common['Authorization'] = "Bearer " + authTokens?.access;
-        console.log("AccessToken Added to Axios");
+        // console.log("AccessToken Added to Axios");
 
     }
     else{
-        console.log("No AccessToken Added to Axios Config");
+        // console.log("No AccessToken Added to Axios Config");
     }
     axios.defaults.headers.common["Content-Type"] = "application/json";
     return (

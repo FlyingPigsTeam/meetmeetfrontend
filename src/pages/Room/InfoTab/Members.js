@@ -11,14 +11,16 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import AutoComplete from "../../../components/AutoComplete";
 import AuthContext from "../../../context/AuthContext";
-import Pagination from "../../Home/Pagination";
-
+import Pagination from '../../Home/Pagination'
+import classNames from "../../../utils/classNames";
 import Avatar200x200 from "../../../assets/images/200x200.png";
 import MemberActions from "./MemberActions";
 
 import { useGetRoomMembers } from "../../../api/endpoints/useRoomMembers";
+import { useForceUpdate } from "@mantine/hooks";
 
-const Members = () => {
+const Members = ({UpperLoading,setUpperLoading}) => {
+
   const { idroom } = useParams();
 
   const [roomData, setRoomData] = useState({});
@@ -26,7 +28,7 @@ const Members = () => {
 
   const [totalpage, setTotalpage] = useState(1);
   const [page, setPage] = useState(1);
-  const [entries, setEntries] = useState(1);
+  const [entries, setEntries] = useState(5)
 
   const {
     data: users_Data,
@@ -60,6 +62,7 @@ const Members = () => {
   useEffect(() => {
     calculateTotalPage();
   }, [idroom, page, entries, users_Data]);
+  useEffect(() => {setUpperLoading(isLoading)},[isLoading])
 
   // console.log("totalpage", totalpage);
 
@@ -191,9 +194,10 @@ const Members = () => {
       Actions: ["Accept", "Reject"],
     },
   };
+  const forceUpdate =useForceUpdate()
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p> </p>
   }
   return (
     <>
@@ -316,32 +320,31 @@ const Members = () => {
             <table className="is-hoverable w-full text-left">
               <thead>
                 <tr>
-                  <th className="whitespace-nowrap rounded-tl-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  {/* <th className="whitespace-nowrap rounded-tl-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     #
-                  </th>
-                  <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  </th> */}
+                  <th className="whitespace-nowrap bg-slate-200 px-2 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-2">
                     Avatar
                   </th>
-                  <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  <th className="whitespace-nowrap bg-slate-200 px-1 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-1">
                     Username
                   </th>
-                  <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                    Firstname
+                  <th className="whitespace-nowrap bg-slate-200 px-1 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-1">
+                    Name
                   </th>
-                  <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  {/* <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Lastname
-                  </th>
-                  <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  </th> */}
+                  <th className="whitespace-nowrap bg-slate-200 px-1 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-1">
                     Role
                   </th>
                   {/* <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Status
                   </th> */}
-                  {roomData.is_admin && (
-                    <th className="whitespace-nowrap rounded-tr-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                      Action
-                    </th>
-                  )}
+                  {roomData.is_admin && <th
+                    className="whitespace-nowrap rounded-tr-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                    Action
+                  </th>}
                 </tr>
               </thead>
               <tbody>
@@ -351,36 +354,54 @@ const Members = () => {
                       key={`user-item-${idx}`}
                       className="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
                     >
-                      <td className="whitespace-nowrap px-4 py-3 sm:px-5">
+                      {/* <td className="whitespace-nowrap px-4 py-3 sm:px-5">
                         {idx + 1}
-                      </td>
-                      <td className="whitespace-nowrap px-4 py-3 sm:px-5">
-                        <div className="avatar h-10 w-10 hover:z-10 relative">
-                          {user.member.picture_path &&
-                          user.member.picture_path !== "" &&
-                          user.member.picture_path !== "__" ? (
+                      </td> */}
+                      <td className="whitespace-nowrap px-2 py-3 sm:px-2">
+                        <div className="avatar flex h-10 w-10">
+                          {!(user?.member?.picture_path &&
+                            user?.member?.picture_path != "" &&
+                            user?.member?.picture_path != "__")
+                            ?
+                            <div
+
+                              className={classNames(
+                                "is-initial mask is-squircle  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light"
+                                , "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
+                              )}
+                            >
+                              {user?.member?.picture_path && (user?.member?.first_name[0] + user?.member?.first_name[1])}
+                            </div>
+                            :
                             <img
-                              className="rounded-full ring ring-white dark:ring-navy-700"
-                              src={user.member.picture_path}
+                              className={classNames(
+                                "mask is-squircle",
+                                "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
+                              )}
+                              src={
+                                user.member.picture_path
+                              }
+                              onError={() => { user.member.picture_path = "__"; forceUpdate(); }}
                               alt="avatar"
                             />
-                          ) : (
-                            <div className="is-initial rounded-full bg-info text-md uppercase text-white ring ring-white dark:ring-navy-700">
-                              {user.member.first_name[0] + user.member.last_name[0]}
-                            </div>
-                          )}
+                          }
+                          {/* <img
+                            className=""
+                            src={ user.member.picture_path&& user.member.picture_path != "" && user.member.picture_path != "__" ? user.member.picture_path : Avatar200x200}
+                            alt="avatar"
+                          /> */}
                         </div>
                       </td>
-                      <td className="whitespace-nowrap px-3 py-3 font-medium text-slate-700 dark:text-navy-100 lg:px-5">
+                      <td className="whitespace-nowrap px-1 py-3 font-medium text-slate-700 dark:text-navy-100 lg:px-1">
                         {user.member.username}
                       </td>
-                      <td className="whitespace-nowrap px-4 py-3 sm:px-5">
-                        {user.member.first_name}
+                      <td className="whitespace-nowrap px-1 py-3 sm:px-1">
+                        {user.member.first_name +" " + user.member.last_name}
                       </td>
-                      <td className="whitespace-nowrap px-4 py-3 sm:px-5">
+                      {/* <td className="whitespace-nowrap px-4 py-3 sm:px-5">
                         {user.member.last_name}
-                      </td>
-                      <td className="whitespace-nowrap px-4 py-3 sm:px-5">
+                      </td> */}
+                      <td className="whitespace-nowrap px-1 py-3 sm:px-1 text-left">
                         <div className="badge rounded-full">
                           {roleDetails[ConvertRole(user)].ListBadge}
                         </div>

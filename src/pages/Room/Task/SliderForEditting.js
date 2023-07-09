@@ -210,8 +210,8 @@ export default function SliderForEditting({
                       </div>
                       <div className="flex items-center justify-between fixed md:w-[83%] w-[90%] bottom-6 py-3 px-4">
                         <button
-                          onClick={() => {
-                            reqForEditing();
+                          onClick={async () => {
+                            await reqForEditing();
                             setslideover(false);
                           }}
                           className="z-20 grid h-10 w-full items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm bg-primary text-slate-100 hover:opacity-80 dark:text-navy-50 duration-300"

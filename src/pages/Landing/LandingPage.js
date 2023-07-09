@@ -323,23 +323,7 @@ const LandingPage = () => {
             </a>
 
             {/* <!-- End Logo container--> */}
-            <div class="menu-extras">
-              <div class="menu-item">
-                {/* <!-- Mobile menu toggle--> */}
-                <a
-                  class="navbar-toggle"
-                  id="isToggle"
-                  onClick={() => toggleMenu()}
-                >
-                  <div class="lines">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                </a>
-                {/* <!-- End mobile menu toggle--> */}
-              </div>
-            </div>
+            
 
             {/* <!--Login button Start--> */}
             <ul class="buy-button list-none mb-0">

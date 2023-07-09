@@ -5,15 +5,22 @@ import Avatar200x200 from "../assets/images/200x200.png";
 import PopOver from "./PopOver";
 import PopOverContext from "../context/PopOverContext";
 
-const Skeleton = ({ members }) => {
+const Skeleton = ({ members,sofa= false }) => {
   const [activeMemberIndex, setActiveMemberIndex] = useState(-1);
   const popoverRef = useRef(null);
 
-  const handleMemberHover = (index) => {
+  const handleMemberHover = sofa? (index) => {
+
+  }
+  :(index) => {
     setActiveMemberIndex(index);
   };
 
-  const handleMemberLeave = () => {
+  const handleMemberLeave = sofa? 
+  (index) => {
+
+  }
+  :() => {
     setActiveMemberIndex(-1);
   };
 

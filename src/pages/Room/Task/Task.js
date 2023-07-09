@@ -180,7 +180,7 @@ const Task = () => {
                 <Sidebar.Secondary.Expanded.Header.Title>
                   <Sidebar.Secondary.Expanded.Header.Title.Icon />
                   <Sidebar.Secondary.Expanded.Header.Title.Text>
-                    Tabs
+                    Tasks
                   </Sidebar.Secondary.Expanded.Header.Title.Text>
                 </Sidebar.Secondary.Expanded.Header.Title>
                 <Sidebar.Secondary.Expanded.Header.MinimizeButton />
@@ -453,13 +453,13 @@ const Task = () => {
                 </ul>
               </Sidebar.Secondary.Expanded.Body>
             </Sidebar.Secondary.Expanded>
-            <Sidebar.Secondary.Minimized>
+            {/* <Sidebar.Secondary.Minimized>
               <Sidebar.Secondary.Minimized.Header />
-              {/* <Sidebar.Secondary.Minimized.Body>
+              <Sidebar.Secondary.Minimized.Body>
               <Sidebar.Secondary.Minimized.Body.Middle />
               <Sidebar.Secondary.Minimized.Body.MoreActions />
-            </Sidebar.Secondary.Minimized.Body> */}
-            </Sidebar.Secondary.Minimized>
+            </Sidebar.Secondary.Minimized.Body>
+            </Sidebar.Secondary.Minimized> */}
           </Sidebar.Secondary>
         </Sidebar>
         <MainSection classes={"todo-app"}>
@@ -582,7 +582,7 @@ const Task = () => {
                       else if (Filter == "unDone") return item.done == false;
                       else return true;
                     })
-                    .map((item, index) => (
+                    .sort((a, b) => b.id - a.id).map((item, index) => (
                       <div className="grid sm:grid-cols-5 items-center border-b border-slate-200 py-3 dark:border-navy-500">
                         <div className=" col-start-1 xl:col-end-4 sm:col-end-4">
                           <div className="flex items-center space-x-2 sm:space-x-3">
