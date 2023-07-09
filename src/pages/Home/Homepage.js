@@ -98,7 +98,7 @@ const Homepage = () => {
       <PageWrapper>
         <Header>
           <Header.Items>
-            {/* <Header.SidebarToggle /> */}
+            <Header.SidebarToggle />
             <Header.Right>
               <Header.Right.DarkModeToggle />
               <Header.Right.Notification />
@@ -125,6 +125,43 @@ const Homepage = () => {
               <Sidebar.Primary.Bottom.Profile />
             </Sidebar.Primary.Bottom>
           </Sidebar.Primary>
+          <Sidebar.Secondary>
+            <Sidebar.Secondary.Expanded>
+              <Sidebar.Secondary.Expanded.Header>
+                <Sidebar.Secondary.Expanded.Header.Title>
+                  <Sidebar.Secondary.Expanded.Header.Title.Icon />
+                  <Sidebar.Secondary.Expanded.Header.Title.Text>
+                    Menu
+                  </Sidebar.Secondary.Expanded.Header.Title.Text>
+                </Sidebar.Secondary.Expanded.Header.Title>
+                <Sidebar.Secondary.Expanded.Header.MinimizeButton />
+              </Sidebar.Secondary.Expanded.Header>
+              <Sidebar.Secondary.Expanded.Body>
+                {/* <Sidebar.Secondary.Expanded.Body.Tabs>
+                  <Sidebar.Secondary.Expanded.Body.Tabs.Chat />
+                  <Sidebar.Secondary.Expanded.Body.Tabs.Todo />
+                  <Sidebar.Secondary.Expanded.Body.Tabs.InfoTab />
+                  
+                </Sidebar.Secondary.Expanded.Body.Tabs> */}
+                {/* <Sidebar.Secondary.Expanded.Body.Middle.TopButton />
+              <Sidebar.Secondary.Expanded.Body.Middle.Items>
+                <Sidebar.Secondary.Expanded.Body.Middle.Items.AllItem />
+              </Sidebar.Secondary.Expanded.Body.Middle.Items>
+              <Sidebar.Secondary.Expanded.Body.Middle.Divider />
+              <Sidebar.Secondary.Expanded.Body.Middle.SectionHeader />
+              <Sidebar.Secondary.Expanded.Body.Middle.Items>
+                <Sidebar.Secondary.Expanded.Body.Middle.Items.AllLabelItems />
+              </Sidebar.Secondary.Expanded.Body.Middle.Items> */}
+              </Sidebar.Secondary.Expanded.Body>
+            </Sidebar.Secondary.Expanded>
+            <Sidebar.Secondary.Minimized>
+              <Sidebar.Secondary.Minimized.Header />
+              {/* <Sidebar.Secondary.Minimized.Body>
+              <Sidebar.Secondary.Minimized.Body.Middle />
+              <Sidebar.Secondary.Minimized.Body.MoreActions />
+            </Sidebar.Secondary.Minimized.Body> */}
+            </Sidebar.Secondary.Minimized>
+          </Sidebar.Secondary>
         </Sidebar>
         <MainSection>
           <div className=" text-left pb-10">

@@ -180,7 +180,7 @@ const Task = () => {
                 <Sidebar.Secondary.Expanded.Header.Title>
                   <Sidebar.Secondary.Expanded.Header.Title.Icon />
                   <Sidebar.Secondary.Expanded.Header.Title.Text>
-                    Tabs
+                    Tasks
                   </Sidebar.Secondary.Expanded.Header.Title.Text>
                 </Sidebar.Secondary.Expanded.Header.Title>
                 <Sidebar.Secondary.Expanded.Header.MinimizeButton />
@@ -455,10 +455,10 @@ const Task = () => {
             </Sidebar.Secondary.Expanded>
             <Sidebar.Secondary.Minimized>
               <Sidebar.Secondary.Minimized.Header />
-              {/* <Sidebar.Secondary.Minimized.Body>
+              <Sidebar.Secondary.Minimized.Body>
               <Sidebar.Secondary.Minimized.Body.Middle />
               <Sidebar.Secondary.Minimized.Body.MoreActions />
-            </Sidebar.Secondary.Minimized.Body> */}
+            </Sidebar.Secondary.Minimized.Body>
             </Sidebar.Secondary.Minimized>
           </Sidebar.Secondary>
         </Sidebar>
