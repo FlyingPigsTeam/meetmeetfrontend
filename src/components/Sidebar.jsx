@@ -665,7 +665,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                 /> */}
 
 
-              {LoadPic || !(data.picture_path &&
+              { !(data.picture_path &&
                     data.picture_path != "" &&
                     data.picture_path != "__")
                 ? 
@@ -687,7 +687,6 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                   )}
                   onLoad = {
                     () =>{
-                      setLoadPic(false)
                       forceUpdate();
                     }
                   }
