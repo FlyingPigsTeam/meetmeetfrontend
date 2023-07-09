@@ -10,6 +10,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useClipboard, useForceUpdate } from "@mantine/hooks";
 import Swal from "sweetalert2";
 import classNames from "../../../utils/classNames";
+import CopyToClipboard from "react-copy-to-clipboard";
 
 export default function InformationPage({UpperLoading,setUpperLoading}) {
   const { idroom } = useParams();
@@ -475,11 +476,21 @@ export default function InformationPage({UpperLoading,setUpperLoading}) {
                       {FrontURL + "/joinroom/" + link}
                     </p>
                     <div>
+                      <CopyToClipboard
+                        text={FrontURL + "/joinroom/" + link}
+                        onCopy={() => {
+                          Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Link copied to clipboard",
+                            showConfirmButton: false,
+                            timer: 2000,
+                          });
+                        }
+                        }
+                      >
                       <button
                         id={"clipBoardCopy"}
-                        onClick={() =>
-                          copyLinkToClipboard(FrontURL + "/joinroom/" + link)
-                        }
                         className="btn h-6 shrink-0 rounded mx-1 my-2 bg-white/20 px-2 text-xs text-white active:bg-white/25"
                       >
                         <svg
@@ -497,6 +508,8 @@ export default function InformationPage({UpperLoading,setUpperLoading}) {
                           />
                         </svg>
                       </button>
+                      </CopyToClipboard>
+
 
                       {roomData.data.is_admin && (
                         <>
