@@ -420,9 +420,8 @@ const Chat = () => {
                                 "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
                               )}
                             >
-                              {user?.member?.picture_path &&
-                                user?.member?.first_name[0] +
-                                  user?.member?.first_name[1]}
+                              {user?.member?.first_name[0] +
+                                user?.member?.first_name[1]}
                             </div>
                           ) : (
                             <img
@@ -445,9 +444,7 @@ const Chat = () => {
                         <div class="flex flex-1 flex-col">
                           <div class="flex items-baseline justify-between space-x-1.5">
                             <p class="text-xs+ font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
-                              {user.member.first_name +
-                                " " +
-                                user.member.last_name}
+                              {user.member.first_name}
                             </p>
                             <span class="text-tiny+ text-slate-400 dark:text-navy-300">
                               {/* 11:03 */}

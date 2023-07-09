@@ -11,7 +11,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import AutoComplete from "../../../components/AutoComplete";
 import AuthContext from "../../../context/AuthContext";
-import Pagination from '../../Home/Pagination'
+import Pagination from "../../Home/Pagination";
 import classNames from "../../../utils/classNames";
 import Avatar200x200 from "../../../assets/images/200x200.png";
 import MemberActions from "./MemberActions";
@@ -19,8 +19,7 @@ import MemberActions from "./MemberActions";
 import { useGetRoomMembers } from "../../../api/endpoints/useRoomMembers";
 import { useForceUpdate } from "@mantine/hooks";
 
-const Members = ({UpperLoading,setUpperLoading}) => {
-
+const Members = ({ UpperLoading, setUpperLoading }) => {
   const { idroom } = useParams();
 
   const [roomData, setRoomData] = useState({});
@@ -28,7 +27,7 @@ const Members = ({UpperLoading,setUpperLoading}) => {
 
   const [totalpage, setTotalpage] = useState(1);
   const [page, setPage] = useState(1);
-  const [entries, setEntries] = useState(5)
+  const [entries, setEntries] = useState(5);
 
   const {
     data: users_Data,
@@ -62,7 +61,9 @@ const Members = ({UpperLoading,setUpperLoading}) => {
   useEffect(() => {
     calculateTotalPage();
   }, [idroom, page, entries, users_Data]);
-  useEffect(() => {setUpperLoading(isLoading)},[isLoading])
+  useEffect(() => {
+    setUpperLoading(isLoading);
+  }, [isLoading]);
 
   // console.log("totalpage", totalpage);
 
@@ -194,10 +195,10 @@ const Members = ({UpperLoading,setUpperLoading}) => {
       Actions: ["Accept", "Reject"],
     },
   };
-  const forceUpdate =useForceUpdate()
+  const forceUpdate = useForceUpdate();
 
   if (isLoading) {
-    return <p> </p>
+    return <p> </p>;
   }
   return (
     <>
@@ -341,10 +342,11 @@ const Members = ({UpperLoading,setUpperLoading}) => {
                   {/* <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Status
                   </th> */}
-                  {roomData.is_admin && <th
-                    className="whitespace-nowrap rounded-tr-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                    Action
-                  </th>}
+                  {roomData.is_admin && (
+                    <th className="whitespace-nowrap rounded-tr-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                      Action
+                    </th>
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -359,32 +361,34 @@ const Members = ({UpperLoading,setUpperLoading}) => {
                       </td> */}
                       <td className="whitespace-nowrap px-2 py-3 sm:px-2">
                         <div className="avatar flex h-10 w-10">
-                          {!(user?.member?.picture_path &&
+                          {!(
+                            user?.member?.picture_path &&
                             user?.member?.picture_path != "" &&
-                            user?.member?.picture_path != "__")
-                            ?
+                            user?.member?.picture_path != "__"
+                          ) ? (
                             <div
-
                               className={classNames(
-                                "is-initial mask is-squircle  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light"
-                                , "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
+                                "is-initial mask is-squircle  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light",
+                                "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
                               )}
                             >
-                              {user?.member?.picture_path && (user?.member?.first_name[0] + user?.member?.first_name[1])}
+                              {user?.member?.first_name[0] +
+                                user?.member?.last_name[0]}
                             </div>
-                            :
+                          ) : (
                             <img
                               className={classNames(
                                 "mask is-squircle",
-                                "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
+                                "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80"
                               )}
-                              src={
-                                user.member.picture_path
-                              }
-                              onError={() => { user.member.picture_path = "__"; forceUpdate(); }}
+                              src={user.member.picture_path}
+                              onError={() => {
+                                user.member.picture_path = "__";
+                                forceUpdate();
+                              }}
                               alt="avatar"
                             />
-                          }
+                          )}
                           {/* <img
                             className=""
                             src={ user.member.picture_path&& user.member.picture_path != "" && user.member.picture_path != "__" ? user.member.picture_path : Avatar200x200}
@@ -396,7 +400,7 @@ const Members = ({UpperLoading,setUpperLoading}) => {
                         {user.member.username}
                       </td>
                       <td className="whitespace-nowrap px-1 py-3 sm:px-1">
-                        {user.member.first_name +" " + user.member.last_name}
+                        {user.member.first_name + " " + user.member.last_name}
                       </td>
                       {/* <td className="whitespace-nowrap px-4 py-3 sm:px-5">
                         {user.member.last_name}

@@ -184,27 +184,22 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                           </div>
                         </div>
 
-                        <button className="btn -mr-1.5 h-7 w-7 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                        {/* <button className="btn -mr-1.5 h-7 w-7 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-4.5 w-4.5"
                             fill="none"
                             viewBox="0 0 24 24"
+                            strokeWidth={1.5}
                             stroke="currentColor"
-                            strokeWidth="1.5"
+                            className="w-6 h-6"
                           >
                             <path
                               strokeLinecap="round"
                               strokeLinejoin="round"
-                              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                            />
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                              d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                             />
                           </svg>
-                        </button>
+                        </button> */}
                       </div>
 
                       <div className="is-scrollbar-hidden flex shrink-0 overflow-x-auto px-3">
@@ -261,7 +256,7 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                           // x-transition:enter="transition-all duration-300 easy-in-out"
                           // x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]"
                           // x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]"
-                          className="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 "
+                          className="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
                         >
                           {notification?.data?.map((item, key) => (
                             <div
@@ -331,7 +326,7 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                           // x-transition:enter="transition-all duration-300 easy-in-out"
                           // x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]"
                           // x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]"
-                          className="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 "
+                          className="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
                         >
                           {notification?.data
                             ?.filter((item) => item.type === 3)
@@ -392,7 +387,7 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                           // x-transition:enter="transition-all duration-300 easy-in-out"
                           // x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]"
                           // x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]"
-                          className="is-scrollbar-hidden space-y-4 overflow-y-auto px-4"
+                          className="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
                         >
                           {notification?.data
                             ?.filter((item) => item.type === 1)
@@ -440,7 +435,7 @@ Header.Right.Notification = function HeaderRightNotificationButton({
                           // x-transition:enter="transition-all duration-300 easy-in-out"
                           // x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]"
                           // x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]"
-                          className="is-scrollbar-hidden overflow-y-auto px-4"
+                          className="is-scrollbar-hidden overflow-y-auto px-4 py-4"
                         >
                           {notification?.data
                             ?.filter((item) => item.type === 2)

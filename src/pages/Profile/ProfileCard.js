@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Avatar200x200 from '../../assets/images/200x200.png'
+import Avatar200x200 from "../../assets/images/200x200.png";
 import { useForceUpdate } from "@mantine/hooks";
 import classNames from "../../utils/classNames";
 function AccountInfo({ handleEdit, user }) {
@@ -8,11 +8,11 @@ function AccountInfo({ handleEdit, user }) {
   const handleEditProfileClick = () => {
     handleEdit();
   };
-  const forceUpdate = useForceUpdate()
- const [LoadPic, setLoadPic] = useState(true)
- const [loading, setloading] = useState(false)
+  const forceUpdate = useForceUpdate();
+  const [LoadPic, setLoadPic] = useState(true);
+  const [loading, setloading] = useState(false);
   return (
-    <div >
+    <div>
       {/* Page header */}
 
       <div className="  text-left">
@@ -20,7 +20,7 @@ function AccountInfo({ handleEdit, user }) {
           <h2 className="text-lg font-medium tracking-wide text-slate-700 dark:text-navy-100">
             Personal Information
           </h2>
-          <div >
+          <div>
             {user.usertype == 1 ? (
               <div className="badge space-x-2 bg-secondary text-white dark:bg-secondary">
                 <svg
@@ -61,7 +61,7 @@ function AccountInfo({ handleEdit, user }) {
               </div>
             )}
           </div>
-          {(
+          {
             <div className="flex justify-center space-x-2">
               {/* <button onClick={()=>navigate("/profile")} className="badge space-x-2 bg-error text-white">
                 <span>Cancle</span>
@@ -82,46 +82,43 @@ function AccountInfo({ handleEdit, user }) {
               </button>
                */}
             </div>
-          )}
+          }
         </div>
         <div className="flex flex-col my-2">
           <div className="avatar mt-1.5 h-20 w-20">
             {/* <img className="mask is-squircle"
                  src={user.picture_path === "" || user.picture_path === "__" ? Avatar200x200 : user.picture_path}
                  alt="avatar" /> */}
-            {!(user?.picture_path &&
+            {!(
+              user?.picture_path &&
               user?.picture_path != "" &&
-              user?.picture_path != "__")
-              ?
+              user?.picture_path != "__"
+            ) ? (
               <div
-
                 className={classNames(
-                  "is-initial mask is-squircle bg-primary/10 text-2xl uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light"
-                  , "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
+                  "is-initial mask is-squircle bg-primary/10 text-2xl uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light",
+                  "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
                 )}
               >
-                {user?.first_name 
-                && (user?.first_name[0] + user?.first_name[1])
-                }
+                {user?.first_name && user?.first_name[0] + user?.last_name[0]}
               </div>
-              :
+            ) : (
               <img
                 className={classNames(
                   "mask is-squircle",
-                  "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
+                  "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80"
                 )}
-                src={
-                  user.picture_path
-                }
-                onLoad = {
-                  () =>{
-                    forceUpdate();
-                  }
-                }
-                onError={() => { user.picture_path = "__"; forceUpdate(); }}
+                src={user.picture_path}
+                onLoad={() => {
+                  forceUpdate();
+                }}
+                onError={() => {
+                  user.picture_path = "__";
+                  forceUpdate();
+                }}
                 alt="avatar"
               />
-            }
+            )}
           </div>
         </div>
 
