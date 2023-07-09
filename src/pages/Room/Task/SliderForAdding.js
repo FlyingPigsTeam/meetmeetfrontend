@@ -186,13 +186,13 @@ export default function SliderForAdding({
                       </div>
                       <div className="flex items-center justify-between fixed md:w-[83%] w-[90%] bottom-6 py-3 px-4">
                         <button
-                          onClick={() => {
+                          onClick={async () => {
                             if (title.length == 0) {
                               settitleAlert(true);
                             } else if (description.length == 0) {
                               setdescriptionAlert(true);
                             } else {
-                              reqForAdding();
+                              await reqForAdding();
                               setslideover(false);
                             }
                           }}
