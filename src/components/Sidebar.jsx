@@ -607,7 +607,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
   };
 
   const [data, setData] = useState({});
- const [LoadPic, setLoadPic] = useState(true)
+ const [LoadPic, setLoadPic] = useState(false)
 
   
 

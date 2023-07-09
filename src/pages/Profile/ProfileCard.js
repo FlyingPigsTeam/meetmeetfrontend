@@ -89,7 +89,7 @@ function AccountInfo({ handleEdit, user }) {
             {/* <img className="mask is-squircle"
                  src={user.picture_path === "" || user.picture_path === "__" ? Avatar200x200 : user.picture_path}
                  alt="avatar" /> */}
-            { LoadPic|| !(user?.picture_path &&
+            {!(user?.picture_path &&
               user?.picture_path != "" &&
               user?.picture_path != "__")
               ?
@@ -115,7 +115,6 @@ function AccountInfo({ handleEdit, user }) {
                 }
                 onLoad = {
                   () =>{
-                    setLoadPic(false)
                     forceUpdate();
                   }
                 }
