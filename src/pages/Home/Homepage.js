@@ -109,7 +109,6 @@ const Homepage = () => {
       }
       }
   );
-  if
   return (
     <>
       <PageWrapper>
@@ -248,7 +247,7 @@ const Homepage = () => {
                             </p>
                             <div class="mt-2 flex justify-between">
                               <div class="flex flex-wrap -space-x-2">
-                                {<Skeleton members={item.user} />}
+                                {<Skeleton members={item.user} sofa={true} />}
 
                               </div>
                               {/* <button
