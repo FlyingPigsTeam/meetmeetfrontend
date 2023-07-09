@@ -387,32 +387,43 @@ Sidebar.Primary.Middle.Rooms.Item = function PrimaryRoomsItems({
         <NavLink to={`/room/${item.id}`}>
           {({ isActive, isPending }) => (
             <div className="avatar h-10 w-10">
-              <React.Suspense 
-                fallback={<Sidebar.Primary.Middle.Rooms.ItemSuspence item={item} isActive={isActive} />} 
-                error={ <Sidebar.Primary.Middle.Rooms.ItemSuspence item={item} isActive={isActive} />}
+              <React.Suspense
+                fallback={
+                  <Sidebar.Primary.Middle.Rooms.ItemSuspence
+                    item={item}
+                    isActive={isActive}
+                  />
+                }
+                error={
+                  <Sidebar.Primary.Middle.Rooms.ItemSuspence
+                    item={item}
+                    isActive={isActive}
+                  />
+                }
               >
-
-              {item.main_picture_path === "" ||
-                item.main_picture_path === "__"
-                ? <Sidebar.Primary.Middle.Rooms.ItemSuspence item={item} isActive={isActive} />
-                :
-                <img
-                  className={classNames(
-                    "rounded-full",
-                    isActive &&"border-primary border-2  shadow-soft",
-                    "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
-                    "hover:border-info hover:border-2 hover:shadow-soft hover:shadow-info-focus/40"
-                  )}
-                  src={
-                    item.main_picture_path
-                  }
-                  
-                  onError={()=>{item.main_picture_path = "__"; forceUpdate();}}
-                  alt="avatar"
-                />
-              }
+                {item.main_picture_path === "" ||
+                item.main_picture_path === "__" ? (
+                  <Sidebar.Primary.Middle.Rooms.ItemSuspence
+                    item={item}
+                    isActive={isActive}
+                  />
+                ) : (
+                  <img
+                    className={classNames(
+                      "rounded-full",
+                      isActive && "border-primary border-2  shadow-soft",
+                      "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
+                      "hover:border-info hover:border-2 hover:shadow-soft hover:shadow-info-focus/40"
+                    )}
+                    src={item.main_picture_path}
+                    onError={() => {
+                      item.main_picture_path = "__";
+                      forceUpdate();
+                    }}
+                    alt="avatar"
+                  />
+                )}
               </React.Suspense>
-
             </div>
           )}
         </NavLink>
@@ -431,18 +442,17 @@ Sidebar.Primary.Middle.Rooms.ItemSuspence = function PrimaryRoomsItemsSus({
   return (
     <>
       <div
-
         className={classNames(
-          "is-initial rounded-full  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light"
-          , isActive && "border-4 border-primary/30 dark:border-accent-light/30"
-          ,"hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
+          "is-initial rounded-full  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light",
+          isActive && "border-4 border-primary/30 dark:border-accent-light/30",
+          "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
         )}
       >
         {item?.title[0]}
       </div>
     </>
   );
-}
+};
 Sidebar.Primary.Middle.Rooms.AddRoom = function AddRoomButton({
   classes,
   children,
@@ -607,9 +617,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
   };
 
   const [data, setData] = useState({});
- const [LoadPic, setLoadPic] = useState(false)
-
-  
+  const [LoadPic, setLoadPic] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -626,7 +634,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
     fetchData();
   }, []);
   const profile_box = useClickOutside(() => setShow(false));
-  const forceUpdate=useForceUpdate()
+  const forceUpdate = useForceUpdate();
   // console.log("DATAAAA",data)
   return (
     <>
@@ -664,40 +672,38 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                   alt="avatar"
                 /> */}
 
-
-              { !(data.picture_path &&
-                    data.picture_path != "" &&
-                    data.picture_path != "__")
-                ? 
-                <div
-
-                className={classNames(
-                  "is-initial rounded-full  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light"
-                  ,"hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
-                )}
-              >
-                {  data?.first_name && (data?.first_name[0]+data?.first_name[1])} 
-              </div>
-                : 
-                <img
-                  className={classNames(
-                    "rounded-full",
-                    "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
-                    "hover:border-info hover:border-2 hover:shadow-soft hover:shadow-info-focus/40"
-                  )}
-                  onLoad = {
-                    () =>{
+                {!(
+                  data.picture_path &&
+                  data.picture_path != "" &&
+                  data.picture_path != "__"
+                ) ? (
+                  <div
+                    className={classNames(
+                      "is-initial rounded-full  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light",
+                      "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
+                    )}
+                  >
+                    {data?.first_name &&
+                      data?.first_name[0] + data?.last_name[0]}
+                  </div>
+                ) : (
+                  <img
+                    className={classNames(
+                      "rounded-full",
+                      "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
+                      "hover:border-info hover:border-2 hover:shadow-soft hover:shadow-info-focus/40"
+                    )}
+                    onLoad={() => {
                       forceUpdate();
-                    }
-                  }
-                  src={
-                    data.picture_path
-                  }
-                  onError={()=>{data.picture_path = "__"; forceUpdate();}}
-                  alt="avatar"
-                />
-              }
-
+                    }}
+                    src={data.picture_path}
+                    onError={() => {
+                      data.picture_path = "__";
+                      forceUpdate();
+                    }}
+                    alt="avatar"
+                  />
+                )}
 
                 <span className="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
               </button>
@@ -729,33 +735,35 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                 >
                   <div className="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
                     <div className="avatar h-14 w-14">
-                      {!(data.picture_path &&
+                      {!(
+                        data.picture_path &&
                         data.picture_path != "" &&
-                        data.picture_path != "__")
-                        ?
+                        data.picture_path != "__"
+                      ) ? (
                         <div
-
                           className={classNames(
-                            "is-initial rounded-full  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light"
-                            , "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
+                            "is-initial rounded-full  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light",
+                            "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
                           )}
                         >
-                          {data?.first_name && (data?.first_name[0] + data?.first_name[1])}
+                          {data?.first_name &&
+                            data?.first_name[0] + data?.last_name[0]}
                         </div>
-                        :
+                      ) : (
                         <img
                           className={classNames(
                             "rounded-full",
                             "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
                             "hover:border-info hover:border-2 hover:shadow-soft hover:shadow-info-focus/40"
                           )}
-                          src={
-                            data.picture_path
-                          }
-                          onError={() => { data.picture_path = "__"; forceUpdate(); }}
+                          src={data.picture_path}
+                          onError={() => {
+                            data.picture_path = "__";
+                            forceUpdate();
+                          }}
                           alt="avatar"
                         />
-                      }
+                      )}
                     </div>
                     <div>
                       <a
@@ -836,59 +844,71 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                                                     </div>
                                                 </div>
                                             </a>*/}
-                                            
-                                            {data.usertype == 1 ?(<>
-                    <Link
-                      to={"/subscribtion"}
-                      className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
-                    >
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary text-white">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth="1.5"
-                          stroke="currentColor"
-                          className="w-4 h-4"
+
+                    {data.usertype == 1 ? (
+                      <>
+                        <Link
+                          to={"/subscribtion"}
+                          className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
-                          />
-                        </svg>
-                      </div>
+                          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary text-white">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth="1.5"
+                              stroke="currentColor"
+                              className="w-4 h-4"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
+                              />
+                            </svg>
+                          </div>
 
-                      <div>
-                        <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
-                          Premium
-                        </h2>
-                        <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
-                          Your team activity
-                        </div>
-                      </div>
-                    </Link>
-                    </>):(
+                          <div>
+                            <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                              Premium
+                            </h2>
+                            <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                              Your team activity
+                            </div>
+                          </div>
+                        </Link>
+                      </>
+                    ) : (
                       <Link
-                      to={"/subscribtion"}
-                      className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
-                    >
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-info text-white">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
-</svg>
-
-                      </div>
-
-                      <div>
-                        <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
-                          Pricing Page
-                        </h2>
-                        <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
-                          Your team activity
+                        to={"/subscribtion"}
+                        className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                      >
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-info text-white">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-6 h-6"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"
+                            />
+                          </svg>
                         </div>
-                      </div>
-                    </Link>
+
+                        <div>
+                          <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                            Pricing Page
+                          </h2>
+                          <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                            Your team activity
+                          </div>
+                        </div>
+                      </Link>
                     )}
                     {/* <a
                                                 href="#"

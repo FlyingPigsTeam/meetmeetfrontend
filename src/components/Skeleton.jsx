@@ -5,24 +5,21 @@ import Avatar200x200 from "../assets/images/200x200.png";
 import PopOver from "./PopOver";
 import PopOverContext from "../context/PopOverContext";
 
-const Skeleton = ({ members,sofa= false }) => {
+const Skeleton = ({ members, sofa = false }) => {
   const [activeMemberIndex, setActiveMemberIndex] = useState(-1);
   const popoverRef = useRef(null);
 
-  const handleMemberHover = sofa? (index) => {
+  const handleMemberHover = sofa
+    ? (index) => {}
+    : (index) => {
+        setActiveMemberIndex(index);
+      };
 
-  }
-  :(index) => {
-    setActiveMemberIndex(index);
-  };
-
-  const handleMemberLeave = sofa? 
-  (index) => {
-
-  }
-  :() => {
-    setActiveMemberIndex(-1);
-  };
+  const handleMemberLeave = sofa
+    ? (index) => {}
+    : () => {
+        setActiveMemberIndex(-1);
+      };
 
   return (
     <div>
@@ -91,18 +88,20 @@ const Skeleton = ({ members,sofa= false }) => {
 
                         <div className="popper-box w-64 rounded-lg border text-left border-slate-150 bg-white shadow-soft dark:border-navy-600 dark:bg-navy-700">
                           <div className="items-left space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
-                            <div className="avatar h-14 w-14">
-                              <img
-                                className="rounded-full"
-                                src={
-                                  item.picture_path &&
-                                  item.picture_path !== "" &&
-                                  item.picture_path !== "__"
-                                    ? item.picture_path
-                                    : Avatar200x200
-                                }
-                                alt="avatar"
-                              />
+                            <div className="avatar h-14 w-14 hover:z-10 relative">
+                              {item.picture_path &&
+                              item.picture_path !== "" &&
+                              item.picture_path !== "__" ? (
+                                <img
+                                  className="rounded-full ring ring-white dark:ring-navy-700"
+                                  src={item.picture_path}
+                                  alt="avatar"
+                                />
+                              ) : (
+                                <div className="is-initial rounded-full bg-info text-xs+ uppercase text-white ring ring-white dark:ring-navy-700">
+                                  {item.first_name[0] + item.last_name[0]}
+                                </div>
+                              )}
                             </div>
                             <div className="p-2">
                               <h3 className="text-center text-xl text-gray-900 font-medium leading-8">

@@ -247,27 +247,25 @@ const Chat = () => {
   console.log(Pics);
   console.log(PicsObject);
 
-
-
   const {
     data: users_Data,
-    isLoading:user_Load,
+    isLoading: user_Load,
     isError,
     refetch: refetchMembers,
   } = useGetRoomMembers(roomId, 1, 50);
   const ConvertRole = (member) => {
     const result =
       member.is_owner === true &&
-        member.is_member === true &&
-        member.request_status === 3
+      member.is_member === true &&
+      member.request_status === 3
         ? "Owner"
         : member.is_member === true && member.is_owner === false
-          ? "Member"
-          : member.request_status === 0 &&
-            member.is_member === false &&
-            member.is_owner === false
-            ? "Pending"
-            : "WTF USER ROLE";
+        ? "Member"
+        : member.request_status === 0 &&
+          member.is_member === false &&
+          member.is_owner === false
+        ? "Pending"
+        : "WTF USER ROLE";
     if (result === "WTF USER ROLE") {
       console.log("🚀Members.js:131 ~ ConvertRole", result);
     }
@@ -309,7 +307,7 @@ const Chat = () => {
       Actions: ["Accept", "Reject"],
     },
   };
-  const forceUpdate = useForceUpdate()
+  const forceUpdate = useForceUpdate();
   return (
     <>
       <PageWrapper>
@@ -354,31 +352,27 @@ const Chat = () => {
             <Sidebar.Secondary.Expanded>
               <Sidebar.Secondary.Expanded.Header>
                 <Sidebar.Secondary.Expanded.Header.Title>
-                <div class="avatar mr-3 hidden h-9 w-9 lg:flex">
-                  <div
-                    class="is-initial rounded-full bg-primary/10 text-primary dark:bg-accent-light/10 dark:text-accent-light"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-                      />
-                    </svg>
+                  <div class="avatar mr-3 hidden h-9 w-9 lg:flex">
+                    <div class="is-initial rounded-full bg-primary/10 text-primary dark:bg-accent-light/10 dark:text-accent-light">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                        />
+                      </svg>
+                    </div>
                   </div>
-                </div>
-                <p
-                  class="text-lg font-medium tracking-wider text-slate-800 line-clamp-1 dark:text-navy-100"
-                >
-                  Chat
-                </p>
+                  <p class="text-lg font-medium tracking-wider text-slate-800 line-clamp-1 dark:text-navy-100">
+                    Chat
+                  </p>
                 </Sidebar.Secondary.Expanded.Header.Title>
                 <Sidebar.Secondary.Expanded.Header.MinimizeButton />
               </Sidebar.Secondary.Expanded.Header>
@@ -398,79 +392,67 @@ const Chat = () => {
               <Sidebar.Secondary.Expanded.Body.Middle.Items>
                 <Sidebar.Secondary.Expanded.Body.Middle.Items.AllLabelItems />
               </Sidebar.Secondary.Expanded.Body.Middle.Items> */}
-              
-                <div
-                  class="is-scrollbar-hidden mt-3 flex grow flex-col overflow-y-auto"
-                >
-                  {
-                  users_Data?.data?.results?.filter(item=>ConvertRole(item)!=="Pending").map((user, idx) => 
-                    (<div
-                    
-                    class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600"
-                  >
-                    <div class="avatar h-10 w-10">
-                    {!(user?.member?.picture_path &&
-                            user?.member?.picture_path != "" &&
-                            user?.member?.picture_path != "__")
-                            ?
-                            <div
 
+                <div class="is-scrollbar-hidden mt-3 flex grow flex-col overflow-y-auto">
+                  {users_Data?.data?.results
+                    ?.filter((item) => ConvertRole(item) !== "Pending")
+                    .map((user, idx) => (
+                      <div class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+                        <div class="avatar h-10 w-10">
+                          {!(
+                            user?.member?.picture_path &&
+                            user?.member?.picture_path != "" &&
+                            user?.member?.picture_path != "__"
+                          ) ? (
+                            <div
                               className={classNames(
-                                "is-initial mask is-squircle  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light"
-                                , "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
+                                "is-initial mask is-squircle  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light",
+                                "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
                               )}
                             >
-                              {user?.member?.picture_path && (user?.member?.first_name[0] + user?.member?.first_name[1])}
+                              {user?.member?.first_name[0] +
+                                user?.member?.first_name[1]}
                             </div>
-                            :
+                          ) : (
                             <img
                               className={classNames(
                                 "mask is-squircle",
-                                "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
+                                "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80"
                               )}
-                              src={
-                                user.member.picture_path
-                              }
-                              onError={() => { user.member.picture_path = "__"; forceUpdate(); }}
+                              src={user.member.picture_path}
+                              onError={() => {
+                                user.member.picture_path = "__";
+                                forceUpdate();
+                              }}
                               alt="avatar"
                             />
-                          }
-                      {/* <div
+                          )}
+                          {/* <div
                         class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"
                       ></div> */}
-                    </div>
-                    <div class="flex flex-1 flex-col">
-                      <div
-                        class="flex items-baseline justify-between space-x-1.5"
-                      >
-                        <p
-                          class="text-xs+ font-medium text-slate-700 line-clamp-1 dark:text-navy-100"
-                        >
-                          {user.member.first_name +" " + user.member.last_name}
-                        </p>
-                        <span
-                          class="text-tiny+ text-slate-400 dark:text-navy-300"
-                        >
-                          {/* 11:03 */}
-                          <div className="badge rounded-full text-xs+">
-                          {roleDetails[ConvertRole(user)].ListBadge}
                         </div>
-                        </span>
+                        <div class="flex flex-1 flex-col">
+                          <div class="flex items-baseline justify-between space-x-1.5">
+                            <p class="text-xs+ font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
+                              {user.member.first_name}
+                            </p>
+                            <span class="text-tiny+ text-slate-400 dark:text-navy-300">
+                              {/* 11:03 */}
+                              <div className="badge rounded-full text-xs+">
+                                {roleDetails[ConvertRole(user)].ListBadge}
+                              </div>
+                            </span>
+                          </div>
+                          <div class="mt-1 flex items-center justify-between space-x-1">
+                            <p class="text-xs+ text-slate-400 line-clamp-1 dark:text-navy-300">
+                              {user.member.bio !== ""
+                                ? user.member.bio
+                                : "Just another happy guy! :)"}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                      <div
-                        class="mt-1 flex items-center justify-between space-x-1"
-                      >
-                        <p
-                          class="text-xs+ text-slate-400 line-clamp-1 dark:text-navy-300"
-                        >
-                          {user.member.bio !=="" ? user.member.bio : "Just another happy guy! :)"}
-                        </p>
-                        
-                      </div>
-                    </div>
-                  </div>)
-                  )}
-                  
+                    ))}
                 </div>
               </Sidebar.Secondary.Expanded.Body>
             </Sidebar.Secondary.Expanded>
