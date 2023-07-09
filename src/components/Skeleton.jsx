@@ -98,7 +98,7 @@ const Skeleton = ({ members, sofa = false }) => {
                                   alt="avatar"
                                 />
                               ) : (
-                                <div className="is-initial rounded-full bg-info text-xs+ uppercase text-white ring ring-white dark:ring-navy-700">
+                                <div className="is-initial rounded-full bg-info text-lg uppercase text-white ring ring-white dark:ring-navy-700">
                                   {item.first_name[0] + item.last_name[0]}
                                 </div>
                               )}
