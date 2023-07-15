@@ -167,121 +167,124 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                       </div>
                       <div className="relative h-full m-6 mt-4 flex-1 px-4 sm:px-6">
                         <div className="absolute inset-0">
-                          <p className=" truncate text-lg font-normal text-slate-800 dark:text-navy-50">
-                            From <span className="font-bold">{startDate}</span>{" "}
-                            At <span className="font-bold">{startTime}</span>
-                            <br />
-                            To <span className="font-bold">
-                              {endDate}
-                            </span> At{" "}
-                            <span className="font-bold">{endTime}</span>
-                          </p>
-                          <div className="text-slate-800 dark:text-navy-50 mt-4 font-medium text-sm">
-                            {description}
-                          </div>
-                          {/* <div className="text-myDark1 mt-4">
+                          <div className=" overflow-y-scroll h-[69vh] md:h-[75vh]">
+                            <p className=" truncate text-lg font-normal text-slate-800 dark:text-navy-50">
+                              From{" "}
+                              <span className="font-bold">{startDate}</span> At{" "}
+                              <span className="font-bold">{startTime}</span>
+                              <br />
+                              To <span className="font-bold">
+                                {endDate}
+                              </span> At{" "}
+                              <span className="font-bold">{endTime}</span>
+                            </p>
+                            <div className="text-slate-800 dark:text-navy-50 mt-4 font-medium text-sm">
+                              {description}
+                            </div>
+
+                            {/* <div className="text-myDark1 mt-4">
                             This event is being hold from{" "}
                             <span className="text-xl">{startDate}</span> to <span className="text-xl">{endDate}</span>
                       
                           </div> */}
-                          <div className=" text-slate-800 dark:text-navy-50 text-xl font-bold mt-2">
-                            Categories:
-                          </div>
-                          {category.map((item, index) => (
-                            <span
-                              key={index}
-                              className="inline-block flex-shrink-0 mr-2 rounded-lg text-lg px-3 py-1 mt-2 font-medium bg-slate-400 text-slate-900"
-                            >
-                              {item}
-                            </span>
-                          ))}
-                          <div className="  mt-4">
-                            <div className=" text-slate-800 dark:text-navy-50 text-xl font-bold mb-2">
-                              Members:
+                            <div className=" text-slate-800 dark:text-navy-50 text-xl font-bold mt-2">
+                              Categories:
                             </div>
-                            {members
-                              ? members.map((item, index) =>
-                                  index < 6 ? (
-                                    <div
-                                      key={index}
-                                      className=" grid grid-cols-5 align-middle p-2 items-center hover:rounded-lg hover:bg-slate-500 hover:text-slate-200 text-slate-800 dark:hover:bg-navy-200 dark:hover:text-navy-800 dark:text-navy-50 cursor-pointer duration-200 "
-                                    >
-                                      <div class="avatar h-8 w-8">
-                                        <div class="is-initial rounded-full bg-slate-200 text-xs+ uppercase text-slate-800 ring ring-slate-800 dark:bg-navy-600 dark:ring-navy-50 dark:text-navy-50">
-                                          <i class="fa fa-user"></i>
+                            {category.map((item, index) => (
+                              <span
+                                key={index}
+                                className="inline-block flex-shrink-0 mr-2 rounded-lg text-lg px-3 py-1 mt-2 font-medium bg-slate-400 text-slate-900"
+                              >
+                                {item}
+                              </span>
+                            ))}
+                            <div className="  mt-4">
+                              <div className=" text-slate-800 dark:text-navy-50 text-xl font-bold mb-2">
+                                Members:
+                              </div>
+                              {members
+                                ? members.map((item, index) =>
+                                    index < 6 ? (
+                                      <div
+                                        key={index}
+                                        className=" grid grid-cols-5 align-middle p-2 items-center hover:rounded-lg hover:bg-slate-500 hover:text-slate-200 text-slate-800 dark:hover:bg-navy-200 dark:hover:text-navy-800 dark:text-navy-50 cursor-pointer duration-200 "
+                                      >
+                                        <div class="avatar h-8 w-8">
+                                          <div class="is-initial rounded-full bg-slate-200 text-xs+ uppercase text-slate-800 ring ring-slate-800 dark:bg-navy-600 dark:ring-navy-50 dark:text-navy-50">
+                                            <i class="fa fa-user"></i>
+                                          </div>
+                                        </div>
+                                        <div className=" col-start-2 col-end-6">
+                                          <div className=" text-lg font-bold">
+                                            {item.username}
+                                          </div>
+                                          {item.bio.length < 70 ? (
+                                            <div className=" opacity-80">
+                                              {item.bio}
+                                            </div>
+                                          ) : (
+                                            <div className=" opacity-80">
+                                              {item.bio.slice(0, 70)}...
+                                            </div>
+                                          )}
                                         </div>
                                       </div>
-                                      <div className=" col-start-2 col-end-6">
-                                        <div className=" text-lg font-bold">
-                                          {item.username}
-                                        </div>
-                                        {item.bio.length < 70 ? (
-                                          <div className=" opacity-80">
-                                            {item.bio}
-                                          </div>
-                                        ) : (
-                                          <div className=" opacity-80">
-                                            {item.bio.slice(0, 70)}...
-                                          </div>
-                                        )}
-                                      </div>
-                                    </div>
-                                  ) : (
-                                    ""
+                                    ) : (
+                                      ""
+                                    )
                                   )
-                                )
-                              : ""}
-                          </div>
-                          <div className=" text-slate-800 dark:text-navy-50 text-xl font-bold my-2">
-                            Task Part:
-                            <div className="border border-slate-50 rounded-md overflow-y-scroll h-40">
-                              {tasks
-                                ? tasks.map((item, index) => (
-                                    <ol className="timeline line-space mt-5 px-4 [--size:1.5rem]">
-                                      <li className="timeline-item">
-                                        <div className="timeline-item-point rounded-full border border-current bg-white text-primary dark:bg-navy-700">
-                                          <i className="fa-solid fa-check text-tiny"></i>
-                                        </div>
-
-                                        <div className="timeline-item-content flex-1 pl-4">
-                                          <div className="flex flex-col justify-between pb-2 sm:flex-col-1 sm:pb-0">
-                                            <p className="pb-2 font-medium text-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0">
-                                              {item.title}
-                                            </p>
+                                : ""}
+                            </div>
+                            <div className="text-slate-800 dark:text-navy-50 text-xl font-bold my-2">
+                              Task Part:
+                              <div className="border border-slate-50 rounded-md overflow-y-scroll h-40">
+                                {tasks
+                                  ? tasks.map((item, index) => (
+                                      <ol className="timeline line-space mt-5 px-4 [--size:1.5rem]">
+                                        <li className="timeline-item">
+                                          <div className="timeline-item-point rounded-full border border-current bg-white text-primary dark:bg-navy-700">
+                                            <i className="fa-solid fa-check text-tiny"></i>
                                           </div>
-                                          <p className="py-1 text-sm">
-                                            {/* {item.priority} */}
-                                            {item.priority == 3 ? (
-                                              <div className="flex flex-wrap items-center font-inter text-xs">
-                                                <div className="badge space-x-2.5 px-1 text-success">
-                                                  <div className="h-2 w-2 rounded-full bg-current"></div>
-                                                  <span className=" font-medium text-sm">
-                                                    Low
-                                                  </span>
+
+                                          <div className="timeline-item-content flex-1 pl-4">
+                                            <div className="flex flex-col justify-between pb-2 sm:flex-col-1 sm:pb-0">
+                                              <p className="pb-2 font-medium text-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0">
+                                                {item.title}
+                                              </p>
+                                            </div>
+                                            <p className="py-1 text-sm">
+                                              {/* {item.priority} */}
+                                              {item.priority == 3 ? (
+                                                <div className="flex flex-wrap items-center font-inter text-xs">
+                                                  <div className="badge space-x-2.5 px-1 text-success">
+                                                    <div className="h-2 w-2 rounded-full bg-current"></div>
+                                                    <span className=" font-medium text-sm">
+                                                      Low
+                                                    </span>
+                                                  </div>
                                                 </div>
-                                              </div>
-                                            ) : item.priority == 2 ? (
-                                              <div className="flex flex-wrap items-center font-inter text-xs">
-                                                <div className="badge space-x-2.5 px-1 text-warning">
-                                                  <div className="h-2 w-2 rounded-full bg-current"></div>
-                                                  <span className=" font-medium text-sm">
-                                                    Medium
-                                                  </span>
+                                              ) : item.priority == 2 ? (
+                                                <div className="flex flex-wrap items-center font-inter text-xs">
+                                                  <div className="badge space-x-2.5 px-1 text-warning">
+                                                    <div className="h-2 w-2 rounded-full bg-current"></div>
+                                                    <span className=" font-medium text-sm">
+                                                      Medium
+                                                    </span>
+                                                  </div>
                                                 </div>
-                                              </div>
-                                            ) : (
-                                              <div className="flex flex-wrap items-center font-inter text-xs">
-                                                <div className="badge space-x-2.5 px-1 text-error">
-                                                  <div className="h-2 w-2 rounded-full bg-current"></div>
-                                                  <span className=" font-medium text-sm">
-                                                    Hard
-                                                  </span>
+                                              ) : (
+                                                <div className="flex flex-wrap items-center font-inter text-xs">
+                                                  <div className="badge space-x-2.5 px-1 text-error">
+                                                    <div className="h-2 w-2 rounded-full bg-current"></div>
+                                                    <span className=" font-medium text-sm">
+                                                      Hard
+                                                    </span>
+                                                  </div>
                                                 </div>
-                                              </div>
-                                            )}
-                                          </p>
-                                          <div class="flex-grow h-px bg-slate-50"></div>
-                                          {/* <div>
+                                              )}
+                                            </p>
+                                            <div class="flex-grow h-px bg-slate-50"></div>
+                                            {/* <div>
                                     <p class="text-xs text-slate-400 dark:text-navy-50">
                                       Members:
                                     </p>
@@ -327,17 +330,19 @@ const SlideOver = ({ slideover, setslideover, id }) => {
                                       </div>
                                     </div>
                                   </div> */}
-                                        </div>
-                                      </li>
-                                    </ol>
-                                  ))
-                                : ""}
+                                          </div>
+                                        </li>
+                                      </ol>
+                                    ))
+                                  : ""}
+                              </div>
                             </div>
                           </div>
+
                           <button
                             type="button"
                             onClick={JoinReq}
-                            className="w-full items-center rounded-md border-2 h-12 py-1 mt-2 text-lg font-semibold shadow-sm hover:bg-slate-200 hover:border-slate-800 hover:text-slate-800 text-slate-800 bg-slate-400 dark:hover:bg-navy-100 dark:hover:border-navy-100 dark:hover:text-navy-800 dark:text-navy-50 dark:bg-navy-400 dark:border-navy-400 duration-300"
+                            className="bottom-2 w-[85%] fixed items-center rounded-md border-2 h-12 py-1 mt-2 text-lg font-semibold shadow-sm hover:bg-slate-200 hover:border-slate-800 hover:text-slate-800 text-slate-800 bg-slate-400 dark:hover:bg-navy-100 dark:hover:border-navy-100 dark:hover:text-navy-800 dark:text-navy-50 dark:bg-navy-400 dark:border-navy-400 duration-300"
                           >
                             Join Event ({member_maximum_count - member_count}{" "}
                             Left)
@@ -481,11 +486,11 @@ export default SlideOver;
 //         fill="none"
 //         viewBox="0 0 24 24"
 //         stroke="currentColor"
-//         stroke-width="1.5"
+//         strokeWidth="1.5"
 //       >
 //         <path
-//           stroke-linecap="round"
-//           stroke-linejoin="round"
+//           strokeLinecap="round"
+//           strokeLinejoin="round"
 //           d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
 //         />
 //       </svg>
@@ -585,9 +590,9 @@ export default SlideOver;
 //             stroke="currentColor"
 //           >
 //             <path
-//               stroke-linecap="round"
-//               stroke-linejoin="round"
-//               stroke-width="2"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//               strokeWidth="2"
 //               d="M7 11l5-5m0 0l5 5m-5-5v12"
 //             />
 //           </svg>

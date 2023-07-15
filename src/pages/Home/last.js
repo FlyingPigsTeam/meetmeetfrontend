@@ -25,7 +25,7 @@ const Homepage = () => {
     maxMember: 40,
   };
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(10);
+  const [totalPages, setTotalPages] = useState(1);
   let authTokens = useContext(AuthContext).authTokens;
   console.log(authTokens.access);
   const [paramsFilter, setparamsFilter] = useState("");
@@ -106,12 +106,12 @@ const Homepage = () => {
               <Card info={information} />
             )}
           </div>
-          <Pagination
+          {totalPages !== 1 &&<Pagination
             currentPage={currentPage}
             setCurrentPage={handlePageChange}
             totalPages={totalPages}
             
-          />
+          />}
         </div>
       </div>
     </div>

@@ -28,7 +28,7 @@ function Profile() {
         .get("/api/profile")
         .then((response) => response);
       setData(data);
-      console.log(data);
+      console.log('data',data);
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -102,7 +102,8 @@ function Profile() {
           <Header.Items>
             {/* <Header.SidebarToggle /> */}
             <Header.Right>
-              <DarkModeToggle />
+              <Header.Right.DarkModeToggle />
+              <Header.Right.Notification/>
             </Header.Right>
           </Header.Items>
         </Header>

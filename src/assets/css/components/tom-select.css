@@ -13,7 +13,7 @@
 .ts-dropdown,
 .ts-control,
 .ts-control input {
-  @apply text-sm leading-normal placeholder:text-slate-400/70 text-slate-600 dark:text-navy-100;
+  @apply text-sm dark:bg-navy-500 leading-normal placeholder:text-slate-400/70 text-slate-600 dark:text-navy-100;
 }
 
 .ts-wrapper.multi .ts-control > div {

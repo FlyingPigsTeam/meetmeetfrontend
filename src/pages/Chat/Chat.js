@@ -12,7 +12,10 @@ import { data } from "browserslist";
 import { async } from "q";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery, useQuery } from "react-query";
+import { useForceUpdate, useIntersection } from "@mantine/hooks";
+import { useGetRoomMembers } from "../../api/endpoints/useRoomMembers";
+import classNames from "../../utils/classNames";
 
 const Chat = () => {
   const sidebarExp = useSelector((state) => state.SidebarExpanded);
@@ -22,7 +25,7 @@ const Chat = () => {
   const { user } = useContext(AuthContext);
   // const [client, setclient] = useState(new w3cwebsocket(`ws://localhost:8080/${roomId}`));
   const client = useMemo(
-    () => new w3cwebsocket(`ws://166.0.162.72/chat/${roomId}`),
+    () => new w3cwebsocket(`ws://meet-meet.ir/chat/${roomId}`),
     []
   );
   const [message, setmessage] = useState([]);
@@ -90,7 +93,6 @@ const Chat = () => {
   }, [message]);
 
   const [inputValue, setInputValue] = useState("");
-
   const handleInputChange = async (event) => {
     const value = event.target.value;
     setInputValue(value);
@@ -99,41 +101,43 @@ const Chat = () => {
   // console.log(message);
   // console.log(user);
 
-  const [count, setcount] = useState(0);
-  const [AllMassages, setAllMassages] = useState([]);
-  let counter = 0;
-  const req = async (roomId) => {
-    const { data } = await axios
-      .get(`http://166.0.162.72/history/api/history/count/${roomId}`)
-      .then((response) => response);
-    setcount(data.count);
-    // console.log(data.count)
-  };
-  const req1 = async (roomId, i) => {
-    const { data } = await axios
-      .get(`http://166.0.162.72/history/api/history/${roomId}?page=${i}`)
-      .then((response) => response);
-    console.log(data);
-    setAllMassages((e) => [data.reverse(), ...e]);
-    // console.log(data.count)
-  };
-  useEffect(() => {
-    req(roomId);
-    let i = 1;
-    while (i <= Math.round(count / 10)) {
-      req1(roomId, i);
-      i++;
-    }
-  }, [count]);
-  console.log(count);
-  console.log(AllMassages);
+  //Chat History
+  // const [count, setcount] = useState(0);
+  // const [AllMassages, setAllMassages] = useState([]);
+  // let counter = 0;
+  // const req = async (roomId) => {
+  //   const { data } = await axios
+  //     .get(`http://meet-meet.ir/history/api/history/count/${roomId}`)
+  //     .then((response) => response);
+  //   setcount(data.count);
+  //   // console.log(data.count)
+  // };
+  // const req1 = async (roomId, i) => {
+  //   const { data } = await axios
+  //     .get(`http://meet-meet.ir/history/api/history/${roomId}?page=${i}`)
+  //     .then((response) => response);
+  //   console.log(data);
+  //   setAllMassages((e) => [data.reverse(), ...e]);
+  //   // console.log(data.count)
+  // };
+  // useEffect(() => {
+  //   req(roomId);
+  //   let i = 1;
+  //   while (i <= Math.round(count / 10)) {
+  //     req1(roomId, i);
+  //     i++;
+  //   }
+  // }, [count]);
+  // console.log(count);
+  // console.log(AllMassages);
 
-  const fetchRepositories = async (page) => {
-    const response = await fetch(
-      `http://166.0.162.72/history/api/history/4?page=${page}`
-    );
-    return response.json();
-  };
+  // const fetchRepositories = async (page) => {
+  //   const response = await fetch(
+  //     `http://166.0.162.72/history/api/history/4?page=${page}`
+  //   );
+  //   return response.json();
+  // };
+
   // const { data, hasNextPage, fetchNextPage } = useInfiniteQuery(
   //   "repositories",
   //   ({ pageParam = 1 }) => fetchRepositories(pageParam),
@@ -167,6 +171,153 @@ const Chat = () => {
   //   };
   // }, []);
 
+  const PAGE_SIZE = 10;
+
+  const fetchChatCount = async () => {
+    const response = await axios.get(
+      `http://meet-meet.ir/history/api/history/count/${roomId}`
+    );
+    return response.data;
+  };
+
+  const {
+    data: countData,
+    isLoading: countLoading,
+    isError: countError,
+  } = useQuery("chatCount", fetchChatCount);
+  const [loading, setloading] = useState(false);
+
+  const totalPage = Math.ceil(countData?.count / PAGE_SIZE);
+  console.log(countData?.count);
+
+  const fetchChatHistory = async ({ pageParam = 1 }) => {
+    const response = await axios.get(
+      `http://meet-meet.ir/history/api/history/${roomId}?page=${pageParam}&count=${countData.count}`
+    );
+    return response.data;
+  };
+  const {
+    data: historyData,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isLoading: historyLoading,
+    isError: historyError,
+  } = useInfiniteQuery("chatHistory", fetchChatHistory, {
+    enabled: !!countData,
+    getNextPageParam: (lastPage, pages) => {
+      return pages.length + 1 <= totalPage ? pages.length + 1 : undefined;
+    },
+  });
+  const firstPostRef = React.useRef(null);
+  const { ref, entry } = useIntersection({
+    root: firstPostRef.current,
+    threshold: 1,
+  });
+
+  const divRef = useRef(null);
+  React.useEffect(() => {
+    if (entry?.isIntersecting && hasNextPage) {
+      setloading(true);
+      fetchNextPage();
+      setloading(false);
+      const scrollPosition = divRef.current.scrollHeight;
+      console.log("Scroll position: " + scrollPosition);
+      // console.log(document.scrollingElement.scrollHeight)
+      // const { current } = divRef;
+      // if (current) {
+      //   current.scrollIntoView(300, 300);
+      // }
+    }
+  }, [entry, fetchNextPage, hasNextPage]);
+
+  const chatMessages = historyData?.pages.flatMap((page) => page);
+
+  const [Pics, setPics] = useState([]);
+  const reqForGettingPics = async () => {
+    const { data } = await axios
+      .get(`/api/my-rooms/${roomId}/requests?show_members=1&picture=1`)
+      .then((response) => response);
+    setPics(data);
+  };
+  const [PicsObject, setPicsObject] = useState([]);
+  function toObject(arr) {
+    var rv = {};
+    for (var i = 0; i < arr.length; ++i)
+      rv[arr[i].username] = arr[i].picture_path;
+    return rv;
+  }
+  useEffect(() => {
+    reqForGettingPics();
+  }, []);
+  useEffect(() => {
+    setPicsObject(toObject(Pics));
+  }, [Pics]);
+
+  console.log(Pics);
+  console.log(PicsObject);
+
+  const {
+    data: users_Data,
+    isLoading: user_Load,
+    isError,
+    refetch: refetchMembers,
+  } = useGetRoomMembers(roomId, 1, 50);
+  const ConvertRole = (member) => {
+    const result =
+      member.is_owner === true &&
+      member.is_member === true &&
+      member.request_status === 3
+        ? "Owner"
+        : member.is_member === true && member.is_owner === false
+        ? "Member"
+        : member.request_status === 0 &&
+          member.is_member === false &&
+          member.is_owner === false
+        ? "Pending"
+        : "WTF USER ROLE";
+    if (result === "WTF USER ROLE") {
+      console.log("🚀Members.js:131 ~ ConvertRole", result);
+    }
+    return result;
+  };
+
+  const roleDetails = {
+    Owner: {
+      Title: "Owner",
+      ListBadge: (
+        <>
+          <div className="badge rounded-full border border-secondary text-secondary dark:border-secondary-light dark:text-secondary-light">
+            Owner
+          </div>
+        </>
+      ),
+      Actions: [],
+    },
+    Member: {
+      Title: "Member",
+      ListBadge: (
+        <>
+          <div className="badge rounded-full border border-primary text-primary dark:border-accent-light dark:text-accent-light">
+            Member
+          </div>
+        </>
+      ),
+      Actions: ["Kick"],
+    },
+    Pending: {
+      Title: "Pending",
+      ListBadge: (
+        <>
+          <div className="badge rounded-full border border-info text-info">
+            Pending
+          </div>
+        </>
+      ),
+      Actions: ["Accept", "Reject"],
+    },
+  };
+  const forceUpdate = useForceUpdate();
   return (
     <>
       <PageWrapper>
@@ -183,7 +334,8 @@ const Chat = () => {
               {localStorage.getItem("RoomTitle")}
             </div>
             <Header.Right>
-              <DarkModeToggle />
+              <Header.Right.DarkModeToggle />
+              <Header.Right.Notification />
             </Header.Right>
           </Header.Items>
         </Header>
@@ -210,10 +362,27 @@ const Chat = () => {
             <Sidebar.Secondary.Expanded>
               <Sidebar.Secondary.Expanded.Header>
                 <Sidebar.Secondary.Expanded.Header.Title>
-                  <Sidebar.Secondary.Expanded.Header.Title.Icon />
-                  <Sidebar.Secondary.Expanded.Header.Title.Text>
-                    Tabs
-                  </Sidebar.Secondary.Expanded.Header.Title.Text>
+                  <div class="avatar mr-3 hidden h-9 w-9 lg:flex">
+                    <div class="is-initial rounded-full bg-primary/10 text-primary dark:bg-accent-light/10 dark:text-accent-light">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <p class="text-lg font-medium tracking-wider text-slate-800 line-clamp-1 dark:text-navy-100">
+                    Chat
+                  </p>
                 </Sidebar.Secondary.Expanded.Header.Title>
                 <Sidebar.Secondary.Expanded.Header.MinimizeButton />
               </Sidebar.Secondary.Expanded.Header>
@@ -233,15 +402,77 @@ const Chat = () => {
               <Sidebar.Secondary.Expanded.Body.Middle.Items>
                 <Sidebar.Secondary.Expanded.Body.Middle.Items.AllLabelItems />
               </Sidebar.Secondary.Expanded.Body.Middle.Items> */}
+
+                <div class="is-scrollbar-hidden mt-3 flex grow flex-col overflow-y-auto">
+                  {users_Data?.data?.results
+                    ?.filter((item) => ConvertRole(item) !== "Pending")
+                    .map((user, idx) => (
+                      <div class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+                        <div class="avatar h-10 w-10">
+                          {!(
+                            user?.member?.picture_path &&
+                            user?.member?.picture_path != "" &&
+                            user?.member?.picture_path != "__"
+                          ) ? (
+                            <div
+                              className={classNames(
+                                "is-initial mask is-squircle  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light",
+                                "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
+                              )}
+                            >
+                              {user?.member?.first_name[0] +
+                                user?.member?.first_name[1]}
+                            </div>
+                          ) : (
+                            <img
+                              className={classNames(
+                                "mask is-squircle",
+                                "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80"
+                              )}
+                              src={user.member.picture_path}
+                              onError={() => {
+                                user.member.picture_path = "__";
+                                forceUpdate();
+                              }}
+                              alt="avatar"
+                            />
+                          )}
+                          {/* <div
+                        class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"
+                      ></div> */}
+                        </div>
+                        <div class="flex flex-1 flex-col">
+                          <div class="flex items-baseline justify-between space-x-1.5">
+                            <p class="text-xs+ font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
+                              {user.member.first_name}
+                            </p>
+                            <span class="text-tiny+ text-slate-400 dark:text-navy-300">
+                              {/* 11:03 */}
+                              <div className="badge rounded-full text-xs+">
+                                {roleDetails[ConvertRole(user)].ListBadge}
+                              </div>
+                            </span>
+                          </div>
+                          <div class="mt-1 flex items-center justify-between space-x-1">
+                            <p class="text-xs+ text-slate-400 line-clamp-1 dark:text-navy-300">
+                              {user.member.bio !== ""
+                                ? user.member.bio
+                                : "Just another happy guy! :)"}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                </div>
               </Sidebar.Secondary.Expanded.Body>
             </Sidebar.Secondary.Expanded>
-            <Sidebar.Secondary.Minimized>
+            {/* <Sidebar.Secondary.Minimized>
               <Sidebar.Secondary.Minimized.Header />
-              {/* <Sidebar.Secondary.Minimized.Body>
+              <Sidebar.Secondary.Minimized.Body>
               <Sidebar.Secondary.Minimized.Body.Middle />
               <Sidebar.Secondary.Minimized.Body.MoreActions />
-            </Sidebar.Secondary.Minimized.Body> */}
-            </Sidebar.Secondary.Minimized>
+            </Sidebar.Secondary.Minimized.Body>
+            </Sidebar.Secondary.Minimized> */}
           </Sidebar.Secondary>
         </Sidebar>
         <MainSection className="w-full">
@@ -249,42 +480,50 @@ const Chat = () => {
             className={"mt-0 flex flex-col"}
             style={{ height: "80vh", width: "107%" }}
           >
-            <div class="grow overflow-y-auto px-[calc(var(--margin-x)-.5rem)] py-5 transition-all duration-[.25s]">
+            <div className="grow overflow-y-auto px-[calc(var(--margin-x)-.5rem)] py-5 transition-all duration-[.25s]">
               <div className="space-y-2">
-                <div className="mx-4 flex items-center space-x-3">
-                  {/* <div className="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
-                  <p>Yesterday</p>
-                  <div className="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div> */}
-                </div>
-
-                {/* {data
-                  ? data.pages.map((e) =>
-                      e.map((repo, index) => (
-                        <li className=" ml-[50vw]" key={repo.index}>
-                          <p>
-                            <p>{repo.username}</p>
-                            <p>{repo.user_id}</p>
-                          </p>
-                          <p>{repo.message}</p>
-                          <br />
-                        </li>
-                      ))
-                    )
-                  : ""} */}
-
-                {AllMassages
-                  ? AllMassages.map((data, index) =>
-                      data.map((item, index) => (
+                {loading ? (
+                  <div className="mx-4 flex items-center space-x-3">
+                    <div className="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+                    <div className="spinner h-7 w-7 animate-spin rounded-full border-[3px] border-primary/30 border-r-primary dark:border-accent/30 dark:border-r-accent"></div>
+                    {/* <p>Yesterday</p> */}
+                    <div className="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+                  </div>
+                ) : (
+                  ""
+                )}
+                {/* content at the end */}
+                <div ref={divRef}>
+                  <div ref={ref}></div>
+                  {/* {console.log(chatMessages)} */}
+                  {chatMessages &&
+                    chatMessages.reverse().map((item, index) => {
+                      return (
                         <div key={index}>
                           {item.username != user.username ? (
                             <div className="flex items-start space-x-2.5 sm:space-x-5">
-                              <div className="avatar">
+                              <div className="avatar h-10 w-10 hover:z-10 relative mt-2">
+                                {PicsObject[item.username] &&
+                                PicsObject[item.username] !== "" &&
+                                PicsObject[item.username] !== "__" ? (
+                                  <img
+                                    className="rounded-full"
+                                    src={PicsObject[item.username]}
+                                    alt="avatar"
+                                  />
+                                ) : (
+                                  <div className="is-initial rounded-full bg-info text-xs+ uppercase text-white ">
+                                    {item.username[0] + item.username[1]}
+                                  </div>
+                                )}
+                              </div>
+                              {/* <div className="avatar">
                                 <img
                                   className="rounded-full"
                                   src={Avatar200x200}
                                   alt="avatar"
                                 />
-                              </div>
+                              </div> */}
                               <div className="flex flex-col items-start space-y-3.5">
                                 <div className="mr-4 max-w-lg sm:mr-10">
                                   <div className=" text-left text-md  text-slate-600 dark:text-navy-200">
@@ -300,7 +539,7 @@ const Chat = () => {
                                     <p> {item.message}</p>
                                   </div>
                                   <p className="mt-1 ml-auto text-right text-xs text-slate-400 dark:text-navy-300">
-                                    {item.time.split("T")[1].substring(0, 5)}
+                                    {item.time.slice(11, 16)}
                                   </p>
                                 </div>
                               </div>
@@ -319,35 +558,64 @@ const Chat = () => {
                                     <p>{item.message}</p>
                                   </div>
                                   <p className="mt-1 ml-4 max-w-lg sm:ml-10 text-left text-xs text-slate-400 dark:text-navy-300">
-                                    {item.time.split("T")[1].substring(0, 5)}
+                                    {item.time.slice(11, 16)}
                                   </p>
                                 </div>
                               </div>
-                              <div className="avatar">
+                              <div className="avatar h-10 w-10 hover:z-10 relative">
+                                {PicsObject[item.username] &&
+                                PicsObject[item.username] !== "" &&
+                                PicsObject[item.username] !== "__" ? (
+                                  <img
+                                    className="rounded-full"
+                                    src={PicsObject[item.username]}
+                                    alt="avatar"
+                                  />
+                                ) : (
+                                  <div className="is-initial rounded-full bg-info text-xs+ uppercase text-white ">
+                                    {item.username[0] + item.username[1]}
+                                  </div>
+                                )}
+                              </div>
+                              {/* <div className="avatar">
                                 <img
                                   className="rounded-full"
                                   src={Avatar200x200}
                                   alt="avatar"
                                 />
-                              </div>
+                              </div> */}
                             </div>
                           )}
                         </div>
-                      ))
-                    )
-                  : ""}
-
+                      );
+                    })}
+                </div>
                 {message.length != 0
                   ? message.map((item, index) => (
                       <div key={index}>
                         {item.username != user.username ? (
                           <div className="flex items-start space-x-2.5 sm:space-x-5">
-                            <div className="avatar">
+                            {/* <div className="avatar">
                               <img
                                 className="rounded-full"
                                 src={Avatar200x200}
                                 alt="avatar"
                               />
+                            </div> */}
+                            <div className="avatar h-10 w-10 hover:z-10 relative mt-2">
+                              {PicsObject[item.username] &&
+                              PicsObject[item.username] !== "" &&
+                              PicsObject[item.username] !== "__" ? (
+                                <img
+                                  className="rounded-full"
+                                  src={PicsObject[item.username]}
+                                  alt="avatar"
+                                />
+                              ) : (
+                                <div className="is-initial rounded-full bg-info text-xs+ uppercase text-white ">
+                                  {item.username[0] + item.username[1]}
+                                </div>
+                              )}
                             </div>
                             <div className="flex flex-col items-start space-y-3.5">
                               <div className="mr-4 max-w-lg sm:mr-10">
@@ -387,12 +655,27 @@ const Chat = () => {
                                 </p>
                               </div>
                             </div>
-                            <div className="avatar">
+                            {/* <div className="avatar">
                               <img
                                 className="rounded-full"
                                 src={Avatar200x200}
                                 alt="avatar"
                               />
+                            </div> */}
+                            <div className="avatar h-10 w-10 hover:z-10 relative">
+                              {PicsObject[item.username] &&
+                              PicsObject[item.username] !== "" &&
+                              PicsObject[item.username] !== "__" ? (
+                                <img
+                                  className="rounded-full"
+                                  src={PicsObject[item.username]}
+                                  alt="avatar"
+                                />
+                              ) : (
+                                <div className="is-initial rounded-full bg-info text-xs+ uppercase text-white ">
+                                  {item.username[0] + item.username[1]}
+                                </div>
+                              )}
                             </div>
                           </div>
                         )}
@@ -537,3 +820,87 @@ const Chat = () => {
 };
 
 export default Chat;
+
+{
+  /* {data
+                  ? data.pages.map((e) =>
+                      e.map((repo, index) => (
+                        <li className=" ml-[50vw]" key={repo.index}>
+                          <p>
+                            <p>{repo.username}</p>
+                            <p>{repo.user_id}</p>
+                          </p>
+                          <p>{repo.message}</p>
+                          <br />
+                        </li>
+                      ))
+                    )
+                  : ""} */
+}
+
+{
+  /* {AllMassages
+                  ? AllMassages.map((data, index) =>
+                      data.map((item, index) => (
+                        <div key={index}>
+                          {item.username != user.username ? (
+                            <div className="flex items-start space-x-2.5 sm:space-x-5">
+                              <div className="avatar">
+                                <img
+                                  className="rounded-full"
+                                  src={Avatar200x200}
+                                  alt="avatar"
+                                />
+                              </div>
+                              <div className="flex flex-col items-start space-y-3.5">
+                                <div className="mr-4 max-w-lg sm:mr-10">
+                                  <div className=" text-left text-md  text-slate-600 dark:text-navy-200">
+                                    {item.username}:
+                                  </div>
+                                  <div
+                                    style={{
+                                      whiteSpace: "initial",
+                                      wordWrap: "break-word",
+                                    }}
+                                    className="rounded-2xl text-left rounded-tl-none bg-slate-200 p-2 text-slate-900 shadow-sm dark:bg-navy-700 dark:text-navy-50"
+                                  >
+                                    <p> {item.message}</p>
+                                  </div>
+                                  <p className="mt-1 ml-auto text-right text-xs text-slate-400 dark:text-navy-300">
+                                    {item.time.split("T")[1].substring(0, 5)}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="flex items-start justify-end space-x-2.5 sm:space-x-5">
+                              <div className="flex flex-col items-end space-y-3.5">
+                                <div className="ml-4 max-w-lg sm:ml-10">
+                                  <div
+                                    style={{
+                                      whiteSpace: "initial",
+                                      wordWrap: "break-word",
+                                    }}
+                                    className=" text-ellipsis rounded-2xl text-left rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white"
+                                  >
+                                    <p>{item.message}</p>
+                                  </div>
+                                  <p className="mt-1 ml-4 max-w-lg sm:ml-10 text-left text-xs text-slate-400 dark:text-navy-300">
+                                    {item.time.split("T")[1].substring(0, 5)}
+                                  </p>
+                                </div>
+                              </div>
+                              <div className="avatar">
+                                <img
+                                  className="rounded-full"
+                                  src={Avatar200x200}
+                                  alt="avatar"
+                                />
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))
+                    )
+                  : ""} */
+}

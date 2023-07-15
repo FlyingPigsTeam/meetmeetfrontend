@@ -1,5 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams, useLocation, NavLink } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useLocation,
+  NavLink,
+} from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../context/AuthContext";
 import AddRoom from "../pages/Room/AddRoom";
@@ -11,6 +17,7 @@ import { ClosingSidebar, OpeningSidebar } from "../Redux/Action";
 
 import PopOver from "./PopOver";
 import PopOverContext from "../context/PopOverContext";
+import { useClickOutside, useForceUpdate, useLogger } from "@mantine/hooks";
 // TODO : ACTIVE SELECTION
 // TODO : HOVER COLORIZE
 // TODO : HOME BUTTON SHAPE CHANGES ON OVERFLOW ROOMS
@@ -23,7 +30,6 @@ export default function Sidebar({ classes, children, ...restProps }) {
     document.body.classList.contains("is-sidebar-open") &&
       document.body.classList.remove("is-sidebar-open");
   }, [location]);
-
   return <div className="sidebar print:hidden">{children}</div>;
 }
 
@@ -39,7 +45,7 @@ Sidebar.Primary = function PrimarySidebar({ classes, children, ...restProps }) {
 Sidebar.Primary.Logo = function SidebarLogo() {
   return (
     <div className="flex pt-4">
-      <Link to={"/"}>
+      <Link to={"/home"}>
         <img
           className="h-11 w-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
           src={AppLogo}
@@ -69,9 +75,9 @@ Sidebar.Primary.Middle.Home = function PrimarySidebar({
 }) {
   return (
     <Link
-      to={"/"}
+      to={"/home"}
       className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-    // x-tooltip.placement.right="'Dashboards'"
+      // x-tooltip.placement.right="'Dashboards'"
     >
       <svg
         className="h-7 w-7"
@@ -111,7 +117,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="#"
         className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-      // x-tooltip.placement.right="'Dashboards'"
+        // x-tooltip.placement.right="'Dashboards'"
       >
         <svg
           className="h-7 w-7"
@@ -143,7 +149,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="apps-list.html"
         className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
-      // x-tooltip.placement.right="'Applications'"
+        // x-tooltip.placement.right="'Applications'"
       >
         <svg
           className="h-7 w-7"
@@ -175,7 +181,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="pages-card-user-1.html"
         className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-      // x-tooltip.placement.right="'Pages & Layouts'"
+        // x-tooltip.placement.right="'Pages & Layouts'"
       >
         <svg
           className="h-7 w-7"
@@ -209,7 +215,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="form-input-text.html"
         className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-      // x-tooltip.placement.right="'Forms'"
+        // x-tooltip.placement.right="'Forms'"
       >
         <svg
           className="h-7 w-7"
@@ -238,7 +244,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="components-accordion.html"
         className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-      // x-tooltip.placement.right="'Components'"
+        // x-tooltip.placement.right="'Components'"
       >
         <svg
           className="h-7 w-7"
@@ -267,7 +273,7 @@ Sidebar.Primary.Middle.LaterThings = function PrimarySidebarLaterThings({
       <a
         href="elements-avatar.html"
         className="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-      // x-tooltip.placement.right="'Elements'"
+        // x-tooltip.placement.right="'Elements'"
       >
         <svg
           className="h-7 w-7"
@@ -359,8 +365,8 @@ Sidebar.Primary.Middle.Rooms.LoadItems = function LoaderRoomsItems({
   }, []);
   return (
     <>
-      {myrooms?.map((item) => (
-        <Sidebar.Primary.Middle.Rooms.Item item={item} />
+      {myrooms?.map((item, index) => (
+        <Sidebar.Primary.Middle.Rooms.Item item={item} key={index} />
       ))}
     </>
   );
@@ -371,41 +377,79 @@ Sidebar.Primary.Middle.Rooms.Item = function PrimaryRoomsItems({
   children,
   ...restProps
 }) {
+  const forceUpdate = useForceUpdate();
   return (
     <>
-
       <div
         // @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/200x200.png',name:'Konnor Guzman'})"
         className="flex cursor-pointer items-center justify-center py-2.5 "
       >
-        <NavLink
-          to={`/room/${item.id}`}
-        >
+        <NavLink to={`/room/${item.id}`}>
           {({ isActive, isPending }) => (
-            <div
-              className="avatar h-10 w-10"
-            >
-
-
-              <img
-
-                className={classNames(
-                  "rounded-full",
-                  "hover:border-primary hover:border-2  hover:shadow-soft",
-                  "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
-                  isActive && "border-info border-2 shadow-soft shadow-info-focus/40"
-                )}
-                src={
-                  item.main_picture_path === "" || item.main_picture_path === "__"
-                    ? Avatar200x200
-                    : item.main_picture_path
+            <div className="avatar h-10 w-10">
+              <React.Suspense
+                fallback={
+                  <Sidebar.Primary.Middle.Rooms.ItemSuspence
+                    item={item}
+                    isActive={isActive}
+                  />
                 }
-                alt="avatar"
-              />
+                error={
+                  <Sidebar.Primary.Middle.Rooms.ItemSuspence
+                    item={item}
+                    isActive={isActive}
+                  />
+                }
+              >
+                {item.main_picture_path === "" ||
+                item.main_picture_path === "__" ? (
+                  <Sidebar.Primary.Middle.Rooms.ItemSuspence
+                    item={item}
+                    isActive={isActive}
+                  />
+                ) : (
+                  <img
+                    className={classNames(
+                      "rounded-full",
+                      isActive && "border-primary border-2  shadow-soft",
+                      "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
+                      "hover:border-info hover:border-2 hover:shadow-soft hover:shadow-info-focus/40"
+                    )}
+                    src={item.main_picture_path}
+                    onError={() => {
+                      item.main_picture_path = "__";
+                      forceUpdate();
+                    }}
+                    alt="avatar"
+                  />
+                )}
+              </React.Suspense>
             </div>
           )}
         </NavLink>
-      </div >
+      </div>
+    </>
+  );
+};
+Sidebar.Primary.Middle.Rooms.ItemSuspence = function PrimaryRoomsItemsSus({
+  classes,
+  item,
+  isActive,
+  children,
+  ...restProps
+}) {
+  // console.log("ITEM",item);
+  return (
+    <>
+      <div
+        className={classNames(
+          "is-initial rounded-full  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light",
+          isActive && "border-4 border-primary/30 dark:border-accent-light/30",
+          "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
+        )}
+      >
+        {item?.title[0]}
+      </div>
     </>
   );
 };
@@ -545,15 +589,15 @@ Sidebar.Primary.Bottom.Settings = function SidebarSettings() {
 //         >
 //             <svg
 //                 xmlns="http://www.w3.org/2000/svg"
-//                 class="h-7 w-7"
+//                 className="h-7 w-7"
 //                 fill="none"
 //                 viewBox="0 0 24 24"
 //                 stroke="currentColor"
 //             >
 //                 <path
-//                     stroke-linecap="round"
-//                     stroke-linejoin="round"
-//                     stroke-width="1.5"
+//                     strokeLinecap="round"
+//                     strokeLinejoin="round"
+//                     strokeWidth="1.5"
 //                     d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
 //                 ></path>
 //             </svg>
@@ -568,10 +612,12 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
   let authTokens = useContext(AuthContext).authTokens;
   const toggle = () => {
     setShow((cur) => !cur);
-    console.log(show);
+
+    // console.log(show);
   };
 
   const [data, setData] = useState({});
+  const [LoadPic, setLoadPic] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -579,7 +625,7 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
         .get("/api/profile")
         .then((response) => response);
       setData(data);
-      console.log("man", data.first_name);
+      console.log("man", data.usertype);
     } catch (error) {
       console.error(error);
     }
@@ -587,6 +633,9 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
   useEffect(() => {
     fetchData();
   }, []);
+  const profile_box = useClickOutside(() => setShow(false));
+  const forceUpdate = useForceUpdate();
+  // console.log("DATAAAA",data)
   return (
     <>
       <PopOver
@@ -609,21 +658,54 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
               <button
                 onClick={toggle}
                 ref={setReferenceElement}
-                class="avatar h-12 w-12 mt-[30%]"
+                className="avatar h-12 w-12 mt-[30%]"
               >
-                <img
+                {/* <img
                   className="rounded-full"
                   src={
                     data.picture_path &&
-                      data.picture_path != "" &&
-                      data.picture_path != "__"
+                    data.picture_path != "" &&
+                    data.picture_path != "__"
                       ? data.picture_path
                       : Avatar200x200
                   }
                   alt="avatar"
-                />
+                /> */}
 
-                <span class="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
+                {!(
+                  data.picture_path &&
+                  data.picture_path != "" &&
+                  data.picture_path != "__"
+                ) ? (
+                  <div
+                    className={classNames(
+                      "is-initial rounded-full  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light",
+                      "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
+                    )}
+                  >
+                    {data?.first_name &&
+                      data?.first_name[0] + data?.last_name[0]}
+                  </div>
+                ) : (
+                  <img
+                    className={classNames(
+                      "rounded-full",
+                      "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
+                      "hover:border-info hover:border-2 hover:shadow-soft hover:shadow-info-focus/40"
+                    )}
+                    onLoad={() => {
+                      forceUpdate();
+                    }}
+                    src={data.picture_path}
+                    onError={() => {
+                      data.picture_path = "__";
+                      forceUpdate();
+                    }}
+                    alt="avatar"
+                  />
+                )}
+
+                <span className="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
               </button>
               {/* <button
                                     // @click="isShowPopper = !isShowPopper"
@@ -647,82 +729,103 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                 style={styles.popper}
                 {...attributes.popper}
               >
-                <div class="popper-box w-64 rounded-lg border text-left border-slate-150 bg-white shadow-soft dark:border-navy-600 dark:bg-navy-700">
-                  <div class="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
-                    <div class="avatar h-14 w-14">
-                      <img
-                        className="rounded-full"
-                        src={
-                          data.picture_path &&
-                            data.picture_path != "" &&
-                            data.picture_path != "__"
-                            ? data.picture_path
-                            : Avatar200x200
-                        }
-                        alt="avatar"
-                      />
+                <div
+                  ref={profile_box}
+                  className="popper-box w-64 rounded-lg border text-left border-slate-150 bg-white shadow-soft dark:border-navy-600 dark:bg-navy-700"
+                >
+                  <div className="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
+                    <div className="avatar h-14 w-14">
+                      {!(
+                        data.picture_path &&
+                        data.picture_path != "" &&
+                        data.picture_path != "__"
+                      ) ? (
+                        <div
+                          className={classNames(
+                            "is-initial rounded-full  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light",
+                            "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
+                          )}
+                        >
+                          {data?.first_name &&
+                            data?.first_name[0] + data?.last_name[0]}
+                        </div>
+                      ) : (
+                        <img
+                          className={classNames(
+                            "rounded-full",
+                            "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
+                            "hover:border-info hover:border-2 hover:shadow-soft hover:shadow-info-focus/40"
+                          )}
+                          src={data.picture_path}
+                          onError={() => {
+                            data.picture_path = "__";
+                            forceUpdate();
+                          }}
+                          alt="avatar"
+                        />
+                      )}
                     </div>
                     <div>
                       <a
                         href="#"
-                        class="text-base font-medium text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light"
+                        className="text-base font-medium text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light"
                       >
                         {data.first_name} {data.last_name}
                       </a>
-                      <p class="text-xs text-slate-400 dark:text-navy-300">
+                      <p className="text-xs text-slate-400 dark:text-navy-300">
                         {data.bio}
                       </p>
                     </div>
                   </div>
-                  <div class="flex flex-col pt-2 pb-5">
-                    <a
-                      href="http://localhost:3000/profile"
-                      class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                  <div className="flex flex-col pt-2 pb-5">
+                    <Link
+                      to={"/profile"}
+                      className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                     >
-                      <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-warning text-white">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-warning text-white">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-4.5 w-4.5"
+                          className="h-4.5 w-4.5"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
-                          stroke-width="2"
+                          strokeWidth="2"
                         >
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                           />
                         </svg>
                       </div>
 
                       <div>
-                        <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                        <h2 className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                           Profile
                         </h2>
-                        <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                        <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
                           Your profile setting
                         </div>
                       </div>
-                    </a>
+                    </Link>
                     {/* <a
                                                 href="#"
-                                                class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                                                className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                                             >
                                                 <div
-                                                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-info text-white"
+                                                    className="flex h-8 w-8 items-center justify-center rounded-lg bg-info text-white"
                                                 >
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
-                                                        class="h-4.5 w-4.5"
+                                                        className="h-4.5 w-4.5"
                                                         fill="none"
                                                         viewBox="0 0 24 24"
                                                         stroke="currentColor"
-                                                        stroke-width="2"
+                                                        strokeWidth="2"
                                                     >
                                                         <path
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
                                                             d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                                                         />
                                                     </svg>
@@ -730,65 +833,101 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
 
                                                 <div>
                                                     <h2
-                                                        class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
+                                                        className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
                                                     >
                                                         Messages
                                                     </h2>
                                                     <div
-                                                        class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
+                                                        className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
                                                     >
                                                         Your messages and tasks
                                                     </div>
                                                 </div>
                                             </a>*/}
-                    <Link
-                      to={"/subscribtion"}
-                      class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
-                    >
-                      <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary text-white">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth="1.5"
-                          stroke="currentColor"
-                          className="w-4 h-4"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
-                          />
-                        </svg>
-                      </div>
 
-                      <div>
-                        <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
-                          Premium
-                        </h2>
-                        <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
-                          Your team activity
+                    {data.usertype == 1 ? (
+                      <>
+                        <Link
+                          to={"/subscribtion"}
+                          className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                        >
+                          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary text-white">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth="1.5"
+                              stroke="currentColor"
+                              className="w-4 h-4"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
+                              />
+                            </svg>
+                          </div>
+
+                          <div>
+                            <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                              Premium
+                            </h2>
+                            <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                              Your team activity
+                            </div>
+                          </div>
+                        </Link>
+                      </>
+                    ) : (
+                      <Link
+                        to={"/subscribtion"}
+                        className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                      >
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-info text-white">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-6 h-6"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"
+                            />
+                          </svg>
                         </div>
-                      </div>
-                    </Link>
+
+                        <div>
+                          <h2 class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                            Pricing Page
+                          </h2>
+                          <div className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
+                            Your team activity
+                          </div>
+                        </div>
+                      </Link>
+                    )}
                     {/* <a
                                                 href="#"
-                                                class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                                                className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                                             >
                                                 <div
-                                                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-error text-white"
+                                                    className="flex h-8 w-8 items-center justify-center rounded-lg bg-error text-white"
                                                 >
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
-                                                        class="h-4.5 w-4.5"
+                                                        className="h-4.5 w-4.5"
                                                         fill="none"
                                                         viewBox="0 0 24 24"
                                                         stroke="currentColor"
-                                                        stroke-width="2"
+                                                        strokeWidth="2"
                                                     >
                                                         <path
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
                                                             d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                                                         />
                                                     </svg>
@@ -796,12 +935,12 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
 
                                                 <div>
                                                     <h2
-                                                        class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
+                                                        className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
                                                     >
                                                         Activity
                                                     </h2>
                                                     <div
-                                                        class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
+                                                        className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
                                                     >
                                                         Your activity and events
                                                     </div>
@@ -809,27 +948,27 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
                                             </a> */}
                     {/* <a
                                                 href="http://localhost:3000/profileEdit"
-                                                class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
+                                                className="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                                             >
                                                 <div
-                                                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-success text-white"
+                                                    className="flex h-8 w-8 items-center justify-center rounded-lg bg-success text-white"
                                                 >
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
-                                                        class="h-4.5 w-4.5"
+                                                        className="h-4.5 w-4.5"
                                                         fill="none"
                                                         viewBox="0 0 24 24"
                                                         stroke="currentColor"
-                                                        stroke-width="2"
+                                                        strokeWidth="2"
                                                     >
                                                         <path
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
                                                             d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
                                                         />
                                                         <path
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
                                                             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                                                         />
                                                     </svg>
@@ -837,33 +976,33 @@ Sidebar.Primary.Bottom.Profile = function SidebarProfile() {
 
                                                 <div>
                                                     <h2
-                                                        class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
+                                                        className="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
                                                     >
                                                         Settings
                                                     </h2>
                                                     <div
-                                                        class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
+                                                        className="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
                                                     >
                                                         Webapp settings
                                                     </div>
                                                 </div>
                                             </a> */}
-                    <div class="mt-3 px-4">
+                    <div className="mt-3 px-4">
                       <button
                         onClick={logoutUser}
-                        class="btn h-9 w-full space-x-2 bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+                        className="btn h-9 w-full space-x-2 bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5"
+                          className="h-5 w-5"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
                         >
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="1.5"
                             d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                           />
                         </svg>
@@ -1401,8 +1540,8 @@ Sidebar.Secondary.Expanded.Body.Middle.SectionHeader = function ({
   return (
     <>
       <div className="flex items-center justify-between px-4">
-        <span className="text-xs font-medium uppercase">Labels</span>
-        <div className="-mr-1.5 flex">
+        <span className="text-xs font-medium uppercase">Priority</span>
+        {/* <div className="-mr-1.5 flex">
           <button className="btn h-6 w-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -1449,7 +1588,7 @@ Sidebar.Secondary.Expanded.Body.Middle.SectionHeader = function ({
             <div
               x-ref="popperRoot"
               className="popper-root"
-            // :className="isShowPopper && 'show'"
+              // :className="isShowPopper && 'show'"
             >
               <div className="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
                 <ul>
@@ -1492,7 +1631,7 @@ Sidebar.Secondary.Expanded.Body.Middle.SectionHeader = function ({
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
@@ -1930,7 +2069,7 @@ Sidebar.Secondary.Minimized.Body.MoreActions = function ({
           <div
             x-ref="popperRoot"
             className="popper-root"
-          // :className="isShowPopper && 'show'"
+            // :className="isShowPopper && 'show'"
           >
             <div className="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
               <ul>

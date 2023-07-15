@@ -30,61 +30,62 @@ import Search from "../pages/Room/Task/Search";
 import InfiniteQuery from "../pages/Chat/InfiniteQuery";
 import LandingPage from "../pages/Landing/LandingPage";
 import Subscribtion from "../pages/Subscribtion/Subscribtion";
+import Chatroom from "../pages/Room/Chat/Chatroom";
 import ActiveRedirect from "./ActiveRedirect";
 import PopOverTest from "../pages/Tests/PopOverTest";
+import { NotifProvider } from "../context/NotifContext";
 
 const Router = () => {
   return (
     <div>
       <AuthProvider>
-        <AxiosGlobalConfig />
-        {/* <Header /> */}
-        <Routes>
-          <Route path="/landing" element={<LandingPage />} />
-          <Route element={<PrivateRoute />}>
-            {/* <Route element={<Home />} path="/" /> */}
-            <Route path="/" element={<Homepage />} />
-          </Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/email-verify" element={<VerifyEmail />} />
-          <Route path="/forgetpassword" element={<ForgetPassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
+        <NotifProvider>
+          <AxiosGlobalConfig />
+          {/* <Header /> */}
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route element={<PrivateRoute />}>
+              {/* <Route element={<Home />} path="/" /> */}
+              <Route path="/home" element={<Homepage />} />
+              <Route path="/joinRoom/:randomId" element={<JoinRoom />} />
+              <Route path="/room/:idroom" element={<ActiveRedirect />} />
+              <Route path="/room/:idroom/info" element={<InfoTab />} />
+              <Route
+                path="/room/:idroom/info/edit"
+                element={<InformationForm Title="Edit" />}
+              />
+              <Route path="/room/:idroom/task" element={<Task />} />
+              <Route path="/room/:idroom/chat" element={<Chat />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/EditProfile" element={<EditProfile />} />
+              <Route path="/profileEdit" element={<Setting />} />
+            </Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/email-verify" element={<VerifyEmail />} />
+            <Route path="/forgetpassword" element={<ForgetPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
 
-          <Route path="/email-verify" element={<VerifyEmail />} />
-          <Route path="/change-password" element={<ChangePassword />} />
-          <Route path="/EditProfile" element={<EditProfile />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profileEdit" element={<Setting />} />
-          <Route path="/subscribtion" element={<Subscribtion />} />
-          {/* <Route path="/room/info" element={<InfoTab />} /> */}
-          <Route path="/room/:idroom" element={<ActiveRedirect/>} />
+            <Route path="/email-verify" element={<VerifyEmail />} />
+            <Route path="/change-password" element={<ChangePassword />} />
 
-          <Route path="/room/:idroom/info" element={<InfoTab />} />
-          <Route
-            path="/room/:idroom/info/edit"
-            element={<InformationForm Title="Edit" />}
-          />
-          <Route path="/room/:idroom/task" element={<Task />} />
-          <Route path="/room/:idroom/chat" element={<Chat />} />
-          <Route path="/joinRoom/:randomId" element={<JoinRoom />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route
-            path="/room/:idroom/info/edit"
-            element={<InformationForm Title="Edit" />}
-          />
-          <Route path="/panel" element={<PanelMain />} />
-          <Route path="/panel2" element={<Paneltest />} />
-          <Route path="/chat" element={<Chat_test />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/reactquery" element={<InfiniteQuery />} />
-          <Route path="/poper" element={<PopOverTest />} />
+            <Route path="/subscribtion" element={<Subscribtion />} />
+            {/* <Route path="/room/info" element={<InfoTab />} /> */}
 
+            <Route path="/panel" element={<PanelMain />} />
+            <Route path="/panel2" element={<Paneltest />} />
+            <Route path="/chat" element={<Chat_test />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/room/:idroom/chatroom" element={<Chatroom />} />
 
-          {/* <Routes>
+            <Route path="/reactquery" element={<InfiniteQuery />} />
+            <Route path="/poper" element={<PopOverTest />} />
+
+            {/* <Routes>
               <Route path="/" element={<Homepage />} />
             </Routes> */}
-        </Routes>
+          </Routes>
+        </NotifProvider>
       </AuthProvider>
     </div>
   );

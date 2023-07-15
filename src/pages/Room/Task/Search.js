@@ -3,36 +3,36 @@ import React from "react";
 const Search = () => {
   return (
     <div>
-      <main class="main-content todo-app w-full px-[var(--margin-x)] pb-8">
+      <main className="main-content todo-app w-full px-[var(--margin-x)] pb-8">
         <div
-          class="py-5"
+          className="py-5"
           x-data="{isSearchbarActive:false}"
           x-effect="$store.breakpoints.smAndUp && (isSearchbarActive = false)"
         >
           <div
             x-show="!isSearchbarActive"
-            class="flex items-center justify-between"
+            className="flex items-center justify-between"
           >
             <div>
-              <div class="flex space-x-2">
-                <p class="text-xl font-medium text-slate-800 dark:text-navy-50">
+              <div className="flex space-x-2">
+                <p className="text-xl font-medium text-slate-800 dark:text-navy-50">
                   My Day
                 </p>
 
               </div>
-              <p class="mt-1 text-xs">Sunday, Sep. 14</p>
+              <p className="mt-1 text-xs">Sunday, Sep. 14</p>
             </div>
-            <div class="flex items-center space-x-2">
-              <label class="relative hidden sm:flex">
+            <div className="flex items-center space-x-2">
+              <label className="relative hidden sm:flex">
                 <input
-                  class="form-input peer h-9 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                  className="form-input peer h-9 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                   placeholder="Search todos..."
                   type="text"
                 />
-                <span class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                <span className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-4.5 w-4.5 transition-colors duration-200"
+                    className="h-4.5 w-4.5 transition-colors duration-200"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >

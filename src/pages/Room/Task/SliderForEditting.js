@@ -15,41 +15,63 @@ export default function SliderForEditting({
   seteditChanges,
 }) {
   const [listUser, setUser] = useState([]);
-  const [title, settitle] = useState();
-  const [description, setdescription] = useState();
-  const [selectedDifficulty, setSelectedDifficulty] = useState();
+  const [mydata, setmydata] = useState([]);
+  const [title, settitle] = useState("");
+  const [description, setdescription] = useState("");
+  const [loading, setloading] = useState(true);
+  const [selectedDifficulty, setSelectedDifficulty] = useState("");
   function handleDifficultyChange(event) {
     setSelectedDifficulty(event.target.value);
   }
+  const handleTitleChange = (event) => {
+    settitle(event.target.value);
+  };
+
+  const handleDescriptionChange = (event) => {
+    setdescription(event.target.value);
+  };
+
   let authTokens = useContext(AuthContext).authTokens;
   const reqForGettingTask = async () => {
-    const { data } = await axios
-      .get(
-        `/api/my-rooms/${roomId}/tasks?task_id=${taskId}`
-      )
-      .then((response) => response);
-    settitle(data.title);
-    setdescription(data.description);
-    setSelectedDifficulty(data.priority);
-    console.log('member',data.user);
+    if (taskId) {
+      const { data } = await axios
+        .get(`/api/my-rooms/${roomId}/tasks?task_id=${taskId}`)
+        .then((response) => response);
+      settitle(data.title);
+      setdescription(data.description);
+      setSelectedDifficulty(data.priority);
+      //console.log("member", data.user);
+      setUser(data.user.map((member) => member.id));
+      setmydata(data.user);
+      setloading(false);
+    }
   };
   useEffect(() => {
+    setloading(true);
     reqForGettingTask();
   }, [slideover]);
 
   const [editStatus, seteditStatus] = useState([]);
   const reqForEditing = async () => {
+    //console.log("listuser", listUser);
+    // console.log(
+    //   "put request ",
+    //   JSON.stringify({
+    //     title: title,
+    //     priority: selectedDifficulty,
+    //     description: description,
+    //     user: listUser,
+    //     room: roomId,
+    //   })
+    // );
     const { data } = await axios
-      .put(
-        `/api/my-rooms/${roomId}/tasks?task_id=${taskId}`,
-        {
-          title: title,
-          priority: selectedDifficulty,
-          description: description,
-          user: listUser,
-          room: roomId,
-        }
-      )
+      .put(`/api/my-rooms/${roomId}/tasks?task_id=${taskId}`, {
+        title: title,
+        priority: selectedDifficulty,
+        description: description,
+        user: listUser,
+        room: roomId,
+      })
       .then((response) => response);
     seteditStatus(data);
     seteditChanges((e) => e + 1);
@@ -110,6 +132,7 @@ export default function SliderForEditting({
                         </div>
                       </div>
                     </div>
+
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
                       <div className="absolute inset-0 px-4 sm:px-6">
                         <div
@@ -117,21 +140,23 @@ export default function SliderForEditting({
                           aria-hidden="true"
                         />
                       </div>
-                      <div className="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto p-4">
+                      <div className=" h-[60vh] flex grow flex-col space-y-4  p-4">
                         <label className="block">
                           <span className=" dark:text-navy-50">Task Title</span>
                           <input
                             value={title}
-                            onChange={(e) => settitle(e.target.value)}
+                            onChange={(e) => handleTitleChange(e)}
                             className="form-input mt-1.5 h-9 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
                             placeholder="Enter todo title"
                             type="text"
                           />
                         </label>
                         <label className="block">
-                          <span className=" dark:text-navy-50">Task Description</span>
+                          <span className=" dark:text-navy-50">
+                            Task Description
+                          </span>
                           <textarea
-                            onChange={(e) => setdescription(e.target.value)}
+                            onChange={(e) => handleDescriptionChange(e)}
                             value={description}
                             className="form-input mt-1.5 h-24 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
                             placeholder="Enter todo title"
@@ -147,16 +172,29 @@ export default function SliderForEditting({
                             value={selectedDifficulty}
                             onChange={handleDifficultyChange}
                             placeholder="Select difficulty of the task"
-                          //autoComplete="off"
+                            //autoComplete="off"
                           >
                             <option value="3">Low</option>
                             <option value="2">Medium</option>
                             <option value="1">Hard</option>
                           </select>
                         </label>
-                        <label className="block z-40">
+                        {/* <label className="block z-50">
                           <span className=" dark:text-navy-50">Assigned To:</span>
-                          <div className="card mt-3 p-4"><AutoComplete setmember={setUser}/></div>
+                          <div className="dark:bg-navy-500 card mt-30 p-4 grow"><AutoComplete setmember={setUser}/></div> */}
+
+                        <label className="block z-40">
+                          <span className=" dark:text-navy-50">
+                            Assigned To:
+                          </span>
+                          <div className="mt-3">
+                            {!loading && (
+                              <AutoComplete
+                                assignedmember={mydata}
+                                setmember={setUser}
+                              />
+                            )}
+                          </div>
                           {/* <select
                             //x-init="$el._x_tom = new Tom($el)"
                             className="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 dark:placeholder:text-navy-100 hover:border-slate-400 focus:border-primary dark:border-navy-200 dark:hover:border-navy-100 dark:focus:border-accent"
@@ -170,13 +208,13 @@ export default function SliderForEditting({
                           </select> */}
                         </label>
                       </div>
-                      <div className="flex items-center justify-between mt-20 xl:mt-52 py-3 px-4">
+                      <div className="flex items-center justify-between fixed md:w-[83%] w-[90%] bottom-6 py-3 px-4">
                         <button
-                          onClick={() => {
-                            reqForEditing();
+                          onClick={async () => {
+                            await reqForEditing();
                             setslideover(false);
                           }}
-                          className=" z-20 grid h-10 w-full items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm bg-primary text-slate-100 hover:opacity-80 dark:text-navy-50 duration-300"
+                          className="z-20 grid h-10 w-full items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm bg-primary text-slate-100 hover:opacity-80 dark:text-navy-50 duration-300"
                         >
                           Save
                         </button>

@@ -92,19 +92,44 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
       name: "Category",
       options: [
         {
-          value: "sport",
-          label: "sport",
-          checked: category.includes("sport") ? true : false,
+          value: "Adventure",
+          label: "Adventure",
+          checked: category.includes("Adventure") ? true : false,
         },
         {
-          value: "cinema",
-          label: "cinema",
-          checked: category.includes("cinema") ? true : false,
+          value: "Cinema",
+          label: "Cinema",
+          checked: category.includes("Cinema") ? true : false,
         },
         {
-          value: "religion",
-          label: "religion",
-          checked: category.includes("religion") ? true : false,
+          value: "Musical",
+          label: "Musical",
+          checked: category.includes("Musical") ? true : false,
+        },
+        {
+          value: "Study",
+          label: "Study",
+          checked: category.includes("Study") ? true : false,
+        },
+        {
+          value: "Gaming",
+          label:"Gaming",
+          checked: category.includes("Gaming") ? true : false,
+        },
+        {
+          value: "Art",
+          label:"Art",
+          checked: category.includes("Art") ? true : false,
+        },
+        {
+          value: "Work",
+          label:"Work",
+          checked: category.includes("Work") ? true : false,
+        },
+        {
+          value: "Sport",
+          label:"Sport",
+          checked: category.includes("Sport") ? true : false,
         },
       ],
     },
@@ -207,11 +232,11 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
   return (
     <div>
       <div className="">
-        <div class="flex flex-row-reverse xl:mr-14 md:mr-6 lg:mr-24 -mr-10">
+        <div className="flex flex-row-reverse xl:mr-14 md:mr-6 lg:mr-24 -mr-10">
           {toggle && (
             <form onSubmit={handleSubmit}>
-              <div class="flex items-center gap-2">
-                <label class="block">
+              <div className="flex items-center gap-2">
+                <label className="block">
                   <input
                     className="rounded-md mb-7 py-2 text-sm block w-full placeholder-slate-700 focus:ring-slate-600 focus:border-slate-600 bg-slate-300 dark:bg-navy-500 dark:placeholder-navy-100 dark:focus:ring-navy-100 dark:focus:border-navy-100 cursor-pointer"
                     placeholder="Search here..."
@@ -229,15 +254,15 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-4.5 w-4.5"
+                    className="h-4.5 w-4.5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
                       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     />
                   </svg>
@@ -254,14 +279,14 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-4.5 w-4.5"
+              className="h-4.5 w-4.5"
               fill="none"
               viewBox="0 0 24 24"
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeWidth="2"
                 d="M18 11.5H6M21 4H3m6 15h6"
               />
             </svg>
@@ -270,9 +295,9 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
         {/* Filters */}
         {toggle && (
           <section aria-labelledby="filter-heading">
-            <div class=" py-5">
-              <div class="grid grid-cols-1 gap-1 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3  md:grid-cols-2 sm:gap-5 lg:gap-3 xl:gap-17">
-                <div class="flex">
+            <div className=" py-5">
+              <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3  md:grid-cols-2 sm:gap-5 lg:gap-3 xl:gap-17">
+                <div className="flex">
                   <label className="inline text-1xl mt-2 font-medium text-slate-700 dark:text-navy-100">
                     Duration:
                   </label>
@@ -295,7 +320,7 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
                     />
                   </div>
                 </div>
-                <div class="flex">
+                <div className="flex">
                   <span className=" py-2 ml-7 text-1xl font-medium text-slate-700 dark:text-navy-100">
                     to
                   </span>
@@ -318,7 +343,7 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
                     />
                   </div>
                 </div>
-                <div class="flex xl:mx-8">
+                <div className="flex xl:mx-8">
                   <label className="inline text-1xl mt-2 font-medium text-slate-700 dark:text-navy-100">
                     Category:
                   </label>
@@ -378,7 +403,7 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
                     </Popover.Group>
                   </div>
                 </div>
-                {/* <div class="">
+                {/* <div className="">
                   <span className="relative mt-1.5 flex">
                   <Flatpickr
                     ref={calref}
@@ -475,13 +500,13 @@ export default function Filters({ paramsFilter, setparamsFilter }) {
                   </svg>
                 </span>
                 </span> */}
-                <div class="flex ">
+                <div className="flex ">
                   <label className="inline text-1xl mt-2 font-medium text-slate-700 dark:text-navy-100">
                     Capacity:
                   </label>
                   <select
                     className="inline rounded-md  px-7 text-1xl mb-7 ml-2  font-bold hover:font-bold w-40  text-base focus:outline-none sm:text-sm text-slate-700 focus:ring-slate-600 focus:border-slate-600 bg-slate-300 dark:bg-navy-500 dark:text-navy-100 dark:focus:ring-navy-100 dark:focus:border-navy-100 cursor-pointer"
-                    defaultValue="None"
+                    // defaultValue="None"
                     value={capacity}
                     onChange={(e) => setcapacity(e.target.value)}
                   >

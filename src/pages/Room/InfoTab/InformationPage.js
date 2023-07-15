@@ -7,15 +7,17 @@ import Moment from "react-moment";
 import AuthContext from "../../../context/AuthContext";
 import Avatar200x200 from "../../../assets/images/200x200.png";
 import { useParams, useNavigate } from "react-router-dom";
-import { useClipboard } from "@mantine/hooks";
+import { useClipboard, useForceUpdate } from "@mantine/hooks";
 import Swal from "sweetalert2";
+import classNames from "../../../utils/classNames";
+import CopyToClipboard from "react-copy-to-clipboard";
 
-
-export default function InformationPage() {
+export default function InformationPage({UpperLoading,setUpperLoading}) {
   const { idroom } = useParams();
   const navigate = useNavigate();
   let authTokens = useContext(AuthContext).authTokens;
-  
+
+
   const clipboard = useClipboard({ timeout: 20000 });
   const [seePassword, setSeePassword] = useState(false);
   const [link, setLink] = useState(null);
@@ -35,8 +37,8 @@ export default function InformationPage() {
   //     req();
   // }, [idroom]);
   useEffect(() => {
-    setLink(roomData?.data?.link)
-  },[roomData])
+    setLink(roomData?.data?.link);
+  }, [roomData]);
   const refreshLink = async () => {
     const { data } = await axios
       .put(`/api/my-rooms/${idroom}?link=${link}`, null)
@@ -52,7 +54,7 @@ export default function InformationPage() {
       showConfirmButton: false,
       timer: 2000,
     });
-    navigate("/");
+    navigate("/home");
   };
 
   const copyLinkToClipboard = async (copylink) => {
@@ -66,14 +68,15 @@ export default function InformationPage() {
         timer: 2000,
       });
     }
-  }
-
+  };
 
   if (roomData) {
     localStorage.setItem("RoomTitle", roomData.data.title);
   }
+  useEffect(() => {setUpperLoading(curr=>curr & isLoading)},[isLoading]);
+  const forceUpdate = useForceUpdate()
   if (isLoading) {
-    return <p>LOADING ...</p>;
+    return <p> </p>;
   }
   return (
     <>
@@ -129,16 +132,42 @@ export default function InformationPage() {
         </div>
         <div className="flex flex-col my-2">
           <div className="avatar mt-1.5 h-20 w-20">
-            <img
+            {/* <img
               className="mask is-squircle"
               src={
                 roomData.data.main_picture_path === "" ||
-                  roomData.data.main_picture_path === "__"
+                roomData.data.main_picture_path === "__"
                   ? Avatar200x200
                   : roomData.data.main_picture_path
               }
               alt="avatar"
-            />
+            /> */}
+            {roomData.data.main_picture_path === "" ||
+                roomData.data.main_picture_path === "__"
+                ?       
+                <div
+
+                className={classNames(
+                  "is-initial rounded-full  bg-primary/10 text-2xl uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light"
+                  ,"hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
+                )}
+              >
+                {roomData?.data?.title[0]}
+              </div>
+                :
+                <img
+                  className={classNames(
+                    "rounded-full",
+                    "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80",
+                    "hover:border-info hover:border-2 hover:shadow-soft hover:shadow-info-focus/40"
+                  )}
+                  src={
+                    roomData?.data?.main_picture_path
+                  }
+                  onError={()=>{roomData.data.main_picture_path = "__"; forceUpdate();}}
+                  alt="avatar"
+                />
+              }
           </div>
         </div>
 
@@ -273,7 +302,7 @@ export default function InformationPage() {
                       placeholder="Password"
                       type={seePassword ? "text" : "password"}
                       value={roomData.data.password}
-                      disabled="true"
+                      disabled={true}
                     />
                     <div className="pointer-events-none absolute right-0 flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
                       <svg
@@ -283,9 +312,9 @@ export default function InformationPage() {
                       >
                         <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         ></path>
                       </svg>
                     </div>
@@ -301,7 +330,7 @@ export default function InformationPage() {
                 </span> */}
               </dd>
             </div>
-            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
+            {/* <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
               <dt className="text-sm font-medium ">Categories</dt>
               <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 {roomData.data?.categories && (
@@ -318,14 +347,22 @@ export default function InformationPage() {
                     ))}
                   </span>
                 )}
-                {/* <span className="ml-4 flex-shrink-0">
-                  <button
-                    type="button"
-                    className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  >
-                    Update
-                  </button>
-                </span> */}
+              </dd>
+            </div> */}
+            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-3 ">
+              <dt className="text-sm font-medium sm:py-2">Categories</dt>
+              <dd className="mt-1 flex  text-sm  sm:col-span-2 sm:mt-0">
+                {roomData.data?.categories && (
+                  <span className="flex-grow ">
+                    {roomData.data.categories.map((item) => (
+                      <div className="badge" key={item.name}>
+                        <p className="tag h-7 rounded-full bg-slate-150 text-xs+ text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-700 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                          {item.name}
+                        </p>
+                      </div>
+                    ))}
+                  </span>
+                )}
               </dd>
             </div>
             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
@@ -344,7 +381,7 @@ export default function InformationPage() {
                 </span> */}
               </dd>
             </div>
-            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
+            {/* <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
               <dt className="text-sm font-medium ">Start Date & End Date</dt>
               <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
                 <span className="flex-grow">
@@ -376,14 +413,44 @@ export default function InformationPage() {
                       }
                     )}
                 </span>
-                {/* <span className="ml-4 flex-shrink-0">
-                  <button
-                    type="button"
-                    className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  >
-                    Update
-                  </button>
-                </span> */}
+              </dd>
+            </div> */}
+            {/* <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
+              <dt className="text-sm font-medium ">Start Date & End Date</dt>
+              <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
+                <span className="flex-grow">
+                  <Moment format="YYYY/MM/DD HH:mm">
+                    {roomData.data.start_date}
+                  </Moment>
+                  <br />
+                  till
+                  <br />
+                  <Moment format="YYYY/MM/DD HH:mm">
+                    {roomData.data.start_date}
+                  </Moment>
+                </span>
+              </dd>
+            </div> */}
+            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-4">
+              <dt className="text-sm font-medium ">Start Date </dt>
+              <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
+                <span className="flex-grow">
+                  <Moment format="YYYY/MM/DD HH:mm">
+                    {roomData.data.start_date}
+                  </Moment>
+                  <br />
+                </span>
+              </dd>
+            </div>
+            <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-4">
+              <dt className="text-sm font-medium ">End Date</dt>
+              <dd className="mt-1 flex text-sm  sm:col-span-2 sm:mt-0">
+                <span className="flex-grow">
+                  <Moment format="YYYY/MM/DD HH:mm">
+                    {roomData.data.end_date}
+                  </Moment>
+                  <br />
+                </span>
               </dd>
             </div>
             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
@@ -409,9 +476,21 @@ export default function InformationPage() {
                       {FrontURL + "/joinroom/" + link}
                     </p>
                     <div>
+                      <CopyToClipboard
+                        text={FrontURL + "/joinroom/" + link}
+                        onCopy={() => {
+                          Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Link copied to clipboard",
+                            showConfirmButton: false,
+                            timer: 2000,
+                          });
+                        }
+                        }
+                      >
                       <button
                         id={"clipBoardCopy"}
-                        onClick={()=>copyLinkToClipboard(FrontURL + "/joinroom/" + link)}
                         className="btn h-6 shrink-0 rounded mx-1 my-2 bg-white/20 px-2 text-xs text-white active:bg-white/25"
                       >
                         <svg
@@ -429,17 +508,19 @@ export default function InformationPage() {
                           />
                         </svg>
                       </button>
+                      </CopyToClipboard>
+
 
                       {roomData.data.is_admin && (
                         <>
                           <button
-                            onClick={ async ()=>await refreshLink()}
+                            onClick={async () => await refreshLink()}
                             className="btn h-6 shrink-0 rounded mx-1 my-2 bg-white/20 px-2 space-x-1 space-y-2 text-xs text-white active:bg-white/25"
-                          //   @click="$clipboard({
-                          //     content:document.querySelector('#clipboardContent1').innerText,
-                          //     success:()=>$notification({text:'Text Copied',variant:'success'}),
-                          //     error:()=>$notification({text:'Error',variant:'error'})
-                          //   })"
+                            //   @click="$clipboard({
+                            //     content:document.querySelector('#clipboardContent1').innerText,
+                            //     success:()=>$notification({text:'Text Copied',variant:'success'}),
+                            //     error:()=>$notification({text:'Error',variant:'error'})
+                            //   })"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

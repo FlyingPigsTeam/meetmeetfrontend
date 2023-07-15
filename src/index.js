@@ -9,6 +9,7 @@ import ReactDOM from "react-dom/client";
 import 'animate.css';
 import App from "./App";
 import "./index.css";
+import { RQ_Debug } from "./data/BASEURL";
 
 // axios.defaults.baseURL = "http://127.0.0.1:8000/";
 // axios.defaults.baseURL = "";
@@ -38,7 +39,7 @@ root.render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
-      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+      {RQ_Debug && <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />}
     </QueryClientProvider>
   </Provider>
 );

@@ -5,36 +5,38 @@ import React, {
   useRef,
   useState,
 } from "react";
-import ReactPaginate from 'react-paginate';
+import ReactPaginate from "react-paginate";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import AutoComplete from "../../../components/AutoComplete";
 import AuthContext from "../../../context/AuthContext";
-import Pagination from '../../Home/Pagination'
-
+import Pagination from "../../Home/Pagination";
+import classNames from "../../../utils/classNames";
 import Avatar200x200 from "../../../assets/images/200x200.png";
 import MemberActions from "./MemberActions";
 
 import { useGetRoomMembers } from "../../../api/endpoints/useRoomMembers";
+import { useForceUpdate } from "@mantine/hooks";
 
-const Members = () => {
-
+const Members = ({ UpperLoading, setUpperLoading }) => {
   const { idroom } = useParams();
 
-
-
   const [roomData, setRoomData] = useState({});
-  const entriesOptions = [1, 2, 3, 4, 5, 10, 15]
+  const entriesOptions = [1, 2, 3, 4, 5, 10, 15];
 
   const [totalpage, setTotalpage] = useState(1);
   const [page, setPage] = useState(1);
-  const [entries, setEntries] = useState(1)
+  const [entries, setEntries] = useState(5);
 
-  const { data: users_Data, isLoading, isError,refetch:refetchMembers } = useGetRoomMembers(idroom, page, entries);
+  const {
+    data: users_Data,
+    isLoading,
+    isError,
+    refetch: refetchMembers,
+  } = useGetRoomMembers(idroom, page, entries);
   const calculateTotalPage = async () => {
     if (!isLoading) {
-
       let count = users_Data?.data?.count;
       let number = 1;
       if (count % entries === 0) {
@@ -59,22 +61,25 @@ const Members = () => {
   useEffect(() => {
     calculateTotalPage();
   }, [idroom, page, entries, users_Data]);
+  useEffect(() => {
+    setUpperLoading(isLoading);
+  }, [isLoading]);
 
   // console.log("totalpage", totalpage);
 
   const ConvertRole = (member) => {
     const result =
       member.is_owner === true &&
-        member.is_member === true &&
-        member.request_status === 3
+      member.is_member === true &&
+      member.request_status === 3
         ? "Owner"
         : member.is_member === true && member.is_owner === false
-          ? "Member"
-          : member.request_status === 0 &&
-            member.is_member === false &&
-            member.is_owner === false
-            ? "Pending"
-            : "WTF USER ROLE";
+        ? "Member"
+        : member.request_status === 0 &&
+          member.is_member === false &&
+          member.is_owner === false
+        ? "Pending"
+        : "WTF USER ROLE";
     if (result === "WTF USER ROLE") {
       console.log("🚀Members.js:131 ~ ConvertRole", result);
     }
@@ -95,17 +100,16 @@ const Members = () => {
       action: (requestId) => {
         const acceptUser = async () => {
           const { data } = await axios
-            .put(
-              `/api/my-rooms/${idroom}/requests?request_id=${requestId}`,
-              { is_member: true, request_status: 2 },
-            )
+            .put(`/api/my-rooms/${idroom}/requests?request_id=${requestId}`, {
+              is_member: true,
+              request_status: 2,
+            })
             .then((response) => response);
           console.log("memberAccept", data);
         };
         acceptUser();
         setPage(1);
         refetchMembers();
-
       },
     },
     Kick: {
@@ -120,12 +124,9 @@ const Members = () => {
         </>
       ),
       action: (requestId) => {
-
         const deleteUser = async () => {
           const { data } = await axios
-            .delete(
-              `/api/my-rooms/${idroom}/requests?request_id=${requestId}`
-            )
+            .delete(`/api/my-rooms/${idroom}/requests?request_id=${requestId}`)
             .then((response) => response);
           console.log("memberKick", data);
         };
@@ -147,12 +148,9 @@ const Members = () => {
         </>
       ),
       action: (requestId) => {
-
         const rejectUser = async () => {
           const { data } = await axios
-            .delete(
-              `/api/my-rooms/${idroom}/requests?request_id=${requestId}`
-            )
+            .delete(`/api/my-rooms/${idroom}/requests?request_id=${requestId}`)
             .then((response) => response);
           console.log("memberReject", data);
         };
@@ -197,9 +195,10 @@ const Members = () => {
       Actions: ["Accept", "Reject"],
     },
   };
+  const forceUpdate = useForceUpdate();
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return <p> </p>;
   }
   return (
     <>
@@ -208,7 +207,7 @@ const Members = () => {
           <h2 className="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
             Users Table
           </h2>
-          <div className="flex">
+          {/* <div className="flex">
 
             <div className="flex items-center" x-data="{isInputActive:false}">
               <label className="block">
@@ -312,43 +311,42 @@ const Members = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="card mt-3">
-
-
           <div
             className="is-scrollbar-hidden min-w-full overflow-x-auto"
-          // x-data="pages.tables.initExample1"
+            // x-data="pages.tables.initExample1"
           >
             <table className="is-hoverable w-full text-left">
               <thead>
                 <tr>
-                  <th className="whitespace-nowrap rounded-tl-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  {/* <th className="whitespace-nowrap rounded-tl-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     #
-                  </th>
-                  <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  </th> */}
+                  <th className="whitespace-nowrap bg-slate-200 px-2 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-2">
                     Avatar
                   </th>
-                  <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  <th className="whitespace-nowrap bg-slate-200 px-1 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-1">
                     Username
                   </th>
-                  <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                    Firstname
+                  <th className="whitespace-nowrap bg-slate-200 px-1 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-1">
+                    Name
                   </th>
-                  <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  {/* <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Lastname
-                  </th>
-                  <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                  </th> */}
+                  <th className="whitespace-nowrap bg-slate-200 px-1 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-1">
                     Role
                   </th>
                   {/* <th className="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                     Status
                   </th> */}
-                  {roomData.is_admin && <th
-                    className="whitespace-nowrap rounded-tr-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                    Action
-                  </th>}
+                  {roomData.is_admin && (
+                    <th className="whitespace-nowrap rounded-tr-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                      Action
+                    </th>
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -358,28 +356,56 @@ const Members = () => {
                       key={`user-item-${idx}`}
                       className="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
                     >
-                      <td className="whitespace-nowrap px-4 py-3 sm:px-5">
+                      {/* <td className="whitespace-nowrap px-4 py-3 sm:px-5">
                         {idx + 1}
-                      </td>
-                      <td className="whitespace-nowrap px-4 py-3 sm:px-5">
+                      </td> */}
+                      <td className="whitespace-nowrap px-2 py-3 sm:px-2">
                         <div className="avatar flex h-10 w-10">
-                          <img
-                            className="mask is-squircle"
-                            src={user.member.picture_path && user.member.picture_path != "" && user.member.picture_path != "__" ? user.member.picture_path : Avatar200x200}
+                          {!(
+                            user?.member?.picture_path &&
+                            user?.member?.picture_path != "" &&
+                            user?.member?.picture_path != "__"
+                          ) ? (
+                            <div
+                              className={classNames(
+                                "is-initial mask is-squircle  bg-primary/10 text-base uppercase text-primary dark:bg-accent-light/10 dark:text-accent-light",
+                                "hover:bg-info/10 hover:text-info hover:dark:bg-info/10 hover:dark:text-info"
+                              )}
+                            >
+                              {user?.member?.first_name[0] +
+                                user?.member?.last_name[0]}
+                            </div>
+                          ) : (
+                            <img
+                              className={classNames(
+                                "mask is-squircle",
+                                "hover:shadow-primary-focus/40 dark:hover:shadow-primary-focus/80"
+                              )}
+                              src={user.member.picture_path}
+                              onError={() => {
+                                user.member.picture_path = "__";
+                                forceUpdate();
+                              }}
+                              alt="avatar"
+                            />
+                          )}
+                          {/* <img
+                            className=""
+                            src={ user.member.picture_path&& user.member.picture_path != "" && user.member.picture_path != "__" ? user.member.picture_path : Avatar200x200}
                             alt="avatar"
-                          />
+                          /> */}
                         </div>
                       </td>
-                      <td className="whitespace-nowrap px-3 py-3 font-medium text-slate-700 dark:text-navy-100 lg:px-5">
+                      <td className="whitespace-nowrap px-1 py-3 font-medium text-slate-700 dark:text-navy-100 lg:px-1">
                         {user.member.username}
                       </td>
-                      <td className="whitespace-nowrap px-4 py-3 sm:px-5">
-                        {user.member.first_name}
+                      <td className="whitespace-nowrap px-1 py-3 sm:px-1">
+                        {user.member.first_name + " " + user.member.last_name}
                       </td>
-                      <td className="whitespace-nowrap px-4 py-3 sm:px-5">
+                      {/* <td className="whitespace-nowrap px-4 py-3 sm:px-5">
                         {user.member.last_name}
-                      </td>
-                      <td className="whitespace-nowrap px-4 py-3 sm:px-5">
+                      </td> */}
+                      <td className="whitespace-nowrap px-1 py-3 sm:px-1 text-left">
                         <div className="badge rounded-full">
                           {roleDetails[ConvertRole(user)].ListBadge}
                         </div>
@@ -394,17 +420,21 @@ const Members = () => {
                           />
                         </label>
                       </td> */}
-                      {roomData.is_admin && <td className="whitespace-nowrap px-4 py-3 sm:px-5">
-                        <MemberActions user={user} setPage={setPage} refetchMembers={refetchMembers} />
-                      </td>}
+                      {roomData.is_admin && (
+                        <td className="whitespace-nowrap px-4 py-3 sm:px-5">
+                          <MemberActions
+                            user={user}
+                            setPage={setPage}
+                            refetchMembers={refetchMembers}
+                          />
+                        </td>
+                      )}
                     </tr>
                   );
                 })}
               </tbody>
             </table>
-
           </div>
-
 
           <div className="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5">
             <div className="flex items-center space-x-2 text-xs+">
@@ -418,9 +448,9 @@ const Members = () => {
                   }}
                   className="form-select text-xs+ rounded-full border border-slate-300 bg-white px-2 py-1 pr-6 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
                 >
-                  {entriesOptions.map((option, index) => (<option>{option}</option>))}
-
-
+                  {entriesOptions.map((option, index) => (
+                    <option key={`option-entry-${option}`}>{option}</option>
+                  ))}
                 </select>
               </label>
               <span>entries</span>
@@ -510,19 +540,23 @@ const Members = () => {
                 </a>
               </li>
             </ol> */}
-            {totalpage !== 1 &&
-              <Pagination
-                total={totalpage}
-                current={page}
-                setPage={setPage}
-              />}
+            {totalpage !== 1 && (
+              <Pagination total={totalpage} current={page} setPage={setPage} />
+            )}
 
             {/* <div className="text-xs+">1 - 10 of 10 entries</div> */}
-            <div className="text-xs+">{`${page * entries - entries + 1} - ${Math.min(page * entries, users_Data?.data?.count)} of ${users_Data?.data?.count} entries`}</div>
-
+            <div className="text-xs+">{`${
+              page * entries - entries + 1
+            } - ${Math.min(page * entries, users_Data?.data?.count)} of ${
+              users_Data?.data?.count
+            } entries`}</div>
           </div>
         </div>
-        <div className="card mt-3 p-4"><AutoComplete /></div>
+        {roomData.is_admin && (
+          <div className="card mt-3 p-4">
+            <AutoComplete />
+          </div>
+        )}
       </div>
     </>
   );
@@ -552,8 +586,6 @@ className="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide t
 <span> Delete item</span>
 </a> */
 }
-
-
 
 // const Pagination = () => {
 //   const handlePageChange = (selected) => {
